@@ -16,8 +16,8 @@ datasource db {
 model WorkSample {
   id            Int     @id @default(autoincrement())
   isWeb         Boolean @default(true)
-  faTitle       String  
-  enTitle       String  
+  faTitle       String
+  enTitle       String
   faDescription String  @default("")
   enDescription String  @default("")
   pictures      String

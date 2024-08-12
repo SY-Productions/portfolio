@@ -26,7 +26,7 @@ export default function Information({ data }: { data: WorkSample[] }) {
   return (
     <div className="flex items-center justify-center lg:justify-normal">
       <Tabs
-        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-white/10"
+        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-white/10 backdrop-blur-3xl"
         variant="unstyled"
       >
         <TabList className="JUSTTABS">

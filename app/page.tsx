@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import AboutMe from "../components/AboutMe";
 import Skills from "../components/Skills/SkillsSection";
 import WorkSamples from "../components/WorkSamples/WorkSamples";
-import Education from "../components/Education";
+import Education from "../components/Education/Education";
 import CallMe from "../components/CallMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
 import LookingProgrammer from "@/components/LookingProgrammer";

@@ -16,7 +16,8 @@ export default function AboutMe() {
           <Image
             src={prof}
             alt="Profile Picture"
-            className="aspect-square rounded-sm"
+            className="aspect-square rounded-sm transition-all active:scale-95 hover:cursor-grab active:cursor-grabbing"
+            draggable={false}
           />
         </div>
         <div className="NAME&DESC&BUTTONS flex flex-col items-center">

@@ -1,7 +1,7 @@
 import prisma from "@/prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { schema } from "./schema";
-// eror chie
+
 export async function GET(request: NextRequest) {
   const workSamples = await prisma.workSample.findMany();
   return NextResponse.json(workSamples);
