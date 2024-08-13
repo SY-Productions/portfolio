@@ -3,7 +3,7 @@ import React from "react";
 import pic from "@/public/pic.png";
 export default function PicInfo() {
   return (
-    <div className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[400px] overflow-hidden flex justify-center items-center">
+    <div className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[400px] overflow-hidden flex justify-center items-center bg-black/20">
       <Image
         src={pic}
         alt=""
