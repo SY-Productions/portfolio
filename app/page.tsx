@@ -4,7 +4,7 @@ import AboutMe from "../components/AboutMe";
 import Skills from "../components/Skills/SkillsSection";
 import WorkSamples from "../components/WorkSamples/WorkSamples";
 import Education from "../components/Education/Education";
-import CallMe from "../components/CallMe";
+import CallMe from "../components/CallMe/CallMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
 import LookingProgrammer from "@/components/LookingProgrammer";
 
