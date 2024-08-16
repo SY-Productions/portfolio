@@ -5,7 +5,7 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 
 export default function EduCard({ data }: { data: Education }) {
   return (
-    <div className="group w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-white/5 hover:bg-white/10 hover:scale-105 hover:border-white/15 transition-all duration-300 ease-out cursor-help hover:rounded-md border border-white/10 backdrop-blur-3xl mx-auto flex flex-col font-[ybn]">
+    <div className="group w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-white/5 hover:bg-white/10 hover:scale-105 hover:border-white/15 transition-all duration-300 ease-out cursor-help hover:rounded-md border border-white/10 backdrop-blur-3xl mx-auto flex flex-col font-[ybn]">
       <div className="PIC&CAlENDAR flex justify-between items-center w-full m-4">
         <Image
           className="aspect-square rounded-md "

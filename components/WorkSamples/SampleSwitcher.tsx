@@ -13,7 +13,7 @@ export default function SampleSwitcher() {
     webSamples,
   } = useZState();
   const buttonClasses =
-    "btn rounded-none w-12 bg-white/5 hover:bg-white/10 hover:border-white/15 border border-white/10 active:bg-b/20";
+    "btn rounded-none w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] bg-white/5 hover:bg-white/10 hover:border-white/15 border border-white/10 active:bg-b/20";
   function handleButtons(ZeroOrOne: number) {
     if (isWebFrame) {
       // when Web

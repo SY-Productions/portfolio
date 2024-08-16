@@ -71,7 +71,7 @@ export default async function WorkSamples() {
   const res = await fetch("http://localhost:3000/api");
   const data: WorkSample[] = await res.json();
   return (
-    <div className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen ">
+    <div className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen gap-x-[5vw]">
       <Preview data={data} />
       <div className="INFO&SWITCH">
         <Information data={data} />

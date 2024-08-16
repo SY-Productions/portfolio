@@ -20,9 +20,9 @@ export default function Information({ data }: { data: WorkSample[] }) {
     setMobSamples(mobile.length - 1);
   }, [data]);
   const tabClasses =
-    "py-4 lg:py-6 px-1 w-[50%] font-[ybb] border-b text-white/70 border-b-white/10";
+    "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
   const tabContentClasses =
-    "h-48 font-[ybb] text-sm bg-white/5 flex flex-col justify-start px-4";
+    "TABCONTENT h-auto min-h-[30vh] font-[ybb] text-sm bg-white/5 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
   return (
     <div className="flex items-center justify-center lg:justify-normal">
       <Tabs
@@ -57,26 +57,26 @@ export default function Information({ data }: { data: WorkSample[] }) {
         <TabPanels>
           <TabPanel>
             <div className={tabContentClasses}>
-              <div className="text-lg py-5 text-white/80">
+              <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
                 {web[sampleWebIndex].faTitle}
               </div>
-              <div className="font-[ybn] text-white/70">
+              <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
                 {web[sampleWebIndex].faDescription}
               </div>
             </div>
           </TabPanel>
           <TabPanel>
             <div className={tabContentClasses}>
-              <div className="text-lg py-5 text-white/80">
+              <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
                 {mobile[sampleMobIndex].faTitle}
               </div>
-              <div className="font-[ybn] text-white/70">
+              <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
                 {mobile[sampleMobIndex].faDescription}
               </div>
             </div>
           </TabPanel>
         </TabPanels>
-        <button className="absolute bottom-0 flex items-center justify-between px-4 hover:bg-b/70 bg-b/60 text-white w-full h-12">
+        <button className="absolute bottom-0 flex items-center justify-between px-4 hover:bg-b/70 bg-b/60 text-white w-full h-[5vh] min-h-12">
           اطلاعات بیشتر <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />
         </button>
       </Tabs>

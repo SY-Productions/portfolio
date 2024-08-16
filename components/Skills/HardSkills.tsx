@@ -16,10 +16,10 @@ import { SiWordpress } from "react-icons/si";
 export default function HardSkills() {
   return (
     <div className="H3&P&GRID w-[80%] lg:mr-[22vw] ">
-      <h3 className="H3 xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap">
+      <h3 className="H3 xl:text-4xl font-[ybb] text-white/80 self-start mb-[2.5vh] text-nowrap">
         مهارت های فنی
       </h3>
-      <p className="P font-[ybn] text-white/40 self-start mb-6 text-wrap">
+      <p className="P font-[ybn] text-white/40 self-start mb-[2.5vh] text-wrap 2xl:text-lg">
         مهارت های بخش نرم افزارِ من، شامل حوزه های اپلیکیشن موبایل، وب اپلیکشن و
         برنامه نویسی سمت سرور.
       </p>

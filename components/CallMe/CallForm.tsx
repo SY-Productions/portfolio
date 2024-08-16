@@ -7,7 +7,7 @@ import TitleIcon from "@mui/icons-material/Title";
 export default function CallForm() {
   const labelClasses = "relative flex items-center ";
   const inputClasses =
-    "flex-1  bg-white/5 p-3 outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-d focus:ring-offset-1 ring-offset-d focus:rounded-sm transition-all duration-200 placeholder:text-white/30 indent-7 hover:ring-white/20 ";
+    "flex-1 bg-white/5 px-[3vw] lg:px-[1vw] py-[2vh] outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-d focus:ring-offset-1 ring-offset-d focus:rounded-sm transition-all duration-200 placeholder:text-white/30 2xl:placeholder:text-lg 2xl:text-lg indent-7 hover:ring-white/20 ";
   function handleSubmit(e: any) {
     e.preventDefault();
     console.log("hehe");
@@ -61,7 +61,7 @@ export default function CallForm() {
       ></textarea>
       <button
         onClick={() => handleClick()}
-        className="btn border-0 px-0 rounded-none hover:bg-d/60 hover:rounded-lg transition-all duration-75 text-white font-normal bg-d col-span-2"
+        className="btn border-0 px-0 rounded-none h-[7vh] 2xl:text-xl hover:bg-d/60 hover:rounded-lg transition-all duration-75 text-white font-normal bg-d col-span-2 "
       >
         ارسال
       </button>
