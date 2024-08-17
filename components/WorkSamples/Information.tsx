@@ -6,6 +6,8 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { WorkSample } from "@prisma/client";
 
 export default function Information({ data }: { data: WorkSample[] }) {
+  console.log('-------')
+  console.log(data)
   const {
     sampleWebIndex,
     sampleMobIndex,
@@ -68,10 +70,10 @@ export default function Information({ data }: { data: WorkSample[] }) {
           <TabPanel>
             <div className={tabContentClasses}>
               <div className="text-lg py-5 text-white/80">
-                {mobile[sampleMobIndex].faTitle}
+                {mobile[sampleMobIndex]?.faTitle??''}
               </div>
               <div className="font-[ybn] text-white/70">
-                {mobile[sampleMobIndex].faDescription}
+                {mobile[sampleMobIndex]?.faDescription??''}
               </div>
             </div>
           </TabPanel>
