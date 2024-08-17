@@ -8,6 +8,7 @@ type State = {
   sampleMobIndex: number;
   webSamples: number;
   MobSamples: number;
+  sideBarScroll: string;
 };
 type Action = {
   setIsWebFrame: (f: boolean) => void;
@@ -17,6 +18,7 @@ type Action = {
   setSampleMobIndex: (sign: number) => void;
   setWebSamples: (n: number) => void;
   setMobSamples: (n: number) => void;
+  setSideBarScroll: (name: string) => void;
 };
 export const useZState = create<State & Action>((set) => ({
   isOpen: false,
@@ -25,6 +27,7 @@ export const useZState = create<State & Action>((set) => ({
   isWebFrame: true,
   webSamples: 0, // Always should -1 of Real number of web Samples
   MobSamples: 0, // Always should -1 of Real number of mob Samples
+  sideBarScroll: "#about-me",
   setOpen: () => set((s) => ({ isOpen: !s.isOpen })),
   setFixedOpen: () => set(() => ({ isOpen: true })),
   setIsWebFrame: (f) => set(() => ({ isWebFrame: f })),
@@ -48,6 +51,7 @@ export const useZState = create<State & Action>((set) => ({
     ),
   setWebSamples: (n) => set(() => ({ webSamples: n })),
   setMobSamples: (n) => set(() => ({ MobSamples: n })),
+  setSideBarScroll: (name) => set(() => ({ sideBarScroll: name })),
 }));
 
 if (process.env.NODE_ENV === "development")

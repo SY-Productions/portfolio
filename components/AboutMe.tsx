@@ -10,7 +10,10 @@ export default function AboutMe() {
     "h-[6vh] lg:h-[8vh] aspect-square bg-white/5 rounded-sm flex items-center justify-center transition-all duration-200 hover:bg-white/10";
 
   return (
-    <div className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen ">
+    <div
+      id="about-me"
+      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen "
+    >
       <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:mr-[22vw] lg:ml-[3vw] lg:h-screen">
         <div className="PROF p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem] bg-white/5 border border-white/10 backdrop-blur-3xl rounded-sm self-center basis-1/3 ">
           <Image

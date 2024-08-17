@@ -26,41 +26,40 @@ const sideItems = [
     title: "درباره من",
     logo1: <Image src={tagwh} alt="About me" />,
     logo2: <Image src={taggr} alt="About me" />,
-    selected: true,
+    to: "#about-me",
   },
   {
     title: "مهارت ها",
-    logo1: <Image src={cubewh} alt="About me" />,
-    logo2: <Image src={cubegr} alt="About me" />,
-    selected: false,
+    logo1: <Image src={cubewh} alt="Skills" />,
+    logo2: <Image src={cubegr} alt="Skills" />,
+    to: "#skills",
   },
   {
     title: "نمونه کارها",
-    logo1: <Image src={bagwh} alt="About me" />,
-    logo2: <Image src={baggr} alt="About me" />,
-    selected: false,
+    logo1: <Image src={bagwh} alt="Work Samples" />,
+    logo2: <Image src={baggr} alt="Work Samples" />,
+    to: "#portfolio",
   },
   {
     title: "سوابق تحصیلی",
-    logo1: <Image src={capwh} alt="About me" />,
-    logo2: <Image src={capgr} alt="About me" />,
-    selected: false,
+    logo1: <Image src={capwh} alt="Education" />,
+    logo2: <Image src={capgr} alt="Education" />,
+    to: "#education",
   },
   {
     title: "تماس با من",
-    logo1: <Image src={hswh} alt="About me" />,
-    logo2: <Image src={hsgr} alt="About me" />,
-    selected: false,
+    logo1: <Image src={hswh} alt="Call me" />,
+    logo2: <Image src={hsgr} alt="Call me" />,
+    to: "#call-me",
   },
 ];
-
 export default function SideBar() {
-  const { isOpen, setFixedOpen, setOpen } = useZState();
+  const { isOpen, setFixedOpen, setOpen, sideBarScroll, setSideBarScroll } =
+    useZState();
   const sideBarFullClasses =
     "z-50 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
   const sideItemClasses =
     "flex flex-row justify-start items-center gap-3 py-2 my-3 rounded-sm cursor-pointer ";
-
   useEffect(() => {
     const handleSideBar = () => {
       if (window.innerWidth >= 1024) {
@@ -84,32 +83,34 @@ export default function SideBar() {
           : sideBarFullClasses
       }
     >
-      <aside className="font-[ybn] border-l border-white/10 h-screen bg-black/5 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl">
+      <aside className=" font-[ybn] border-l border-white/10 h-screen bg-black/5 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl">
         <div className="LOGO&OPTIONS text-base text-white/40 pt-8 mr-8">
           <div className="LOGO hidden lg:block text-b text-4xl">LOGO</div>
           {sideItems.map((item) => (
-            <div
+            <a
+              onClick={() => setSideBarScroll(item.to)}
+              href={item.to}
               key={item.title}
               className={
-                item.selected
+                item.to == sideBarScroll
                   ? sideItemClasses +
-                    " border-white/10 border border-l-0 bg-white/5 shadow-sm "
+                    "border-white/10 border border-l-0 bg-white/5 shadow-sm "
                   : sideItemClasses
               }
             >
               <span
                 className={
-                  item.selected
+                  item.to == sideBarScroll
                     ? "bg-gradient-to-b from-a to-b p-2 rounded-lg mr-2 shadow-lg"
                     : "bg-white/5 p-2 rounded-lg mr-2"
                 }
               >
-                {item.selected ? item.logo1 : item.logo2}
+                {item.to == sideBarScroll ? item.logo1 : item.logo2}
               </span>
-              <span className={item.selected ? "text-white" : ""}>
+              <span className={item.to == sideBarScroll ? "text-white" : ""}>
                 {item.title}
               </span>
-            </div>
+            </a>
           ))}
         </div>
         <div className="h-0 border-t border-white/10 " />

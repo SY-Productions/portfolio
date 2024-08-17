@@ -27,7 +27,7 @@ const educationData: Education[] = [
 
 export default function Education() {
   return (
-    <div className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh]">
+    <div id="education" className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh]">
       <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12">
         <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap">
