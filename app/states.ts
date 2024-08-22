@@ -9,6 +9,8 @@ type State = {
   webSamples: number;
   MobSamples: number;
   sideBarScroll: string;
+  isDrawerOpen: boolean;
+  samplePicIndex: number;
 };
 type Action = {
   setIsWebFrame: (f: boolean) => void;
@@ -19,6 +21,9 @@ type Action = {
   setWebSamples: (n: number) => void;
   setMobSamples: (n: number) => void;
   setSideBarScroll: (name: string) => void;
+  setDrawerOpening: (bool: boolean) => void;
+  increaseSamplePicIndex: () => number;
+  decreaseSamplePicIndex: () => number;
 };
 export const useZState = create<State & Action>((set) => ({
   isOpen: false,
@@ -28,6 +33,8 @@ export const useZState = create<State & Action>((set) => ({
   webSamples: 0, // Always should -1 of Real number of web Samples
   MobSamples: 0, // Always should -1 of Real number of mob Samples
   sideBarScroll: "#about-me",
+  isDrawerOpen: true,
+  samplePicIndex: 0,
   setOpen: () => set((s) => ({ isOpen: !s.isOpen })),
   setFixedOpen: () => set(() => ({ isOpen: true })),
   setIsWebFrame: (f) => set(() => ({ isWebFrame: f })),
@@ -52,6 +59,12 @@ export const useZState = create<State & Action>((set) => ({
   setWebSamples: (n) => set(() => ({ webSamples: n })),
   setMobSamples: (n) => set(() => ({ MobSamples: n })),
   setSideBarScroll: (name) => set(() => ({ sideBarScroll: name })),
+  setDrawerOpening: (bool) => set(() => ({ isDrawerOpen: bool })),
+  // setSamplePicIndex: (n) => set(() => ({ samplePicIndex: n })),
+  increaseSamplePicIndex: () =>
+    set((pre) => ({ samplePicIndex: pre.samplePicIndex + 1 }))!,
+  decreaseSamplePicIndex: () =>
+    set((pre) => ({ samplePicIndex: pre.samplePicIndex - 1 }))!,
 }));
 
 if (process.env.NODE_ENV === "development")

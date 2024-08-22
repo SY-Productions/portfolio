@@ -24,18 +24,18 @@ export default function HardSkills() {
         برنامه نویسی سمت سرور.
       </p>
       <div className="inline-grid grid-cols-2 xl:grid-cols-3 xl:min-w-[400px] gap-2 ">
-        <Skill name="Dart" icon={<SiDart size={17} />} link="" />
-        <Skill name="Flutter" icon={<SiFlutter size={17} />} link="" />
-        <Skill name="Python" icon={<SiPython size={17} />} link="" />
-        <Skill name="Django" icon={<SiDjango size={17} />} link="" />
-        <Skill name="Fastapi" icon={<SiFastapi size={17} />} link="" />
-        <Skill name="Html" icon={<SiHtml5 size={17} />} link="" />
-        <Skill name="Css" icon={<SiCss3 size={17} />} link="" />
-        <Skill name="Js" icon={<SiJavascript size={17} />} link="" />
-        <Skill name="React" icon={<SiReact size={17} />} link="" />
-        <Skill name="Ruby" icon={<SiRuby size={17} />} link="" />
-        <Skill name="OnRails" icon={<SiRubyonrails size={17} />} link="" />
-        <Skill name="WP" icon={<SiWordpress size={17} />} link="" />
+        <Skill name="Dart" link="" />
+        <Skill name="Flutter" link="" />
+        <Skill name="Python" link="" />
+        <Skill name="Django" link="" />
+        <Skill name="Fastapi" link="" />
+        <Skill name="Html" link="" />
+        <Skill name="Css" link="" />
+        <Skill name="Js" link="" />
+        <Skill name="React" link="" />
+        <Skill name="Ruby" link="" />
+        <Skill name="OnRails" link="" />
+        <Skill name="WP" link="" />
       </div>
     </div>
   );

@@ -2,21 +2,12 @@
 import Image from "next/image";
 import React from "react";
 import { useZState } from "@/app/states";
-// import { PreviewProps } from "./WorkSamples";
+import PicSrcArray from "./PicSrcArray";
 import { WorkSample } from "@prisma/client";
 
 export default function Preview({ data }: { data: WorkSample[] }) {
-  const { sampleWebIndex, sampleMobIndex, isWebFrame } = useZState();
-  const mobile = data.filter((sample) => !sample.isWeb);
-  const web = data.filter((sample) => sample.isWeb);
-
-  // let output = { loc: "", howMany: 1 };
-  // let locs = pictures.split(" ");
-  // Bejaye data[0] data[state] bezar ke vasle be felesh paeen
-  // const index = isWebFrame ? sampleWebIndex : sampleMobIndex;
-  const picSrc = isWebFrame
-    ? web[sampleWebIndex].pictures.split(" ")[0]
-    : mobile[sampleMobIndex].pictures.split(" ")[0];
+  const picSrc = PicSrcArray({ data });
+  const { isWebFrame } = useZState();
   return (
     <div
       className={`${
@@ -24,7 +15,7 @@ export default function Preview({ data }: { data: WorkSample[] }) {
       } mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem]`}
     >
       <Image
-        src={picSrc}
+        src={picSrc.pics[0]}
         width={500}
         height={500}
         className="h-[60vh] lg:w-[30vw] object-contain"

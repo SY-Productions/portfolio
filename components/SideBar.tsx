@@ -57,7 +57,7 @@ export default function SideBar() {
   const { isOpen, setFixedOpen, setOpen, sideBarScroll, setSideBarScroll } =
     useZState();
   const sideBarFullClasses =
-    "z-50 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
+    "z-40 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
   const sideItemClasses =
     "flex flex-row justify-start items-center gap-3 py-2 my-3 rounded-sm cursor-pointer ";
   useEffect(() => {
@@ -83,7 +83,7 @@ export default function SideBar() {
           : sideBarFullClasses
       }
     >
-      <aside className=" font-[ybn] border-l border-white/10 h-screen bg-black/5 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl">
+      <aside className=" font-[ybn] border-l border-white/10 h-screen bg-black/5 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between ">
         <div className="LOGO&OPTIONS text-base text-white/40 pt-8 mr-8">
           <div className="LOGO hidden lg:block text-b text-4xl">LOGO</div>
           {sideItems.map((item) => (
@@ -113,35 +113,37 @@ export default function SideBar() {
             </a>
           ))}
         </div>
-        <div className="h-0 border-t border-white/10 " />
-        <div className="flex flex-col gap-6 mr-10 py-5">
-          <div className="flex items-center gap-6">
-            <div className="p-3 bg-white/5 rounded-lg">
-              <Image
-                src={iran}
-                alt="Persian Language"
-                className="rounded-full w-5 h-5 object-cover"
+        <div className="SWITCHES&BUTTON pb-[3vh]">
+          <div className="h-0 border-t border-white/10 " />
+          <div className="SWITCHES flex flex-col gap-6 mr-10 py-5">
+            <div className="flex items-center gap-6">
+              <div className="p-3 bg-white/5 rounded-lg">
+                <Image
+                  src={iran}
+                  alt="Persian Language"
+                  className="rounded-full w-5 h-5 object-cover"
+                />
+              </div>
+              <input
+                type="checkbox"
+                className="toggle toggle-md  2xl:toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
               />
             </div>
-            <input
-              type="checkbox"
-              className="toggle toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
-            />
-          </div>
-          <div className="flex items-center gap-6">
-            <div className="p-2.5 bg-white/5 rounded-lg">
-              <DarkModeOutlinedIcon />
+            <div className="flex items-center gap-6">
+              <div className="p-2.5 bg-white/5 rounded-lg">
+                <DarkModeOutlinedIcon />
+              </div>
+              <input
+                type="checkbox"
+                className="toggle toggle-md 2xl:toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
+              />
             </div>
-            <input
-              type="checkbox"
-              className="toggle toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
-            />
           </div>
+          <div className="h-0 border-t border-white/10 hidden lg:block" />
+          <button className="DOWNLOADPDF btn p-3 bg-white/5 font-normal text-nowrap text-sm mt-4 mr-10 transition-all duration-200 hover:bg-white/10">
+            دانلود رزومه بصورت PDF
+          </button>
         </div>
-        <div className="h-0 border-t border-white/10 hidden lg:block" />
-        <button className="DOWNLOADPDF p-3 bg-white/5 rounded-md text-nowrap text-sm mt-4 mr-10 transition-all duration-200 hover:bg-white/10">
-          دانلود رزومه بصورت PDF
-        </button>
       </aside>
       <div
         onClick={() => setOpen()}
