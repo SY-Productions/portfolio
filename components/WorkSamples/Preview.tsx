@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import React from "react";
 import { useZState } from "@/app/states";
 import PicSrcArray from "./PicSrcArray";
 import { WorkSample } from "@prisma/client";
+import SkeletonImage from "../SkeletonImage";
 
 export default function Preview({ data }: { data: WorkSample[] }) {
   const picSrc = PicSrcArray({ data });
@@ -11,10 +11,10 @@ export default function Preview({ data }: { data: WorkSample[] }) {
   return (
     <div
       className={`${
-        isWebFrame ? "h-auto" : "h-[60vh]"
+        isWebFrame ? "h-auto w-[90%]" : "h-[60vh]"
       } mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem]`}
     >
-      <Image
+      <SkeletonImage
         src={picSrc.pics[0]}
         width={500}
         height={500}

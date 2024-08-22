@@ -14,13 +14,6 @@ import capwh from "@/public/icons/cap-wh.svg";
 import capgr from "@/public/icons/cap-gr.svg";
 import hswh from "@/public/icons/headset-wh.svg";
 import hsgr from "@/public/icons/headset-gr.svg";
-// const sideItems = {
-//   about: { title: "درباره من", logo: <TagOutlined />, selected: true },
-//   skills: { title: "مهارت ها", logo: <TagOutlined />, selected: true },
-//   workSamples: { title: "نمونه کارها", logo: <TagOutlined />, selected: true },
-//   education: { title: "سوابق تحصیلی", logo: <TagOutlined />, selected: true },
-//   callMe: { title: "تماس با من", logo: <TagOutlined />, selected: true },
-// };
 const sideItems = [
   {
     title: "درباره من",
@@ -54,14 +47,22 @@ const sideItems = [
   },
 ];
 export default function SideBar() {
-  const { isOpen, setFixedOpen, setOpen, sideBarScroll, setSideBarScroll } =
-    useZState();
-  const sideBarFullClasses =
+  const {
+    isOpen,
+    setFixedOpen,
+    setOpen,
+    sideBarScroll,
+    setSideBarScroll,
+    isOnMobile,
+    setIsOnMobile,
+  } = useZState();
+  let sideBarFullClasses =
     "z-40 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
   const sideItemClasses =
     "flex flex-row justify-start items-center gap-3 py-2 my-3 rounded-sm cursor-pointer ";
   useEffect(() => {
     const handleSideBar = () => {
+      setIsOnMobile(window.innerWidth <= 1024);
       if (window.innerWidth >= 1024) {
         setFixedOpen();
       }
@@ -76,7 +77,7 @@ export default function SideBar() {
   return (
     <div
       className={
-        window.innerWidth <= 1024
+        isOnMobile
           ? isOpen
             ? sideBarFullClasses
             : sideBarFullClasses + "translate-x-[100vw]"
@@ -147,8 +148,8 @@ export default function SideBar() {
       </aside>
       <div
         onClick={() => setOpen()}
-        className="just-for-clicking-outside-to-close-sidebar w-[30vw] sm:w-[50vw] md:w-[70vw] lg:hidden"
-      ></div>
+        className="just-for-clicking-outside-to-close-sidebar w-[30vw] sm:w-[50vw] md:w-[70vw] lg:hidden "
+      />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import React from "react";
 import Image from "next/image";
 import prof from "@/public/pic.png";
 import github from "@/public/icons/github.svg";
 import insta from "@/public/icons/instagram.svg";
 import tel from "@/public/icons/telegram.svg";
+import SkeletonImage from "./SkeletonImage";
 
 export default function AboutMe() {
   const buttonsClasses =
@@ -15,11 +15,11 @@ export default function AboutMe() {
       className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen "
     >
       <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:mr-[22vw] lg:ml-[3vw] lg:h-screen">
-        <div className="PROF p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem] bg-white/5 border border-white/10 backdrop-blur-3xl rounded-sm self-center basis-1/3 ">
-          <Image
+        <div className="PROF p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem] bg-white/5 border border-white/10 backdrop-blur-3xl rounded-sm self-center basis-1/3 aspect-square w-[90%]">
+          <SkeletonImage
             src={prof}
             alt="Profile Picture"
-            className="aspect-square rounded-sm transition-all active:scale-95 hover:cursor-grab active:cursor-grabbing"
+            className="aspect-square rounded-sm transition-all  active:scale-95 hover:cursor-grab active:cursor-grabbing"
             draggable={false}
           />
         </div>

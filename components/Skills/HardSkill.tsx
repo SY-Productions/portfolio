@@ -16,7 +16,6 @@ import { SiWordpress } from "react-icons/si";
 
 interface Skill {
   name: string;
-  // icon?: JSX.Element;
   link?: string;
 }
 export default function Skill({ name, link }: Skill) {
@@ -50,7 +49,6 @@ export default function Skill({ name, link }: Skill) {
         return <BsLink size={17} />;
     }
   }
-  console.log(getIcon());
   return (
     <Link
       dir="rtl"

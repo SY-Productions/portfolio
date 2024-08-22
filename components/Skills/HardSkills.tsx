@@ -1,17 +1,5 @@
 import React from "react";
 import Skill from "./HardSkill";
-import { SiDart } from "react-icons/si";
-import { SiFlutter } from "react-icons/si";
-import { SiPython } from "react-icons/si";
-import { SiDjango } from "react-icons/si";
-import { SiHtml5 } from "react-icons/si";
-import { SiCss3 } from "react-icons/si";
-import { SiFastapi } from "react-icons/si";
-import { SiJavascript } from "react-icons/si";
-import { SiReact } from "react-icons/si";
-import { SiRuby } from "react-icons/si";
-import { SiRubyonrails } from "react-icons/si";
-import { SiWordpress } from "react-icons/si";
 
 export default function HardSkills() {
   return (

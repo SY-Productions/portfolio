@@ -32,7 +32,7 @@ export default function DrawerCarousel({ data }: { data: WorkSample[] }) {
         height={500}
         src={picSrc.pics[samplePicIndex]}
         className={`${
-          isWebFrame ? "w-[75%] lg:w-[50%]" : "w-auto h-[65vh] "
+          isWebFrame ? "w-[75%] lg:w-[50%]" : "w-[60%] lg:w-auto lg:h-[65vh] "
         } my-[6vh] h-auto mx-auto`}
         alt=""
       />
