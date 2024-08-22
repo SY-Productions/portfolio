@@ -14,13 +14,13 @@ export default function page() {
     <>
       <SideBar />
       <main>
-        {/* <NavBarForMobile />
+        <NavBarForMobile />
         <AboutMe />
-        <Skills /> */}
+        <Skills />
         <WorkSamples />
-        {/* <LookingProgrammer />
+        <LookingProgrammer />
         <Education />
-        <CallMe /> */}
+        <CallMe />
       </main>
       <Footer />
     </>
