@@ -1,13 +1,12 @@
-"use client";
-import { useZState } from "@/app/states";
 import React, { useEffect } from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { useZState } from "@/app/states";
+import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@chakra-ui/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { WorkSample } from "@prisma/client";
-import Drawer from "./Drawer/Drawer";
 
 export default function Information({ data }: { data: WorkSample[] }) {
   const {
+    isWebFrame,
     sampleWebIndex,
     sampleMobIndex,
     setMobSamples,
@@ -21,9 +20,9 @@ export default function Information({ data }: { data: WorkSample[] }) {
   const web = data.filter((sample) => sample.isWeb);
 
   useEffect(() => {
-    setWebSamples(web.length - 1);
-    setMobSamples(mobile.length - 1);
-  }, [data]);
+    setWebSamples(web.length);
+    setMobSamples(mobile.length);
+  }, [data, mobile.length, setMobSamples, setWebSamples, web.length]);
 
   const tabClasses =
     "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
@@ -39,6 +38,7 @@ export default function Information({ data }: { data: WorkSample[] }) {
       <Tabs
         className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-white/10 backdrop-blur-3xl"
         variant="unstyled"
+        key={isWebFrame ? "web" : "mobile"}
       >
         <TabList className="JUSTTABS">
           <Tab
@@ -48,8 +48,9 @@ export default function Information({ data }: { data: WorkSample[] }) {
               borderBottomWidth: 0,
               color: "rgb(255 255 255 / 0.8)",
             }}
-            onClick={() => setIsWebFrame(true)}
-            defaultChecked
+            onClick={() => {
+              setIsWebFrame(true);
+            }}
           >
             اپلیکیشن های وب
           </Tab>
@@ -60,7 +61,9 @@ export default function Information({ data }: { data: WorkSample[] }) {
               borderBottomWidth: 0,
               color: "rgb(255 255 255 / 0.8)",
             }}
-            onClick={() => setIsWebFrame(false)}
+            onClick={() => {
+              setIsWebFrame(false);
+            }}
           >
             اپلیکیشن های موبایل
           </Tab>
@@ -68,22 +71,34 @@ export default function Information({ data }: { data: WorkSample[] }) {
         <TabPanels>
           <TabPanel>
             <div className={tabContentClasses}>
-              <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {web[sampleWebIndex].faTitle}
-              </div>
-              <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {web[sampleWebIndex].faDescription}
-              </div>
+              {web[sampleWebIndex] ? (
+                <>
+                  <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
+                    {web[sampleWebIndex].faTitle}
+                  </div>
+                  <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
+                    {web[sampleWebIndex].faDescription}
+                  </div>
+                </>
+              ) : (
+                <div>Sample not found</div>
+              )}
             </div>
           </TabPanel>
           <TabPanel>
             <div className={tabContentClasses}>
-              <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {mobile[sampleMobIndex].faTitle}
-              </div>
-              <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {mobile[sampleMobIndex].faDescription}
-              </div>
+              {mobile[sampleMobIndex] ? (
+                <>
+                  <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
+                    {mobile[sampleMobIndex].faTitle}
+                  </div>
+                  <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
+                    {mobile[sampleMobIndex].faDescription}
+                  </div>
+                </>
+              ) : (
+                <div>Sample not found</div>
+              )}
             </div>
           </TabPanel>
         </TabPanels>
@@ -94,12 +109,6 @@ export default function Information({ data }: { data: WorkSample[] }) {
           اطلاعات بیشتر <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />
         </button>
       </Tabs>
-      <Drawer
-        classes={isDrawerOpen ? " translate-y-[0vh]" : " translate-y-[100vh]"}
-        data={data}
-        mobile={mobile}
-        web={web}
-      />
     </div>
   );
 }

@@ -2,40 +2,37 @@
 import React from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useZState } from "@/app/states";
+
 export default function SampleSwitcher() {
   const {
     setSampleWebIndex,
     setSampleMobIndex,
     sampleWebIndex,
     sampleMobIndex,
-    isWebFrame,
+    isWebFrame, 
     MobSamples,
     webSamples,
   } = useZState();
+
   const buttonClasses =
     "btn rounded-none w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] bg-white/5 hover:bg-white/10 hover:border-white/15 border border-white/10 active:bg-b/20";
-  function handleButtons(ZeroOrOne: number) {
+
+  function handleButtons(direction: number) {
     if (isWebFrame) {
-      // when Web
-      if (ZeroOrOne == 1) {
-        if (sampleWebIndex < webSamples) return setSampleWebIndex(1); //when Web & Increasing
-        return setSampleWebIndex(2); // passing 2 means do nothing
+      if (direction === 1 && sampleWebIndex < webSamples - 1) {
+        setSampleWebIndex(sampleWebIndex + 1);
+      } else if (direction === 0 && sampleWebIndex > 0) {
+        setSampleWebIndex(sampleWebIndex - 1);
       }
-      if (sampleWebIndex != 0 && sampleWebIndex <= webSamples)
-        // when Web & Decreasing
-        return setSampleWebIndex(0);
-      return setSampleWebIndex(2); // passing 2 means do nothing
+    } else {
+      if (direction === 1 && sampleMobIndex < MobSamples - 1) {
+        setSampleMobIndex(sampleMobIndex + 1);
+      } else if (direction === 0 && sampleMobIndex > 0) {
+        setSampleMobIndex(sampleMobIndex - 1);
+      }
     }
-    // when Mobile
-    if (ZeroOrOne == 1) {
-      if (sampleMobIndex < MobSamples) return setSampleMobIndex(1); //when Mobile & Increasing
-      return setSampleMobIndex(2); // passing 2 means do nothing
-    }
-    if (sampleMobIndex != 0 && sampleMobIndex <= MobSamples)
-      // when Mobile & Decreasing
-      return setSampleWebIndex(0);
-    return setSampleWebIndex(2); // passing 2 means do nothing
   }
+
   return (
     <div className="float-end my-6 lg:mb-0">
       <button onClick={() => handleButtons(0)} className={buttonClasses}>
