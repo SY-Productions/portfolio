@@ -3,12 +3,9 @@ import prof from "@/public/pic.png";
 import github from "@/public/icons/github.svg";
 import insta from "@/public/icons/instagram.svg";
 import tel from "@/public/icons/telegram.svg";
-import linkedin from "@/public/icons/linkedin.svg";
 import SkeletonImage from "./SkeletonImage";
-import Link from "next/link";
 
 export default function AboutMe() {
-
   const buttonsClasses =
     "h-[6vh] lg:h-[8vh] aspect-square bg-white/5 rounded-sm flex items-center justify-center transition-all duration-200 hover:bg-white/10";
 
@@ -47,27 +44,15 @@ export default function AboutMe() {
             <button className="h-[6vh] lg:h-[8vh] px-[1.3vw] min-w-[30vw] sm:min-w-0 bg-white/5 rounded-sm font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-200 hover:bg-white/10 hover:text-white">
               تماس با من
             </button>
-            <Link
-              href="https://www.github.com/YOUSSSOF"
-              className={buttonsClasses}
-            >
+            <button className={buttonsClasses}>
               <Image className="w-[50%]" src={github} alt="" />
-            </Link>
-            <Link
-              href="https://www.instagram.com/youdexsof"
-              className={buttonsClasses}
-            >
+            </button>
+            <button className={buttonsClasses}>
               <Image className="w-[50%]" src={insta} alt="" />
-            </Link>
-            <Link href="https://www.t.me/YOUDEXSOF" className={buttonsClasses}>
+            </button>
+            <button className={buttonsClasses}>
               <Image className="w-[50%]" src={tel} alt="" />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/yousof-hashemezade-8a40b8236"
-              className={buttonsClasses}
-            >
-              <Image className="w-[50%]" src={linkedin} alt="" />
-            </Link>
+            </button>
           </div>
         </div>
       </div>

@@ -26,11 +26,7 @@ export default function SkeletonImage({
   }`;
   return (
     <div>
-      {isLoading && (
-        <div
-          className={`${className} skeleton`}
-        />
-      )}
+      {isLoading && <div className={`${className} skeleton`} />}
       <Image
         src={src}
         alt={alt || ""}

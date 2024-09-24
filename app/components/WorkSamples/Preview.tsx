@@ -15,7 +15,7 @@ export default function Preview({ data }: { data: WorkSample[] }) {
       } mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem]`}
     >
       <SkeletonImage
-        src={picSrc.pics[0]!}
+        src={picSrc.pics[0]}
         width={500}
         height={500}
         className="h-[60vh] lg:w-[30vw] object-contain"

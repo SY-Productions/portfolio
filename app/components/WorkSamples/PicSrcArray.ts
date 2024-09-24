@@ -5,18 +5,13 @@ export default function PicSrcArray({ data }: { data: WorkSample[] }) {
   const { sampleWebIndex, sampleMobIndex, isWebFrame } = useZState();
   const mobile = data.filter((sample) => !sample.isWeb);
   const web = data.filter((sample) => sample.isWeb);
-  return isWebFrame && web[sampleWebIndex]
+  return isWebFrame
     ? {
-        id: web[sampleWebIndex].id,
-        pics: web[sampleWebIndex].pictures.split(" "),
-      }
-    : mobile[sampleMobIndex]
-    ? {
-        id: mobile[sampleMobIndex].id,
-        pics: mobile[sampleMobIndex].pictures.split(" "),
+        id: web[sampleWebIndex]?.id ?? 0,
+        pics: web[sampleWebIndex]?.pictures.split(" "),
       }
     : {
-        id: 0,
-        pics: [],
+        id: mobile[sampleMobIndex].id ?? 0,
+        pics: mobile[sampleMobIndex].pictures.split(" "),
       };
 }

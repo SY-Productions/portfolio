@@ -15,8 +15,8 @@ export default function DrawerBody({
     useZState();
   const target = isWebFrame ? web[sampleWebIndex] : mob[sampleMobIndex];
   const techsArray = isWebFrame
-    ? web[sampleWebIndex]?.technologys.split(" ")??[]
-    : mob[sampleMobIndex]?.technologys.split(" ")??[];
+    ? web[sampleWebIndex].technologys.split(" ")
+    : mob[sampleMobIndex].technologys.split(" ");
   const spinnerSVG = (
     <svg
       className="animate-spin h-5 w-5 text-white"
@@ -40,23 +40,23 @@ export default function DrawerBody({
     </svg>
   );
 
-  const Skill = dynamic(() => import("@/components/Skills/HardSkill"), {
+  const Skill = dynamic(() => import("@/app/components/Skills/HardSkill"), {
     loading: () => spinnerSVG,
   });
   return (
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6">
       <a
-        href={target?.link}
+        href={target.link}
         target="_blank"
         className="group flex w-fit items-center gap-2 text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4 cursor-pointer"
       >
         <h4 className="inline group-hover:underline group-hover:underline-offset-2 ">
-          {target?.faTitle}
+          {target.faTitle}
         </h4>
         <LaunchIcon className="" sx={{ fontSize: 20 }} />
       </a>
       <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
-        {target?.faDescription}
+        {target.faDescription}
       </p>
       <a
         className="py-2 px-4 bg-d w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap rounded-sm"
@@ -77,7 +77,7 @@ export default function DrawerBody({
         {isDrawerOpen && (
           <div className="inline-grid grid-cols-2 gap-2">
             {techsArray.map((tech) => (
-              <Skill name={tech} link="" key={tech} />
+              <Skill name={tech} link="" />
             ))}
           </div>
         )}
@@ -91,20 +91,20 @@ export default function DrawerBody({
           <div className="flex flex-col">
             <span className="text-xs lg:text-sm text-white/50">شروع :</span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {target?.faStartDate}
+              {target.faStartDate}
             </span>
           </div>
           <div className="DIVIDER border-l border-white/20 w-1 h-full " />
           <div className="flex flex-col">
             <span className="text-xs lg:text-sm text-white/50">اتمام :</span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {target?.faEndDate}
+              {target.faEndDate}
             </span>
           </div>
         </div>
       </div>
       <div className="FULLDECS pt-4 text-sm lg:text-base 2xl:text-lg">
-        <p>{target?.faDescription}</p>
+        <p>{target.faDescription}</p>
       </div>
     </div>
   );

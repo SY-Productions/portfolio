@@ -1,8 +1,16 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
+import messages_fa from "../locales/fa.json";
+import messages_en from "../locales/en.json";
 
+const messages: Record<string, any> = {
+  en: messages_en,
+  fa: messages_fa,
+};
 type State = {
   isOpen: boolean;
+  isFa: boolean;
+  messages: Record<string, any>;
   isWebFrame: boolean;
   sampleWebIndex: number;
   sampleMobIndex: number;
@@ -16,6 +24,7 @@ type State = {
 };
 type Action = {
   setIsWebFrame: (f: boolean) => void;
+  setIsFa: (f: boolean) => void;
   setOpen: () => void;
   setFixedOpen: () => void;
   setSampleWebIndex: (sign: number) => void;
@@ -31,17 +40,26 @@ type Action = {
 };
 export const useZState = create<State & Action>((set) => ({
   isOpen: false,
+  isFa: true,
+  messages:messages,
   sampleWebIndex: 0,
   sampleMobIndex: 0,
   isWebFrame: true,
-  webSamples: 0, // Always should -1 of Real number of web Samples
-  MobSamples: 0, // Always should -1 of Real number of mob Samples
+  webSamples: 0,
+  MobSamples: 0,
   sideBarScroll: "#about-me",
   isDrawerOpen: false,
   samplePicIndex: 0,
   isOnMobile: true,
   isLoading: true,
   setOpen: () => set((s) => ({ isOpen: !s.isOpen })),
+  setIsFa: (f?: boolean) =>
+    set(() => {
+      const isFa =
+        typeof f !== "undefined" ? f : localStorage.getItem("locale") === "fa";
+      localStorage.setItem("locale", isFa ? "fa" : "en");
+      return { isFa };
+    }),
   setFixedOpen: () => set(() => ({ isOpen: true })),
   setIsWebFrame: (f) => set(() => ({ isWebFrame: f })),
   setSampleWebIndex: (sign) =>
