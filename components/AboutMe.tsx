@@ -44,29 +44,43 @@ export default function AboutMe() {
             وب اپلیکیشن ها:)
           </p>
           <div className="BUTTONS flex items-center gap-2 w-[80%] mb-8">
-            <button className="h-[6vh] lg:h-[8vh] px-[1.3vw] min-w-[30vw] sm:min-w-0 bg-white/5 rounded-sm font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-200 hover:bg-white/10 hover:text-white">
+            <a
+              href="#call-me"
+              className="flex items-center justify-center h-[6vh] lg:h-[8vh] px-[1.3vw] min-w-[22vw] sm:min-w-0 bg-white/5 rounded-sm font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-200 hover:bg-white/10 hover:text-white"
+            >
               تماس با من
-            </button>
+            </a>
             <Link
               href="https://www.github.com/YOUSSSOF"
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={github} alt="" />
+              <Image className="w-[50%]" src={github} alt="GitHub" />
             </Link>
             <Link
               href="https://www.instagram.com/youdexsof"
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={insta} alt="" />
+              <Image className="w-[50%]" src={insta} alt="Instagram" />
             </Link>
-            <Link href="https://www.t.me/YOUDEXSOF" className={buttonsClasses}>
-              <Image className="w-[50%]" src={tel} alt="" />
+            <Link
+              href="https://www.t.me/YOUDEXSOF"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonsClasses}
+            >
+              <Image className="w-[50%]" src={tel} alt="Telegram" />
             </Link>
             <Link
               href="https://www.linkedin.com/in/yousof-hashemezade-8a40b8236"
+              target="_blank"
+              rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={linkedin} alt="" />
+              <Image className="w-[50%]" src={linkedin} alt="LinkedIn" />
             </Link>
           </div>
         </div>

@@ -8,6 +8,8 @@ import CallMe from "../components/CallMe/CallMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
 import LookingProgrammer from "@/components/LookingProgrammer";
 import Footer from "@/components/Footer";
+import Work from "@/components/Work/Work";
+import Events from "@/components/Events/Events";
 
 export default function page() {
   return (
@@ -20,6 +22,8 @@ export default function page() {
         <WorkSamples />
         <LookingProgrammer />
         <Education />
+        <Work />
+        <Events/>
         <CallMe />
       </main>
       <Footer />

@@ -1,18 +1,25 @@
 import React from "react";
-import { Education } from "./Education";
+import { Work } from "./Work";
 import Image from "next/image";
-import {Calendar} from 'iconsax-react'
-export default function EduCard({ data }: { data: Education }) {
+import { Calendar } from "iconsax-react";
+import Skill from "../Skills/HardSkill";
+export default function WorkCard({ data }: { data: Work }) {
   return (
-    <div className="group w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-white/5 hover:bg-white/10 hover:scale-105 hover:border-white/15 transition-all duration-300 ease-out cursor-help hover:rounded-md border border-white/10 backdrop-blur-3xl mx-auto flex flex-col font-[ybn]">
+    <a
+      href={data.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group cursor-pointer  w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-white/5 hover:bg-white/10 hover:scale-105 hover:border-white/15 transition-all duration-300 ease-out hover:rounded-md border border-white/10 backdrop-blur-3xl mx-auto flex flex-col font-[ybn]"
+    >
       <div className="PIC&CAlENDAR flex justify-between items-center w-full m-4">
         <Image
           className="aspect-square rounded-md "
           width={60}
           height={60}
-          src={data.picture}  
+          src={data.picture}
           alt=""
         />
+
         <span className="absolute left-[6rem] rounded-full w-12 h-12 flex items-center justify-center bg-gray-700">
           <Calendar size={20} color="white" />
         </span>
@@ -24,6 +31,11 @@ export default function EduCard({ data }: { data: Education }) {
         <div className="text-lg py-2 text-white">{data.name}</div>
         <div className="text-sm pb-4">{data.description}</div>
       </div>
-    </div>
+      <div className="p-4 flex flex-row-reverse gap-2">
+        {data.technos.map((techno) => (
+          <Skill key={techno} name={techno} />
+        ))}
+      </div>
+    </a>
   );
 }

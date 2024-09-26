@@ -1,7 +1,8 @@
 "use client";
 import { useZState } from "@/app/states";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import Image from 'next/image'
+import logo from '@/public/vectors/logo.svg'
 export default function NavBarForMobile() {
   const { setOpen } = useZState();
   return (
@@ -20,7 +21,7 @@ export default function NavBarForMobile() {
           دانلود PDF
         </button>
       </div>
-      <div className="LOGO ml-6">LOGO</div>
+      <Image className="LOGO h-8" src={logo} alt="" />
     </nav>
   );
 }
