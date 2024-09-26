@@ -46,8 +46,13 @@ export default function DrawerBody({
   return (
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6">
       <a
-        href={target?.link}
+        href={
+          target?.link?.startsWith("http")
+            ? target.link
+            : `https://${target.link}`
+        }
         target="_blank"
+        rel="noopener noreferrer"
         className="group flex w-fit items-center gap-2 text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4 cursor-pointer"
       >
         <h4 className="inline group-hover:underline group-hover:underline-offset-2 ">
@@ -55,6 +60,7 @@ export default function DrawerBody({
         </h4>
         <LaunchIcon className="" sx={{ fontSize: 20 }} />
       </a>
+
       <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
         {target?.faDescription}
       </p>

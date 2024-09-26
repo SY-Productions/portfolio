@@ -1,16 +1,9 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import messages_fa from "../locales/fa.json";
-import messages_en from "../locales/en.json";
 
-const messages: Record<string, any> = {
-  en: messages_en,
-  fa: messages_fa,
-};
 type State = {
   isOpen: boolean;
   isFa: boolean;
-  messages: Record<string, any>;
   isWebFrame: boolean;
   sampleWebIndex: number;
   sampleMobIndex: number;
@@ -41,7 +34,6 @@ type Action = {
 export const useZState = create<State & Action>((set) => ({
   isOpen: false,
   isFa: true,
-  messages:messages,
   sampleWebIndex: 0,
   sampleMobIndex: 0,
   isWebFrame: true,

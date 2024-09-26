@@ -9,6 +9,7 @@ export default function SampleSwitcher() {
     sampleWebIndex,
     sampleMobIndex,
     isWebFrame,
+
     MobSamples,
     webSamples,
   } = useZState();
@@ -16,25 +17,21 @@ export default function SampleSwitcher() {
     "btn rounded-none w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] bg-white/5 hover:bg-white/10 hover:border-white/15 border border-white/10 active:bg-b/20";
   function handleButtons(ZeroOrOne: number) {
     if (isWebFrame) {
-      // when Web
       if (ZeroOrOne == 1) {
-        if (sampleWebIndex < webSamples) return setSampleWebIndex(1); //when Web & Increasing
-        return setSampleWebIndex(2); // passing 2 means do nothing
+        if (sampleWebIndex < webSamples) return setSampleWebIndex(1);
+        return setSampleWebIndex(2);
       }
       if (sampleWebIndex != 0 && sampleWebIndex <= webSamples)
-        // when Web & Decreasing
         return setSampleWebIndex(0);
-      return setSampleWebIndex(2); // passing 2 means do nothing
+      return setSampleWebIndex(2);
     }
-    // when Mobile
     if (ZeroOrOne == 1) {
-      if (sampleMobIndex < MobSamples) return setSampleMobIndex(1); //when Mobile & Increasing
-      return setSampleMobIndex(2); // passing 2 means do nothing
+      if (sampleMobIndex < MobSamples) return setSampleMobIndex(1);
+      return setSampleMobIndex(2);
     }
     if (sampleMobIndex != 0 && sampleMobIndex <= MobSamples)
-      // when Mobile & Decreasing
-      return setSampleWebIndex(0);
-    return setSampleWebIndex(2); // passing 2 means do nothing
+      return setSampleMobIndex(0);
+    return setSampleMobIndex(2);
   }
   return (
     <div className="float-end my-6 lg:mb-0">

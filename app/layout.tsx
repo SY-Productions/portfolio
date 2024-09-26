@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
   locale: string;
 }>) {
-  const { isFa, setIsFa,messages } = useZState();
+  const { isFa, setIsFa } = useZState();
   useEffect(() => {
     const storedLocale = localStorage.getItem("locale");
     if (storedLocale) {
@@ -31,12 +31,7 @@ export default function RootLayout({
             userSelect: "none",
           }}
         >
-          <IntlProvider
-            locale={isFa ? "fa" : "en"}
-            messages={messages[isFa ? "fa" : "en"]}
-          >
             {children}
-          </IntlProvider>
         </div>
       </body>
     </html>
