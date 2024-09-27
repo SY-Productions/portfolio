@@ -16,9 +16,8 @@ import { SiWordpress } from "react-icons/si";
 
 interface Skill {
   name: string;
-  link?: string;
 }
-export default function Skill({ name, link }: Skill) {
+export default function Skill({ name }: Skill) {
   function getIcon() {
     switch (name) {
       case "Flutter":
@@ -50,14 +49,12 @@ export default function Skill({ name, link }: Skill) {
     }
   }
   return (
-    <Link
+    <div
       dir="rtl"
-      className="py-1 px-3 font-[inter] font-medium text-nowrap flex justify-between items-center bg-b text-white/80 w-32 hover:scale-105 hover:bg-b hover:shadow-md rounded-sm transition-all duration-100"
-      href={link ? link : "/"}
-      target={link ? "_blank" : "_self"}
+      className="py-1 px-3 font-[inter] font-medium text-nowrap flex justify-between items-center bg-b text-white/80 w-32 cursor-pointer hover:scale-105 hover:bg-b hover:shadow-md rounded-sm transition-all duration-100"
     >
       {getIcon()}
       {name}
-    </Link>
+    </div>
   );
 }

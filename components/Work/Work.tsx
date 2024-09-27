@@ -18,7 +18,7 @@ const WorkData: Work[] = [
     from: 1403,
     to: 1403,
     picture: "/neshatrokh.png",
-    url:'www.neshatrokh.com',
+    url:'https:/www.neshatrokh.com',
     description:
       "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم.",
   },
@@ -43,7 +43,7 @@ export default function Work() {
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-5">
 
             {WorkData.map((data)=>
- <EduCard key={data.description} data={data} />
+ <EduCard key={data.url} data={data} />
             )}
 
         </div>

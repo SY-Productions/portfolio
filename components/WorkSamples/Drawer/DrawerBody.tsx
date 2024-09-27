@@ -83,7 +83,7 @@ export default function DrawerBody({
         {isDrawerOpen && (
           <div className="inline-grid grid-cols-2 gap-2">
             {techsArray.map((tech) => (
-              <Skill name={tech} link="" key={tech} />
+              <Skill name={tech}  key={tech} />
             ))}
           </div>
         )}

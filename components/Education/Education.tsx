@@ -14,14 +14,14 @@ const educationData: Education[] = [
     name: "دبیرستان ماندگار شهدای ادب",
     from: 1399,
     to: 1402,
-    picture: "/adab.png",
+    picture: "/educations/adab.png",
     description:
       "تحصیل دوره دبیرستان در دبیرستان ماندگار شهدای ادب در رشته ریاضی فیزیک و اخذ مدرک دیپلم.",
   },
   {
     name: "دانشگاه بین المللی آزاد خوراسگان",
     from: 1402,
-    picture: "/kh.webp",
+    picture: "/educations/kh.webp",
     description:
       " مشغول تحصیل در رشته کامپیوتر مقطع کارشناسی در این دانشگاه هستم.",
   },
@@ -29,7 +29,10 @@ const educationData: Education[] = [
 
 export default function Education() {
   return (
-    <div id="education" className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh]">
+    <div
+      id="education"
+      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh]"
+    >
       <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12">
         <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap">
@@ -42,8 +45,9 @@ export default function Education() {
           </p>
         </div>
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-5">
-          <EduCard data={educationData[0]} />
-          <EduCard data={educationData[1]} />
+          {educationData.map((edu) => (
+            <EduCard key={edu.description} data={edu} />
+          ))}
         </div>
       </div>
     </div>

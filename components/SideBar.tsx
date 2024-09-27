@@ -105,7 +105,7 @@ export default function SideBar() {
         <div className="LOGO&OPTIONS text-base text-white/40 mr-8">
           {/* <div className="LOGO hidden lg:block text-b text-4xl">LOGO</div> */}
           <Image
-            className="LOGO hidden lg:block text-b text-4xl w-[30%] h-[10%] mb-3 mt-5"
+            className="LOGO hidden lg:block text-b text-4xl w-[30%] h-[10%] mt-[5%]"
             src={logo}
             alt=""
           />
@@ -165,7 +165,8 @@ export default function SideBar() {
               />
             </div>
           </div> */}
-          <button className="DOWNLOADPDF lg:mr-[3.5vw] xl:mr-[3.5vw] hidden lg:block btn border-none py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 hover:bg-white/10 rounded-none">
+           <div className="h-0 border-t border-white/10 py-2" />
+          <button className="DOWNLOADPDF w-[80%] h-[32px] m-auto hidden lg:block btn border-white/5 py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 hover:bg-white/10 rounded-none">
             دانلود رزومه بصورت PDF
           </button>
         </div>
