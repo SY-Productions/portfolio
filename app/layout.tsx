@@ -1,27 +1,19 @@
-"use client";
-
-import { IntlProvider } from "react-intl";
-import { useZState } from "./states";
-import { useEffect } from "react";
 import "./globals.css";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title:
+    "یوسف هاشم زاده توسعه دهنده موبایل فلاتر | Yousof Hashemzadeh Flutter Mobile Developer",
+  icons: "/vectors/logo.svg", 
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-  locale: string;
-}>) {
-  const { isFa, setIsFa } = useZState();
-  useEffect(() => {
-    const storedLocale = localStorage.getItem("locale");
-    if (storedLocale) {
-      setIsFa(storedLocale === "fa");
-    }
-  }, [setIsFa]);
+}) {
   return (
-    <html dir={isFa ? "rtl" : "ltr"} className="scroll-smooth">
-
+    <html dir="rtl" className="scroll-smooth">
       <body className="bg-c">
         <div
           style={{
@@ -31,8 +23,8 @@ export default function RootLayout({
             msUserSelect: "none",
             userSelect: "none",
           }}
-          >
-            {children}
+        >
+          {children}
         </div>
       </body>
     </html>
