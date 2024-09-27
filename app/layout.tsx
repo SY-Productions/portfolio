@@ -21,6 +21,7 @@ export default function RootLayout({
   }, [setIsFa]);
   return (
     <html dir={isFa ? "rtl" : "ltr"} className="scroll-smooth">
+
       <body className="bg-c">
         <div
           style={{
@@ -30,7 +31,7 @@ export default function RootLayout({
             msUserSelect: "none",
             userSelect: "none",
           }}
-        >
+          >
             {children}
         </div>
       </body>

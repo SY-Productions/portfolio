@@ -7,9 +7,16 @@
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2)
-    format("woff2");
+  src: url(https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2) format("woff2");
 }
+
+@font-face {
+  font-family: "montserrat";
+  font-style: normal;
+  font-weight: bold;
+  src: url("fonts/Montserrat-ExtraBold.ttf") format("ttf");
+}
+
 @font-face {
   font-family: "ybn";
   font-style: normal;
@@ -30,6 +37,7 @@
   font-weight: 950;
   src: url("fonts/YekanBakhFaNum-ExtraBlack.woff2") format("woff2");
 }
+
 @layer base {
   h3 {
     @apply text-3xl font-bold;

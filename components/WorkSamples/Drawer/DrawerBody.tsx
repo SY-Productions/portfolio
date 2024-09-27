@@ -1,8 +1,10 @@
+"use client";
+
 import { useZState } from "@/app/states";
 import { WorkSample } from "@prisma/client";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import LaunchIcon from "@mui/icons-material/Launch";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { Copy, CopySuccess } from "iconsax-react";
 import dynamic from "next/dynamic";
 export default function DrawerBody({
   web,
@@ -15,8 +17,8 @@ export default function DrawerBody({
     useZState();
   const target = isWebFrame ? web[sampleWebIndex] : mob[sampleMobIndex];
   const techsArray = isWebFrame
-    ? web[sampleWebIndex]?.technologys.split(" ")??[]
-    : mob[sampleMobIndex]?.technologys.split(" ")??[];
+    ? web[sampleWebIndex]?.technologys.split(" ") ?? []
+    : mob[sampleMobIndex]?.technologys.split(" ") ?? [];
   const spinnerSVG = (
     <svg
       className="animate-spin h-5 w-5 text-white"
@@ -43,6 +45,14 @@ export default function DrawerBody({
   const Skill = dynamic(() => import("@/components/Skills/HardSkill"), {
     loading: () => spinnerSVG,
   });
+  const handleCopy = useCallback(() => {
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 5000);
+  }, []);
+  const [isCopied, setCopied] = useState(false);
+
   return (
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6">
       <a
@@ -64,17 +74,15 @@ export default function DrawerBody({
       <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
         {target?.faDescription}
       </p>
-      <a
-        className="py-2 px-4 bg-d w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap rounded-sm"
-        href="/"
+      <button
+        className={`py-2 px-4 w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap rounded-sm transition-colors duration-300 ${
+          isCopied ? "bg-green-500 text-white" : "bg-d text-white"
+        }`}
+        onClick={isCopied ? () => {} : handleCopy}
       >
-        <ContentCopyIcon
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
-          }}
-        />
-        <span>کپی لینک</span>
-      </a>
+        {isCopied ? <CopySuccess /> : <Copy />}
+        {isCopied ? <span>کپی شد!</span> : <span>کپی لینک</span>}
+      </button>
       <div className="DIVIDER border-t border-white/20 w-full h-0 my-4" />
       <div>
         <p className="text-lg 2xl:text-2xl pb-4 font-[ybb]">
@@ -83,7 +91,7 @@ export default function DrawerBody({
         {isDrawerOpen && (
           <div className="inline-grid grid-cols-2 gap-2">
             {techsArray.map((tech) => (
-              <Skill name={tech}  key={tech} />
+              <Skill name={tech} key={tech} />
             ))}
           </div>
         )}
