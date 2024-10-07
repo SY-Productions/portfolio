@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SideBar from "../components/SideBar";
 import AboutMe from "../components/AboutMe";
 import Skills from "../components/Skills/SkillsSection";
@@ -13,7 +13,8 @@ import Events from "@/components/Events/Events";
 
 export default function page() {
   return (
-    <>
+    <Suspense>
+
       <SideBar />
       <main>
         <NavBarForMobile />
@@ -27,6 +28,6 @@ export default function page() {
         <CallMe />
       </main>
       <Footer />
-    </>
+    </Suspense>
   );
 }
