@@ -1,5 +1,4 @@
 "use client";
-import { useZState } from "@/app/states";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
@@ -8,6 +7,7 @@ interface Image {
   src: string | StaticImageData | StaticImport;
   className?: string;
   alt?: string;
+  title?: string;
   width?: number;
   height?: number;
   draggable?: boolean;
@@ -19,11 +19,11 @@ export default function SkeletonImage({
   alt,
   width,
   height,
+  title,
   draggable,
 }: Image) {
-  console.log('hello');
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
   let imageClasses = `${className} transition-opacity duration-300  ${
     isLoading ? "opacity-0 hidden" : "opacity-100 block"
@@ -37,21 +37,25 @@ export default function SkeletonImage({
         <Image
           src={src}
           alt={alt || ""}
+          title={title || ""}
           width={width || undefined}
           height={height || undefined}
           className={imageClasses}
           onLoad={() => {
-
             setIsLoading(false);
             setHasError(false);
           }}
+          onLoadStart={() => {
+            setIsLoading(true);
+            setHasError(false);
+          }}
           onLoadingComplete={() => {
+            console.log("fuck me");
 
             setIsLoading(false);
             setHasError(false);
           }}
           onError={() => {
-
             setIsLoading(false);
             setHasError(true);
           }}

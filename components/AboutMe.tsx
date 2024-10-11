@@ -21,14 +21,15 @@ export default function AboutMe() {
         <div className="PROF p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem] bg-white/5 border border-white/10 backdrop-blur-3xl rounded-sm self-center basis-1/3 aspect-square w-[90%]">
           <SkeletonImage
             src={prof}
-            alt="Profile Picture"
+            alt="Yousof Hashemzade, Flutter Developer | یوسف هاشم زاده، توسعه دهنده فلاتر"
+            title="Yousof Hashemzade - Flutter Developer | یوسف هاشم زاده - توسعه دهنده فلاتر"
             className="aspect-square rounded-sm transition-all  active:scale-95 hover:cursor-grab active:cursor-grabbing"
             draggable={false}
           />
         </div>
         <div className="NAME&DESC&BUTTONS flex flex-col items-center basis-2/3">
           <div className="NAME py-6 w-[80%]">
-            <p className="font-[inter] tracking-tight font-extrabold text-4xl 2xl:text-5xl leading-[0.7] bg-clip-text text-transparent bg-gradient-to-b from-white/10 to-white/0 -mb-2.5 self-start text-nowrap" >
+            <p className="font-[inter] tracking-tight font-extrabold text-4xl 2xl:text-5xl leading-[0.7] bg-clip-text text-transparent bg-gradient-to-b from-white/10 to-white/0 -mb-2.5 self-start text-nowrap">
               MOBILE
               <br />
               DEVELOPER

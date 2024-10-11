@@ -8,7 +8,8 @@ export default function PicInfo() {
     <div className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[60vh] overflow-hidden flex justify-center items-center bg-black">
       <Image
         src={pic}
-        alt=""
+        alt="Yousof Hashemzade, Flutter Developer | یوسف هاشم زاده، توسعه دهنده فلاتر"
+        title="Yousof Hashemzade - Flutter Developer | یوسف هاشم زاده - توسعه دهنده فلاتر"
         className="h-full w-auto object-cover object-center"
       />
 
