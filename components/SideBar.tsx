@@ -107,7 +107,7 @@ export default function SideBar() {
           <Image
             className="LOGO hidden lg:block text-b text-4xl w-[30%] h-[10%] mt-[5%]"
             src={logo}
-            alt=""
+            alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
           />
 
           {sideItems.map((item) => (
@@ -165,8 +165,12 @@ export default function SideBar() {
               />
             </div>
           </div> */}
-           <div className="h-0 border-t border-white/10 py-2" />
-          <a href="/youdexsof-fa-cv.pdf" download='Yousof-Hashemzade-Cv-Fa.pdf' className="DOWNLOADPDF w-[80%] h-[32px] m-auto hidden lg:block btn border-white/5 py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 text-white hover:bg-white/10 rounded-none">
+          <div className="h-0 border-t border-white/10 py-2" />
+          <a
+            href="/youdexsof-fa-cv.pdf"
+            download="Yousof-Hashemzade-Cv-Fa.pdf"
+            className="DOWNLOADPDF w-[80%] h-[32px] m-auto hidden lg:block btn border-white/5 py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 text-white hover:bg-white/10 rounded-none"
+          >
             دانلود رزومه بصورت PDF
           </a>
         </div>

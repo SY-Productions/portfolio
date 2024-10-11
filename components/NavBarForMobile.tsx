@@ -29,7 +29,11 @@ export default function NavBarForMobile() {
           دانلود PDF
         </a>
       </div>
-      <Image className="LOGO h-8" src={logo} alt="" />
+      <Image
+        className="LOGO h-8"
+        src={logo}
+        alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
+      />
     </nav>
   );
 }

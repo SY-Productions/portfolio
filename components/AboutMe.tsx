@@ -57,7 +57,12 @@ export default function AboutMe() {
               rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={github} alt="GitHub" />
+              <Image
+                className="w-[50%]"
+                src={github}
+                alt="Yousof Hashemzade GitHub Profile | پروفایل گیت‌هاب یوسف هاشم زاده"
+                title="پروژه‌های من رو در گیت‌هاب ببین!"
+              />
             </Link>
             <Link
               href="https://www.instagram.com/youdexsof"
@@ -65,7 +70,12 @@ export default function AboutMe() {
               rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={insta} alt="Instagram" />
+              <Image
+                className="w-[50%]"
+                src={insta}
+                alt="Yousof Hashemzade Instagram Profile | پروفایل اینستاگرام یوسف هاشم زاده"
+                title="اینستاگرام من رو دنبال کن!"
+              />
             </Link>
             <Link
               href="https://www.t.me/YOUDEXSOF"
@@ -73,7 +83,12 @@ export default function AboutMe() {
               rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={tel} alt="Telegram" />
+              <Image
+                className="w-[50%]"
+                src={tel}
+                alt="Yousof Hashemzade Telegram Account | پروفایل تلگرام یوسف هاشم زاده"
+                title="تلگرام من رو دنبال کن!"
+              />
             </Link>
             <Link
               href="https://www.linkedin.com/in/yousof-hashemezade"
@@ -81,7 +96,12 @@ export default function AboutMe() {
               rel="noopener noreferrer"
               className={buttonsClasses}
             >
-              <Image className="w-[50%]" src={linkedin} alt="LinkedIn" />
+              <Image
+                className="w-[50%]"
+                src={linkedin}
+                alt="Yousof Hashemzade LinkedIn Profile | پروفایل لینکدین یوسف هاشم زاده"
+                title="در لینکدین با من ارتباط برقرار کن!"
+              />
             </Link>
           </div>
         </div>
