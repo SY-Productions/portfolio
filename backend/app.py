@@ -192,7 +192,8 @@ samples = [
 
 @app.route('/api/worksamples', methods=['GET'])
 def get_work_samples():
-    work_samples = WorkSample.query.all()
+    # work_samples = WorkSample.query.all()
+    work_samples = samples
     return jsonify([
         {
             "id": ws.id,

@@ -14,7 +14,13 @@ export default function WorkCard({ data }: { data: Work }) {
   }, []);
   if (mounted)
     return (
-      <Link href={data.url} legacyBehavior passHref>
+      <Link
+        href={data.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        legacyBehavior
+        passHref
+      >
         <a
           target="_blank"
           rel="noopener noreferrer"
