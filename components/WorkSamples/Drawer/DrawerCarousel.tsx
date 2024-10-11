@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React from "react";
 import PicSrcArray from "../PicSrcArray";
-import { WorkSample } from "@prisma/client";
 import { useZState } from "@/app/states";
 
 export default function DrawerCarousel({ data }: { data: WorkSample[] }) {

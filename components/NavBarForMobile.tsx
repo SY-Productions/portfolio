@@ -14,12 +14,20 @@ export default function NavBarForMobile() {
         >
           <MenuIcon sx={{ color: "white" }} />
         </button>
-        <button className="DOWNLOADPDF hidden xs:block p-3 bg-white/5 text-nowrap text-sm rounded-none">
+        <a
+          href="/youdexsof-fa-cv.pdf"
+          download="Yousof-Hashemzade-Cv-Fa.pdf"
+          className="DOWNLOADPDF hidden text-white  xs:block p-3 bg-white/5 text-nowrap text-sm rounded-none"
+        >
           دانلود رزومه بصورت PDF
-        </button>
-        <button className="DOWNLOADPDF xs:hidden p-3 bg-white/5 text-nowrap text-sm rounded-none">
+        </a>
+        <a
+          href="/youdexsof-fa-cv.pdf"
+          download="Yousof-Hashemzade-Cv-Fa.pdf"
+          className="DOWNLOADPDF xs:hidden p-3 text-white bg-white/5 text-nowrap text-sm rounded-none"
+        >
           دانلود PDF
-        </button>
+        </a>
       </div>
       <Image className="LOGO h-8" src={logo} alt="" />
     </nav>

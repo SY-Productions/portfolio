@@ -166,7 +166,7 @@ export default function SideBar() {
             </div>
           </div> */}
            <div className="h-0 border-t border-white/10 py-2" />
-          <a href="/youdexsof-fa-cv.pdf" download='Yousof-Hashemzade-Cv-Fa.pdf' className="DOWNLOADPDF w-[80%] h-[32px] m-auto hidden lg:block btn border-white/5 py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 hover:bg-white/10 rounded-none">
+          <a href="/youdexsof-fa-cv.pdf" download='Yousof-Hashemzade-Cv-Fa.pdf' className="DOWNLOADPDF w-[80%] h-[32px] m-auto hidden lg:block btn border-white/5 py-3 px-5 bg-white/5 font-normal text-nowrap text-sm mt-4 transition-all duration-200 text-white hover:bg-white/10 rounded-none">
             دانلود رزومه بصورت PDF
           </a>
         </div>

@@ -1,5 +1,6 @@
+"use client";
+
 import { useZState } from "@/app/states";
-import { WorkSample } from "@prisma/client";
 
 export default function PicSrcArray({ data }: { data: WorkSample[] }) {
   const { sampleWebIndex, sampleMobIndex, isWebFrame } = useZState();

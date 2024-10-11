@@ -2,7 +2,6 @@
 import React from "react";
 import { useZState } from "@/app/states";
 import PicSrcArray from "./PicSrcArray";
-import { WorkSample } from "@prisma/client";
 import SkeletonImage from "../SkeletonImage";
 
 export default function Preview({ data }: { data: WorkSample[] }) {
@@ -16,6 +15,7 @@ export default function Preview({ data }: { data: WorkSample[] }) {
     >
       <SkeletonImage
         src={picSrc.pics[0]!}
+
         width={500}
         height={500}
         className="h-[60vh] lg:w-[30vw] object-contain"

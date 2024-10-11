@@ -40,9 +40,9 @@ export default function Event() {
             رویداد ها، مسابقات و جوایز
           </h3>
           <p className="font-[ybn] text-white/40 self-start mb-[5vh] text-wrap 2xl:text-lg">
-            علاقه ی خاص و بیش از اندازه ای به هنر داشتم اما هنگام انتخاب رشته
-            رفتم سمت رشته ی ریاضی و مباحث کامپیوتر و مهندسی. سوابق و مدارک
-            تحصیلی من ( این بخش به مرور زمان کامل تر میشه ) :
+             لیست
+            رویدادها و مسابقاتی که در آن‌ها حضور داشته‌ام (این بخش به مرور زمان
+            کامل‌تر خواهد شد):
           </p>
         </div>
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-5">

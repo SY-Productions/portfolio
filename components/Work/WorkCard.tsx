@@ -37,7 +37,7 @@ export default function WorkCard({ data }: { data: Work }) {
           </div>
           <div className="NAME&DESC flex flex-col px-4">
             <div className="text-lg py-2 text-white">{data.name}</div>
-            <div className="text-sm pb-4">{data.description}</div>
+            <div className="text-sm pb-4 text-gray-400">{data.description}</div>
           </div>
           <div className="p-4 flex flex-row-reverse gap-2">
             {data.technos.map((techno) => (

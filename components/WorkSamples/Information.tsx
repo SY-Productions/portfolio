@@ -3,7 +3,6 @@ import { useZState } from "@/app/states";
 import React, { useEffect } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { WorkSample } from "@prisma/client";
 import Drawer from "./Drawer/Drawer";
 
 export default function Information({ data }: { data: WorkSample[] }) {
@@ -70,20 +69,20 @@ export default function Information({ data }: { data: WorkSample[] }) {
           <TabPanel>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {web[sampleWebIndex].faTitle}
+                {web[sampleWebIndex]?.faTitle??''}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {web[sampleWebIndex].faDescription}
+                {web[sampleWebIndex]?.faDescription??''}
               </div>
             </div>
           </TabPanel>
           <TabPanel>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {mobile[sampleMobIndex].faTitle}
+                {mobile[sampleMobIndex]?.faTitle??''}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {mobile[sampleMobIndex].faDescription}
+                {mobile[sampleMobIndex]?.faDescription??''}
               </div>
             </div>
           </TabPanel>

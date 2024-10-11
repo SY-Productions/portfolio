@@ -1,7 +1,6 @@
 "use client";
 
 import { useZState } from "@/app/states";
-import { WorkSample } from "@prisma/client";
 import React, { useCallback, useState } from "react";
 import LaunchIcon from "@mui/icons-material/Launch";
 import { Copy, CopySuccess } from "iconsax-react";
@@ -59,7 +58,7 @@ export default function DrawerBody({
         href={
           target?.link?.startsWith("http")
             ? target.link
-            : `https://${target.link}`
+            : `https://${target?.link}`
         }
         target="_blank"
         rel="noopener noreferrer"
