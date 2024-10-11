@@ -29,14 +29,11 @@ export default function AboutMe() {
         </div>
         <div className="NAME&DESC&BUTTONS flex flex-col items-center basis-2/3">
           <div className="NAME py-6 w-[80%]">
-            <p className="font-[inter] tracking-tight font-extrabold text-4xl 2xl:text-5xl leading-[0.7] bg-clip-text text-transparent bg-gradient-to-b from-white/10 to-white/0 -mb-2.5 self-start text-nowrap">
-              MOBILE
-              <br />
+            <p className="mobile-developer">
+              MOBILE <br />
               DEVELOPER
             </p>
-            <h1 className="bg-clip-text text-transparent bg-gradient-to-l from-a to-b font-[ybeb] text-3xl xl:text-4xl 2xl:text-5xl self-start text-nowrap">
-              یوسف هاشم زاده
-            </h1>
+            <h1 className="developer-name">یوسف هاشم زاده</h1>
           </div>
           <p className="DESC font-[ybn] text-white/35 text-sm lg:text-base 2xl:text-xl leading-6 w-[80%] mb-6 text-wrap">
             با ترکیبِ علاقه به کامپیوتر و چیز ساختن وارد این حوزه شدم و بعد از

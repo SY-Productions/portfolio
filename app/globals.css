@@ -43,3 +43,43 @@
     @apply text-3xl font-bold;
   }
 }
+
+.mobile-developer {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 2.5rem;
+  /* Adjust to match Tailwind's 4xl */
+  line-height: 0.7;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: -10px;
+  white-space: nowrap;
+}
+
+@media (min-width: 1536px) {
+  .mobile-developer {
+    font-size: 3rem;
+  }
+}
+
+.developer-name {
+  font-family: 'ybeb', sans-serif;
+  font-size: 2rem;
+  background: linear-gradient(to left, #6b95ff, #3A71FF);
+  -webkit-background-clip: text;
+  color: transparent;
+  white-space: nowrap;
+}
+
+@media (min-width: 1280px) {
+  .developer-name {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .developer-name {
+    font-size: 3rem;
+  }
+}
