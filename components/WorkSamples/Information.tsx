@@ -3,7 +3,6 @@ import { useZState } from "@/app/states";
 import React, { useEffect } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import { WorkSample } from "@prisma/client";
 import Drawer from "./Drawer/Drawer";
 
 export default function Information({ data }: { data: WorkSample[] }) {
@@ -13,8 +12,10 @@ export default function Information({ data }: { data: WorkSample[] }) {
     setMobSamples,
     setWebSamples,
     setIsWebFrame,
+    setSamplePicIndex,
     setDrawerOpening,
     isDrawerOpen,
+    isWebFrame,
   } = useZState();
 
   const mobile = data.filter((sample) => !sample.isWeb);
@@ -23,14 +24,15 @@ export default function Information({ data }: { data: WorkSample[] }) {
   useEffect(() => {
     setWebSamples(web.length - 1);
     setMobSamples(mobile.length - 1);
-  }, [data]);
+  }, [data, mobile.length, setMobSamples, setWebSamples, web.length]);
 
   const tabClasses =
     "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
   const tabContentClasses =
-    "TABCONTENT h-auto min-h-[30vh] font-[ybb] text-sm bg-white/5 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
+    "TABCONTENT h-[35vh] lg:h-[30vh] min-h-[30vh] font-[ybb] text-sm bg-white/5 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
 
   function handleOpeningDrawer(setOpen: boolean) {
+    setSamplePicIndex(0);
     setDrawerOpening(setOpen);
   }
 
@@ -48,10 +50,9 @@ export default function Information({ data }: { data: WorkSample[] }) {
               borderBottomWidth: 0,
               color: "rgb(255 255 255 / 0.8)",
             }}
-            onClick={() => setIsWebFrame(true)}
-            defaultChecked
+            onClick={() => setIsWebFrame(false)}
           >
-            اپلیکیشن های وب
+            اپلیکیشن های موبایل
           </Tab>
           <Tab
             className={tabClasses}
@@ -60,29 +61,34 @@ export default function Information({ data }: { data: WorkSample[] }) {
               borderBottomWidth: 0,
               color: "rgb(255 255 255 / 0.8)",
             }}
-            onClick={() => setIsWebFrame(false)}
+            onClick={() => setIsWebFrame(true)}
+            defaultChecked
           >
-            اپلیکیشن های موبایل
+            اپلیکیشن های وب
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {web[sampleWebIndex].faTitle}
+                {mobile[sampleMobIndex]?.faTitle ?? ""}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {web[sampleWebIndex].faDescription}
+                {mobile[sampleMobIndex].faDescription.includes("%g%")
+                  ? mobile[sampleMobIndex].faDescription.split("%g%")[0]
+                  : mobile[sampleMobIndex].faDescription}
               </div>
             </div>
           </TabPanel>
           <TabPanel>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {mobile[sampleMobIndex].faTitle}
+                {web[sampleWebIndex]?.faTitle ?? ""}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {mobile[sampleMobIndex].faDescription}
+                {web[sampleWebIndex].faDescription.includes("%g%")
+                  ? web[sampleWebIndex].faDescription.split("%g%")[0]
+                  : web[sampleWebIndex].faDescription}
               </div>
             </div>
           </TabPanel>

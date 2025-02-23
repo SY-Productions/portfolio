@@ -12,18 +12,18 @@ export default function HardSkills() {
         برنامه نویسی سمت سرور.
       </p>
       <div className="inline-grid grid-cols-2 xl:grid-cols-3 xl:min-w-[400px] gap-2 ">
-        <Skill name="Dart" link="" />
-        <Skill name="Flutter" link="" />
-        <Skill name="Python" link="" />
-        <Skill name="Django" link="" />
-        <Skill name="Fastapi" link="" />
-        <Skill name="Html" link="" />
-        <Skill name="Css" link="" />
-        <Skill name="Js" link="" />
-        <Skill name="React" link="" />
-        <Skill name="Ruby" link="" />
-        <Skill name="OnRails" link="" />
-        <Skill name="WP" link="" />
+        <Skill name="Dart"  />
+        <Skill name="Flutter"  />
+        <Skill name="Python"  />
+        <Skill name="Django"  />
+        <Skill name="Fastapi"  />
+        <Skill name="Html"  />
+        <Skill name="Css"  />
+        <Skill name="Js"  />
+        <Skill name="React"  />
+        <Skill name="Ruby"  />
+        <Skill name="OnRails"  />
+        <Skill name="WP"  />
       </div>
     </div>
   );

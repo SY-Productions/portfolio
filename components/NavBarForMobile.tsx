@@ -1,7 +1,8 @@
 "use client";
 import { useZState } from "@/app/states";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import Image from 'next/image'
+import logo from '@/public/vectors/logo.svg'
 export default function NavBarForMobile() {
   const { setOpen } = useZState();
   return (
@@ -13,14 +14,26 @@ export default function NavBarForMobile() {
         >
           <MenuIcon sx={{ color: "white" }} />
         </button>
-        <button className="DOWNLOADPDF hidden xs:block p-3 bg-white/5 text-nowrap text-sm">
+        <a
+          href="/youdexsof-fa-cv.pdf"
+          download="Yousof-Hashemzade-Cv-Fa.pdf"
+          className="DOWNLOADPDF hidden text-white  xs:block p-3 bg-white/5 text-nowrap text-sm rounded-none"
+        >
           دانلود رزومه بصورت PDF
-        </button>
-        <button className="DOWNLOADPDF xs:hidden p-3 bg-white/5 text-nowrap text-sm">
+        </a>
+        <a
+          href="/youdexsof-fa-cv.pdf"
+          download="Yousof-Hashemzade-Cv-Fa.pdf"
+          className="DOWNLOADPDF xs:hidden p-3 text-white bg-white/5 text-nowrap text-sm rounded-none"
+        >
           دانلود PDF
-        </button>
+        </a>
       </div>
-      <div className="LOGO ml-6">LOGO</div>
+      <Image
+        className="LOGO h-8"
+        src={logo}
+        alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
+      />
     </nav>
   );
 }

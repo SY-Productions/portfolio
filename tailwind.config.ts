@@ -17,12 +17,15 @@ const config: Config = {
     },
     extend: {
       colors: {
-        a: "#6b95ff",
-        b: "#3A71FF",
+        a: "#3ECA43",
+        b: "#37B13B",
         c: "#171717",
-        d: "#3C308B",
+        d: "#1F6522",
       },
     },
+  },
+  daisyui: {
+    themes: [],
   },
   plugins: [require("daisyui")],
 };

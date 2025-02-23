@@ -1,18 +1,41 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title:
+    "یوسف هاشم زاده توسعه دهنده موبایل فلاتر | Yousof Hashemzadeh Flutter Mobile Developer",
+  description:
+    "یوسف هاشم زاده - توسعه‌دهنده موبایل با تخصص در فلاتر و توسعه سمت سرور با پایتون. | Yousof Hashemzade - Flutter mobile developer specializing in backend development with Python.",
+  keywords:
+    "یوسف هاشم زاده, Yousof Hashemzade, Flutter developer, Flutter mobile app development, BLoC architecture Flutter, GetX state management, Python backend developer, Python programming, Mobile app development, Cross-platform app development, Software engineer, Mobile development expert, Application developer, Dart programming language, RESTful APIs with Python, Full-stack mobile development, Modern web technologies, Software development best practices, Agile development methodologies, Portfolio of Yousof Hashemzade",
+  icons: [
+    { rel: "icon", url: "/favicons/favicon-16x16.png", sizes: "16x16" },
+    { rel: "icon", url: "/favicons/favicon-32x32.png", sizes: "32x32" },
+    { rel: "icon", url: "/favicons/android-chrome-192x192.png", sizes: "192x192" },
+    { rel: "icon", url: "/favicons/android-chrome-512x512.png", sizes: "512x512" },
+  ],
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html dir="rtl" className="scroll-smooth">
-      <body className="bg-c">{children}</body>
+      <body className="bg-c">
+        <div
+          style={{
+            WebkitUserSelect: "none",
+            KhtmlUserSelect: "none",
+            MozUserSelect: "none",
+            msUserSelect: "none",
+            userSelect: "none",
+          }}
+        >
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

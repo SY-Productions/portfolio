@@ -1,9 +1,12 @@
+"use client";
+
 import { useZState } from "@/app/states";
-import { WorkSample } from "@prisma/client";
-import React from "react";
+import React, { useCallback, useState } from "react";
 import LaunchIcon from "@mui/icons-material/Launch";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { Copy, CopySuccess } from "iconsax-react";
 import dynamic from "next/dynamic";
+import Skill from "@/components/Skills/HardSkill";
+
 export default function DrawerBody({
   web,
   mob,
@@ -15,8 +18,8 @@ export default function DrawerBody({
     useZState();
   const target = isWebFrame ? web[sampleWebIndex] : mob[sampleMobIndex];
   const techsArray = isWebFrame
-    ? web[sampleWebIndex].technologys.split(" ")
-    : mob[sampleMobIndex].technologys.split(" ");
+    ? web[sampleWebIndex]?.technologys.split(" ") ?? []
+    : mob[sampleMobIndex]?.technologys.split(" ") ?? [];
   const spinnerSVG = (
     <svg
       className="animate-spin h-5 w-5 text-white"
@@ -40,35 +43,61 @@ export default function DrawerBody({
     </svg>
   );
 
-  const Skill = dynamic(() => import("@/components/Skills/HardSkill"), {
-    loading: () => spinnerSVG,
-  });
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(target.link).then(() => {
+      setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 5000);
+    });
+  }, [isWebFrame, sampleWebIndex, sampleMobIndex]);
+  const [isCopied, setCopied] = useState(false);
+
   return (
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6">
       <a
-        href={target.link}
-        target="_blank"
-        className="group flex w-fit items-center gap-2 text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4 cursor-pointer"
+        href={
+          target?.link === "#"
+            ? undefined
+            : target?.link?.startsWith("http")
+            ? target.link
+            : `https://${target?.link}`
+        }
+        target={target?.link === "#" ? undefined : "_blank"}
+        rel={target?.link === "#" ? undefined : "noopener noreferrer"}
+        className={`group flex w-fit items-center gap-2 text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4 cursor-pointer ${
+          target?.link === "#" ? "pointer-events-none" : ""
+        }`}
       >
         <h4 className="inline group-hover:underline group-hover:underline-offset-2 ">
-          {target.faTitle}
+          {target?.faTitle}
         </h4>
-        <LaunchIcon className="" sx={{ fontSize: 20 }} />
+        {target.link != "#"&&<LaunchIcon className="" sx={{ fontSize: 20 }} />}
       </a>
+
       <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
-        {target.faDescription}
+        {target?.faDescription.split("%g%")[0]}
       </p>
-      <a
-        className="py-2 px-4 bg-d w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap rounded-sm"
-        href="/"
+      {target.link != "#"&&<button
+        className={`py-2 px-4 w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap rounded-sm transition-colors duration-300 ${
+          isCopied ? "bg-green-500 text-white" : "bg-d text-white"
+        }`}
+        onClick={isCopied ? () => {} : handleCopy}
       >
-        <ContentCopyIcon
-          sx={{
-            fontSize: { xs: "1rem", sm: "1.2rem", md: "1.4rem" },
-          }}
-        />
-        <span>کپی لینک</span>
-      </a>
+        {isCopied  ? <CopySuccess /> : <Copy />}
+        {isCopied  ? (
+          <span>کپی شد!</span>
+        ) : (
+          <span>
+            کپی لینک{" "}
+            {target.link.includes("rtl")
+              ? "راستچین"
+              : target.link.includes("liara")
+              ? "دمو": target.link.includes("github")?'گیت هاب'
+              : "محصول"}
+          </span>
+        )}
+      </button>}
       <div className="DIVIDER border-t border-white/20 w-full h-0 my-4" />
       <div>
         <p className="text-lg 2xl:text-2xl pb-4 font-[ybb]">
@@ -77,7 +106,7 @@ export default function DrawerBody({
         {isDrawerOpen && (
           <div className="inline-grid grid-cols-2 gap-2">
             {techsArray.map((tech) => (
-              <Skill name={tech} link="" />
+              <Skill name={tech} key={tech} />
             ))}
           </div>
         )}
@@ -91,20 +120,20 @@ export default function DrawerBody({
           <div className="flex flex-col">
             <span className="text-xs lg:text-sm text-white/50">شروع :</span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {target.faStartDate}
+              {target?.faStartDate}
             </span>
           </div>
           <div className="DIVIDER border-l border-white/20 w-1 h-full " />
           <div className="flex flex-col">
             <span className="text-xs lg:text-sm text-white/50">اتمام :</span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {target.faEndDate}
+              {target?.faEndDate}
             </span>
           </div>
         </div>
       </div>
       <div className="FULLDECS pt-4 text-sm lg:text-base 2xl:text-lg">
-        <p>{target.faDescription}</p>
+        <p>{target?.faDescription.replace("%g%", "")}</p>
       </div>
     </div>
   );

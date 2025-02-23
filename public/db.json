@@ -1,0 +1,182 @@
+{
+  "WorkSmaples": [
+    {
+      "id": 1,
+      "isWeb": "1",
+      "faTitle": "وبسایت رزومه",
+      "enTitle": "Portfolio Website",
+      "faDescription": "وبسایت رزومه شخصی م که الان درحال مشاهده ش هستید، پیاده سازی شده با کتابخونه react و کامپوننت های ChakraUI.",
+      "enDescription": "My personal portfolio website that you''re currently browsing.",
+      "pictures": "/portfolio/por1.png /portfolio/por2.png",
+      "link": "www.youdexsof.ir",
+      "technologys": "NextJs ChakraUI",
+      "faStartDate": "تیر 1402",
+      "enStartDate": "June 2022",
+      "faEndDate": "شهریور 1402",
+      "enEndDate": "August 2022"
+    },
+    {
+      "id": 2,
+      "isWeb": "1",
+      "faTitle": "وبسایت منتخب شاپ",
+      "enTitle": "Montakhab Light Website",
+      "faDescription": "برند منتخب از سال ۱۳۹۲ شروع به فعالیت کرده و برای لانچ تک تک محصولات ماه ها زمان گذاشته شده و بهترین متریال موجود دربازار با توجه به قیمت مقرون به صرفه در محصولات استفاده شده.",
+      "enDescription": "The selected brand started its activities in 2013 and spent months launching each product. The best materials available in the market have been used in the products, considering their affordable prices.",
+      "pictures": "/portfolio/mon1.png /portfolio/mon2.png",
+      "link": "www.montakhablighte.ir",
+      "technologys": "WP",
+      "faStartDate": "بهمن 1402",
+      "enStartDate": "June 2022",
+      "faEndDate": "اسفند 1402",
+      "enEndDate": "August 2022"
+    },
+    {
+      "id": 3,
+      "isWeb": "1",
+      "faTitle": "وبسایت پرنیان",
+      "enTitle": "Parnian Website",
+      "faDescription": "خدمات حمل هوایی انواع کالا به اقصی نقاط دنیا با وبسایت پرنیان.",
+      "enDescription": "Air transportation services for all kinds of stuff to all parts of the world with Pernian website.",
+      "pictures": "/portfolio/par1.png /portfolio/par2.png",
+      "link": "#",
+      "technologys": "WP",
+      "faStartDate": "اردیبهشت 1399",
+      "enStartDate": "June 2020",
+      "faEndDate": "اردیبهشت 1399",
+      "enEndDate": "June 2020"
+    },
+    {
+      "id": 4,
+      "isWeb": "0",
+      "faTitle": "زورا، مربی هوشمند تناسب اندام",
+      "enTitle": "Zura, AI-Powered fitness coach",
+      "faDescription": "زورا، ترکیبی از دانش ورزشی، تکنولوژی و تحلیل داده برای رسیدن به تناسب اندام ایده‌آل! با زورا، مسیر پیشرفت شما روشن‌تر از همیشه خواهد بود. %g% با Zura، دیگر تمرین کردن تنها یک کار روزمره نخواهد بود، بلکه تجربه‌ای هوشمند، پویا و علمی خواهد شد. این اپلیکیشن با بهره‌گیری از Flutter و Riverpod، تمامی ابزارهای لازم را برای پیگیری تمرینات، تغذیه و پیشرفت بدن شما در اختیار دارد. سیستم احراز هویت، آموزش‌های دقیق، برنامه‌ریزی تمرینات و رژیم غذایی، همه در کنار هم کار می‌کنند تا شما را در مسیر درست قرار دهند. Zura با استفاده از چارت‌های تعاملی، گراف‌های تحلیلی قدرتمند، مدل‌های سه‌بعدی بدن انسان برای نمایش دقیق وضعیت عضلات و فیزیک شما، تصویری کامل از پیشرفتتان ارائه می‌دهد. جلوه‌های بصری خیره‌کننده، انیمیشن‌های روان و تعاملات هوشمند باعث می‌شوند هر لحظه از تمرینات شما لذت‌بخش و انگیزه‌بخش باشد. زورا همراه شماست تا نه‌تنها به اهداف ورزشی خود برسید، بلکه سبک زندگی سالم‌تری را نیز تجربه کنید.",
+      "enDescription": "Zura, the AI-powered fitness coach that keeps you on track! Smarter training, deeper insights, and a more engaging fitness experience. %g% Zura is not just another fitness app—it’s a powerful, interactive coach designed with Flutter and Riverpod to provide a seamless, intelligent, and visually engaging workout experience. It combines multiple essential features, including authentication, in-depth tutorials, precise workout tracking, meal planning, and expert coaching, ensuring you have all the tools you need to succeed. Zura stands out with its stunning custom charts, advanced data visualizations, and 3D human body rendering, giving you a real-time, detailed look at your performance and progress. The sleek animations and user-friendly interactions make every workout feel more immersive and motivating. Whether you’re a beginner or a pro, Zura adapts to your needs, guiding you toward your fitness goals with precision and style. It’s not just about working out—it’s about transforming the way you train and live!",
+      "pictures": "/portfolio/zura1.png /portfolio/zura2.png /portfolio/zura3.png /portfolio/zura4.png /portfolio/zura5.png",
+      "link": "https://youdexsof.storage.iran.liara.space/zura.apk",
+      "technologys": "Dart Flutter Riverpod",
+      "faStartDate": "دی 1403",
+      "enStartDate": "December 2024",
+      "faEndDate": "بهمن 1403",
+      "enEndDate": "January 2025"
+    },
+    {
+      "id": 5,
+      "isWeb": "0",
+      "faTitle": "قالب اپلیکیشن فروشگاهی مدرن کامرس",
+      "enTitle": "ModernCommerce Application Template",
+      "faDescription": "اولین و مدرن‌ترین قالب اپلیکیشن چند‌پلتفرمی توی مارکت ایران! فروشگاه مدرن یه قالب فروشگاهی حرفه‌ایه که با فریم‌ورک Flutter از صفر طراحی شده تا بتونید خیلی سریع یه فروشگاه کامل راه بندازید و تمرکزتون رو روی امکانات خاص فروشگاهتون بذارید. %g% این قالب کاملاً ریسپانسیو طراحی شده و روی اندروید، iOS، ویندوز، مک و لینوکس اجرا می‌شه، پس خیالتون از همه چی راحت باشه! همراه با داشبورد مدیریت (CMS) که کنترل کامل فروشگاه رو بهتون می‌ده؛ از مدیریت محصولات و انبار گرفته تا کاربران و سفارشات. برای اطلاعات بیشتر و خرید، به راست‌چین سر بزنید!",
+      "enDescription": "The first and most modern multi-platform app template in the Iranian market! Modern Store is a professional e-commerce template built with Flutter from scratch, allowing you to quickly set up a complete store and focus on unique features. This template is fully responsive and runs smoothly on Android, iOS, Windows, Mac, and Linux, so you’re covered on all platforms! Comes with a powerful admin dashboard (CMS) that gives you full control over your store—manage products, inventory, users, orders, and more. For more details and purchase, visit Rastchin!",
+      "pictures": "/portfolio/mc1.png /portfolio/mc2.png /portfolio/mc3.png /portfolio/mc4.png /portfolio/mc5.png",
+      "link": "https://www.rtl-theme.com/modern-commerce-application/",
+      "technologys": "Dart Flutter GetX",
+      "faStartDate": "آذر 1403",
+      "enStartDate": "November 2024",
+      "faEndDate": "دی 1403",
+      "enEndDate": "December 2024"
+    },
+    {
+      "id": 6,
+      "isWeb": "0",
+      "faTitle": "آی‌پت پلاس",
+      "enTitle": "iPET Plus",
+      "faDescription": "همه نیازهای حیوان خانگی‌تان در یک پلتفرم! آی پت پلاس، پلتفرمی بزرگ برای خرید و فروش کالاها و خدمات مرتبط با حیوانات خانگی در سراسر کشور است.%g% در اینجا، تولیدکنندگان و ارائه‌دهندگان معتبر، محصولات و خدمات خود را به‌صورت آنلاین عرضه می‌کنند. با دسترسی به تنوع بالایی از کالاها و خدمات از برندهای محبوب، می‌توانید به‌راحتی نیازهای حیوان خانگی‌تان را برطرف کنید و از کیفیت و اصالت آن‌ها اطمینان حاصل نمایید. امکان مقایسه محصولات، پرداخت آنلاین امن، ارسال سریع و پیگیری سفارشات از دیگر امکانات آی پت پلاس است. با آی پت پلاس، تجربه خریدی مطمئن و آسان را تجربه کنید.",
+      "enDescription": "All your pet needs in one platform! %g% iPetPlus is a comprehensive platform for buying and selling pet-related products and services across the country. Here, trusted manufacturers and service providers offer their products and services online. With a wide variety of products and services from popular brands, you can easily meet your pet’s needs with confidence in quality and authenticity. Features like product comparisons, secure online payments, fast shipping, and order tracking ensure a smooth experience. With iPetPlus, enjoy a reliable and convenient shopping experience for your pet!",
+      "pictures": "/portfolio/ipet1.png /portfolio/ipet2.png /portfolio/ipet3.png /portfolio/ipet4.png",
+      "link": "www.ipetplus.ir",
+      "technologys": "Dart Flutter Bloc",
+      "faStartDate": "تیر 1403",
+      "enStartDate": "July 2024",
+      "faEndDate": "شهریور 1403",
+      "enEndDate": "September 2024"
+    },
+    {
+      "id": 7,
+      "isWeb": "0",
+      "faTitle": "ترخینه",
+      "enTitle": "Tarkhine",
+      "faDescription": "ترخینه، تجربه واقعی و ناب غذای ایرانی را در هر لحظه، به راحتی و با یک کلیک داشته باشید! %g% ترخینه یک اپلیکیشن سفارش غذای کاملاً ایرانی است که شما را به دنیای غذاهای سنتی و مدرن ایرانی می‌برد. از کباب‌های خوشمزه تا خورش‌های اصیل، ما هر آنچه که برای رفع گرسنگی نیاز دارید، در اختیارتان قرار می‌دهیم. با فریم‌ورک فلاتر و بلاک، تجربه‌ای بی‌نظیر و سریع از خرید آنلاین غذا در اختیار شماست.",
+      "enDescription": "Tarikhne, your ultimate app for experiencing the best and most authentic Iranian food, no matter where you are, with just a tap! %g% Tarikhne is a fully Iranian food delivery app offering an extensive range of traditional and modern Persian dishes, delivered quickly right to your door. From mouth-watering kebabs to rich stews, we’ve got all your cravings covered. Powered by Flutter and Bloc, the app guarantees a fast, smooth, and hassle-free food ordering experience every time.",
+      "pictures": "/portfolio/tarkhine1.png /portfolio/tarkhine2.png /portfolio/tarkhine3.png /portfolio/tarkhine1.png",
+      "link": "www.github.com/YOUSSSOF/Tarkhine",
+      "technologys": "Dart Flutter Bloc Python Django",
+      "faStartDate": "تیر 1402",
+      "enStartDate": "June 2022",
+      "faEndDate": "شهریور 1402",
+      "enEndDate": "August 2022"
+    },
+    {
+      "id": 8,
+      "isWeb": "0",
+      "faTitle": "باکس آفیس بیت",
+      "enTitle": "BoxOfficeBeat",
+      "faDescription": "باکس آفیس بیت همراه همیشگی شما در دنیای سینما است که با استفاده از API TMDB اطلاعات، امتیازات و روندهای دنیای فیلم را به‌روز به شما ارائه می‌دهد.%g% چه شما یک تماشاگر عادی باشید و چه یک سینمادوست حرفه‌ای، باکس آفیس بیت شما را در جریان جدیدترین فیلم‌ها، تریلرها، نقدها و بسیاری دیگر قرار می‌دهد — هر چیزی که برای یک شب سینمایی بی‌نظیر نیاز دارید!",
+      "enDescription": "Box Office Beat is your ultimate movie companion, delivering real-time information, ratings, and trends from the world of cinema, powered by the TMDB API.%g% Whether you're a casual movie-goer or a die-hard cinephile, Box Office Beat keeps you up to date with the latest hits, trailers, reviews, and more—everything you need to make your movie night the best one yet!",
+      "pictures": "/portfolio/movie1.png /portfolio/movie2.png /portfolio/movie3.png",
+      "link": "https://github.com/YOUSSSOF/Movies-App",
+      "technologys": "Dart Flutter",
+      "faStartDate": "خرداد 1399",
+      "enStartDate": "June 2020",
+      "faEndDate": "تیر 1399",
+      "enEndDate": "July 2020"
+    },
+    {
+      "id": 9,
+      "isWeb": "0",
+      "faTitle": "گرین‌تامب",
+      "enTitle": "GreenThumb",
+      "faDescription": "گرین‌تامب، راهکاری هوشمند برای خرید و نگهداری از گیاهان! دیگر نگران پژمرده شدن گل و گیاهان‌تان نباشید. %g% این اپلیکیشن طراحی شده تا تجربه‌ای لذت‌بخش از پرورش گیاهان را برای شما فراهم کند. با راهنمایی‌های تخصصی، برنامه‌های آبیاری هوشمند و دسترسی آسان به انواع گیاهان، هر فردی می‌تواند به یک پرورش‌دهنده حرفه‌ای تبدیل شود. با بهره‌گیری از فریم‌ورک فلاتر، گرین‌تامب محیطی روان و کاربرپسند را ارائه می‌دهد تا نگهداری از گیاهان دیگر یک چالش نباشد، بلکه به یک سرگرمی آرامش‌بخش تبدیل شود.",
+      "enDescription": "GreenThumb, the smart way to buy and nurture plants! Say goodbye to wilting leaves and hello to thriving greenery. %g% This app is designed to make plant care effortless and enjoyable. With expert guidance, automated watering reminders, and a vast selection of plants at your fingertips, anyone can develop a green thumb. Powered by Flutter, GreenThumb delivers a seamless and intuitive experience, turning plant care from a chore into a relaxing and rewarding hobby.",
+      "pictures": "/portfolio/gre1.png /portfolio/gre2.png /portfolio/gre3.png",
+      "link": "#",
+      "technologys": "Dart Flutter GetX",
+      "faStartDate": "اردیبهشت 1402",
+      "enStartDate": "May 2023",
+      "faEndDate": "مرداد 1402",
+      "enEndDate": "July 2023"
+    }
+  ],
+  "Educations": [
+    {
+      "name": "دبیرستان ماندگار شهدای ادب",
+      "from": 1399,
+      "to": 1402,
+      "picture": "/educations/adab.png",
+      "description": "تحصیل دوره دبیرستان در دبیرستان ماندگار شهدای ادب در رشته ریاضی فیزیک و اخذ مدرک دیپلم."
+    },
+    {
+      "name": "دانشگاه بین المللی آزاد خوراسگان",
+      "from": 1402,
+      "to": null,
+      "picture": "/educations/kh.webp",
+      "description": "مشغول تحصیل در رشته کامپیوتر مقطع کارشناسی در این دانشگاه هستم."
+    }
+  ],
+  "Works": [
+    {
+      "name": "شرکت نشاط رخ آرا | NeshatRokh",
+      "technos": ["Flutter", "Dart"],
+      "from": 1403,
+      "to": 1403,
+      "picture": "/neshatrokh.png",
+      "url": "https:/www.neshatrokh.com",
+      "description": "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم."
+    }
+  ],
+  "Events": [
+    {
+      "name": "اولین دوره مسابقات بزرگ برنامه نویسی و نرم افزار نرم افزارهای تخصصی داناکاپ",
+      "date": "تیر 1403",
+      "picture": "/events/danacup-logo.jpg",
+      "attachment": "/events/danacup.jpg",
+      "description": "کسب رتبه برتر در نخستین دوره مسابقات داناکاپ که با همکاری دانشگاه آزاد اسلامی واحد نجف‌آباد برگزار گردید. این مسابقات، با حضور شرکت‌کنندگان برتر از سراسر استان اصفهان، به منظور ارتقاء سطح دانش و مهارت‌های علمی و عملی دانشجویان در زمینه‌های مختلف علمی و فناوری برگزار شد."
+    },
+    {
+      "name": "نهمین دوره مسابقات برنامه نویسی چالش های فناوری اطلاعات کشور",
+      "date": "شهریور 1403",
+      "picture": "/events/ict-logo.jpg",
+      "attachment": "/events/ict.jpg",
+      "description": "شرکت در نهمین دوره مسابقات ملی ICT Challenge به میزبانی دانشگاه صنعتی شریف، فرصتی ارزشمند برای رقابت با تیم‌های نخبه کشور بود. این رویداد علاوه بر تقویت مهارت‌های فنی من، باعث آشنایی با برنامه‌نویسی بلاکچین شد که توانستم آن را به‌طور عملی پیاده‌سازی کنم."
+    }
+  ]
+}

@@ -1,23 +1,34 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import MailIcon from "@mui/icons-material/Mail";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import TitleIcon from "@mui/icons-material/Title";
 
 export default function CallForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
   const labelClasses = "relative flex items-center ";
   const inputClasses =
     "flex-1 bg-white/5 px-[3vw] lg:px-[1vw] py-[2vh] outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-d focus:ring-offset-1 ring-offset-d focus:rounded-sm transition-all duration-200 placeholder:text-white/30 2xl:placeholder:text-lg 2xl:text-lg indent-7 hover:ring-white/20 ";
-  function handleSubmit(e: any) {
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log("hehe");
+
+    if (!name || !email || !subject || !message) {
+      alert("لطفا تمام فیلدها را پر کنید");
+      return;
+    }
+
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(`نام: ${name}\n\nپیام: ${message}`)}`;
+
+    window.location.href = mailtoLink;
   }
-  function handleClick() {
-    console.log("hehe");
-  }
-  //
-  // implement mailto
-  //
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -32,6 +43,8 @@ export default function CallForm() {
           type="text"
           placeholder="نام"
           className={inputClasses + "min-w-[10vw]"}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
       </label>
       <label className={labelClasses}>
@@ -40,9 +53,11 @@ export default function CallForm() {
           className="absolute right-3"
         />
         <input
-          type="text"
+          type="email"
           className={inputClasses + "min-w-[10vw]"}
           placeholder="ایمیل"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label className={labelClasses + "col-span-2"}>
@@ -50,7 +65,13 @@ export default function CallForm() {
           sx={{ color: "white", fontSize: 20 }}
           className="absolute right-3"
         />
-        <input type="text" placeholder="موضوع" className={inputClasses} />
+        <input
+          type="text"
+          placeholder="موضوع"
+          className={inputClasses}
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+        />
       </label>
       <textarea
         className={
@@ -58,9 +79,11 @@ export default function CallForm() {
           "indent-0 col-span-2 min-h-[6rem] max-h-[15rem] transition-none"
         }
         placeholder="پیام"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
       ></textarea>
       <button
-        onClick={() => handleClick()}
+        type="submit"
         className="btn border-0 px-0 rounded-none h-[7vh] 2xl:text-xl hover:bg-d/60 hover:rounded-lg transition-all duration-75 text-white font-normal bg-d col-span-2 "
       >
         ارسال

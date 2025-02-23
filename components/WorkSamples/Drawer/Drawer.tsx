@@ -1,7 +1,6 @@
 import React from "react";
 import DrawerClickOutside from "./DrawerClickOutside";
 import DrawerCarousel from "./DrawerCarousel";
-import { WorkSample } from "@prisma/client";
 import DrawerBody from "./DrawerBody";
 
 export default function Drawer({

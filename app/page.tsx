@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import SideBar from "../components/SideBar";
 import AboutMe from "../components/AboutMe";
 import Skills from "../components/Skills/SkillsSection";
@@ -8,10 +8,14 @@ import CallMe from "../components/CallMe/CallMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
 import LookingProgrammer from "@/components/LookingProgrammer";
 import Footer from "@/components/Footer";
+import Work from "@/components/Work/Work";
+import Events from "@/components/Events/Events";
+import AnimatedCursor from "@/components/AnimtedCursor";
 
 export default function page() {
   return (
-    <>
+    <Suspense>
+
       <SideBar />
       <main>
         <NavBarForMobile />
@@ -20,9 +24,13 @@ export default function page() {
         <WorkSamples />
         <LookingProgrammer />
         <Education />
+        <Work />
+        <Events/>
         <CallMe />
       </main>
       <Footer />
-    </>
+      <AnimatedCursor />
+      </Suspense>
+
   );
 }
