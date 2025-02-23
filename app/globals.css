@@ -43,17 +43,66 @@
     @apply text-3xl font-bold;
   }
 }
+.circle {
+  --circle-size: 10px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 1px solid #3ECA43;
+  border-radius: 50%;
+  color: transparent;
+  background:  linear-gradient(261.6deg, #66FF91 -4.54%, #3ECA43 46.04%, #37B13B 81.39%);
+  top: calc(var(--circle-size) / 2 * -1);
+  left: calc(var(--circle-size) / 2 * -1);
+  pointer-events: none;
+}
+
+
+@keyframes flashlight {
+  0% {
+    background-position: 100% 0;
+  }
+  20% {
+    background-position: 80% 0;
+  }
+  40% {
+    background-position: 60% 0;
+  }
+  60% {
+    background-position: 40% 0;
+  }
+  80% {
+    background-position: 20% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
 
 .mobile-developer {
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 3rem;
   /* Adjust to match Tailwind's 4xl */
   line-height: 0.7;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   -webkit-background-clip: text;
   color: transparent;
-  margin-bottom: -10px;
+  margin-bottom: -40px;
+  white-space: nowrap;
+  animation: flashlight 5s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+
+.sample-index {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  /* Adjust to match Tailwind's 4xl */
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, .4));
+  -webkit-background-clip: text;
+  color: transparent;
   white-space: nowrap;
 }
 
@@ -62,24 +111,48 @@
     font-size: 3rem;
   }
 }
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
 .developer-name {
   font-family: 'ybeb', sans-serif;
-  font-size: 2rem;
-  background: linear-gradient(to left, #6b95ff, #3A71FF);
-  -webkit-background-clip: text;
-  color: transparent;
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 77px;
+  text-align: right;
   white-space: nowrap;
+  font-style: normal;
+
+  /* Gradient Animation */
+  background: linear-gradient(261.6deg, #66FF91 -4.54%, #3ECA43 46.04%, #37B13B 81.39%);
+  background-size: 200% 200%; /* Ensures animation movement */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  /* Animation */
+  animation: gradientMove 3s infinite ease-in-out;
 }
+
 
 @media (min-width: 1280px) {
   .developer-name {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }
 
 @media (min-width: 1536px) {
   .developer-name {
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 }

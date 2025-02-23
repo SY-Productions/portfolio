@@ -2,10 +2,13 @@ import React from "react";
 import Preview from "./Preview";
 import Information from "./Information";
 import SampleSwitcher from "./SampleSwitcher";
-import fetchWorkSamples from "../network";
+import db from '@/public/db.json';
 
 export default async function WorkSamples() {
-  const getData: WorkSample[] = await fetchWorkSamples();
+  const getData = db.WorkSmaples.map((sample) => ({
+    ...sample,
+    isWeb: sample.isWeb === "1",
+  }));
 
   return (
     <>

@@ -15,7 +15,6 @@ export default function Preview({ data }: { data: WorkSample[] }) {
     >
       <SkeletonImage
         src={picSrc.pics[0]!}
-
         width={500}
         height={500}
         className="h-[60vh] lg:w-[30vw] object-contain"

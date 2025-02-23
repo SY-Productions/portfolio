@@ -10,6 +10,7 @@ import LookingProgrammer from "@/components/LookingProgrammer";
 import Footer from "@/components/Footer";
 import Work from "@/components/Work/Work";
 import Events from "@/components/Events/Events";
+import AnimatedCursor from "@/components/AnimtedCursor";
 
 export default function page() {
   return (
@@ -28,6 +29,8 @@ export default function page() {
         <CallMe />
       </main>
       <Footer />
-    </Suspense>
+      <AnimatedCursor />
+      </Suspense>
+
   );
 }

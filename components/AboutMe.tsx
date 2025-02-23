@@ -70,6 +70,7 @@ export default function AboutMe() {
               <Image
                 className="w-[50%]"
                 src={insta}
+
                 alt="Yousof Hashemzade Instagram Profile | پروفایل اینستاگرام یوسف هاشم زاده"
                 title="اینستاگرام من رو دنبال کن!"
               />

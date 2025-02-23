@@ -14,8 +14,15 @@ import hswh from "@/public/icons/headset-wh.svg";
 import hsgr from "@/public/icons/headset-gr.svg";
 import suitecase from "@/public/icons/suitcase.svg";
 import logo from "../public/vectors/logo.svg";
-import { Hashtag ,Box,Code,Clipboard,Archive,Cup,Headphone} from "iconsax-react"
-
+import {
+  Hashtag,
+  Box,
+  Code,
+  Clipboard,
+  Archive,
+  Cup,
+  Headphone,
+} from "iconsax-react";
 
 const sideItems = [
   {
@@ -76,7 +83,7 @@ export default function SideBar() {
   let sideBarFullClasses =
     "z-40 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
   const sideItemClasses =
-    "flex flex-row justify-start items-center gap-3 py-2 my-4 rounded-sm cursor-pointer ";
+    "flex flex-row justify-start items-center gap-3 py-2 my-[1.5vh] rounded-sm cursor-pointer ";
   useEffect(() => {
     const handleSideBar = () => {
       setIsOnMobile(window.innerWidth <= 1024);
@@ -105,7 +112,7 @@ export default function SideBar() {
         <div className="LOGO&OPTIONS text-base text-white/40 mr-8">
           {/* <div className="LOGO hidden lg:block text-b text-4xl">LOGO</div> */}
           <Image
-            className="LOGO hidden lg:block text-b text-4xl w-[30%] h-[10%] mt-[5%]"
+            className="LOGO hidden lg:block text-b text-4xl w-[30%] h-[10%] my-[3vh]"
             src={logo}
             alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
           />
@@ -152,7 +159,7 @@ export default function SideBar() {
                 type="checkbox"
                 checked={isFa}
                 onChange={() => setIsFa(!isFa)}
-                className="toggle toggle-md  2xl:toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
+                className="toggle toggle-md  2xl:toggle-lg border-[#37B13B] bg-b [--tglbg:#171717] hover:bg-b"
               />
           </div>
           <div className="flex items-center gap-6">
@@ -161,11 +168,11 @@ export default function SideBar() {
               </div>
               <input
                 type="checkbox"
-                className="toggle toggle-md 2xl:toggle-lg border-[#3A71FF] bg-b [--tglbg:#171717] hover:bg-b"
+                className="toggle toggle-md 2xl:toggle-lg border-[#37B13B] bg-b [--tglbg:#171717] hover:bg-b"
               />
             </div>
           </div> */}
-          <div className="h-0 border-t border-white/10 py-2" />
+          <div className="h-0 border-t border-white/10 py-[1.5h]" />
           <a
             href="/youdexsof-fa-cv.pdf"
             download="Yousof-Hashemzade-Cv-Fa.pdf"

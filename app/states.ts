@@ -22,6 +22,7 @@ type Action = {
   setFixedOpen: () => void;
   setSampleWebIndex: (sign: number) => void;
   setSampleMobIndex: (sign: number) => void;
+  setSamplePicIndex: (sign: number) => void;
   setWebSamples: (n: number) => void;
   setMobSamples: (n: number) => void;
   setSideBarScroll: (name: string) => void;
@@ -36,7 +37,7 @@ export const useZState = create<State & Action>((set) => ({
   isFa: true,
   sampleWebIndex: 0,
   sampleMobIndex: 0,
-  isWebFrame: true,
+  isWebFrame: false,
   webSamples: 0,
   MobSamples: 0,
   sideBarScroll: "#about-me",
@@ -54,6 +55,7 @@ export const useZState = create<State & Action>((set) => ({
     }),
   setFixedOpen: () => set(() => ({ isOpen: true })),
   setIsWebFrame: (f) => set(() => ({ isWebFrame: f })),
+  setSamplePicIndex: (sign: number) => set(() => ({ samplePicIndex: sign })),
   setSampleWebIndex: (sign) =>
     set((s) =>
       sign == 1
