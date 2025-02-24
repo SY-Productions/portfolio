@@ -48,6 +48,22 @@
     {
       "id": 4,
       "isWeb": "0",
+      "faTitle": "اسپید، سرویس پیک موتوری",
+      "enTitle": "Speed, Motorbike Delivery Service",
+      "faDescription": "ارسال سریع، مطمئن و بدون دردسر در دستان شما. اسپید – بهترین راهکار برای ارسال‌های فوری. %g% در دنیای پرشتاب امروز، انتظار جایگاهی ندارد. اسپید آمده است تا روش ارسال و دریافت بسته‌ها را متح کند. با سرویس پیشرفته و لحظه‌ای موتورسواری ما، می‌توانید اسناد مهم، غذا یا هدیه‌های لحظه آخری را در کمترین زمان ممکن ارسال کنید. اپلیکیشن ما به‌طور یکپارچه شما را در چند ثانیه به نزدیک‌ترین پیک متصل می‌کند. اسپید با بهره‌گیری از جدیدترین تکنولوژی‌ها ساخته شده است. رابط کاربری روان و هوشمند آن با استفاده از Flutter و Riverpod طراحی شده، درحالی‌که بک‌اند مبتنی بر Django و Django REST Framework، سیستمی قدرتمند و مقیاس‌پذیر را ارائه می‌دهد. این پلتفرم شامل دو اپلیکیشن مجزا است: یکی برای مشتریان و دیگری برای رانندگان که از طریق درخواست‌های API و کانال WebSocket با سرور ارتباط برقرار کرده و با Redis بهینه شده‌اند. با اسپید، هر ارسال به‌صورت لحظه‌ای ردیابی می‌شود تا شفافیت و اطمینان را تضمین کند. سیستم هوشمند ما بهترین راننده را در لحظه به شما متصل کرده و با بهینه‌سازی مسیرها، سریع‌ترین تحویل ممکن را ارائه می‌دهد. تجربه‌ای جدید از دنیای ارسال موتورسواری را با سرویسی که برای سرعت، راحتی و کارایی طراحی شده است، کشف کنید.",
+      "enDescription": "Fast, Reliable, and Effortless Motorbike Delivery at Your Fingertips. Speed – The Ultimate Solution for Express Deliveries. %g% In today’s fast-paced world, waiting is not an option. Speed is here to revolutionize the way you send and receive packages with our ultra-fast, real-time motorbike delivery service. Whether you need to send important documents, food, or a last-minute gift, our seamless mobile application connects you to the nearest available courier in seconds. Powered by the latest technology, Speed is built using Flutter and Riverpod for a smooth, intuitive user experience, while our backend, developed with Django and Django REST Framework, ensures a robust and scalable system. The platform consists of two dedicated apps: one for customers and one for drivers, both interacting with the server through API requests and real-time WebSocket connections, optimized with Redis. With Speed, every delivery is tracked in real-time, ensuring transparency and reliability. Our advanced dispatch system matches you with the best driver instantly, optimizing routes for the fastest possible delivery. Experience the future of motorbike delivery with a service designed for speed, convenience, and efficiency.",
+      "pictures": "/portfolio/sp1.png /portfolio/sp2.png /portfolio/sp3.png /portfolio/sp4.png /portfolio/sp5.png /portfolio/sp6.png",
+      "link": "https://peikspeed.ir",
+      "technologys": "Python Django WebSocket Dart Flutter Riverpod",
+      "faStartDate": "آذر 1403",
+      "enStartDate": "December 2024",
+      "faEndDate": "اسفند 1403",
+      "enEndDate": "March 2025"
+    },
+
+    {
+      "id": 5,
+      "isWeb": "0",
       "faTitle": "زورا، مربی هوشمند تناسب اندام",
       "enTitle": "Zura, AI-Powered fitness coach",
       "faDescription": "زورا، ترکیبی از دانش ورزشی، تکنولوژی و تحلیل داده برای رسیدن به تناسب اندام ایده‌آل! با زورا، مسیر پیشرفت شما روشن‌تر از همیشه خواهد بود. %g% با Zura، دیگر تمرین کردن تنها یک کار روزمره نخواهد بود، بلکه تجربه‌ای هوشمند، پویا و علمی خواهد شد. این اپلیکیشن با بهره‌گیری از Flutter و Riverpod، تمامی ابزارهای لازم را برای پیگیری تمرینات، تغذیه و پیشرفت بدن شما در اختیار دارد. سیستم احراز هویت، آموزش‌های دقیق، برنامه‌ریزی تمرینات و رژیم غذایی، همه در کنار هم کار می‌کنند تا شما را در مسیر درست قرار دهند. Zura با استفاده از چارت‌های تعاملی، گراف‌های تحلیلی قدرتمند، مدل‌های سه‌بعدی بدن انسان برای نمایش دقیق وضعیت عضلات و فیزیک شما، تصویری کامل از پیشرفتتان ارائه می‌دهد. جلوه‌های بصری خیره‌کننده، انیمیشن‌های روان و تعاملات هوشمند باعث می‌شوند هر لحظه از تمرینات شما لذت‌بخش و انگیزه‌بخش باشد. زورا همراه شماست تا نه‌تنها به اهداف ورزشی خود برسید، بلکه سبک زندگی سالم‌تری را نیز تجربه کنید.",
@@ -61,7 +77,7 @@
       "enEndDate": "January 2025"
     },
     {
-      "id": 5,
+      "id": 6,
       "isWeb": "0",
       "faTitle": "قالب اپلیکیشن فروشگاهی مدرن کامرس",
       "enTitle": "ModernCommerce Application Template",
@@ -76,7 +92,7 @@
       "enEndDate": "December 2024"
     },
     {
-      "id": 6,
+      "id": 7,
       "isWeb": "0",
       "faTitle": "آی‌پت پلاس",
       "enTitle": "iPET Plus",
@@ -91,7 +107,7 @@
       "enEndDate": "September 2024"
     },
     {
-      "id": 7,
+      "id":8,
       "isWeb": "0",
       "faTitle": "ترخینه",
       "enTitle": "Tarkhine",
@@ -106,7 +122,7 @@
       "enEndDate": "August 2022"
     },
     {
-      "id": 8,
+      "id": 9,
       "isWeb": "0",
       "faTitle": "باکس آفیس بیت",
       "enTitle": "BoxOfficeBeat",
@@ -121,7 +137,7 @@
       "enEndDate": "July 2020"
     },
     {
-      "id": 9,
+      "id": 10,
       "isWeb": "0",
       "faTitle": "گرین‌تامب",
       "enTitle": "GreenThumb",
@@ -159,7 +175,7 @@
       "from": 1403,
       "to": 1403,
       "picture": "/neshatrokh.png",
-      "url": "https:/www.neshatrokh.com",
+      "url": "https://neshatrokh.com",
       "description": "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم."
     }
   ],
