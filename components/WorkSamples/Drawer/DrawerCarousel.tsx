@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Image from "next/image";
 import { useWorkSample } from "../WorkSampleContext";
 
@@ -9,12 +9,19 @@ const DrawerCarousel = memo(function DrawerCarousel() {
     getCurrentPictures,
     currentPicIndex,
     setCurrentPicIndex,
-    isWebFrame
+    isWebFrame,
   } = useWorkSample();
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentImgKey, setCurrentImgKey] = useState(0);
+
+  useEffect(() => {
+    setIsLoading(true);
+    setCurrentImgKey((prev: number) => prev + 1);
+  }, [currentPicIndex]);
 
   const pictures = getCurrentPictures();
 
-  // Handle next and previous image
   const showPrevImage = () => {
     if (currentPicIndex > 0) {
       setCurrentPicIndex(currentPicIndex - 1);
@@ -47,6 +54,11 @@ const DrawerCarousel = memo(function DrawerCarousel() {
             ❮
           </button>
         )}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full border-t-2 border-l-2 border-[#66FF91] animate-spin"></div>
+          </div>
+        )}
 
         {/* Current image */}
         <Image
@@ -59,6 +71,9 @@ const DrawerCarousel = memo(function DrawerCarousel() {
           } my-[6vh] h-auto mx-auto object-contain`}
           alt="Project screenshot"
           priority
+          onLoad={() => setIsLoading(false)}
+            onLoadStart={() => setIsLoading(true)}
+            onLoadingComplete={() => setIsLoading(false)}
         />
 
         {/* Next button - only show if not at last image */}

@@ -74,7 +74,7 @@ const SideBar = memo(function SideBar() {
 
   // Classes for sidebar container
   const sideBarFullClasses =
-    "z-40 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
+    "z-50 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
 
   // Classes for navigation items
   const navItemBaseClasses =
@@ -108,7 +108,10 @@ const SideBar = memo(function SideBar() {
       }
     >
       <aside className="font-[ybn] border-l border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl">
-        <div className="LOGO&OPTIONS text-base text-white/50 mr-8">
+        {/* Mobile spacing for navbar - only visible on mobile */}
+        <div className="lg:hidden h-[60px]"></div>
+
+        <div className="LOGO&OPTIONS text-base text-white/50 mr-8 overflow-y-auto flex-grow">
           {/* Logo container with subtle glow */}
           <div className="relative hidden lg:flex items-center justify-start w-full my-[3vh]">
             <Image
@@ -124,7 +127,13 @@ const SideBar = memo(function SideBar() {
           <div className="mt-4 space-y-1">
             {navigationItems.map((item) => (
               <a
-                onClick={() => setSideBarScroll(item.to)}
+                onClick={() => {
+                  setSideBarScroll(item.to);
+                  // Close sidebar on mobile when clicking a navigation item
+                  if (isOnMobile) {
+                    setOpen();
+                  }
+                }}
                 href={item.to}
                 key={item.title}
                 className={`${navItemBaseClasses} ${

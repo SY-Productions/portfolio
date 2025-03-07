@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import EduCard from "./EduCard";
 
 export type Education = {
@@ -27,29 +27,48 @@ const educationData: Education[] = [
   },
 ];
 
-export default function Education() {
+// Memoized for better performance
+const Education = memo(function Education() {
   return (
     <div
       id="education"
-      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh]"
+      className="relative bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] overflow-hidden"
     >
-      <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12">
+      {/* Glass gradient overlay for modern effect */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 backdrop-blur-sm"></div>
+
+      {/* Animated decorative background elements */}
+      <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#37B13B]/10 rounded-full blur-3xl animate-pulse"
+           style={{ animationDuration: '8s' }}></div>
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-[#66FF91]/10 rounded-full blur-3xl animate-pulse"
+           style={{ animationDuration: '12s', animationDelay: '2s' }}></div>
+
+      <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
-          <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap">
+          <h3 className="xl:text-4xl font-[ybb] text-white/90 self-start mb-6 text-nowrap relative inline-block">
             سوابق تحصیلی
+            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#37B13B] to-[#66FF91]"></span>
           </h3>
-          <p className="font-[ybn] text-white/40 self-start mb-[5vh] text-wrap 2xl:text-lg">
+          <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             علاقه ی خاص و بیش از اندازه ای به هنر داشتم اما هنگام انتخاب رشته
             رفتم سمت رشته ی ریاضی و مباحث کامپیوتر و مهندسی. سوابق و مدارک
             تحصیلی من ( این بخش به مرور زمان کامل تر میشه ) :
           </p>
         </div>
-        <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-5">
+
+        {/* Card grid with enhanced spacing */}
+        <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
           {educationData.map((edu) => (
             <EduCard key={edu.description} data={edu} />
           ))}
         </div>
+
       </div>
+
+      {/* Subtle border bottom */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#66FF91]/30 to-[#37B13B]/30"></div>
     </div>
   );
-}
+});
+
+export default Education;

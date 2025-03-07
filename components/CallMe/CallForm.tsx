@@ -1,18 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import MailIcon from "@mui/icons-material/Mail";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import TitleIcon from "@mui/icons-material/Title";
 
-export default function CallForm() {
+// Memoized for better performance
+const CallForm = memo(function CallForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [focused, setFocused] = useState<string | null>(null);
 
-  const labelClasses = "relative flex items-center ";
-  const inputClasses =
-    "flex-1 bg-white/5 px-[3vw] lg:px-[1vw] py-[2vh] outline-none ring-1 ring-white/10 focus:ring-2 focus:ring-d focus:ring-offset-1 ring-offset-d focus:rounded-sm transition-all duration-200 placeholder:text-white/30 2xl:placeholder:text-lg 2xl:text-lg indent-7 hover:ring-white/20 ";
+  const labelClasses = "relative flex items-center";
+
+  const inputClasses = `flex-1 bg-black/20 px-[3vw] lg:px-[1vw] py-[2vh] outline-none
+                       border border-white/10 focus:border-white/20
+                       transition-all duration-300 rounded-none
+                       placeholder:text-white/30 2xl:placeholder:text-lg 2xl:text-lg
+                       indent-7 hover:border-white/20 backdrop-blur-md`;
+
+  const focusClasses = "before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-[#66FF91] before:to-[#37B13B]";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,38 +40,42 @@ export default function CallForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 font-[ybn] w-[80vw] lg:w-full mx-auto [&>*]:m-1 text-white text-sm"
+      className="grid grid-cols-2 font-[ybn] w-[80vw] lg:w-full mx-auto gap-4 text-white text-sm"
     >
-      <label className={labelClasses}>
+      <label className={`${labelClasses} ${focused === 'name' ? focusClasses : ''}`}>
         <AccountBoxIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3"
+          className="absolute right-3 opacity-70"
         />
         <input
           type="text"
           placeholder="نام"
-          className={inputClasses + "min-w-[10vw]"}
+          className={`${inputClasses} min-w-[10vw]`}
           value={name}
           onChange={(e) => setName(e.target.value)}
+          onFocus={() => setFocused('name')}
+          onBlur={() => setFocused(null)}
         />
       </label>
-      <label className={labelClasses}>
+      <label className={`${labelClasses} ${focused === 'email' ? focusClasses : ''}`}>
         <MailIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3"
+          className="absolute right-3 opacity-70"
         />
         <input
           type="email"
-          className={inputClasses + "min-w-[10vw]"}
+          className={`${inputClasses} min-w-[10vw]`}
           placeholder="ایمیل"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onFocus={() => setFocused('email')}
+          onBlur={() => setFocused(null)}
         />
       </label>
-      <label className={labelClasses + "col-span-2"}>
+      <label className={`${labelClasses} col-span-2 ${focused === 'subject' ? focusClasses : ''}`}>
         <TitleIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3"
+          className="absolute right-3 opacity-70"
         />
         <input
           type="text"
@@ -71,23 +83,41 @@ export default function CallForm() {
           className={inputClasses}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
+          onFocus={() => setFocused('subject')}
+          onBlur={() => setFocused(null)}
         />
       </label>
-      <textarea
-        className={
-          inputClasses +
-          "indent-0 col-span-2 min-h-[6rem] max-h-[15rem] transition-none"
-        }
-        placeholder="پیام"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-      ></textarea>
+      <div className={`relative col-span-2 ${focused === 'message' ? focusClasses : ''}`}>
+        <textarea
+          className={`${inputClasses} w-full indent-0 col-span-2 min-h-[8rem] max-h-[15rem] p-4`}
+          placeholder="پیام"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onFocus={() => setFocused('message')}
+          onBlur={() => setFocused(null)}
+        ></textarea>
+      </div>
       <button
         type="submit"
-        className="btn border-0 px-0 rounded-none h-[7vh] 2xl:text-xl hover:bg-d/60 hover:rounded-lg transition-all duration-75 text-white font-normal bg-d col-span-2 "
+        className="bg-gradient-to-r from-[#37B13B]/20 to-[#66FF91]/20
+                 hover:from-[#37B13B]/30 hover:to-[#66FF91]/30
+                 border border-white/10 hover:border-white/20
+                 text-white font-normal col-span-2 h-[7vh]
+                 2xl:text-xl rounded-none
+                 transition-all duration-300 hover:-translate-y-1
+                 relative
+                 before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0
+                 hover:before:w-full hover:before:h-full before:transition-all before:duration-500
+                 before:border-l before:border-b before:border-[#66FF91]/50
+                 hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0
+                 after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
+                 after:border-t after:border-r after:border-[#37B13B]/50
+                 backdrop-blur-md"
       >
         ارسال
       </button>
     </form>
   );
-}
+});
+
+export default CallForm;

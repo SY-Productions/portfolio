@@ -3,6 +3,7 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import { CloudLightning } from "iconsax-react";
+
 interface Image {
   src: string | StaticImageData | StaticImport;
   className?: string;
@@ -22,18 +23,33 @@ export default function SkeletonImage({
   title,
   draggable,
 }: Image) {
-
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  let imageClasses = `${className} transition-opacity duration-300  ${
-    isLoading ? "opacity-0 hidden" : "opacity-100 block"
+
+  const imageClasses = `${className} transition-opacity duration-300 ${
+    isLoading ? "opacity-0" : "opacity-100"
   }`;
+
   return (
-    <div>
-      {isLoading && <div className={`${className} skeleton`} />}
+    <div className="relative" style={{ width: '100%', height: '100%' }}>
+      {/* Custom skeleton loader that inherits dimensions from parent */}
+      {isLoading && (
+        <div
+          className="absolute inset-0 flex items-center justify-center animate-pulse"
+          style={{ borderRadius: 'inherit' }}
+        >
+          <div className="w-12 h-12 rounded-full border-t-2 border-l-2 border-[#66FF91] animate-spin"></div>
+        </div>
+      )}
+
+      {/* Error state */}
       {hasError ? (
-        <CloudLightning color="white" size={120} className="mb-10" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <CloudLightning color="white" size={80} className="mb-4" />
+          <span className="text-white/70 text-sm">تصویر بارگذاری نشد</span>
+        </div>
       ) : (
+        /* Actual image */
         <Image
           src={src}
           alt={alt || ""}
@@ -50,8 +66,6 @@ export default function SkeletonImage({
             setHasError(false);
           }}
           onLoadingComplete={() => {
-            console.log("fuck me");
-
             setIsLoading(false);
             setHasError(false);
           }}
@@ -59,7 +73,7 @@ export default function SkeletonImage({
             setIsLoading(false);
             setHasError(true);
           }}
-          draggable={draggable}
+          draggable={draggable || false}
         />
       )}
     </div>
