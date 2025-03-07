@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useEffect, useState, memo } from "react";
 import { Work } from "./Work";
@@ -33,10 +33,10 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
                   mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 ease-out
                   relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0
                   hover:before:w-full hover:before:h-full before:transition-all before:duration-500
-                  before:border-l before:border-b before:border-[#66FF91]/50
+                  before:border-l before:border-b before:border-[#8C9EFF]/50
                   hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0
                   after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
-                  after:border-t after:border-r after:border-[#37B13B]/50 after:transition-delay-300"
+                  after:border-t after:border-r after:border-[#7B2CBF]/50 after:transition-delay-300"
       >
         <div className="PIC&CAlENDAR flex items-start w-full m-4 relative">
           {/* Company logo with modern styling */}
@@ -50,11 +50,12 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
             />
           </div>
 
-
           {/* Date range with gradient styling - adjusted position */}
-          <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#37B13B]/20 to-[#66FF91]/20
+          <div
+            className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#7B2CBF]/20 to-[#8C9EFF]/20
                         rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80
-                        border border-white/10 backdrop-blur-md">
+                        border border-white/10 backdrop-blur-md"
+          >
             {`${data.from} تا ${data.to ? data.to : "اکنون"}`}
           </div>
         </div>
@@ -66,7 +67,9 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
           </div>
 
           {/* Description with enhanced styling */}
-          <div className="text-sm pb-4 text-white/60 leading-6">{data.description}</div>
+          <div className="text-sm pb-4 text-white/60 leading-6">
+            {data.description}
+          </div>
         </div>
 
         {/* Technologies section with improved spacing */}

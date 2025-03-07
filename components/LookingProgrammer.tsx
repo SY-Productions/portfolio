@@ -8,13 +8,19 @@ const LookingProgrammer = memo(function LookingProgrammer() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-black/40 backdrop-blur-2xl border-y border-white/10"></div>
 
       {/* Accent line similar to AboutMe component */}
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#37B13B]/50 to-[#66FF91]/50"></div>
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#66FF91]/50 to-[#37B13B]/50"></div>
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#7B2CBF]/50 to-[#8C9EFF]/50"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#8C9EFF]/50 to-[#7B2CBF]/50"></div>
 
       {/* Animated subtle shapes in background - more defined */}
-      <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#66FF91]/15 rounded-full blur-2xl animate-pulse"></div>
-      <div className="absolute top-10 right-1/4 w-32 h-32 bg-[#37B13B]/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute bottom-0 right-20 w-24 h-24 bg-[#66FF91]/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute -top-20 -left-20 w-40 h-40 bg-[#8C9EFF]/15 rounded-full blur-2xl animate-pulse"></div>
+      <div
+        className="absolute top-10 right-1/4 w-32 h-32 bg-[#7B2CBF]/15 rounded-full blur-2xl animate-pulse"
+        style={{ animationDelay: "1s" }}
+      ></div>
+      <div
+        className="absolute bottom-0 right-20 w-24 h-24 bg-[#8C9EFF]/15 rounded-full blur-2xl animate-pulse"
+        style={{ animationDelay: "2s" }}
+      ></div>
 
       {/* Content with higher contrast and modern styling */}
       <div className="font-[ybn] text-2xl 2xl:text-3xl md:mr-[5rem] lg:mr-[22vw] relative z-10 flex items-center">
@@ -27,8 +33,8 @@ const LookingProgrammer = memo(function LookingProgrammer() {
         href="#call-me"
         className="font-[ybb] w-[60vw] md:w-[15vw] h-[6vh] md:ml-[10vw]
                   flex items-center justify-center
-                  bg-gradient-to-r from-[#37B13B]/20 to-[#66FF91]/20
-                  hover:from-[#37B13B]/30 hover:to-[#66FF91]/30
+                  bg-gradient-to-r from-[#7B2CBF]/20 to-[#8C9EFF]/20
+                  hover:from-[#7B2CBF]/30 hover:to-[#8C9EFF]/30
                   border border-white/10 hover:border-white/20
                   text-white text-base 2xl:text-lg
                   transition-all duration-300
@@ -37,10 +43,10 @@ const LookingProgrammer = memo(function LookingProgrammer() {
                   relative z-10 backdrop-blur-md
                   before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0
                   hover:before:w-full hover:before:h-full before:transition-all before:duration-500
-                  before:border-l before:border-b before:border-[#66FF91]/50
+                  before:border-l before:border-b before:border-[#8C9EFF]/50
                   hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0
                   after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
-                  after:border-t after:border-r after:border-[#37B13B]/50"
+                  after:border-t after:border-r after:border-[#7B2CBF]/50"
       >
         باهام تماس بگیر
       </a>

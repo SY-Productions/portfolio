@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Image from "next/image";
 import React, { memo, useState } from "react";
@@ -15,9 +15,11 @@ const PicInfo = memo(function PicInfo() {
   };
 
   return (
-    <div className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[60vh] overflow-hidden
+    <div
+      className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[60vh] overflow-hidden
                    flex justify-center items-center bg-black/20 border border-white/10
-                   backdrop-blur-2xl rounded-none">
+                   backdrop-blur-2xl rounded-none"
+    >
       {/* Subtle overlay for image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 z-10"></div>
 
@@ -28,13 +30,15 @@ const PicInfo = memo(function PicInfo() {
         className="h-full w-[80vw] object-cover object-center transition-all duration-700 hover:scale-105"
       />
 
-      <div className="TXTonPIC absolute flex flex-col sm:flex-row items-center justify-between
+      <div
+        className="TXTonPIC absolute flex flex-col sm:flex-row items-center justify-between
                      gap-2 px-[2vw] py-4 bg-black/40 backdrop-blur-md w-full bottom-5
                      [&>*]:text-xs sm:[&>*]:text-sm 2xl:[&>*]:text-lg [&>*]:gap-y-1
-                     sm:[&>*]:py-0 [&>*]:text-white border-t border-white/10 z-20">
+                     sm:[&>*]:py-0 [&>*]:text-white border-t border-white/10 z-20"
+      >
         <span className="font-[ybb] relative">
           ایران، اصفهان
-          <span className="absolute -bottom-1 right-0 w-12 h-[1px] bg-gradient-to-r from-[#66FF91] to-[#37B13B]"></span>
+          <span className="absolute -bottom-1 right-0 w-12 h-[1px] bg-gradient-to-r from-[#8C9EFF] to-[#7B2CBF]"></span>
         </span>
 
         <button
@@ -43,19 +47,25 @@ const PicInfo = memo(function PicInfo() {
         >
           <span dir="ltr" className="font-[inter] relative">
             +98 913 565 5644
-            <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[#66FF91] to-[#37B13B]
-                           group-hover:w-full transition-all duration-300"></span>
+            <span
+              className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[#8C9EFF] to-[#7B2CBF]
+                           group-hover:w-full transition-all duration-300"
+            ></span>
           </span>
-          <span className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/70 text-white text-xs
+          <span
+            className={`absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black/70 text-white text-xs
                           px-2 py-1 rounded-none backdrop-blur-md border border-white/10
-                          transition-opacity duration-300 ${copied ? 'opacity-100' : 'opacity-0'}`}>
+                          transition-opacity duration-300 ${
+                            copied ? "opacity-100" : "opacity-0"
+                          }`}
+          >
             کپی شد!
           </span>
         </button>
 
         <span className="font-[inter] relative">
           yousofh255@gmail.com
-          <span className="absolute -bottom-1 left-0 w-12 h-[1px] bg-gradient-to-r from-[#37B13B] to-[#66FF91]"></span>
+          <span className="absolute -bottom-1 left-0 w-12 h-[1px] bg-gradient-to-r from-[#7B2CBF] to-[#8C9EFF]"></span>
         </span>
       </div>
     </div>

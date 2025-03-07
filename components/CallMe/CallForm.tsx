@@ -20,7 +20,8 @@ const CallForm = memo(function CallForm() {
                        placeholder:text-white/30 2xl:placeholder:text-lg 2xl:text-lg
                        indent-7 hover:border-white/20 backdrop-blur-md`;
 
-  const focusClasses = "before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-[#66FF91] before:to-[#37B13B]";
+  const focusClasses =
+    "before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-[#8C9EFF] before:to-[#7B2CBF]";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,7 +43,9 @@ const CallForm = memo(function CallForm() {
       onSubmit={handleSubmit}
       className="grid grid-cols-2 font-[ybn] w-[80vw] lg:w-full mx-auto gap-4 text-white text-sm"
     >
-      <label className={`${labelClasses} ${focused === 'name' ? focusClasses : ''}`}>
+      <label
+        className={`${labelClasses} ${focused === "name" ? focusClasses : ""}`}
+      >
         <AccountBoxIcon
           sx={{ color: "white", fontSize: 20 }}
           className="absolute right-3 opacity-70"
@@ -53,11 +56,13 @@ const CallForm = memo(function CallForm() {
           className={`${inputClasses} min-w-[10vw]`}
           value={name}
           onChange={(e) => setName(e.target.value)}
-          onFocus={() => setFocused('name')}
+          onFocus={() => setFocused("name")}
           onBlur={() => setFocused(null)}
         />
       </label>
-      <label className={`${labelClasses} ${focused === 'email' ? focusClasses : ''}`}>
+      <label
+        className={`${labelClasses} ${focused === "email" ? focusClasses : ""}`}
+      >
         <MailIcon
           sx={{ color: "white", fontSize: 20 }}
           className="absolute right-3 opacity-70"
@@ -68,11 +73,15 @@ const CallForm = memo(function CallForm() {
           placeholder="ایمیل"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onFocus={() => setFocused('email')}
+          onFocus={() => setFocused("email")}
           onBlur={() => setFocused(null)}
         />
       </label>
-      <label className={`${labelClasses} col-span-2 ${focused === 'subject' ? focusClasses : ''}`}>
+      <label
+        className={`${labelClasses} col-span-2 ${
+          focused === "subject" ? focusClasses : ""
+        }`}
+      >
         <TitleIcon
           sx={{ color: "white", fontSize: 20 }}
           className="absolute right-3 opacity-70"
@@ -83,24 +92,28 @@ const CallForm = memo(function CallForm() {
           className={inputClasses}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
-          onFocus={() => setFocused('subject')}
+          onFocus={() => setFocused("subject")}
           onBlur={() => setFocused(null)}
         />
       </label>
-      <div className={`relative col-span-2 ${focused === 'message' ? focusClasses : ''}`}>
+      <div
+        className={`relative col-span-2 ${
+          focused === "message" ? focusClasses : ""
+        }`}
+      >
         <textarea
           className={`${inputClasses} w-full indent-0 col-span-2 min-h-[8rem] max-h-[15rem] p-4`}
           placeholder="پیام"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onFocus={() => setFocused('message')}
+          onFocus={() => setFocused("message")}
           onBlur={() => setFocused(null)}
         ></textarea>
       </div>
       <button
         type="submit"
-        className="bg-gradient-to-r from-[#37B13B]/20 to-[#66FF91]/20
-                 hover:from-[#37B13B]/30 hover:to-[#66FF91]/30
+        className="bg-gradient-to-r from-[#7B2CBF]/20 to-[#8C9EFF]/20
+                 hover:from-[#7B2CBF]/30 hover:to-[#8C9EFF]/30
                  border border-white/10 hover:border-white/20
                  text-white font-normal col-span-2 h-[7vh]
                  2xl:text-xl rounded-none
@@ -108,10 +121,10 @@ const CallForm = memo(function CallForm() {
                  relative
                  before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0
                  hover:before:w-full hover:before:h-full before:transition-all before:duration-500
-                 before:border-l before:border-b before:border-[#66FF91]/50
+                 before:border-l before:border-b before:border-[#8C9EFF]/50
                  hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0
                  after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
-                 after:border-t after:border-r after:border-[#37B13B]/50
+                 after:border-t after:border-r after:border-[#7B2CBF]/50
                  backdrop-blur-md"
       >
         ارسال

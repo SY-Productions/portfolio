@@ -81,7 +81,7 @@ const SideBar = memo(function SideBar() {
     "flex flex-row justify-start items-center gap-3 py-2 my-[1.5vh] rounded-none cursor-pointer hover:bg-white/5 transition-all duration-200 border-r-2 border-transparent";
 
   const navItemActiveClasses =
-    "border-white/10 border border-l-0 border-r-2 border-r-[#37B13B] bg-black/40 shadow-sm py-[5%]";
+    "border-white/10 border border-l-0 border-r-2 border-r-[#7B2CBF] bg-black/40 shadow-sm py-[5%]";
 
   useEffect(() => {
     const handleSideBar = () => {
@@ -120,7 +120,7 @@ const SideBar = memo(function SideBar() {
               alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
             />
             {/* Subtle glow behind logo */}
-            <div className="absolute -z-10 w-[30%] h-full bg-[#37B13B]/5 filter blur-xl"></div>
+            <div className="absolute -z-10 w-[30%] h-full bg-[#7B2CBF]/5 filter blur-xl"></div>
           </div>
 
           {/* Navigation items */}
@@ -143,7 +143,7 @@ const SideBar = memo(function SideBar() {
                 <span
                   className={
                     item.to === sideBarScroll
-                      ? "bg-gradient-to-r from-[#37B13B] to-[#66FF91] p-2 rounded-none mr-2 shadow-lg"
+                      ? "bg-gradient-to-r from-[#7B2CBF] to-[#8C9EFF] p-2 rounded-none mr-2 shadow-lg"
                       : "bg-white/5 p-2 rounded-none mr-2 transition-all duration-300"
                   }
                 >
@@ -171,7 +171,7 @@ const SideBar = memo(function SideBar() {
             <a
               href="/youdexsof-fa-cv.pdf"
               download="Yousof-Hashemzade-Cv-Fa.pdf"
-              className="DOWNLOADPDF w-full h-12 flex items-center justify-center hidden lg:flex border border-white/10 bg-gradient-to-r from-[#37B13B]/10 to-[#66FF91]/10 hover:from-[#37B13B]/20 hover:to-[#66FF91]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="DOWNLOADPDF w-full h-12 flex items-center justify-center hidden lg:flex border border-white/10 bg-gradient-to-r from-[#7B2CBF]/10 to-[#8C9EFF]/10 hover:from-[#7B2CBF]/20 hover:to-[#8C9EFF]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               دانلود رزومه بصورت PDF
             </a>

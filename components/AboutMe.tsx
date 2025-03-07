@@ -42,7 +42,7 @@ const socialLinks = [
 const AboutMe = memo(function AboutMe() {
   // Modern styled social button classes with sharp edges
   const socialButtonClasses =
-    "h-[6vh] lg:h-[8vh] aspect-square bg-white/8 backdrop-blur-md rounded-none flex items-center justify-center transition-all duration-300 hover:bg-white/15 border border-white/10 hover:border-white/20 hover:shadow-[0_0_15px_rgba(102,255,145,0.15)] hover:-translate-y-1";
+    "h-[6vh] lg:h-[8vh] aspect-square bg-white/8 backdrop-blur-md rounded-none flex items-center justify-center transition-all duration-300 hover:bg-white/15 border border-white/10 hover:border-white/20 hover:shadow-[0_0_15px_rgba(255,84,84,0.15)] hover:-translate-y-1";
 
   return (
     <div
@@ -74,7 +74,7 @@ const AboutMe = memo(function AboutMe() {
             <h1 className="developer-name relative">
               یوسف هاشم زاده
               {/* Subtle line accent for modern design */}
-              <span className="absolute -bottom-2 right-0 w-16 h-1 bg-gradient-to-r from-[#66FF91] to-[#37B13B]"></span>
+              <span className="absolute -bottom-2 right-0 w-16 h-1 bg-gradient-to-r from-[#8C9EFF] to-[#7B2CBF]"></span>
             </h1>
           </div>
 
@@ -89,11 +89,11 @@ const AboutMe = memo(function AboutMe() {
           <div className="BUTTONS flex items-center gap-3 w-[80%] mb-8">
             {/* Modern styled call-to-action button with gradient */}
             <a
-              href="#call-me"
-              className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#37B13B]/20 to-[#66FF91]/20 hover:from-[#37B13B]/30 hover:to-[#66FF91]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(102,255,145,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
-            >
-              تماس با من
-            </a>
+          href="#call-me"
+          className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#7B2CBF]/20 to-[#9D4EDD]/20 hover:from-[#7B2CBF]/30 hover:to-[#9D4EDD]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
+        >
+          تماس با من
+        </a>
 
             {/* Social media buttons with consistent modern styling */}
             {socialLinks.map((link, index) => (
