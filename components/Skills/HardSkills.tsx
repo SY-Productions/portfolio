@@ -3,7 +3,7 @@ import Skill from "./HardSkill";
 
 export default function HardSkills() {
   return (
-    <div className="H3&P&GRID w-[80%] lg:mr-[22vw] ">
+    <div className="H3&P&GRID w-[80%] lg:mr-[22vw]">
       <h3 className="H3 xl:text-4xl font-[ybb] text-white/80 self-start mb-[2.5vh] text-nowrap">
         مهارت های فنی
       </h3>
@@ -11,19 +11,19 @@ export default function HardSkills() {
         مهارت های بخش نرم افزارِ من، شامل حوزه های اپلیکیشن موبایل، وب اپلیکشن و
         برنامه نویسی سمت سرور.
       </p>
-      <div className="inline-grid grid-cols-2 xl:grid-cols-3 xl:min-w-[400px] gap-2 ">
-        <Skill name="Dart"  />
-        <Skill name="Flutter"  />
-        <Skill name="Python"  />
-        <Skill name="Django"  />
-        <Skill name="Fastapi"  />
-        <Skill name="Html"  />
-        <Skill name="Css"  />
-        <Skill name="Js"  />
-        <Skill name="React"  />
-        <Skill name="Ruby"  />
-        <Skill name="OnRails"  />
-        <Skill name="WP"  />
+      <div className="inline-grid grid-cols-2 xl:grid-cols-3 xl:min-w-[400px] gap-2">
+        <Skill name="Dart" />
+        <Skill name="Flutter" />
+        <Skill name="Python" />
+        <Skill name="Django" />
+        <Skill name="Fastapi" />
+        <Skill name="Html" />
+        <Skill name="Css" />
+        <Skill name="Js" />
+        <Skill name="React" />
+        <Skill name="Ruby" />
+        <Skill name="OnRails" />
+        <Skill name="WP" />
       </div>
     </div>
   );

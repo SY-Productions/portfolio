@@ -1,12 +1,16 @@
 "use client";
-import React from "react";
-import { useZState } from "@/app/states";
-import PicSrcArray from "./PicSrcArray";
+
+import React, { memo } from "react";
+import { useWorkSample } from "./WorkSampleContext";
 import SkeletonImage from "../SkeletonImage";
 
-export default function Preview({ data }: { data: WorkSample[] }) {
-  const picSrc = PicSrcArray({ data });
-  const { isWebFrame } = useZState();
+// Use memo to prevent unnecessary re-renders
+const Preview = memo(function Preview() {
+  const { isWebFrame, getCurrentPictures } = useWorkSample();
+  const pictures = getCurrentPictures();
+
+  if (!pictures.length) return null;
+
   return (
     <div
       className={`${
@@ -14,12 +18,14 @@ export default function Preview({ data }: { data: WorkSample[] }) {
       } mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem]`}
     >
       <SkeletonImage
-        src={picSrc.pics[0]!}
+        src={pictures[0]}
         width={500}
         height={500}
         className="h-[60vh] lg:w-[30vw] object-contain"
-        alt=""
+        alt="Project preview"
       />
     </div>
   );
-}
+});
+
+export default Preview;

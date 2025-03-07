@@ -1,66 +1,95 @@
 "use client";
+
+import React, { memo } from "react";
 import Image from "next/image";
-import React from "react";
-import PicSrcArray from "../PicSrcArray";
-import { useZState } from "@/app/states";
+import { useWorkSample } from "../WorkSampleContext";
 
-export default function DrawerCarousel({ data }: { data: WorkSample[] }) {
-  const picSrc = PicSrcArray({ data });
+const DrawerCarousel = memo(function DrawerCarousel() {
   const {
-    samplePicIndex,
-    increaseSamplePicIndex,
-    decreaseSamplePicIndex,
-    isWebFrame,
-  } = useZState();
+    getCurrentPictures,
+    currentPicIndex,
+    setCurrentPicIndex,
+    isWebFrame
+  } = useWorkSample();
 
+  const pictures = getCurrentPictures();
+
+  // Handle next and previous image
+  const showPrevImage = () => {
+    if (currentPicIndex > 0) {
+      setCurrentPicIndex(currentPicIndex - 1);
+    }
+  };
+
+  const showNextImage = () => {
+    if (currentPicIndex + 1 < pictures.length) {
+      setCurrentPicIndex(currentPicIndex + 1);
+    }
+  };
+
+  // Navigation button classes
   const buttonClasses =
-    "btn absolute h-[100%] lg:btn-square lg:h-[7vh] lg:w-[7vh] lg:mx-6 lg:rounded-none bg-white/5 border-0 m-0 w-[7vw] rounded-none lg:text-xl 2xl:text-2xl";
+    "btn absolute h-[100%] lg:btn-square lg:h-[7vh] lg:w-[7vh] lg:mx-6 lg:rounded-none bg-[#111] border border-[#222] hover:bg-[#1A1A1A] hover:border-[#333] m-0 w-[7vw] rounded-none lg:text-xl 2xl:text-2xl transition-colors duration-200";
+
+  // If no pictures, return null
+  if (!pictures.length) return null;
 
   return (
-    <div className="relative w-full h-auto flex flex-col items-center bg-b/30 rounded-t-[2rem] lg:rounded-t-[5rem]">
+    <div className="relative w-full h-auto flex flex-col items-center bg-[#0F0F0F] rounded-t-[2rem] lg:rounded-t-[5rem]">
       <div className="relative w-full flex flex-row items-center justify-between">
-        <button
-          onClick={() => {
-            if (samplePicIndex === 0) return;
-            decreaseSamplePicIndex();
-          }}
-          className={`${buttonClasses} text-white rounded-tr-[2rem] right-0`}
-        >
-          ❮
-        </button>
+        {/* Previous button - only show if not at first image */}
+        {currentPicIndex > 0 && (
+          <button
+            onClick={showPrevImage}
+            className={`${buttonClasses} text-white rounded-tr-[2rem] right-0`}
+            aria-label="Previous image"
+          >
+            ❮
+          </button>
+        )}
 
+        {/* Current image */}
         <Image
-          width={500}
-          height={500}
-          src={picSrc.pics[samplePicIndex] ?? ""}
+          width={1000}
+          height={1000}
+          src={pictures[currentPicIndex]}
           unoptimized
           className={`${
             isWebFrame ? "w-[75%] lg:w-[50%]" : "w-[60%] lg:w-auto lg:h-[65vh]"
-          } my-[6vh] h-auto mx-auto`}
-          alt=""
+          } my-[6vh] h-auto mx-auto object-contain`}
+          alt="Project screenshot"
+          priority
         />
 
-        <button
-          onClick={() => {
-            if (samplePicIndex + 1 === picSrc.pics.length) return;
-            increaseSamplePicIndex();
-          }}
-          className={`${buttonClasses} text-white rounded-tl-[2rem] left-0`}
-        >
-          ❯
-        </button>
+        {/* Next button - only show if not at last image */}
+        {currentPicIndex < pictures.length - 1 && (
+          <button
+            onClick={showNextImage}
+            className={`${buttonClasses} text-white rounded-tl-[2rem] left-0`}
+            aria-label="Next image"
+          >
+            ❯
+          </button>
+        )}
       </div>
 
-      <div className="flex gap-2 mb-4">
-        {picSrc.pics.map((_, idx) => (
-          <span
-            key={idx}
-            className={`h-3 w-3 rounded-full transition-all duration-300 ${
-              idx === samplePicIndex ? "bg-white scale-110" : "bg-gray-500"
-            }`}
-          />
-        ))}
-      </div>
+      {/* Pagination dots */}
+      {pictures.length > 1 && (
+        <div className="flex gap-2 mb-4 ">
+          {pictures.map((_: any, idx: number) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentPicIndex(idx)}
+              className={`h-3 w-3 rounded-full transition-all duration-300 ${
+                idx === currentPicIndex ? "bg-white" : "bg-[#333]"
+              }`}
+              aria-label={`View image ${idx + 1}`}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+});
+
+export default DrawerCarousel;
