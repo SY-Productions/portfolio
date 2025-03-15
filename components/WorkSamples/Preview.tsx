@@ -20,20 +20,17 @@ const Preview = memo(function Preview() {
   return (
     <div
       className={`${
-        isWebFrame ? "h-auto w-[90%]" : "h-[60vh]"
+        isWebFrame ? "h-auto w-[90%]" : "lg:h-[60vh] h-[30vh]"
       } mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem] relative`}
     >
-      {/* <div className="h-[60vh] lg:w-[30vw] bg-black/20 border border-white/10 backdrop-blur-md rounded-none */}
-                    {/* flex items-center justify-center"> */}
         <SkeletonImage
           key={`preview-image-${currentImgKey}`}
           src={pictures[0]}
           width={500}
           height={500}
-          className="h-[60vh] lg:w-[30vw] object-contain"
+          className="lg:h-[60vh] h-[30vh] lg:w-[30vw] object-contain"
           alt="Project preview"
         />
-      {/* </div> */}
     </div>
   );
 });

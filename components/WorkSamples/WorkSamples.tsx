@@ -22,7 +22,7 @@ export default function WorkSamples() {
     <WorkSampleProvider data={processedData}>
       <section
         id="portfolio"
-        className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen gap-x-[5vw]"
+        className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full lg:h-screen h-[90vh] gap-x-[5vw]"
       >
         <Preview />
         <div className="INFO&SWITCH">

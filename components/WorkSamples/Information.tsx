@@ -22,7 +22,7 @@ export default function Information() {
   const tabClasses =
     "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
   const tabContentClasses =
-    "TABCONTENT h-[35vh] lg:h-[30vh] min-h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
+    "TABCONTENT h-[25vh] lg:h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
 
   // Handle drawer opening
   const handleOpeningDrawer = () => {

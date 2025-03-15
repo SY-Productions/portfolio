@@ -29,7 +29,7 @@ export default function page() {
         <CallMe />
       </main>
       <Footer />
-      <AnimatedCursor />
+      {typeof window !== 'undefined' && window.innerWidth > 900 && <AnimatedCursor />}
       </Suspense>
 
   );
