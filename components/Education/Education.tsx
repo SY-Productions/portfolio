@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import EduCard from "./EduCard";
+import db from '@/public/db.json';
 
 export type Education = {
   name: string;
@@ -8,24 +9,6 @@ export type Education = {
   picture: string;
   description?: string;
 };
-
-const educationData: Education[] = [
-  {
-    name: "دبیرستان ماندگار شهدای ادب",
-    from: 1399,
-    to: 1402,
-    picture: "/educations/adab.png",
-    description:
-      "تحصیل دوره دبیرستان در دبیرستان ماندگار شهدای ادب در رشته ریاضی فیزیک و اخذ مدرک دیپلم.",
-  },
-  {
-    name: "دانشگاه بین المللی آزاد خوراسگان",
-    from: 1402,
-    picture: "/educations/kh.webp",
-    description:
-      " مشغول تحصیل در رشته کامپیوتر مقطع کارشناسی در این دانشگاه هستم.",
-  },
-];
 
 // Memoized for better performance
 const Education = memo(function Education() {
@@ -62,8 +45,8 @@ const Education = memo(function Education() {
 
         {/* Card grid with enhanced spacing */}
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
-          {educationData.map((edu) => (
-            <EduCard key={edu.description} data={edu} />
+          {db.Educations.map((edu) => (
+            <EduCard key={edu.description} data={{ ...edu, to: edu.to ?? undefined }} />
           ))}
         </div>
       </div>

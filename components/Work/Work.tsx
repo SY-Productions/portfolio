@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import WorkCard from "./WorkCard";
+import db from '@/public/db.json';
 
 export type Work = {
   name: string;
@@ -11,18 +12,7 @@ export type Work = {
   description?: string;
 };
 
-const WorkData: Work[] = [
-  {
-    name: "شرکت نشاط رخ آرا | NeshatRokh",
-    technos: ["Flutter", "Dart"],
-    from: 1403,
-    to: 1403,
-    picture: "/neshatrokh.png",
-    url: "https://www.neshatrokh.com",
-    description:
-      "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم.",
-  },
-];
+
 
 // Memoized for better performance
 const Work = memo(function Work() {
@@ -50,12 +40,12 @@ const Work = memo(function Work() {
         </div>
 
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
-          {WorkData.map((data) => (
+          {db.Works.map((data) => (
             <WorkCard key={data.url} data={data} />
           ))}
         </div>
 
-        {WorkData.length === 0 && (
+        {db.Works.length === 0 && (
           <div className="w-full py-10 flex items-center justify-center">
             <p className="text-white/40 text-lg font-[ybn]">
               در حال تکمیل شدن...

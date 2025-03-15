@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import EventCard from "./EventCard";
+import db from '@/public/db.json';
 
 export type Event = {
   name: string;
@@ -9,24 +10,7 @@ export type Event = {
   description?: string;
 };
 
-const EventData: Event[] = [
-  {
-    name: "اولین دوره مسابقات بزرگ برنامه نویسی و نرم افزار نرم افزارهای تخصصی داناکاپ",
-    date: "تیر 1403",
-    picture: "/events/danacup-logo.jpg",
-    attachment: "/events/danacup.jpg",
-    description:
-      "کسب رتبه برتر در نخستین دوره مسابقات داناکاپ که با همکاری دانشگاه آزاد اسلامی واحد نجف‌آباد برگزار گردید. این مسابقات، با حضور شرکت‌کنندگان برتر از سراسر استان اصفهان، به منظور ارتقاء سطح دانش و مهارت‌های علمی و عملی دانشجویان در زمینه‌های مختلف علمی و فناوری برگزار شد. ",
-  },
-  {
-    name: "نهمین دوره مسابقات برنامه نویسی چالش های فناوری اطلاعات کشور",
-    date: "شهریور 1403",
-    picture: "/events/ict-logo.jpg",
-    attachment: "/events/ict.jpg",
-    description:
-      "شرکت در نهمین دوره مسابقات ملی ICT Challenge به میزبانی دانشگاه صنعتی شریف، فرصتی ارزشمند برای رقابت با تیم‌های نخبه کشور بود. این رویداد علاوه بر تقویت مهارت‌های فنی من، باعث آشنایی با برنامه‌نویسی بلاکچین شد که توانستم آن را به‌طور عملی پیاده‌سازی کنم.",
-  },
-];
+
 
 // Memoized for better performance
 const Event = memo(function Event() {
@@ -62,13 +46,13 @@ const Event = memo(function Event() {
 
         {/* Card grid with enhanced spacing */}
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
-          {EventData.map((event) => (
+          {db.Events.map((event) => (
             <EventCard key={event.attachment} data={event} />
           ))}
         </div>
 
         {/* Empty state message when no event data is available */}
-        {EventData.length === 0 && (
+        {db.Events.length === 0 && (
           <div className="w-full py-10 flex items-center justify-center">
             <p className="text-white/40 text-lg font-[ybn]">
               در حال تکمیل شدن...
