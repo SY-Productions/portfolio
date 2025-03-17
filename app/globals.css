@@ -13,13 +13,28 @@ img {
   -webkit-user-drag: none;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
 
 @font-face {
   font-family: "inter";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url(https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2) format("woff2");
+  src: url(https://fonts.gstatic.com/s/inter/v18/UcCo3FwrK3iLTcviYwY.woff2)
+    format("woff2");
 }
 
 @font-face {
@@ -61,15 +76,19 @@ img {
   position: fixed;
   height: var(--circle-size);
   width: var(--circle-size);
-  border: 1px solid #9D4EDD;
+  border: 1px solid #9d4edd;
   border-radius: 50%;
   color: transparent;
-  background: linear-gradient(261.6deg, #8C9EFF -4.54%, #9D4EDD 46.04%, #7B2CBF 81.39%);
+  background: linear-gradient(
+    261.6deg,
+    #8c9eff -4.54%,
+    #9d4edd 46.04%,
+    #7b2cbf 81.39%
+  );
   top: calc(var(--circle-size) / 2 * -1);
   left: calc(var(--circle-size) / 2 * -1);
   pointer-events: none;
 }
-
 
 @keyframes flashlight {
   0% {
@@ -98,12 +117,16 @@ img {
 }
 
 .mobile-developer {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3rem;
   /* Adjust to match Tailwind's 4xl */
   line-height: 0.7;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
   -webkit-background-clip: text;
   color: transparent;
   margin-bottom: -40px;
@@ -112,13 +135,16 @@ img {
   background-size: 200% 100%;
 }
 
-
 .sample-index {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3rem;
   /* Adjust to match Tailwind's 4xl */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, .4));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.4)
+  );
   -webkit-background-clip: text;
   color: transparent;
   white-space: nowrap;
@@ -145,7 +171,7 @@ img {
 }
 
 .developer-name {
-  font-family: 'ybeb', sans-serif;
+  font-family: "ybeb", sans-serif;
   font-size: 2.6rem;
   font-weight: 900;
   line-height: 77px;
@@ -154,7 +180,12 @@ img {
   font-style: normal;
 
   /* Gradient Animation */
-  background: linear-gradient(261.6deg, #8C9EFF -4.54%, #9D4EDD 46.04%, #7B2CBF 81.39%);
+  background: linear-gradient(
+    261.6deg,
+    #8c9eff -4.54%,
+    #9d4edd 46.04%,
+    #7b2cbf 81.39%
+  );
   background-size: 200% 200%;
   /* Ensures animation movement */
   -webkit-background-clip: text;
@@ -165,7 +196,6 @@ img {
   /* Animation */
   animation: gradientMove 3s infinite ease-in-out;
 }
-
 
 @media (min-width: 1280px) {
   .developer-name {

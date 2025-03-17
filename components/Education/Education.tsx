@@ -1,26 +1,49 @@
-import React, { memo } from "react";
+"use client";
+
+import React, { memo, useEffect, useState } from "react";
 import EduCard from "./EduCard";
-import db from '@/public/db.json';
+import { API_BASE_URL } from "@/app/config";
+import EduCardSkeleton from "./EduSkeletonCard";
 
 export type Education = {
+  id: number;
   name: string;
-  from: number;
-  to?: number;
+  fromYear: number;
+  toYear?: number;
   picture: string;
   description?: string;
 };
 
-// Memoized for better performance
-const Education = memo(function Education() {
+const Education = () => {
+  const [educations, setEducations] = useState<Education[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/education`, {
+          cache: "no-store",
+        });
+        console.log(response);
+        const data = await response.json();
+        setEducations(data);
+      } catch (error) {
+        console.error("Error fetching educations:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div
       id="education"
       className="relative bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] overflow-hidden"
     >
-      {/* Glass gradient overlay for modern effect */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 backdrop-blur-sm"></div>
 
-      {/* Animated decorative background elements */}
       <div
         className="absolute top-1/4 left-0 w-64 h-64 bg-[#7B2CBF]/10 rounded-full blur-3xl animate-pulse"
         style={{ animationDuration: "8s" }}
@@ -42,19 +65,23 @@ const Education = memo(function Education() {
             تحصیلی من ( این بخش به مرور زمان کامل تر میشه ) :
           </p>
         </div>
-
-        {/* Card grid with enhanced spacing */}
+        {loading && (
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+            {[0, 1].map((edu) => (
+              <EduCardSkeleton key={edu} />
+            ))}
+          </div>
+        )}
+        {!loading && educations.length && (
         <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
-          {db.Educations.map((edu) => (
-            <EduCard key={edu.description} data={{ ...edu, to: edu.to ?? undefined }} />
-          ))}
-        </div>
+            {educations.map((edu) => (
+              <EduCard key={edu.id} data={edu} />
+            ))}
+          </div>
+        )}
       </div>
-
-      {/* Subtle border bottom */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#8C9EFF]/30 to-[#7B2CBF]/30"></div>
     </div>
   );
-});
+};
 
-export default Education;
+export default memo(Education);

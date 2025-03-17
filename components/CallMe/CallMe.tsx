@@ -5,11 +5,8 @@ import PicInfo from "./PicInfo";
 // Memoized for better performance
 const CallMe = memo(function CallMe() {
   return (
-    <div
-      id="call-me"
-      className="relative h-auto lg:h-screen flex flex-col lg:flex-row justify-center items-center
-                gap-[5vh] lg:gap-[3vw] lg:px-10 lg:pr-[22vw] mt-[5vh] pb-12"
-    >
+    <div id="call-me" className="relative z-[10] h-auto lg:h-screen flex flex-col lg:flex-row justify-center items-center gap-[5vh] lg:gap-[3vw] lg:px-10 lg:pr-[22vw] mt-[5vh] pb-12">
+
       <div
         className="absolute top-20 left-10 w-64 h-64 bg-[#8C9EFF]/10 rounded-full blur-3xl animate-pulse"
         style={{ animationDuration: "10s" }}

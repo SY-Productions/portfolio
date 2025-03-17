@@ -7,8 +7,11 @@ import { Calendar } from "iconsax-react";
 import Skill from "../Skills/HardSkill";
 import Link from "next/link";
 
-// Memoized for better performance
-const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
+interface WorkCardProps {
+  work: Work;
+}
+
+const WorkCard = ({ work }: WorkCardProps) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,7 +22,7 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
 
   return (
     <Link
-      href={data.url}
+      href={work.url}
       target="_blank"
       rel="noopener noreferrer"
       legacyBehavior
@@ -45,8 +48,8 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
               className="aspect-square transition-all duration-300"
               width={60}
               height={60}
-              src={data.picture}
-              alt={data.name}
+              src={work.picture}
+              alt={work.name}
             />
           </div>
 
@@ -56,31 +59,31 @@ const WorkCard = memo(function WorkCard({ data }: { data: Work }) {
                         rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80
                         border border-white/10 backdrop-blur-md"
           >
-            {`${data.from} تا ${data.to ? data.to : "اکنون"}`}
+            {`${work.fromYear} تا ${work.toYear ? work.toYear : "حالا"}`}
           </div>
         </div>
 
         <div className="NAME&DESC flex flex-col px-4">
           {/* Title with subtle line accent */}
           <div className="relative text-lg py-2 text-white font-bold">
-            {data.name}
+            {work.name}
           </div>
 
           {/* Description with enhanced styling */}
           <div className="text-sm pb-4 text-white/60 leading-6">
-            {data.description}
+            {work.description}
           </div>
         </div>
 
         {/* Technologies section with improved spacing */}
         <div className="px-4 pb-4 flex flex-row-reverse gap-2 mt-auto">
-          {data.technos.map((techno) => (
-            <Skill key={techno} name={techno} />
+          {work.technos.map((tech, index) => (
+            <Skill key={index} name={tech} />
           ))}
         </div>
       </a>
     </Link>
   );
-});
+};
 
-export default WorkCard;
+export default memo(WorkCard);

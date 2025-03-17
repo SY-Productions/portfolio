@@ -4,17 +4,33 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
     default: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر | Yousof Hashemzadeh",
-    template: "%s | یوسف هاشم زاده - Yousof Hashemzadeh"
+    template: "%s | یوسف هاشم زاده - Yousof Hashemzadeh",
   },
   description:
     "یوسف هاشم زاده - توسعه‌دهنده متخصص موبایل با فلاتر و توسعه سمت سرور با پایتون. با تجربه در BLoC و GetX. | Yousof Hashemzadeh - Expert Flutter mobile developer with Python backend skills, specializing in BLoC architecture & GetX state management.",
   keywords: [
-    "یوسف هاشم زاده", "Yousof Hashemzadeh", "Flutter developer", "توسعه دهنده فلاتر",
-    "Flutter mobile app development", "BLoC architecture Flutter", "GetX state management",
-    "Python backend developer", "برنامه نویس پایتون", "Mobile app development",
-    "Cross-platform app development", "اپلیکیشن موبایل", "برنامه نویس موبایل",
-    "Software engineer", "مهندس نرم افزار", "Dart programming", "RESTful APIs",
-    "Firebase", "توسعه اندروید", "توسعه iOS", "توسعه وب", "فلاتر ایران"
+    "یوسف هاشم زاده",
+    "Yousof Hashemzadeh",
+    "Flutter developer",
+    "توسعه دهنده فلاتر",
+    "Flutter mobile app development",
+    "BLoC architecture Flutter",
+    "GetX state management",
+    "Python backend developer",
+    "برنامه نویس پایتون",
+    "Mobile app development",
+    "Cross-platform app development",
+    "اپلیکیشن موبایل",
+    "برنامه نویس موبایل",
+    "Software engineer",
+    "مهندس نرم افزار",
+    "Dart programming",
+    "RESTful APIs",
+    "Firebase",
+    "توسعه اندروید",
+    "توسعه iOS",
+    "توسعه وب",
+    "فلاتر ایران",
   ],
 
   openGraph: {
@@ -24,7 +40,8 @@ export const metadata: Metadata = {
     url: "https://www.youdexsof.ir/",
     siteName: "یوسف هاشم زاده | Yousof Hashemzadeh",
     title: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر | Portfolio",
-    description: "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
+    description:
+      "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
     images: [
       {
         url: "../public/me.jpg",
@@ -44,7 +61,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر",
-    description: "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
+    description:
+      "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
     images: [".../public/me.jpg"],
     creator: "@youdexsof",
   },
@@ -64,7 +82,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.youdexsof.ir",
     languages: {
-      'fa-IR': 'https://www.youdexsof.ir',
+      "fa-IR": "https://www.youdexsof.ir",
     },
   },
 
@@ -73,9 +91,21 @@ export const metadata: Metadata = {
   icons: [
     { rel: "icon", url: "/favicons/favicon-16x16.png", sizes: "16x16" },
     { rel: "icon", url: "/favicons/favicon-32x32.png", sizes: "32x32" },
-    { rel: "apple-touch-icon", url: "/favicons/apple-touch-icon.png", sizes: "180x180" },
-    { rel: "icon", url: "/favicons/android-chrome-192x192.png", sizes: "192x192" },
-    { rel: "icon", url: "/favicons/android-chrome-512x512.png", sizes: "512x512" },
+    {
+      rel: "apple-touch-icon",
+      url: "/favicons/apple-touch-icon.png",
+      sizes: "180x180",
+    },
+    {
+      rel: "icon",
+      url: "/favicons/android-chrome-192x192.png",
+      sizes: "192x192",
+    },
+    {
+      rel: "icon",
+      url: "/favicons/android-chrome-512x512.png",
+      sizes: "512x512",
+    },
     { rel: "manifest", url: "/site.webmanifest" },
   ],
 
@@ -130,29 +160,28 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "یوسف هاشم زاده",
-              "alternateName": "Yousof Hashemzadeh",
-              "url": "https://www.youdexsof.ir",
-              "image": "https://youdexsof.ir/pic.jpg",
-              "sameAs": [
+              name: "یوسف هاشم زاده",
+              alternateName: "Yousof Hashemzadeh",
+              url: "https://www.youdexsof.ir",
+              image: "https://youdexsof.ir/pic.jpg",
+              sameAs: [
                 "https://www.linkedin.com/in/yousof-hashemezade",
                 "https://github.com/YOUSSSOF",
-                "https://www.instagram.com/youdexsof"
+                "https://www.instagram.com/youdexsof",
               ],
-              "jobTitle": "Flutter Developer | توسعه دهنده فلاتر",
-              "worksFor": {
+              jobTitle: "Flutter Developer | توسعه دهنده فلاتر",
+              worksFor: {
                 "@type": "Organization",
-                "name": "Freelance"
+                name: "Freelance",
               },
-              "description": "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer"
-            })
+              description:
+                "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
+            }),
           }}
         />
       </head>
       <body className="bg-c">
-        <div
-          className="selection:bg-[#9D4EDD]/20 selection:text-white"
-        >
+        <div className="selection:bg-[#9D4EDD]/20 selection:text-white">
           {children}
         </div>
       </body>

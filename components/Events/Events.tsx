@@ -1,8 +1,12 @@
-import React, { memo } from "react";
+"use client";
+
+import React, { memo, useEffect, useState } from "react";
 import EventCard from "./EventCard";
-import db from '@/public/db.json';
+import { API_BASE_URL } from "@/app/config";
+import EventCardSkeleton from "./EventSkeletonCard";
 
 export type Event = {
+  id: number;
   name: string;
   date: string;
   picture: string;
@@ -10,19 +14,35 @@ export type Event = {
   description?: string;
 };
 
+const Events = () => {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/events`, {
+          cache: "no-store",
+        });
+        const data = await response.json();
+        setEvents(data);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-// Memoized for better performance
-const Event = memo(function Event() {
+    fetchData();
+  }, []);
+
   return (
     <div
       id="events"
       className="relative bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto"
     >
-      {/* Glass gradient overlay for modern effect */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/0 backdrop-blur-sm"></div>
 
-      {/* Animated decorative background elements */}
       <div
         className="absolute top-20 left-10 w-64 h-64 bg-[#8C9EFF]/10 rounded-full blur-3xl animate-pulse"
         style={{ animationDuration: "10s" }}
@@ -43,28 +63,25 @@ const Event = memo(function Event() {
             زمان کامل‌تر خواهد شد):
           </p>
         </div>
-
-        {/* Card grid with enhanced spacing */}
-        <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
-          {db.Events.map((event) => (
-            <EventCard key={event.attachment} data={event} />
-          ))}
-        </div>
-
-        {/* Empty state message when no event data is available */}
-        {db.Events.length === 0 && (
-          <div className="w-full py-10 flex items-center justify-center">
-            <p className="text-white/40 text-lg font-[ybn]">
-              در حال تکمیل شدن...
-            </p>
+        {loading && (
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+            {[0, 1].map((event) => (
+              <EventCardSkeleton key={event} />
+            ))}
+          </div>
+        )}
+        {!loading && events.length && (
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+            {events.map((event) => (
+              <EventCard key={event.attachment} event={event} />
+            ))}
           </div>
         )}
       </div>
 
-      {/* Subtle border bottom */}
       <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#8C9EFF]/30 to-[#7B2CBF]/30"></div>
     </div>
   );
-});
+};
 
-export default Event;
+export default memo(Events);

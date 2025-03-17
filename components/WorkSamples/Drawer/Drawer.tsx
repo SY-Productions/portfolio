@@ -1,33 +1,46 @@
 "use client";
 
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { useWorkSample } from "../WorkSampleContext";
 import CloseIcon from "@mui/icons-material/Close";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import DrawerCarousel from "./DrawerCarousel";
 import DrawerBody from "./DrawerBody";
+import DrawerSkeleton from "./DrawerSkeleton";
 
 export default function Drawer() {
   const {
     isDrawerOpen,
     setIsDrawerOpen,
     getCurrentSample,
-    getCurrentPictures
+    getCurrentPictures,
   } = useWorkSample();
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentSample = getCurrentSample();
+
+  // Simulate loading state when drawer opens
+  useEffect(() => {
+    if (isDrawerOpen) {
+      setIsLoading(true);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 800); // Simulate loading time
+      return () => clearTimeout(timer);
+    }
+  }, [isDrawerOpen]);
 
   // Close drawer with escape key
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isDrawerOpen) {
+      if (e.key === "Escape" && isDrawerOpen) {
         setIsDrawerOpen(false);
       }
     };
 
-    window.addEventListener('keydown', handleEscapeKey);
-    return () => window.removeEventListener('keydown', handleEscapeKey);
+    window.addEventListener("keydown", handleEscapeKey);
+    return () => window.removeEventListener("keydown", handleEscapeKey);
   }, [isDrawerOpen, setIsDrawerOpen]);
 
   // Close drawer when clicking outside
@@ -36,6 +49,8 @@ export default function Drawer() {
   }, [setIsDrawerOpen]);
 
   if (!isDrawerOpen || !currentSample) return null;
+
+  if (isLoading) return <DrawerSkeleton />;
 
   return (
     <div className="Drawer-with-hiddenDiv fixed z-50 w-auto left-0 right-0 bottom-0 flex flex-col justify-between h-screen max-h-max transition-all delay-0 duration-500">

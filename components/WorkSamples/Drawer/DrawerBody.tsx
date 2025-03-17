@@ -12,17 +12,15 @@ const DrawerBody = memo(function DrawerBody() {
 
   const currentSample = getCurrentSample();
 
-  if (!currentSample) return null;
-
   // Extract technologies array
-  const techsArray = currentSample.technologys?.split(" ") || [];
+  const techsArray = currentSample?.technologys?.split(" ") || [];
 
   // Format link correctly
-  const formattedLink = currentSample.link === "#"
+  const formattedLink = currentSample?.link === "#"
     ? null
-    : currentSample.link?.startsWith("http")
+    : currentSample?.link?.startsWith("http")
       ? currentSample.link
-      : `https://${currentSample.link}`;
+      : `https://${currentSample?.link}`;
 
   // Handle copy link functionality
   const handleCopy = useCallback(() => {
@@ -38,7 +36,7 @@ const DrawerBody = memo(function DrawerBody() {
 
   // Determine link type for copy button text
   const getLinkTypeText = () => {
-    if (!currentSample.link || currentSample.link === "#") return "";
+    if (!currentSample?.link || currentSample.link === "#") return "";
 
     if (currentSample.link.includes("rtl")) return "راستچین";
     if (currentSample.link.includes("liara")) return "دمو";
@@ -51,6 +49,8 @@ const DrawerBody = memo(function DrawerBody() {
     if (!description) return "";
     return description.replace("%g%", "");
   };
+
+  if (!currentSample) return null;
 
   return (
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6 bg-[#0A0A0A]">

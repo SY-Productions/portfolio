@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useRef } from "react";
 import Image from "next/image";
 import { useZState } from "@/app/states";
 import {
@@ -72,6 +72,8 @@ const SideBar = memo(function SideBar() {
     setIsOnMobile,
   } = useZState();
 
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
   // Classes for sidebar container
   const sideBarFullClasses =
     "z-50 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
@@ -96,6 +98,38 @@ const SideBar = memo(function SideBar() {
 
     return () => window.removeEventListener("resize", handleSideBar);
   }, [setFixedOpen, setIsOnMobile]);
+
+  useEffect(() => {
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            setSideBarScroll(`#${id}`);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px", // Trigger when section is in middle of viewport
+        threshold: 0,
+      }
+    );
+
+    // Observe all sections
+    navigationItems.forEach((item) => {
+      const sectionId = item.to.replace("#", "");
+      const section = document.getElementById(sectionId);
+      if (section) {
+        observerRef.current?.observe(section);
+      }
+    });
+
+    // Cleanup
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, [setSideBarScroll]);
 
   return (
     <div
@@ -171,7 +205,7 @@ const SideBar = memo(function SideBar() {
             <a
               href="/youdexsof-fa-cv.pdf"
               download="Yousof-Hashemzade-Cv-Fa.pdf"
-              className="DOWNLOADPDF w-full h-12 flex items-center justify-center hidden lg:flex border border-white/10 bg-gradient-to-r from-[#7B2CBF]/10 to-[#8C9EFF]/10 hover:from-[#7B2CBF]/20 hover:to-[#8C9EFF]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="DOWNLOADPDF w-full h-12 flex items-center justify-center lg:flex border border-white/10 bg-gradient-to-r from-[#7B2CBF]/10 to-[#8C9EFF]/10 hover:from-[#7B2CBF]/20 hover:to-[#8C9EFF]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               دانلود رزومه بصورت PDF
             </a>
