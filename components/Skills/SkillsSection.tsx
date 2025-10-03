@@ -1,6 +1,7 @@
 import React from "react";
 import HardSkills from "./HardSkills";
 import SoftSkills from "./SoftSkills";
+
 export default function Skills() {
   return (
     <div

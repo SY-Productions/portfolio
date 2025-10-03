@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
 @font-face {
   font-family: "inter";
   font-style: normal;
@@ -43,49 +71,59 @@
     @apply text-3xl font-bold;
   }
 }
+
 .circle {
   --circle-size: 10px;
   position: fixed;
   height: var(--circle-size);
   width: var(--circle-size);
-  border: 1px solid #3ECA43;
+  border: 1px solid #1B5B5C;
   border-radius: 50%;
   color: transparent;
-  background:  linear-gradient(261.6deg, #66FF91 -4.54%, #3ECA43 46.04%, #37B13B 81.39%);
+  background: linear-gradient(261.6deg,
+      #8c9eff -4.54%,
+      #1B5B5C 46.04%,
+      #0F3D3E 81.39%);
   top: calc(var(--circle-size) / 2 * -1);
   left: calc(var(--circle-size) / 2 * -1);
   pointer-events: none;
 }
 
-
 @keyframes flashlight {
   0% {
     background-position: 100% 0;
   }
+
   20% {
     background-position: 80% 0;
   }
+
   40% {
     background-position: 60% 0;
   }
+
   60% {
     background-position: 40% 0;
   }
+
   80% {
     background-position: 20% 0;
   }
+
   100% {
     background-position: -100% 0;
   }
 }
 
 .mobile-developer {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3rem;
   /* Adjust to match Tailwind's 4xl */
   line-height: 0.7;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  background: linear-gradient(to right,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0));
   -webkit-background-clip: text;
   color: transparent;
   margin-bottom: -40px;
@@ -94,13 +132,14 @@
   background-size: 200% 100%;
 }
 
-
 .sample-index {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 800;
   font-size: 3rem;
   /* Adjust to match Tailwind's 4xl */
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, .4));
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.4));
   -webkit-background-clip: text;
   color: transparent;
   white-space: nowrap;
@@ -111,20 +150,23 @@
     font-size: 3rem;
   }
 }
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
 }
 
 .developer-name {
-  font-family: 'ybeb', sans-serif;
+  font-family: "ybeb", sans-serif;
   font-size: 2.6rem;
   font-weight: 900;
   line-height: 77px;
@@ -133,8 +175,12 @@
   font-style: normal;
 
   /* Gradient Animation */
-  background: linear-gradient(261.6deg, #66FF91 -4.54%, #3ECA43 46.04%, #37B13B 81.39%);
-  background-size: 200% 200%; /* Ensures animation movement */
+  background: linear-gradient(261.6deg,
+      #8c9eff -4.54%,
+      #1B5B5C 46.04%,
+      #0F3D3E 81.39%);
+  background-size: 200% 200%;
+  /* Ensures animation movement */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -143,7 +189,6 @@
   /* Animation */
   animation: gradientMove 3s infinite ease-in-out;
 }
-
 
 @media (min-width: 1280px) {
   .developer-name {

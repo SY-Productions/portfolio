@@ -1,0 +1,26 @@
+{
+  "nav": {
+    "aboutMe": "About Me",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "education": "Education",
+    "work": "Work Experience",
+    "events": "Events",
+    "contact": "Contact Me",
+    "downloadCV": "Download CV"
+  },
+  "aboutMe": {
+    "title": "MOBILE",
+    "titleLine2": "DEVELOPER",
+    "name": "Yousof Hashemzade",
+    "description": "Driven by a passion for computers and building things, I entered this field. After many failed attempts in different areas, I found my niche and became a full-stack mobile and web application developer :)",
+    "contactBtn": "Contact Me"
+  },
+  "looking": {
+    "title": "Looking for a Programmer?",
+    "cta": "Get in Touch"
+  },
+  "footer": {
+    "copyright": "All rights reserved by"
+  }
+}

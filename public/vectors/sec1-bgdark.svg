@@ -1,39 +1,38 @@
-
 <svg width="1502" height="1549" viewBox="0 0 1502 1549" fill="none" xmlns="http://www.w3.org/2000/svg">
     <mask id="mask0_316_982" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="0" width="1501" height="1549">
         <rect x="1.29004" width="1500.71" height="1549" fill="#FA7451" />
     </mask>
     <g mask="url(#mask0_316_982)">
         <g filter="url(#filter0_f_316_982)">
-            <ellipse cx="72.7777" cy="1336.47" rx="213.418" ry="394.43" fill="#277F2A" fill-opacity="0.2" />
+            <ellipse cx="72.7777" cy="1336.47" rx="213.418" ry="394.43" fill="#2A9D9A" fill-opacity="0.2" />
         </g>
         <g filter="url(#filter1_f_316_982)">
-            <ellipse cx="625.368" cy="924.804" rx="153.411" ry="281.462" fill="#277F2A" fill-opacity="0.3" />
+            <ellipse cx="625.368" cy="924.804" rx="153.411" ry="281.462" fill="#2A9D9A" fill-opacity="0.3" />
         </g>
         <g opacity="0.2" filter="url(#filter2_f_316_982)">
             <rect width="671.697" height="348.956" rx="111"
-                transform="matrix(0.505583 0.862778 -0.452176 0.891929 1130.55 468.68)" fill="#37B13B" />
+                transform="matrix(0.505583 0.862778 -0.452176 0.891929 1130.55 468.68)" fill="#0F3D3E" />
         </g>
         <g opacity="0.15" filter="url(#filter3_f_316_982)">
             <rect width="806.654" height="385.143" rx="111"
-                transform="matrix(0.505583 0.862778 -0.452176 0.891929 488.525 -400.174)" fill="#37B13B" />
+                transform="matrix(0.505583 0.862778 -0.452176 0.891929 488.525 -400.174)" fill="#0F3D3E" />
         </g>
         <g opacity="0.1" filter="url(#filter4_f_316_982)">
             <rect width="806.654" height="385.143" rx="111"
-                transform="matrix(0.505583 0.862778 -0.452176 0.891929 692.029 1342.21)" fill="#37B13B" />
+                transform="matrix(0.505583 0.862778 -0.452176 0.891929 692.029 1342.21)" fill="#0F3D3E" />
         </g>
         <g opacity="0.15" filter="url(#filter5_f_316_982)">
             <rect width="471.439" height="385.143" rx="122.511"
-                transform="matrix(0.505583 0.862778 -0.452176 0.891929 0.116089 -11.4883)" fill="#37B13B" />
+                transform="matrix(0.505583 0.862778 -0.452176 0.891929 0.116089 -11.4883)" fill="#0F3D3E" />
         </g>
         <g filter="url(#filter6_f_316_982)">
             <rect width="508.005" height="484.244" rx="242.122"
-                transform="matrix(0.505583 0.862778 -0.452176 0.891929 1388.45 -312.098)" fill="#277F2A"
+                transform="matrix(0.505583 0.862778 -0.452176 0.891929 1388.45 -312.098)" fill="#2A9D9A"
                 fill-opacity="0.4" />
         </g>
         <g filter="url(#filter7_f_316_982)">
             <rect width="578.711" height="321.688" rx="160.844"
-                transform="matrix(-0.0120335 0.999928 -0.99918 -0.0404759 1691.59 781.438)" fill="#277F2A"
+                transform="matrix(-0.0120335 0.999928 -0.99918 -0.0404759 1691.59 781.438)" fill="#1B5B5C"
                 fill-opacity="0.19" />
         </g>
     </g>

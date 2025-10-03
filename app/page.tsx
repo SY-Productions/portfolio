@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import SideBar from "../components/SideBar";
 import AboutMe from "../components/AboutMe";
 import Skills from "../components/Skills/SkillsSection";
 import WorkSamples from "../components/WorkSamples/WorkSamples";
@@ -11,13 +10,13 @@ import Footer from "@/components/Footer";
 import Work from "@/components/Work/Work";
 import Events from "@/components/Events/Events";
 import AnimatedCursor from "@/components/AnimtedCursor";
+import SideBar from "@/components/SideBar";
 
-export default function page() {
+export default function Page() {
   return (
     <Suspense>
-
       <SideBar />
-      <main>
+      <main className="transition-all duration-300 sidebar-adjusted">
         <NavBarForMobile />
         <AboutMe />
         <Skills />
@@ -29,8 +28,7 @@ export default function page() {
         <CallMe />
       </main>
       <Footer />
-      <AnimatedCursor />
-      </Suspense>
-
+      {typeof window !== 'undefined' && window.innerWidth > 900 && <AnimatedCursor />}
+    </Suspense>
   );
 }

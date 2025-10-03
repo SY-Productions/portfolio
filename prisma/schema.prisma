@@ -1,0 +1,57 @@
+// This is your Prisma schema file
+// Learn more about it at https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model WorkSample {
+  id             Int     @id
+  isWeb          String
+  faTitle        String
+  enTitle        String
+  faDescription  String
+  enDescription  String
+  pictures       String
+  link           String
+  technologys    String
+  faStartDate    String
+  enStartDate    String
+  faEndDate      String
+  enEndDate      String
+  customLinks    String?
+}
+
+model Education {
+  id          Int     @id @default(autoincrement())
+  name        String
+  fromYear    Int
+  toYear      Int?
+  picture     String
+  description String
+}
+
+model Work {
+  id          Int     @id @default(autoincrement())
+  name        String
+  technos     String // Will store as JSON string
+  fromYear    Int
+  toYear      Int?
+  picture     String
+  url         String
+  description String
+}
+
+model Event {
+  id          Int     @id @default(autoincrement())
+  name        String
+  date        String
+  picture     String
+  attachment  String
+  description String
+}

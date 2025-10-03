@@ -1,72 +1,171 @@
 "use client";
-import React from "react";
+
+import React, { memo, useRef, useEffect, useState } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { useZState } from "@/app/states";
+import { useWorkSample } from "./WorkSampleContext";
 
-export default function SampleSwitcher() {
+// Use memo to prevent unnecessary re-renders
+const SampleSwitcher = memo(function SampleSwitcher() {
   const {
-    setSampleWebIndex,
-    setSampleMobIndex,
-    sampleWebIndex,
-    sampleMobIndex,
     isWebFrame,
-    MobSamples,
-    webSamples,
-  } = useZState();
+    currentSampleIndex,
+    totalSamples,
+    goToNextSample,
+    goToPrevSample
+  } = useWorkSample();
 
-  const buttonClasses =
-    "btn rounded-none w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] bg-white/5 hover:bg-white/10 hover:border-white/15 border border-white/10 active:bg-b/20";
+  const dotsContainerRef = useRef<HTMLDivElement | null>(null);
+  const dotsScrollerRef = useRef<HTMLDivElement | null>(null);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
-  function handleButtons(ZeroOrOne: number) {
-    if (isWebFrame) {
-      if (ZeroOrOne == 1) {
-        if (sampleWebIndex < webSamples) return setSampleWebIndex(1);
-        return setSampleWebIndex(2);
+  // Check if dots container is overflowing
+  useEffect(() => {
+    if (dotsContainerRef.current) {
+      const container = dotsContainerRef.current;
+      const isOverflow = container.scrollWidth > container.clientWidth;
+      setIsOverflowing(isOverflow);
+    }
+  }, [totalSamples]);
+
+  // Scroll to current dot
+  useEffect(() => {
+    if (dotsContainerRef.current && isOverflowing) {
+      const container = dotsContainerRef.current;
+      const dotWidth = 24; // Width of dot + gap
+      const targetScroll = Math.max(0, (currentSampleIndex * dotWidth) - (container.clientWidth / 2) + (dotWidth / 2));
+
+      container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+      });
+    }
+  }, [currentSampleIndex, isOverflowing]);
+
+  // Add auto-scrolling animation when overflowing
+  useEffect(() => {
+    if (!isOverflowing || !dotsScrollerRef.current) return;
+
+    // Add animation class dynamically
+    const scroller = dotsScrollerRef.current;
+
+    // Only apply animation when not interacting (for better UX)
+    const startAnimation = () => {
+      if (scroller && isOverflowing) {
+        scroller.style.animation = 'none'; // Reset animation
+        void scroller.offsetWidth; // Force reflow
+        scroller.style.animation = 'dotsSpin 15s linear infinite alternate';
       }
-      if (sampleWebIndex != 0 && sampleWebIndex <= webSamples)
-        return setSampleWebIndex(0);
-      return setSampleWebIndex(2);
-    }
-    if (ZeroOrOne == 1) {
-      if (sampleMobIndex < MobSamples) return setSampleMobIndex(1);
-      return setSampleMobIndex(2);
-    }
-    if (sampleMobIndex != 0 && sampleMobIndex <= MobSamples)
-      return setSampleMobIndex(0);
-    return setSampleMobIndex(2);
-  }
+    };
+
+    const stopAnimation = () => {
+      if (scroller) {
+        scroller.style.animation = 'none';
+      }
+    };
+
+    // Start animation after a delay
+    const timer = setTimeout(startAnimation, 2000);
+
+    // Stop animation on user interaction
+    dotsContainerRef.current?.addEventListener('mouseenter', stopAnimation);
+    dotsContainerRef.current?.addEventListener('touchstart', stopAnimation);
+
+    // Clean up
+    return () => {
+      clearTimeout(timer);
+      dotsContainerRef.current?.removeEventListener('mouseenter', stopAnimation);
+      dotsContainerRef.current?.removeEventListener('touchstart', stopAnimation);
+    };
+  }, [isOverflowing]);
+
+  // Button classes for consistent styling
+  const buttonClasses =
+    "btn w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] rounded-none bg-[#111] hover:bg-[#1A1A1A] hover:border-[#333] border border-[#222] active:bg-[#151515] transition-colors duration-200";
 
   return (
-    <div className="float-end my-6 lg:mb-0 flex flex-row items-center justify-between w-[80vw] lg:w-[35vw] gap-3">
-      <div className="NAME py-6">
-        <p className="sample-index w-20 h-15">
-          0{(isWebFrame ? sampleWebIndex : sampleMobIndex)+1}
-        </p>
-      </div>
-      <div className="flex gap-2">
-        {Array.from({ length: isWebFrame ? webSamples+1 : MobSamples+1 }).map(
-          (_, idx) => (
-            <span
-              key={idx}
-              className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                idx === (isWebFrame ? sampleWebIndex : sampleMobIndex)
-                  ? "bg-white scale-110"
-                  : "bg-gray-500"
-              }`}
-            />
-          )
-        )}
-      </div>
-      <div className="flex gap-2">
-        <button onClick={() => handleButtons(0)} className={buttonClasses}>
-          <KeyboardArrowRightIcon sx={{ fontSize: 20, color: "white" }} />
-        </button>
-        <button onClick={() => handleButtons(1)} className={buttonClasses}>
-          <KeyboardArrowRightIcon
-            sx={{ transform: "rotate(180deg)", fontSize: 20, color: "white" }}
+    <>
+      {/* Inject the required CSS for animation */}
+      <style jsx global>{`
+        @keyframes dotsSpin {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(calc(-100% + 100vw)); }
+        }
+
+        .dots-container::-webkit-scrollbar {
+          display: none;
+        }
+
+        .dots-container {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+
+      <div className="float-end my-6 lg:mb-0 mb-10 flex flex-row items-center justify-between w-[80vw] lg:w-[35vw] gap-3">
+        {/* Sample index display */}
+        <div className="NAME py-6">
+          <p className="sample-index w-20 h-15">
+            {String(currentSampleIndex + 1).padStart(2, '0')}
+          </p>
+        </div>
+
+        {/* Pagination dots with scroll container */}
+        <div
+          ref={dotsContainerRef}
+          className="dots-container flex gap-2 overflow-x-auto overflow-y-hidden max-w-[50%] md:max-w-[60%]"
+          style={{
+            maskImage: isOverflowing ? 'linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)' : 'none',
+            WebkitMaskImage: isOverflowing ? 'linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)' : 'none'
+          }}
+        >
+          <div
+            ref={dotsScrollerRef}
+            className="flex gap-2 py-1 min-w-max"
+          >
+            {Array.from({ length: totalSamples }).map((_, idx) => (
+              <span
+                key={idx}
+                className={`h-3 w-3 md:h-4 md:w-4 shrink-0 transition-all rounded-full duration-300 cursor-pointer ${
+                  idx === currentSampleIndex
+                    ? "bg-white scale-110"
+                    : "bg-[#333] hover:bg-[#444]"
+                }`}
+                onClick={() => {
+                  // Navigate directly to this sample
+                  const diff = idx - currentSampleIndex;
+                  if (diff > 0) {
+                    for (let i = 0; i < diff; i++) goToNextSample();
+                  } else if (diff < 0) {
+                    for (let i = 0; i > diff; i--) goToPrevSample();
+                  }
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Navigation buttons */}
+        <div className="flex gap-2">
+          <button
+            onClick={goToPrevSample}
+            className={buttonClasses}
+            aria-label="Previous sample"
+          >
+            <KeyboardArrowRightIcon sx={{ fontSize: 20, color: "white" }} />
+          </button>
+          <button
+            onClick={goToNextSample}
+            className={buttonClasses}
+            aria-label="Next sample"
+          >
+            <KeyboardArrowRightIcon
+              sx={{ transform: "rotate(180deg)", fontSize: 20, color: "white" }}
           />
-        </button>
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
-}
+});
+
+export default SampleSwitcher;
