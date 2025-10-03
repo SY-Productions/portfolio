@@ -15,13 +15,10 @@ const AdminDashboard = () => {
   };
 
   const handleAddItem = (section: string) => {
-    console.log(`Add item to ${section}`);
     setIsModalOpen(false); // Close the modal after submitting
   };
 
   const handleEditItem = (section: string) => {
-    // Handle the logic to edit an item in the selected section
-    console.log(`Edit item in ${section}`);
     setIsModalOpen(false); // Close the modal after submitting
   };
 

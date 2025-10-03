@@ -17,8 +17,6 @@ export default function Dashboard() {
     const correctPassword = process.env.NEXT_PUBLIC_LOGIN_PASSWORD;
 
     const isThatMe = localStorage.getItem("IsThayYoudexsof?");
-    console.log(correctPassword);
-    console.log(correctUsername);
     if (
       login === "admin" &&
       isThatMe &&

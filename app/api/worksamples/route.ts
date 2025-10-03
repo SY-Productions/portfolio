@@ -5,8 +5,6 @@ import { workSampleSchema } from "../schema";
 export async function GET(request: NextRequest) {
   try {
     const workSamples = await prisma.workSample.findMany();
-    console.log('heelo');
-    console.log(workSamples);
     return NextResponse.json(workSamples);
   } catch (error) {
     return NextResponse.json(

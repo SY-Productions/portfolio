@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 
 // Optimized imports
 import prof from "@/public/pic.png";
@@ -10,7 +12,7 @@ import tel from "@/public/icons/telegram.svg";
 import linkedin from "@/public/icons/linkedin.svg";
 import SkeletonImage from "./SkeletonImage";
 
-// Social media links data structure for better maintainability
+// Social media links data structure
 const socialLinks = [
   {
     url: "https://www.github.com/YOUSSSOF",
@@ -38,73 +40,103 @@ const socialLinks = [
   },
 ];
 
-// Memoized for better performance
 const AboutMe = memo(function AboutMe() {
-  const socialButtonClasses =
-    "h-[6vh] lg:h-[8vh] aspect-square bg-white/8 backdrop-blur-md rounded-none flex items-center justify-center transition-all duration-300 hover:bg-white/15 border border-white/10 hover:border-white/20 hover:shadow-[0_0_15px_rgba(255,84,84,0.15)] hover:-translate-y-1";
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <div
       id="about-me"
-      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen relative"
+      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden"
     >
-      {/* Glass gradient overlay for modern effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/0 backdrop-blur-sm"></div>
+      {/* Enhanced animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/0 backdrop-blur-sm animate-gradient-shift"></div>
+
+      {/* Floating particles for depth */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="particle particle-1"></div>
+        <div className="particle particle-2"></div>
+        <div className="particle particle-3"></div>
+      </div>
 
       <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:mr-[22vw] lg:ml-[3vw] lg:h-screen relative z-10">
-        {/* Profile picture card with glass morphism effect and sharp edges */}
-        <div className="PROF p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem] bg-black/20 border border-white/10 backdrop-blur-2xl rounded-none self-center basis-1/3 aspect-square w-[90%] shadow-[0_10px_30px_rgba(0,0,0,0.2)] overflow-hidden">
+        {/* Enhanced profile picture card with advanced glassmorphism */}
+        <div
+          className={`PROF group p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem]
+            glass-card-enhanced
+            self-center basis-1/3 aspect-square w-[90%]
+            overflow-hidden
+            transition-all duration-700 ease-out
+            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+        >
+          {/* Inner glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#8C9EFF]/10 via-transparent to-[#0F3D3E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+          {/* Corner accents */}
+          <div className="corner-accent corner-top-left"></div>
+          <div className="corner-accent corner-top-right"></div>
+          <div className="corner-accent corner-bottom-left"></div>
+          <div className="corner-accent corner-bottom-right"></div>
+
           <SkeletonImage
             src={prof}
             alt="Yousof Hashemzade, Flutter Developer | یوسف هاشم زاده، توسعه دهنده فلاتر"
             title="Yousof Hashemzade - Flutter Developer | یوسف هاشم زاده - توسعه دهنده فلاتر"
-            className="aspect-square rounded-none transition-all duration-300 hover:scale-[1.03] active:scale-95 hover:cursor-grab active:cursor-grabbing"
+            className="aspect-square rounded-none relative z-10 transition-all duration-500 ease-out group-hover:scale-[1.02] active:scale-95 hover:cursor-grab active:cursor-grabbing"
             draggable={false}
           />
         </div>
 
         <div className="NAME&DESC&BUTTONS flex flex-col items-center basis-2/3">
-          <div className="NAME py-6 w-[80%]">
-            {/* Enhanced gradient text styling */}
+          {/* Name section with staggered animation */}
+          <div className={`NAME py-6 w-[80%] transition-all duration-700 delay-200 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <p className="mobile-developer tracking-tight text-[2.8rem] lg:text-[3rem] font-extrabold">
               MOBILE <br />
               DEVELOPER
             </p>
             <h1 className="developer-name relative">
               یوسف هاشم زاده
-              {/* Subtle line accent for modern design */}
-              <span className="absolute -bottom-2 right-0 w-16 h-1 bg-gradient-to-r from-[#8C9EFF] to-[#0F3D3E]"></span>
+              {/* Enhanced animated accent line */}
+              <span className="accent-line"></span>
             </h1>
           </div>
 
-          {/* Enhanced description text */}
-          <p className="DESC font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-xl leading-7 w-[80%] mb-6 text-wrap">
+          {/* Description with fade-in animation */}
+          <p className={`DESC font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-xl leading-7 w-[80%] mb-6 text-wrap transition-all duration-700 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             با ترکیبِ علاقه به کامپیوتر و چیز ساختن وارد این حوزه شدم و بعد از
             بسیاری تلاشهای ناکام در زمینه های مختلف، بخشِ مورد علاقه خودم رو
             پیدا کردم و شدم یه جوجه برنامه نویسِ فول استک اپلیکیشن های موبایل و
             وب اپلیکیشن ها:)
           </p>
 
-          <div className="BUTTONS flex items-center gap-3 w-[80%] mb-8">
-            {/* Modern styled call-to-action button with gradient */}
-            <a
+          {/* Buttons with staggered hover effects */}
+          <div className={`BUTTONS flex items-center gap-3 w-[80%] mb-8 transition-all duration-700 delay-400 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            {/* Simple enhanced CTA button */}
+<a
               href="#call-me"
               className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#0F3D3E]/20 to-[#1B5B5C]/20 hover:from-[#0F3D3E]/30 hover:to-[#1B5B5C]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
             >
               تماس با من
             </a>
 
-            {/* Social media buttons with consistent modern styling */}
+            {/* Enhanced social media buttons */}
             {socialLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={socialButtonClasses}
+                className="social-button group relative"
+                style={{ animationDelay: `${(index + 5) * 100}ms` }}
               >
+                {/* Ripple effect on hover */}
+                <span className="ripple-effect"></span>
+
                 <Image
-                  className="w-[45%] opacity-80 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                  className="w-[45%] relative z-10 transition-all duration-300 filter brightness-0 invert opacity-80 group-hover:opacity-100 group-hover:scale-110"
                   src={link.icon}
                   alt={link.alt}
                   title={link.title}

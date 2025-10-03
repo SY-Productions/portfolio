@@ -39,10 +39,11 @@ const Work = () => {
   }, []);
 
   return (
-    <div
-      id="work"
-      className="h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] relative"
-    >
+ <div
+  id="work"
+  className="relative h-auto min-h-[60vh] lg:min-h-screen"
+>
+
       <div className="absolute top-20 left-10 w-32 h-32 bg-[#8C9EFF]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#0F3D3E]/10 rounded-full blur-3xl"></div>
 
