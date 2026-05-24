@@ -17,7 +17,7 @@ const Custom404 = () => {
           <h1 className="text-4xl sm:text-5xl font-extrabold font-[ybn] text-white tracking-tight">
             صفحه پیدا نشد!
           </h1>
-          <span className="w-16 h-1 bg-gradient-to-r from-[#8C9EFF] to-[#0F3D3E]"></span>
+          <span className="w-16 h-1 bg-gradient-to-r from-[#3A0D12] to-[#3B070A]"></span>
         </div>
 
         {/* Description */}
@@ -29,7 +29,7 @@ const Custom404 = () => {
         {/* Back to Home Button */}
         <Link
           href="/"
-          className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#0F3D3E]/20 to-[#1B5B5C]/20 hover:from-[#0F3D3E]/30 hover:to-[#1B5B5C]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
+          className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#3B070A]/20 to-[#5A0E12]/20 hover:from-[#3B070A]/30 hover:to-[#5A0E12]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
         >
           بازگشت به صفحه اصلی
         </Link>

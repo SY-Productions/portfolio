@@ -8,7 +8,7 @@ const WorkCardSkeleton = () => {
           <div className="w-[60px] h-[60px] bg-white/10 animate-pulse"></div>
         </div>
 
-        <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#0F3D3E]/20 to-[#8C9EFF]/20 rounded-none flex items-center justify-center h-8 w-28 border border-white/10 backdrop-blur-md">
+        <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 border border-white/10 backdrop-blur-md">
           <div className="h-3 w-16 bg-white/10 animate-pulse"></div>
         </div>
       </div>

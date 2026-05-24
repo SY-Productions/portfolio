@@ -11,6 +11,9 @@ import {
   Cup,
   Headphone,
 } from "iconsax-react";
+import { Sun, Moon } from "lucide-react";
+import { useTheme } from "@/app/context/ThemeContext";
+import { useLang, LANG_LABEL, Lang } from "@/app/context/LanguageContext";
 
 // Import logo
 import logo from "../public/vectors/logo.svg";
@@ -18,43 +21,43 @@ import logo from "../public/vectors/logo.svg";
 // Navigation items data structure
 const navigationItems = [
   {
-    title: "درباره من",
+    titleKey: "nav.aboutMe",
     logo1: <Hashtag size={26} color="white" variant="Bold" />,
     logo2: <Hashtag size={25} />,
     to: "#about-me",
   },
   {
-    title: "مهارت ها",
+    titleKey: "nav.skills",
     logo1: <Box size={26} color="white" variant="Bold" />,
     logo2: <Box size={25} />,
     to: "#skills",
   },
   {
-    title: "نمونه کارها",
+    titleKey: "nav.portfolio",
     logo1: <Code size={26} color="white" variant="Bold" />,
     logo2: <Code size={25} />,
     to: "#portfolio",
   },
   {
-    title: "سوابق تحصیلی",
+    titleKey: "nav.education",
     logo1: <Clipboard size={26} color="white" variant="Bold" />,
     logo2: <Clipboard size={25} />,
     to: "#education",
   },
   {
-    title: "سوابق کاری",
+    titleKey: "nav.work",
     logo1: <Archive size={26} color="white" variant="Bold" />,
     logo2: <Archive size={25} />,
     to: "#work",
   },
   {
-    title: "رویدادها",
+    titleKey: "nav.events",
     logo1: <Cup size={26} color="white" variant="Bold" />,
     logo2: <Cup size={25} />,
     to: "#events",
   },
   {
-    title: "تماس با من",
+    titleKey: "nav.contact",
     logo1: <Headphone size={26} color="white" variant="Bold" />,
     logo2: <Headphone size={25} />,
     to: "#call-me",
@@ -72,6 +75,9 @@ const SideBar = memo(function SideBar() {
     setIsOnMobile,
   } = useZState();
 
+  const { theme, toggleTheme } = useTheme();
+  const { lang, setLang, t } = useLang();
+
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   // Classes for sidebar container
@@ -83,7 +89,7 @@ const SideBar = memo(function SideBar() {
     "flex flex-row justify-start items-center gap-3 py-2 my-[1.5vh] rounded-none cursor-pointer hover:bg-white/5 transition-all duration-200 border-r-2 border-transparent";
 
   const navItemActiveClasses =
-    "border-white/10 border border-l-0 border-r-2 border-r-[#0F3D3E] bg-black/40 shadow-sm py-[5%]";
+    "border-white/10 border border-l-0 border-r-2 border-r-[#3B070A] bg-black/40 shadow-sm py-[5%]";
 
   useEffect(() => {
     const handleSideBar = () => {
@@ -113,7 +119,7 @@ const SideBar = memo(function SideBar() {
       {
         rootMargin: "-50% 0px -50% 0px", // Trigger when section is in middle of viewport
         threshold: 0,
-      }
+      },
     );
 
     // Observe all sections
@@ -154,7 +160,7 @@ const SideBar = memo(function SideBar() {
               alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
             />
             {/* Subtle glow behind logo */}
-            <div className="absolute -z-10 w-[30%] h-full bg-[#0F3D3E]/5 filter blur-xl"></div>
+            <div className="absolute -z-10 w-[30%] h-full bg-[#3B070A]/5 filter blur-xl"></div>
           </div>
 
           {/* Navigation items */}
@@ -169,7 +175,7 @@ const SideBar = memo(function SideBar() {
                   }
                 }}
                 href={item.to}
-                key={item.title}
+                key={item.to}
                 className={`${navItemBaseClasses} ${
                   item.to === sideBarScroll ? navItemActiveClasses : ""
                 }`}
@@ -177,7 +183,7 @@ const SideBar = memo(function SideBar() {
                 <span
                   className={
                     item.to === sideBarScroll
-                      ? "bg-gradient-to-r from-[#0F3D3E] to-[#8C9EFF] p-2 rounded-none mr-2 shadow-lg"
+                      ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none mr-2 shadow-lg"
                       : "bg-white/5 p-2 rounded-none mr-2 transition-all duration-300"
                   }
                 >
@@ -190,7 +196,7 @@ const SideBar = memo(function SideBar() {
                       : "hover:text-white/80"
                   }`}
                 >
-                  {item.title}
+                  {t(item.titleKey)}
                 </span>
               </a>
             ))}
@@ -198,16 +204,50 @@ const SideBar = memo(function SideBar() {
         </div>
 
         <div className="SWITCHES&BUTTON pb-[3vh]">
-          <div className="h-0 border-t border-white/10 mb-6" />
+          <div className="h-0 border-t border-white/10 mb-4" />
+
+          {/* Language + Theme Row */}
+          <div className="px-8 mb-3 flex items-center gap-2">
+            {/* Language switcher */}
+            {(["fa", "en", "ar"] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`flex-1 py-1.5 text-xs font-bold transition-all border ${
+                  lang === l
+                    ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
+                    : "bg-white/5 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/8"
+                }`}
+              >
+                {LANG_LABEL[l]}
+              </button>
+            ))}
+
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/10 mx-1" />
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              title={
+                theme === "dark"
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
+              }
+              className="flex items-center justify-center w-9 h-7 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+            >
+              {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+          </div>
 
           {/* Download Resume Button */}
           <div className="px-8">
             <a
               href="/youdexsof-fa-cv.pdf"
               download="Yousof-Hashemzade-Cv-Fa.pdf"
-              className="DOWNLOADPDF w-full h-12 flex items-center justify-center lg:flex border border-white/10 bg-gradient-to-r from-[#0F3D3E]/10 to-[#8C9EFF]/10 hover:from-[#0F3D3E]/20 hover:to-[#8C9EFF]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="DOWNLOADPDF w-full h-12 flex items-center justify-center lg:flex border border-white/10 bg-gradient-to-r from-[#3B070A]/10 to-[#3A0D12]/10 hover:from-[#3B070A]/20 hover:to-[#3A0D12]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              دانلود رزومه بصورت PDF
+              {t("nav.downloadCV")}
             </a>
           </div>
         </div>

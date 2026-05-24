@@ -44,11 +44,11 @@ const Events = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/0 backdrop-blur-sm"></div>
 
       <div
-        className="absolute top-20 left-10 w-64 h-64 bg-[#8C9EFF]/10 rounded-full blur-3xl animate-pulse"
+        className="absolute top-20 left-10 w-64 h-64 bg-[#3A0D12]/10 rounded-full blur-3xl animate-pulse"
         style={{ animationDuration: "10s" }}
       ></div>
       <div
-        className="absolute bottom-40 right-20 w-80 h-80 bg-[#0F3D3E]/10 rounded-full blur-3xl animate-pulse"
+        className="absolute bottom-40 right-20 w-80 h-80 bg-[#3B070A]/10 rounded-full blur-3xl animate-pulse"
         style={{ animationDuration: "15s", animationDelay: "3s" }}
       ></div>
 
@@ -56,7 +56,7 @@ const Events = () => {
         <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap relative inline-block">
             رویداد ها، مسابقات و جوایز
-            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#0F3D3E] to-[#8C9EFF]"></span>
+            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
           </h3>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             لیست رویدادها و مسابقاتی که در آن‌ها حضور داشته‌ام (این بخش به مرور
@@ -79,7 +79,7 @@ const Events = () => {
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#8C9EFF]/30 to-[#0F3D3E]/30"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#3A0D12]/30 to-[#3B070A]/30"></div>
     </div>
   );
 };

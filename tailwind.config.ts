@@ -17,10 +17,10 @@ const config: Config = {
     },
     extend: {
       colors: {
-        a: "#1B5B5C",
-        b: "#0F3D3E",
-        c: "#171717",
-        d: "#2A9D9A",
+        a: "#5A0E12",
+        b: "#3B070A",
+        c: "#141010",
+        d: "#8B1E24",
       },
     },
   },

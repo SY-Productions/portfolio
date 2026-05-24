@@ -2,11 +2,81 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== THEME VARIABLES ===== */
+:root {
+  /* Dark theme (default) */
+  --color-a: #5A0E12;
+  --color-b: #3B070A;
+  --color-c: #141010;
+  --color-d: #8B1E24;
+  --bg-primary: #141010;
+  --bg-secondary: #0D0000;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-muted: rgba(255, 255, 255, 0.3);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --sidebar-bg: #0D0000;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+}
+
+html.light-theme {
+  --color-a: #5A0E12;
+  --color-b: #7a1a20;
+  --color-c: #f5f0f0;
+  --color-d: #8B1E24;
+  --bg-primary: #f5f0f0;
+  --bg-secondary: #ede6e6;
+  --text-primary: #1a0505;
+  --text-secondary: rgba(26, 5, 5, 0.65);
+  --text-muted: rgba(26, 5, 5, 0.35);
+  --border-color: rgba(26, 5, 5, 0.12);
+  --sidebar-bg: #ede6e6;
+  --card-bg: rgba(26, 5, 5, 0.03);
+  --card-border: rgba(26, 5, 5, 0.08);
+}
+
 body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+}
+
+/* ===== SIDEBAR LAYOUT ===== */
+
+/* Sections need top offset when using anchor navigation on mobile (fixed navbar) */
+#about-me,
+#skills,
+#portfolio,
+#education,
+#work,
+#events,
+#call-me {
+  scroll-margin-top: 64px;
+}
+
+/* On desktop the navbar is hidden; no scroll offset needed from it */
+@media (min-width: 1024px) {
+
+  #about-me,
+  #skills,
+  #portfolio,
+  #education,
+  #work,
+  #events,
+  #call-me {
+    scroll-margin-top: 0px;
+  }
+}
+
+/* sidebar-adjusted: used on <main> — on desktop the sidebar occupies the right 20vw,
+   but each section already adds lg:mr-[22vw] so this class is intentionally empty.
+   Kept for semantic clarity and future use. */
+.sidebar-adjusted {
+  /* individual sections handle their own right-margin for the sidebar */
 }
 
 img {
@@ -77,13 +147,13 @@ img {
   position: fixed;
   height: var(--circle-size);
   width: var(--circle-size);
-  border: 1px solid #1B5B5C;
+  border: 1px solid #5A0E12;
   border-radius: 50%;
   color: transparent;
   background: linear-gradient(261.6deg,
-      #8c9eff -4.54%,
-      #1B5B5C 46.04%,
-      #0F3D3E 81.39%);
+      #3A0D12 -4.54%,
+      #5A0E12 46.04%,
+      #3B070A 81.39%);
   top: calc(var(--circle-size) / 2 * -1);
   left: calc(var(--circle-size) / 2 * -1);
   pointer-events: none;
@@ -176,9 +246,9 @@ img {
 
   /* Gradient Animation */
   background: linear-gradient(261.6deg,
-      #8c9eff -4.54%,
-      #1B5B5C 46.04%,
-      #0F3D3E 81.39%);
+      #3A0D12 -4.54%,
+      #5A0E12 46.04%,
+      #3B070A 81.39%);
   background-size: 200% 200%;
   /* Ensures animation movement */
   -webkit-background-clip: text;
@@ -240,7 +310,7 @@ img {
 .corner-accent::after {
   content: '';
   position: absolute;
-  background: linear-gradient(135deg, #8C9EFF 0%, #1B5B5C 100%);
+  background: linear-gradient(135deg, #3A0D12 0%, #5A0E12 100%);
 }
 
 .corner-accent::before {
@@ -253,21 +323,65 @@ img {
   height: 100%;
 }
 
-.corner-top-left { top: -1px; left: -1px; }
-.corner-top-left::before { top: 0; left: 0; }
-.corner-top-left::after { top: 0; left: 0; }
+.corner-top-left {
+  top: -1px;
+  left: -1px;
+}
 
-.corner-top-right { top: -1px; right: -1px; }
-.corner-top-right::before { top: 0; right: 0; }
-.corner-top-right::after { top: 0; right: 0; }
+.corner-top-left::before {
+  top: 0;
+  left: 0;
+}
 
-.corner-bottom-left { bottom: -1px; left: -1px; }
-.corner-bottom-left::before { bottom: 0; left: 0; }
-.corner-bottom-left::after { bottom: 0; left: 0; }
+.corner-top-left::after {
+  top: 0;
+  left: 0;
+}
 
-.corner-bottom-right { bottom: -1px; right: -1px; }
-.corner-bottom-right::before { bottom: 0; right: 0; }
-.corner-bottom-right::after { bottom: 0; right: 0; }
+.corner-top-right {
+  top: -1px;
+  right: -1px;
+}
+
+.corner-top-right::before {
+  top: 0;
+  right: 0;
+}
+
+.corner-top-right::after {
+  top: 0;
+  right: 0;
+}
+
+.corner-bottom-left {
+  bottom: -1px;
+  left: -1px;
+}
+
+.corner-bottom-left::before {
+  bottom: 0;
+  left: 0;
+}
+
+.corner-bottom-left::after {
+  bottom: 0;
+  left: 0;
+}
+
+.corner-bottom-right {
+  bottom: -1px;
+  right: -1px;
+}
+
+.corner-bottom-right::before {
+  bottom: 0;
+  right: 0;
+}
+
+.corner-bottom-right::after {
+  bottom: 0;
+  right: 0;
+}
 
 .glass-card-enhanced:hover .corner-accent {
   opacity: 1;
@@ -309,17 +423,22 @@ img {
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0, 0) scale(1);
     opacity: 0;
   }
+
   10% {
     opacity: 0.6;
   }
+
   50% {
     transform: translate(50px, -100px) scale(1.5);
     opacity: 0.8;
   }
+
   90% {
     opacity: 0.4;
   }
@@ -333,7 +452,7 @@ img {
   right: 0;
   height: 3px;
   width: 0;
-  background: linear-gradient(90deg, #8C9EFF 0%, #1B5B5C 50%, #0F3D3E 100%);
+  background: linear-gradient(90deg, #3A0D12 0%, #5A0E12 50%, #3B070A 100%);
   box-shadow: 0 0 10px rgba(140, 158, 255, 0.5);
   animation: lineExpand 1.5s ease-out 0.8s forwards;
 }
@@ -349,10 +468,13 @@ img {
 }
 
 @keyframes linePulse {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 80px;
     opacity: 1;
   }
+
   50% {
     width: 100px;
     opacity: 0.7;
@@ -387,6 +509,7 @@ img {
     opacity: 0;
     transform: translateY(10px) scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -424,9 +547,12 @@ img {
 /* ===== GRADIENT SHIFT ANIMATION ===== */
 
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }

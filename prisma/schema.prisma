@@ -10,8 +10,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model SiteSettings {
+  id          Int     @id @default(1)
+  themeA      String  @default("#5A0E12")
+  themeB      String  @default("#3B070A")
+  themeC      String  @default("#141010")
+  themeD      String  @default("#8B1E24")
+  totpSecret  String?
+  profilePic  String  @default("/me.jpg")
+  technologies String @default("Flutter,Dart,Python,FastAPI,Firebase,SQLite,Prisma,Next.js,React,TailwindCSS,GetX,BLoC,Retrofit,Figma,Git")
+}
+
 model WorkSample {
-  id             Int     @id
+  id             Int     @id @default(autoincrement())
   isWeb          String
   faTitle        String
   enTitle        String
@@ -25,6 +36,7 @@ model WorkSample {
   faEndDate      String
   enEndDate      String
   customLinks    String?
+  order          Int     @default(0)
 }
 
 model Education {
@@ -34,6 +46,7 @@ model Education {
   toYear      Int?
   picture     String
   description String
+  order       Int     @default(0)
 }
 
 model Work {
@@ -45,6 +58,7 @@ model Work {
   picture     String
   url         String
   description String
+  order       Int     @default(0)
 }
 
 model Event {
@@ -54,4 +68,5 @@ model Event {
   picture     String
   attachment  String
   description String
+  order       Int     @default(0)
 }

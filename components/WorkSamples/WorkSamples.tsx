@@ -22,7 +22,7 @@ export type WorkSample = {
   enStartDate: string;
   faEndDate: string;
   enEndDate: string;
-  customLinks:string;
+  customLinks: string;
 };
 
 export default function WorkSamples() {
@@ -61,7 +61,7 @@ export default function WorkSamples() {
     <WorkSampleProvider data={processedData}>
       <section
         id="portfolio"
-        className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full lg:h-screen h-[90vh] gap-x-[5vw]"
+        className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full lg:h-screen h-auto min-h-[90vh] gap-x-[5vw] pb-8 lg:pb-0"
       >
         <Preview />
         <div className="INFO&SWITCH">

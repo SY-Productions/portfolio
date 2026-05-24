@@ -3,13 +3,16 @@ import { z } from "zod";
 // WorkSample schema
 export const workSampleSchema = z.object({
   id: z.number().int().positive(),
-  isWeb: z.string().transform(val => val === "1"), 
+  isWeb: z.union([
+    z.boolean(),
+    z.string().transform((val) => val === "1" || val === "true"),
+  ]),
   faTitle: z.string(),
   enTitle: z.string(),
   faDescription: z.string(),
   enDescription: z.string(),
   pictures: z.string(),
-  link: z.string().url().optional(),
+  link: z.string().url().optional().or(z.literal("")),
   technologys: z.string(),
   faStartDate: z.string(),
   enStartDate: z.string(),

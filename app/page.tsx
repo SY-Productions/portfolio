@@ -11,6 +11,7 @@ import Work from "@/components/Work/Work";
 import Events from "@/components/Events/Events";
 import AnimatedCursor from "@/components/AnimtedCursor";
 import SideBar from "@/components/SideBar";
+import AdminQuickAccess from "@/components/AdminQuickAccess";
 
 export default function Page() {
   return (
@@ -24,11 +25,14 @@ export default function Page() {
         <LookingProgrammer />
         <Education />
         <Work />
-        <Events/>
+        <Events />
         <CallMe />
       </main>
       <Footer />
-      {typeof window !== 'undefined' && window.innerWidth > 900 && <AnimatedCursor />}
+      <AdminQuickAccess />
+      {typeof window !== "undefined" && window.innerWidth > 900 && (
+        <AnimatedCursor />
+      )}
     </Suspense>
   );
 }

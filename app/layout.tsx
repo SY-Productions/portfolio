@@ -1,5 +1,9 @@
 import "./globals.css";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
+import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
+import NextAuthProvider from "./context/NextAuthProvider";
+import SiteSettingsLoader from "@/components/SiteSettingsLoader";
 
 export const metadata: Metadata = {
   title: {
@@ -86,8 +90,6 @@ export const metadata: Metadata = {
     },
   },
 
-  themeColor: "#2A9D9A",
-
   icons: [
     { rel: "icon", url: "/favicons/favicon-16x16.png", sizes: "16x16" },
     { rel: "icon", url: "/favicons/favicon-32x32.png", sizes: "32x32" },
@@ -109,7 +111,6 @@ export const metadata: Metadata = {
     { rel: "manifest", url: "/site.webmanifest" },
   ],
 
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   applicationName: "یوسف هاشم زاده Portfolio",
   authors: [{ name: "یوسف هاشم زاده", url: "https://www.youdexsof.ir" }],
   generator: "Next.js",
@@ -122,6 +123,13 @@ export const metadata: Metadata = {
     email: true,
     url: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#8B1E24",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 // Create web manifest file (create public/site.webmanifest)
@@ -140,8 +148,8 @@ export const metadata: Metadata = {
 //       "type": "image/png"
 //     }
 //   ],
-//   "theme_color": "#2A9D9A",
-//   "background_color": "#171717",
+//   "theme_color": "#8B1E24",
+//   "background_color": "#141010",
 //   "display": "standalone",
 //   "start_url": "/"
 // }
@@ -181,9 +189,16 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-c">
-        <div className="selection:bg-[#1B5B5C]/20 selection:text-white">
-          {children}
-        </div>
+        <NextAuthProvider>
+          <ThemeProvider>
+            <LanguageProvider>
+              <SiteSettingsLoader />
+              <div className="selection:bg-[#5A0E12]/20 selection:text-white">
+                {children}
+              </div>
+            </LanguageProvider>
+          </ThemeProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

@@ -39,19 +39,15 @@ const Work = () => {
   }, []);
 
   return (
- <div
-  id="work"
-  className="relative h-auto min-h-[60vh] lg:min-h-screen"
->
-
-      <div className="absolute top-20 left-10 w-32 h-32 bg-[#8C9EFF]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#0F3D3E]/10 rounded-full blur-3xl"></div>
+    <div id="work" className="relative h-auto min-h-[60vh] lg:min-h-screen">
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#3A0D12]/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#3B070A]/10 rounded-full blur-3xl"></div>
 
       <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap relative inline-block">
             سوابق کاری
-            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#0F3D3E] to-[#8C9EFF]"></span>
+            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
           </h3>
 
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">

@@ -38,7 +38,7 @@ const PicInfo = memo(function PicInfo() {
       >
         <span className="font-[ybb] relative">
           ایران، اصفهان
-          <span className="absolute -bottom-1 right-0 w-12 h-[1px] bg-gradient-to-r from-[#8C9EFF] to-[#0F3D3E]"></span>
+          <span className="absolute -bottom-1 right-0 w-12 h-[1px] bg-gradient-to-r from-[#3A0D12] to-[#3B070A]"></span>
         </span>
 
         <button
@@ -48,7 +48,7 @@ const PicInfo = memo(function PicInfo() {
           <span dir="ltr" className="font-[inter] relative">
             +98 913 565 5644
             <span
-              className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[#8C9EFF] to-[#0F3D3E]
+              className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-[#3A0D12] to-[#3B070A]
                            group-hover:w-full transition-all duration-300"
             ></span>
           </span>
@@ -65,7 +65,7 @@ const PicInfo = memo(function PicInfo() {
 
         <span className="font-[inter] relative">
           yousofh255@gmail.com
-          <span className="absolute -bottom-1 left-0 w-12 h-[1px] bg-gradient-to-r from-[#0F3D3E] to-[#8C9EFF]"></span>
+          <span className="absolute -bottom-1 left-0 w-12 h-[1px] bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
         </span>
       </div>
     </div>

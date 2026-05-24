@@ -12,7 +12,7 @@ const WorkSampleSkeleton = () => {
       <div className="h-auto lg:h-[60vh] h-[30vh] mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem] relative">
         <div className="lg:h-[60vh] h-[30vh] lg:w-[30vw] relative flex items-center justify-center">
           <div className="w-full h-full bg-white/5 animate-pulse flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#8C9EFF] animate-spin"></div>
+            <div className="w-16 h-16 rounded-full border-t-2 border-l-2 border-[#3A0D12] animate-spin"></div>
           </div>
         </div>
       </div>

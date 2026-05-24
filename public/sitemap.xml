@@ -49,8 +49,8 @@ Disallow: /admin/`
       "type": "image/png"
     }
   ],
-  "theme_color": "#2A9D9A",
-  "background_color": "#171717",
+  "theme_color": "#8B1E24",
+  "background_color": "#141010",
   "display": "standalone",
   "start_url": "/"
 }`
@@ -170,8 +170,8 @@ export default async function handler(req) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#171717',
-            backgroundImage: 'linear-gradient(to bottom right, #2A9D9A 0%, #171717 100%)',
+            backgroundColor: '#141010',
+            backgroundImage: 'linear-gradient(to bottom right, #8B1E24 0%, #141010 100%)',
             padding: '40px',
           }}
         >

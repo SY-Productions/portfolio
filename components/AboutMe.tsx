@@ -50,7 +50,7 @@ const AboutMe = memo(function AboutMe() {
   return (
     <div
       id="about-me"
-      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden"
+      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden pt-[64px] lg:pt-0"
     >
       {/* Enhanced animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/0 backdrop-blur-sm animate-gradient-shift"></div>
@@ -65,15 +65,19 @@ const AboutMe = memo(function AboutMe() {
       <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:mr-[22vw] lg:ml-[3vw] lg:h-screen relative z-10">
         {/* Enhanced profile picture card with advanced glassmorphism */}
         <div
-          className={`PROF group p-5 mx-[5vw] lg:mx-0 mt-[13vh] lg:mt-[0rem]
+          className={`PROF group p-5 mx-[5vw] lg:mx-0 mt-[5vh] lg:mt-[0rem]
             glass-card-enhanced
             self-center basis-1/3 aspect-square w-[90%]
             overflow-hidden
             transition-all duration-700 ease-out
-            ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
         >
           {/* Inner glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-[#8C9EFF]/10 via-transparent to-[#0F3D3E]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#3A0D12]/10 via-transparent to-[#3B070A]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
           {/* Corner accents */}
           <div className="corner-accent corner-top-left"></div>
@@ -92,7 +96,13 @@ const AboutMe = memo(function AboutMe() {
 
         <div className="NAME&DESC&BUTTONS flex flex-col items-center basis-2/3">
           {/* Name section with staggered animation */}
-          <div className={`NAME py-6 w-[80%] transition-all duration-700 delay-200 ease-out ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+          <div
+            className={`NAME py-6 w-[80%] transition-all duration-700 delay-200 ease-out ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-8"
+            }`}
+          >
             <p className="mobile-developer tracking-tight text-[2.8rem] lg:text-[3rem] font-extrabold">
               MOBILE <br />
               DEVELOPER
@@ -105,7 +115,13 @@ const AboutMe = memo(function AboutMe() {
           </div>
 
           {/* Description with fade-in animation */}
-          <p className={`DESC font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-xl leading-7 w-[80%] mb-6 text-wrap transition-all duration-700 delay-300 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <p
+            className={`DESC font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-xl leading-7 w-[80%] mb-6 text-wrap transition-all duration-700 delay-300 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
             با ترکیبِ علاقه به کامپیوتر و چیز ساختن وارد این حوزه شدم و بعد از
             بسیاری تلاشهای ناکام در زمینه های مختلف، بخشِ مورد علاقه خودم رو
             پیدا کردم و شدم یه جوجه برنامه نویسِ فول استک اپلیکیشن های موبایل و
@@ -113,11 +129,17 @@ const AboutMe = memo(function AboutMe() {
           </p>
 
           {/* Buttons with staggered hover effects */}
-          <div className={`BUTTONS flex items-center gap-3 w-[80%] mb-8 transition-all duration-700 delay-400 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div
+            className={`BUTTONS flex items-center gap-3 w-[80%] mb-8 transition-all duration-700 delay-400 ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
+          >
             {/* Simple enhanced CTA button */}
-<a
+            <a
               href="#call-me"
-              className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#0F3D3E]/20 to-[#1B5B5C]/20 hover:from-[#0F3D3E]/30 hover:to-[#1B5B5C]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
+              className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#3B070A]/20 to-[#5A0E12]/20 hover:from-[#3B070A]/30 hover:to-[#5A0E12]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
             >
               تماس با من
             </a>

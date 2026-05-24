@@ -53,7 +53,7 @@ export default function Skill({ name }: Skill) {
   return (
     <div
       dir="rtl"
-      className="py-1 px-3 font-[inter] font-medium text-nowrap flex justify-between items-center bg-[#111] border border-[#222] text-white/80 w-32 hover:border-[#0F3D3E]/30 transition-all duration-200"
+      className="py-1 px-3 font-[inter] font-medium text-nowrap flex justify-between items-center bg-[#111] border border-[#222] text-white/80 w-32 hover:border-[#3B070A]/30 transition-all duration-200"
     >
       {name}
       <span className="text-white/60">{getIcon()}</span>

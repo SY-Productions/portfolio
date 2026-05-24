@@ -20,7 +20,7 @@ const EventCard = ({ event }: EventCardProps) => {
 
   return (
     <>
-      <div className="group w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-black/20 border border-white/10 hover:border-white/20 backdrop-blur-2xl rounded-none mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 cursor-pointer ease-in-out relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0 hover:before:w-full hover:before:h-full before:transition-all before:duration-500 before:border-l before:border-b before:border-[#8C9EFF]/50 hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0 after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500 after:border-t after:border-r after:border-[#0F3D3E]/50 after:transition-delay-300">
+      <div className="group w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-black/20 border border-white/10 hover:border-white/20 backdrop-blur-2xl rounded-none mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 cursor-pointer ease-in-out relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0 hover:before:w-full hover:before:h-full before:transition-all before:duration-500 before:border-l before:border-b before:border-[#3A0D12]/50 hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0 after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500 after:border-t after:border-r after:border-[#3B070A]/50 after:transition-delay-300">
         <div className="PIC&CAlENDAR flex items-start w-full m-4 relative">
           <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
             <Image
@@ -32,7 +32,7 @@ const EventCard = ({ event }: EventCardProps) => {
             />
           </div>
 
-          <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#0F3D3E]/20 to-[#8C9EFF]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
+          <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
             {event.date}
           </div>
         </div>
@@ -53,7 +53,7 @@ const EventCard = ({ event }: EventCardProps) => {
               <button
                 type="button"
                 onClick={handleOpenDialog}
-                className="flex items-center gap-2 text-[#8C9EFF] hover:text-[#0F3D3E] transition-colors duration-300 text-sm font-[ybn] relative z-20"
+                className="flex items-center gap-2 text-[#3A0D12] hover:text-[#3B070A] transition-colors duration-300 text-sm font-[ybn] relative z-20"
               >
                 <DocumentText size={16} />
                 مشاهده مدرک

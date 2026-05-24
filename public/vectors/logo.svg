@@ -8,9 +8,9 @@
     <!-- Subtle gradient overlay -->
     <defs>
         <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#0F3D3E" />
-            <stop offset="50%" stop-color="#1B5B5C" />
-            <stop offset="100%" stop-color="#2A9D9A" />
+            <stop offset="0%" stop-color="#3B070A" />
+            <stop offset="50%" stop-color="#5A0E12" />
+            <stop offset="100%" stop-color="#8B1E24" />
         </linearGradient>
 
         <linearGradient id="shimmerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -43,7 +43,7 @@
     <!-- Shadow filter -->
     <defs>
         <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-            <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#2A9D9A" flood-opacity="0.5" />
+            <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#8B1E24" flood-opacity="0.5" />
         </filter>
     </defs>
 </svg>

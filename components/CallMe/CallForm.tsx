@@ -21,7 +21,7 @@ const CallForm = memo(function CallForm() {
                        indent-7 hover:border-white/20 backdrop-blur-md`;
 
   const focusClasses =
-    "before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-[#8C9EFF] before:to-[#0F3D3E]";
+    "before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-gradient-to-r before:from-[#3A0D12] before:to-[#3B070A]";
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -112,8 +112,8 @@ const CallForm = memo(function CallForm() {
       </div>
       <button
         type="submit"
-        className="bg-gradient-to-r from-[#0F3D3E]/20 to-[#8C9EFF]/20
-                 hover:from-[#0F3D3E]/30 hover:to-[#8C9EFF]/30
+        className="bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20
+                 hover:from-[#3B070A]/30 hover:to-[#3A0D12]/30
                  border border-white/10 hover:border-white/20
                  text-white font-normal col-span-2 h-[7vh]
                  2xl:text-xl rounded-none
@@ -121,10 +121,10 @@ const CallForm = memo(function CallForm() {
                  relative
                  before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0
                  hover:before:w-full hover:before:h-full before:transition-all before:duration-500
-                 before:border-l before:border-b before:border-[#8C9EFF]/50
+                 before:border-l before:border-b before:border-[#3A0D12]/50
                  hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0
                  after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
-                 after:border-t after:border-r after:border-[#0F3D3E]/50
+                 after:border-t after:border-r after:border-[#3B070A]/50
                  backdrop-blur-md"
       >
         ارسال

@@ -22,7 +22,7 @@ export default function Information() {
   const tabClasses =
     "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
   const tabContentClasses =
-    "TABCONTENT h-[25vh] lg:h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
+    "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
 
   // Handle drawer opening
   const handleOpeningDrawer = () => {
@@ -42,7 +42,7 @@ export default function Information() {
   return (
     <div className="INFORMATION flex items-center justify-center lg:justify-normal">
       <Tabs
-        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-[#222] backdrop-blur-3xl"
+        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-[#222] backdrop-blur-3xl relative"
         variant="unstyled"
         index={isWebFrame ? 1 : 0}
         onChange={(index) => setIsWebFrame(index === 1)}
