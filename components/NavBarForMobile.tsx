@@ -24,7 +24,7 @@ const NavBarForMobile = memo(function NavBarForMobile() {
           <MenuIcon sx={{ color: "white" }} />
         </button>
 
-        {/* Theme toggle */}}
+        {/* Theme toggle */}
         <button
           onClick={toggleTheme}
           className="flex items-center justify-center w-8 h-8 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
