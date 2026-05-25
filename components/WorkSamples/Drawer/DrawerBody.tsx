@@ -5,6 +5,7 @@ import LaunchIcon from "@mui/icons-material/Launch";
 import { Copy, CopySuccess } from "iconsax-react";
 import Skill from "@/components/Skills/HardSkill";
 import { useWorkSample } from "../WorkSampleContext";
+import { useLang } from "@/app/context/LanguageContext";
 
 interface CustomLink {
   label: string;
@@ -13,6 +14,7 @@ interface CustomLink {
 
 const DrawerBody = memo(function DrawerBody() {
   const { getCurrentSample } = useWorkSample();
+  const { lang, t } = useLang();
   const [isCopied, setCopied] = useState(false);
 
   const currentSample = getCurrentSample();
@@ -21,59 +23,79 @@ const DrawerBody = memo(function DrawerBody() {
   const techsArray = currentSample?.technologys?.split(" ") || [];
 
   // Format link correctly
-  const formattedLink = currentSample?.link === "#"
-    ? null
-    : currentSample?.link?.startsWith("http")
+  const formattedLink =
+    currentSample?.link === "#"
+      ? null
+      : currentSample?.link?.startsWith("http")
       ? currentSample.link
       : `https://${currentSample?.link}`;
 
   // Parse custom links with proper error handling
   const customLinks: CustomLink[] = useMemo(() => {
     if (!currentSample?.customLinks) return [];
-
     try {
       const parsed = JSON.parse(currentSample.customLinks);
-
-      // Handle both array and single object cases
-      if (Array.isArray(parsed)) {
-        return parsed;
-      } else if (parsed && typeof parsed === 'object' && 'label' in parsed && 'link' in parsed) {
+      if (Array.isArray(parsed)) return parsed;
+      if (
+        parsed &&
+        typeof parsed === "object" &&
+        "label" in parsed &&
+        "link" in parsed
+      )
         return [parsed];
-      }
-    } catch (error) {
-      console.error("Error parsing customLinks:", error);
-    }
-
+    } catch {}
     return [];
   }, [currentSample?.customLinks]);
+
+  // Language-aware title
+  const getTitle = () => {
+    if (!currentSample) return "";
+    if (lang === "en" && currentSample.enTitle) return currentSample.enTitle;
+    if (lang === "ar" && (currentSample as any).arTitle)
+      return (currentSample as any).arTitle;
+    return currentSample.faTitle ?? "";
+  };
+
+  // Language-aware description
+  const getDescription = () => {
+    if (!currentSample) return "";
+    let desc = "";
+    if (lang === "en" && currentSample.enDescription)
+      desc = currentSample.enDescription;
+    else if (lang === "ar" && (currentSample as any).arDescription)
+      desc = (currentSample as any).arDescription;
+    else desc = currentSample.faDescription ?? "";
+    return desc.replace("%g%", "");
+  };
+
+  // Language-aware dates
+  const getStartDate = () => {
+    if (!currentSample) return "";
+    if (lang === "en" && currentSample.enStartDate)
+      return currentSample.enStartDate;
+    if (lang === "ar" && (currentSample as any).arStartDate)
+      return (currentSample as any).arStartDate;
+    return currentSample.faStartDate ?? "";
+  };
+
+  const getEndDate = () => {
+    if (!currentSample) return "";
+    if (lang === "en" && currentSample.enEndDate)
+      return currentSample.enEndDate;
+    if (lang === "ar" && (currentSample as any).arEndDate)
+      return (currentSample as any).arEndDate;
+    return currentSample.faEndDate ?? "";
+  };
 
   // Handle copy link functionality
   const handleCopy = useCallback(() => {
     if (formattedLink) {
       navigator.clipboard.writeText(formattedLink).then(() => {
         setCopied(true);
-        setTimeout(() => {
-          setCopied(false);
-        }, 3000);
+        setTimeout(() => setCopied(false), 3000);
       });
     }
   }, [formattedLink]);
-
-  // Determine link type for copy button text
-  const getLinkTypeText = () => {
-    if (!currentSample?.link || currentSample.link === "#") return "";
-
-    if (currentSample.link.includes("rtl")) return "راستچین";
-    if (currentSample.link.includes("liara")) return "دمو";
-    if (currentSample.link.includes("github")) return "گیت هاب";
-    return "محصول";
-  };
-
-  // Process description to handle special formatting
-  const processDescription = (description: string) => {
-    if (!description) return "";
-    return description.replace("%g%", "");
-  };
 
   if (!currentSample) return null;
 
@@ -81,29 +103,29 @@ const DrawerBody = memo(function DrawerBody() {
     <div className="DRAWERBODY font-[ybn] text-white/90 p-6 bg-[#0A0A0A]">
       {/* Title with optional link */}
       {formattedLink ? (
-<a
+        <a
           href={formattedLink}
           target="_blank"
           rel="noopener noreferrer"
           className="group flex w-fit items-center gap-2 text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4 cursor-pointer"
         >
           <h4 className="inline group-hover:underline group-hover:underline-offset-2">
-            {currentSample.faTitle}
+            {getTitle()}
           </h4>
           <LaunchIcon sx={{ fontSize: 20 }} />
         </a>
       ) : (
         <h4 className="text-lg xl:text-2xl 2xl:text-3xl 2xl:py-4 font-[ybb] pb-4">
-          {currentSample.faTitle}
+          {getTitle()}
         </h4>
       )}
 
-      {/* Description - first part */}
+      {/* Description */}
       <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
-        {currentSample.faDescription?.split("%g%")[0] || ""}
+        {getDescription()}
       </p>
 
-      {/* Copy link button - only show if there's a valid link */}
+      {/* Copy link button */}
       {formattedLink && (
         <button
           className={`py-2 px-4 w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap border border-[#222] transition-colors duration-300 ${
@@ -116,9 +138,9 @@ const DrawerBody = memo(function DrawerBody() {
         >
           {isCopied ? <CopySuccess size={18} /> : <Copy size={18} />}
           {isCopied ? (
-            <span>کپی شد!</span>
+            <span>{t("contact.copied")}</span>
           ) : (
-            <span>کپی لینک {getLinkTypeText()}</span>
+            <span>{t("workSamples.copyLink")}</span>
           )}
         </button>
       )}
@@ -127,7 +149,7 @@ const DrawerBody = memo(function DrawerBody() {
       {customLinks.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-2">
           {customLinks.map((customLink, index) => (
-<a
+            <a
               key={index}
               href={customLink.link}
               target="_blank"
@@ -148,10 +170,10 @@ const DrawerBody = memo(function DrawerBody() {
       {techsArray.length > 0 && (
         <div>
           <p className="text-lg 2xl:text-2xl pb-4 font-[ybb]">
-            تکنولوژی های به کار رفته:
+            {t("workSamples.technologies")}
           </p>
           <div className="inline-grid grid-cols-2 gap-2">
-            {techsArray.map((tech: React.Key | null | undefined) => (
+            {techsArray.map((tech) => (
               <Skill name={tech as string} key={tech} />
             ))}
           </div>
@@ -164,20 +186,24 @@ const DrawerBody = memo(function DrawerBody() {
       {/* Project timeframe */}
       <div className="SPENTTIME">
         <p className="text-lg 2xl:text-2xl pb-4 font-[ybb]">
-          زمان صرف شده برای پروژه :
+          {t("workSamples.timeSpent")}
         </p>
         <div className="flex items-center justify-evenly h-[10vh] border-y border-[#222]">
           <div className="flex flex-col">
-            <span className="text-xs lg:text-sm text-white/50">شروع :</span>
+            <span className="text-xs lg:text-sm text-white/50">
+              {t("workSamples.start")}
+            </span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {currentSample.faStartDate}
+              {getStartDate()}
             </span>
           </div>
           <div className="DIVIDER border-l border-[#222] w-1 h-full" />
           <div className="flex flex-col">
-            <span className="text-xs lg:text-sm text-white/50">اتمام :</span>
+            <span className="text-xs lg:text-sm text-white/50">
+              {t("workSamples.end")}
+            </span>
             <span className="text-sm lg:text-base 2xl:text-lg">
-              {currentSample.faEndDate}
+              {getEndDate()}
             </span>
           </div>
         </div>
@@ -185,7 +211,7 @@ const DrawerBody = memo(function DrawerBody() {
 
       {/* Full description */}
       <div className="FULLDECS pt-4 text-sm lg:text-base 2xl:text-lg text-white/70">
-        <p>{processDescription(currentSample.faDescription)}</p>
+        <p>{getDescription()}</p>
       </div>
     </div>
   );

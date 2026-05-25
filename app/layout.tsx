@@ -4,6 +4,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import NextAuthProvider from "./context/NextAuthProvider";
 import SiteSettingsLoader from "@/components/SiteSettingsLoader";
+import FirebaseProvider from "@/components/FirebaseProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -35,17 +36,35 @@ export const metadata: Metadata = {
     "توسعه iOS",
     "توسعه وب",
     "فلاتر ایران",
+    // English SEO
+    "Flutter expert",
+    "Flutter app developer",
+    "Mobile app developer portfolio",
+    "Flutter developer Iran",
+    "Dart developer",
+    "Full stack mobile developer",
+    "Flutter BLoC developer",
+    "Freelance Flutter developer",
+    "Flutter web developer",
+    "Cross platform mobile development",
+    // Arabic SEO
+    "مطور فلاتر",
+    "مطور تطبيقات الجوال",
+    "يوسف هاشم زاده",
+    "مطور موبايل محترف",
+    "تطبيقات فلاتر",
+    "مطور بايثون",
   ],
 
   openGraph: {
     type: "website",
     locale: "fa_IR",
-    alternateLocale: "en_US",
+    alternateLocale: ["en_US", "ar"],
     url: "https://www.youdexsof.ir/",
     siteName: "یوسف هاشم زاده | Yousof Hashemzadeh",
     title: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر | Portfolio",
     description:
-      "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
+      "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer | مطور تطبيقات الجوال المحترف",
     images: [
       {
         url: "../public/me.jpg",
@@ -87,6 +106,9 @@ export const metadata: Metadata = {
     canonical: "https://www.youdexsof.ir",
     languages: {
       "fa-IR": "https://www.youdexsof.ir",
+      "en-US": "https://www.youdexsof.ir?lang=en",
+      ar: "https://www.youdexsof.ir?lang=ar",
+      "x-default": "https://www.youdexsof.ir",
     },
   },
 
@@ -193,6 +215,7 @@ export default function RootLayout({
           <ThemeProvider>
             <LanguageProvider>
               <SiteSettingsLoader />
+              <FirebaseProvider />
               <div className="selection:bg-[#5A0E12]/20 selection:text-white">
                 {children}
               </div>

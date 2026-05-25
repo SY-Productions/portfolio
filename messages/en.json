@@ -17,10 +17,67 @@
     "contactBtn": "Contact Me"
   },
   "looking": {
-    "title": "Looking for a Programmer?",
+    "title": "Looking for a Developer?",
     "cta": "Get in Touch"
   },
+  "skills": {
+    "hardTitle": "Technical Skills",
+    "hardDesc": "My software skills spanning mobile app development, web applications, and server-side programming.",
+    "softTitle": "Soft Skills",
+    "softDesc": "Personal skills I've cultivated over time and continue to grow.",
+    "soft": {
+      "english": "English",
+      "persian": "Persian",
+      "criticalFeedback": "Open to Feedback",
+      "upToDate": "Up to Date",
+      "goodListener": "Good Listener",
+      "patient": "Patient"
+    }
+  },
+  "portfolio": {
+    "mobileApps": "Mobile Apps",
+    "webApps": "Web Apps",
+    "moreInfo": "More Details"
+  },
+  "education": {
+    "title": "Education",
+    "description": "I had a strong passion for art, but when it came to choosing a major, I went with mathematics, computer science, and engineering. My academic background (this section will grow over time):",
+    "present": "Present",
+    "to": "to"
+  },
+  "work": {
+    "title": "Work Experience",
+    "description": "Over the years I've built diverse professional experience, each role contributing to my growth in a unique way. From early on I sought challenging opportunities to sharpen my skills, participating in a wide range of projects. My work history (this section will grow over time):",
+    "present": "Present",
+    "to": "to"
+  },
+  "events": {
+    "title": "Events, Competitions & Awards",
+    "description": "A list of events and competitions I've participated in (this section will grow over time):",
+    "viewCertificate": "View Certificate"
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "description": "If you have something to discuss, feel free to email me through this form. If email isn't your style, my number is right there — call or text me :)",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "submitBtn": "Send",
+    "validation": "Please fill in all fields",
+    "copied": "Copied!",
+    "location": "Iran, Isfahan"
+  },
   "footer": {
-    "copyright": "All rights reserved by"
+    "copyright": "All rights reserved by",
+    "owner": "Yousof Hashemzade",
+    "suffix": "."
+  },
+  "workSamples": {
+    "copyLink": "Copy Link",
+    "technologies": "Technologies Used",
+    "timeSpent": "Project Timeline",
+    "start": "Start:",
+    "end": "End:"
   }
 }

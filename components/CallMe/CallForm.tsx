@@ -3,6 +3,7 @@ import React, { useState, memo } from "react";
 import MailIcon from "@mui/icons-material/Mail";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import TitleIcon from "@mui/icons-material/Title";
+import { useLang } from "@/app/context/LanguageContext";
 
 // Memoized for better performance
 const CallForm = memo(function CallForm() {
@@ -11,6 +12,7 @@ const CallForm = memo(function CallForm() {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [focused, setFocused] = useState<string | null>(null);
+  const { t } = useLang();
 
   const labelClasses = "relative flex items-center";
 
@@ -27,13 +29,17 @@ const CallForm = memo(function CallForm() {
     e.preventDefault();
 
     if (!name || !email || !subject || !message) {
-      alert("لطفا تمام فیلدها را پر کنید");
+      alert(t("contact.validation"));
       return;
     }
 
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(`نام: ${name}\n\nپیام: ${message}`)}`;
+      subject,
+    )}&body=${encodeURIComponent(
+      `${t("contact.namePlaceholder")}: ${name}\n\n${t(
+        "contact.messagePlaceholder",
+      )}: ${message}`,
+    )}`;
 
     window.location.href = mailtoLink;
   }
@@ -48,11 +54,11 @@ const CallForm = memo(function CallForm() {
       >
         <AccountBoxIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3 opacity-70"
+          className="absolute start-3 opacity-70"
         />
         <input
           type="text"
-          placeholder="نام"
+          placeholder={t("contact.namePlaceholder")}
           className={`${inputClasses} min-w-[10vw]`}
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -65,12 +71,12 @@ const CallForm = memo(function CallForm() {
       >
         <MailIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3 opacity-70"
+          className="absolute start-3 opacity-70"
         />
         <input
           type="email"
           className={`${inputClasses} min-w-[10vw]`}
-          placeholder="ایمیل"
+          placeholder={t("contact.emailPlaceholder")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onFocus={() => setFocused("email")}
@@ -84,11 +90,11 @@ const CallForm = memo(function CallForm() {
       >
         <TitleIcon
           sx={{ color: "white", fontSize: 20 }}
-          className="absolute right-3 opacity-70"
+          className="absolute start-3 opacity-70"
         />
         <input
           type="text"
-          placeholder="موضوع"
+          placeholder={t("contact.subjectPlaceholder")}
           className={inputClasses}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
@@ -103,7 +109,7 @@ const CallForm = memo(function CallForm() {
       >
         <textarea
           className={`${inputClasses} w-full indent-0 col-span-2 min-h-[8rem] max-h-[15rem] p-4`}
-          placeholder="پیام"
+          placeholder={t("contact.messagePlaceholder")}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onFocus={() => setFocused("message")}
@@ -127,7 +133,7 @@ const CallForm = memo(function CallForm() {
                  after:border-t after:border-r after:border-[#3B070A]/50
                  backdrop-blur-md"
       >
-        ارسال
+        {t("contact.submitBtn")}
       </button>
     </form>
   );

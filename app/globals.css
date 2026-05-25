@@ -282,7 +282,7 @@ img {
   box-shadow:
     0 8px 32px 0 rgba(0, 0, 0, 0.37),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
-    0 0 0 1px rgba(27, 91, 92, 0.1);
+    0 0 0 1px rgba(59, 7, 10, 0.15);
   position: relative;
 }
 
@@ -291,8 +291,8 @@ img {
   box-shadow:
     0 12px 40px 0 rgba(0, 0, 0, 0.45),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-    0 0 0 1px rgba(27, 91, 92, 0.2),
-    0 0 20px rgba(140, 158, 255, 0.1);
+    0 0 0 1px rgba(59, 7, 10, 0.25),
+    0 0 20px rgba(90, 14, 18, 0.2);
 }
 
 /* ===== CORNER ACCENTS ===== */
@@ -395,7 +395,7 @@ img {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: linear-gradient(135deg, rgba(140, 158, 255, 0.6), rgba(27, 91, 92, 0.6));
+  background: linear-gradient(135deg, rgba(90, 14, 18, 0.6), rgba(139, 30, 36, 0.6));
   border-radius: 50%;
   filter: blur(1px);
   animation: float 20s infinite ease-in-out;
@@ -453,7 +453,7 @@ img {
   height: 3px;
   width: 0;
   background: linear-gradient(90deg, #3A0D12 0%, #5A0E12 50%, #3B070A 100%);
-  box-shadow: 0 0 10px rgba(140, 158, 255, 0.5);
+  box-shadow: 0 0 10px rgba(90, 14, 18, 0.6);
   animation: lineExpand 1.5s ease-out 0.8s forwards;
 }
 
@@ -520,7 +520,7 @@ img {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(140, 158, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(90, 14, 18, 0.35);
 }
 
 .social-button:active {
@@ -533,7 +533,7 @@ img {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(140, 158, 255, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(90, 14, 18, 0.35) 0%, transparent 70%);
   transform: scale(0);
   opacity: 0;
   transition: all 0.6s ease-out;
@@ -561,4 +561,235 @@ img {
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 15s ease infinite;
+}
+
+/* ===== LIGHT THEME OVERRIDES ===== */
+/* Override hardcoded dark Tailwind utility classes when light-theme is active */
+
+html.light-theme body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Background overrides */
+html.light-theme .bg-black\/20,
+html.light-theme .bg-black\/30,
+html.light-theme .bg-black\/40,
+html.light-theme .bg-black\/80 {
+  background-color: rgba(26, 5, 5, 0.07) !important;
+}
+
+html.light-theme .bg-white\/5,
+html.light-theme .bg-white\/03 {
+  background-color: rgba(26, 5, 5, 0.04) !important;
+}
+
+html.light-theme .bg-white\/10 {
+  background-color: rgba(26, 5, 5, 0.08) !important;
+}
+
+html.light-theme .bg-white\/12 {
+  background-color: rgba(26, 5, 5, 0.10) !important;
+}
+
+/* Border overrides */
+html.light-theme .border-white\/10 {
+  border-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+html.light-theme .border-white\/15,
+html.light-theme .border-white\/20 {
+  border-color: rgba(26, 5, 5, 0.18) !important;
+}
+
+html.light-theme .border-b-white\/10 {
+  border-bottom-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+html.light-theme .border-t-white\/10 {
+  border-top-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+/* Text overrides */
+html.light-theme .text-white {
+  color: var(--text-primary) !important;
+}
+
+html.light-theme .text-white\/90 {
+  color: rgba(26, 5, 5, 0.90) !important;
+}
+
+html.light-theme .text-white\/80 {
+  color: rgba(26, 5, 5, 0.80) !important;
+}
+
+html.light-theme .text-white\/70 {
+  color: rgba(26, 5, 5, 0.70) !important;
+}
+
+html.light-theme .text-white\/60 {
+  color: rgba(26, 5, 5, 0.60) !important;
+}
+
+html.light-theme .text-white\/50 {
+  color: rgba(26, 5, 5, 0.50) !important;
+}
+
+html.light-theme .text-white\/40 {
+  color: rgba(26, 5, 5, 0.40) !important;
+}
+
+html.light-theme .text-white\/30 {
+  color: rgba(26, 5, 5, 0.30) !important;
+}
+
+/* Placeholder overrides for inputs */
+html.light-theme .placeholder\:text-white\/30::placeholder {
+  color: rgba(26, 5, 5, 0.30) !important;
+}
+
+/* Glass card light mode */
+html.light-theme .glass-card-enhanced {
+  background: rgba(26, 5, 5, 0.04) !important;
+  border-color: rgba(26, 5, 5, 0.10) !important;
+  box-shadow:
+    0 8px 32px 0 rgba(26, 5, 5, 0.08),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+    0 0 0 1px rgba(26, 5, 5, 0.05) !important;
+}
+
+html.light-theme .glass-card-enhanced:hover {
+  border-color: rgba(26, 5, 5, 0.18) !important;
+  box-shadow:
+    0 12px 40px 0 rgba(26, 5, 5, 0.12),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px rgba(26, 5, 5, 0.08) !important;
+}
+
+/* Social buttons in light mode */
+html.light-theme .social-button {
+  background: rgba(26, 5, 5, 0.05) !important;
+  border-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+html.light-theme .social-button:hover {
+  background: rgba(26, 5, 5, 0.10) !important;
+  border-color: rgba(26, 5, 5, 0.20) !important;
+  box-shadow: 0 6px 20px rgba(26, 5, 5, 0.12) !important;
+}
+
+/* Filter for icons in light mode — flip from white to dark */
+html.light-theme .filter.brightness-0.invert {
+  filter: brightness(0) !important;
+  opacity: 0.7 !important;
+}
+
+/* Sidebar aside in light mode */
+html.light-theme aside {
+  border-color: var(--border-color) !important;
+  background-color: rgba(237, 230, 230, 0.85) !important;
+}
+
+/* Inputs in light mode */
+html.light-theme input,
+html.light-theme textarea {
+  background-color: rgba(26, 5, 5, 0.04) !important;
+  border-color: rgba(26, 5, 5, 0.12) !important;
+  color: var(--text-primary) !important;
+}
+
+html.light-theme input::placeholder,
+html.light-theme textarea::placeholder {
+  color: rgba(26, 5, 5, 0.35) !important;
+}
+
+/* Nav mobile bar in light mode */
+html.light-theme nav.bg-black\/80 {
+  background-color: rgba(237, 230, 230, 0.90) !important;
+  border-bottom-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+/* Information tabs (WorkSamples) in light mode */
+html.light-theme .bg-\[\#111\],
+html.light-theme .bg-\[\#151515\],
+html.light-theme .bg-\[\#1A1A1A\] {
+  background-color: rgba(237, 230, 230, 0.95) !important;
+}
+
+html.light-theme .border-\[\#222\] {
+  border-color: rgba(26, 5, 5, 0.15) !important;
+}
+
+/* sample-index gradient in light mode */
+html.light-theme .sample-index {
+  background: linear-gradient(to bottom, rgba(26, 5, 5, 0.7), rgba(26, 5, 5, 0.3));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ===== DIRECTION-AWARE LAYOUT (uses html[dir] set by LanguageContext) ===== */
+
+/* Sidebar: fixed at inline-start (right for RTL, left for LTR) */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  inset-inline-start: 0;
+  height: 100vh;
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+/* Content sections: margin from inline-start (right for RTL, left for LTR) */
+@media (min-width: 1024px) {
+  .section-content {
+    margin-inline-start: 22vw;
+  }
+}
+
+/* LTR overrides for sidebar */
+html[dir="ltr"] .sidebar-inner {
+  flex-direction: row-reverse;
+}
+
+/* MUI icons keep their own color in light mode — handled by context styles above */
+
+/* ===== LIGHT THEME: additional overrides ===== */
+
+/* Drawer background in light mode */
+html.light-theme .bg-\[\#0A0A0A\],
+html.light-theme .bg-\[\#0F0F0F\] {
+  background-color: rgba(237, 230, 230, 0.98) !important;
+}
+
+/* Ripple effect in light mode */
+html.light-theme .ripple-effect {
+  background: radial-gradient(circle, rgba(90, 14, 18, 0.15) 0%, transparent 70%) !important;
+}
+
+/* mobile-developer text in light mode */
+html.light-theme .mobile-developer {
+  background: linear-gradient(to right, rgba(26, 5, 5, 0.3), rgba(26, 5, 5, 0));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* developer-name gradient in light mode */
+html.light-theme .developer-name {
+  background: linear-gradient(261.6deg,
+      #5A0E12 -4.54%,
+      #8B1E24 46.04%,
+      #3B070A 81.39%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tab borders (Chakra UI Tabs) in light mode */
+html.light-theme .border-b-white\/10 {
+  border-bottom-color: rgba(26, 5, 5, 0.12) !important;
+}
+
+/* Card backgrounds that use hardcoded very dark colors */
+html.light-theme .bg-\[\#0D0000\] {
+  background-color: var(--bg-secondary) !important;
 }

@@ -4,19 +4,32 @@ import React, { memo, useEffect, useState } from "react";
 import EventCard from "./EventCard";
 import { API_BASE_URL } from "@/app/config";
 import EventCardSkeleton from "./EventSkeletonCard";
+import { useLang } from "@/app/context/LanguageContext";
+import { useTheme } from "@/app/context/ThemeContext";
 
 export type Event = {
   id: number;
   name: string;
+  nameEn?: string;
+  nameAr?: string;
   date: string;
   picture: string;
   attachment: string;
   description?: string;
+  descriptionEn?: string;
+  descriptionAr?: string;
 };
 
 const Events = () => {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t, lang } = useLang();
+  const { theme } = useTheme();
+
+  const bgSvg =
+    theme === "light"
+      ? "bg-[url('/vectors/sec1-bglight.svg')]"
+      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +52,7 @@ const Events = () => {
   return (
     <div
       id="events"
-      className="relative bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover h-auto"
+      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/0 backdrop-blur-sm"></div>
 
@@ -52,15 +65,14 @@ const Events = () => {
         style={{ animationDuration: "15s", animationDelay: "3s" }}
       ></div>
 
-      <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12 relative z-10">
-        <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
+      <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
+        <div className="H3&P pt-[5vh] w-[80%] ps-[10vw] lg:ps-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap relative inline-block">
-            رویداد ها، مسابقات و جوایز
+            {t("events.title")}
             <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
           </h3>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
-            لیست رویدادها و مسابقاتی که در آن‌ها حضور داشته‌ام (این بخش به مرور
-            زمان کامل‌تر خواهد شد):
+            {t("events.description")}
           </p>
         </div>
         {loading && (
@@ -70,10 +82,10 @@ const Events = () => {
             ))}
           </div>
         )}
-        {!loading && events.length && (
+        {!loading && events.length > 0 && (
           <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
             {events.map((event) => (
-              <EventCard key={event.attachment} event={event} />
+              <EventCard key={event.attachment} event={event} lang={lang} />
             ))}
           </div>
         )}

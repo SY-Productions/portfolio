@@ -4,10 +4,10 @@
 </mask>
 <g mask="url(#mask0_392_1206)">
 <g filter="url(#filter0_f_392_1206)">
-<ellipse cx="18.8972" cy="704.902" rx="55.4148" ry="208.037" fill="#3626A7" fill-opacity="0.2"/>
+<ellipse cx="18.8972" cy="704.902" rx="55.4148" ry="208.037" fill="#8B1E24" fill-opacity="0.2"/>
 </g>
 <g filter="url(#filter1_f_392_1206)">
-<ellipse cx="162.38" cy="487.776" rx="39.8336" ry="148.454" fill="#3626A7" fill-opacity="0.3"/>
+<ellipse cx="162.38" cy="487.776" rx="39.8336" ry="148.454" fill="#8B1E24" fill-opacity="0.3"/>
 </g>
 <g opacity="0.2" filter="url(#filter2_f_392_1206)">
 <rect width="318.128" height="169.197" rx="84.5984" transform="matrix(0.277178 0.960819 -0.242148 0.970239 293.551 247.199)" fill="#3A71FF"/>
@@ -22,20 +22,20 @@
 <rect width="223.282" height="186.743" rx="93.3713" transform="matrix(0.277178 0.960819 -0.242148 0.970239 0.0302734 -6.05908)" fill="#3A71FF"/>
 </g>
 <g filter="url(#filter6_f_392_1206)">
-<rect width="240.6" height="234.794" rx="117.397" transform="matrix(0.277178 0.960819 -0.242148 0.970239 360.517 -164.612)" fill="#3626A7" fill-opacity="0.4"/>
+<rect width="240.6" height="234.794" rx="117.397" transform="matrix(0.277178 0.960819 -0.242148 0.970239 360.517 -164.612)" fill="#8B1E24" fill-opacity="0.4"/>
 </g>
 <g filter="url(#filter7_f_392_1206)">
-<rect width="305.217" height="83.7412" rx="41.8706" transform="matrix(-0.00592433 0.999982 -0.996632 -0.0820093 439.228 412.16)" fill="#3626A7" fill-opacity="0.19"/>
+<rect width="305.217" height="83.7412" rx="41.8706" transform="matrix(-0.00592433 0.999982 -0.996632 -0.0820093 439.228 412.16)" fill="#8B1E24" fill-opacity="0.19"/>
 </g>
 </g>
 <g filter="url(#filter8_b_392_1206)">
 <rect width="390" height="817" fill="white" fill-opacity="0.2"/>
 </g>
 <g filter="url(#filter9_f_392_1206)">
-<ellipse cx="273.955" cy="197.989" rx="107.045" ry="106.096" fill="#3626A7" fill-opacity="0.5"/>
+<ellipse cx="273.955" cy="197.989" rx="107.045" ry="106.096" fill="#8B1E24" fill-opacity="0.5"/>
 </g>
 <g opacity="0.3" filter="url(#filter10_f_392_1206)">
-<rect width="207.224" height="177.578" rx="88.7888" transform="matrix(0.735242 0.677805 -0.684309 0.729192 81.5181 268.471)" fill="#3626A7"/>
+<rect width="207.224" height="177.578" rx="88.7888" transform="matrix(0.735242 0.677805 -0.684309 0.729192 81.5181 268.471)" fill="#8B1E24"/>
 </g>
 <mask id="mask1_392_1206" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="34" y="139" width="322" height="319">
 <rect x="34.6733" y="139.109" width="320.544" height="318.403" fill="#D9D9D9"/>
@@ -101,3 +101,4 @@
 </filter>
 </defs>
 </svg>
+

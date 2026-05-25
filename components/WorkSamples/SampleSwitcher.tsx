@@ -2,7 +2,9 @@
 
 import React, { memo, useRef, useEffect, useState } from "react";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useWorkSample } from "./WorkSampleContext";
+import { useLang } from "@/app/context/LanguageContext";
 
 // Use memo to prevent unnecessary re-renders
 const SampleSwitcher = memo(function SampleSwitcher() {
@@ -11,8 +13,9 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     currentSampleIndex,
     totalSamples,
     goToNextSample,
-    goToPrevSample
+    goToPrevSample,
   } = useWorkSample();
+  const { dir } = useLang();
 
   const dotsContainerRef = useRef<HTMLDivElement | null>(null);
   const dotsScrollerRef = useRef<HTMLDivElement | null>(null);
@@ -32,11 +35,16 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     if (dotsContainerRef.current && isOverflowing) {
       const container = dotsContainerRef.current;
       const dotWidth = 24; // Width of dot + gap
-      const targetScroll = Math.max(0, (currentSampleIndex * dotWidth) - (container.clientWidth / 2) + (dotWidth / 2));
+      const targetScroll = Math.max(
+        0,
+        currentSampleIndex * dotWidth -
+          container.clientWidth / 2 +
+          dotWidth / 2,
+      );
 
       container.scrollTo({
         left: targetScroll,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   }, [currentSampleIndex, isOverflowing]);
@@ -51,15 +59,15 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     // Only apply animation when not interacting (for better UX)
     const startAnimation = () => {
       if (scroller && isOverflowing) {
-        scroller.style.animation = 'none'; // Reset animation
+        scroller.style.animation = "none"; // Reset animation
         void scroller.offsetWidth; // Force reflow
-        scroller.style.animation = 'dotsSpin 15s linear infinite alternate';
+        scroller.style.animation = "dotsSpin 15s linear infinite alternate";
       }
     };
 
     const stopAnimation = () => {
       if (scroller) {
-        scroller.style.animation = 'none';
+        scroller.style.animation = "none";
       }
     };
 
@@ -67,14 +75,20 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     const timer = setTimeout(startAnimation, 2000);
 
     // Stop animation on user interaction
-    dotsContainerRef.current?.addEventListener('mouseenter', stopAnimation);
-    dotsContainerRef.current?.addEventListener('touchstart', stopAnimation);
+    dotsContainerRef.current?.addEventListener("mouseenter", stopAnimation);
+    dotsContainerRef.current?.addEventListener("touchstart", stopAnimation);
 
     // Clean up
     return () => {
       clearTimeout(timer);
-      dotsContainerRef.current?.removeEventListener('mouseenter', stopAnimation);
-      dotsContainerRef.current?.removeEventListener('touchstart', stopAnimation);
+      dotsContainerRef.current?.removeEventListener(
+        "mouseenter",
+        stopAnimation,
+      );
+      dotsContainerRef.current?.removeEventListener(
+        "touchstart",
+        stopAnimation,
+      );
     };
   }, [isOverflowing]);
 
@@ -87,8 +101,12 @@ const SampleSwitcher = memo(function SampleSwitcher() {
       {/* Inject the required CSS for animation */}
       <style jsx global>{`
         @keyframes dotsSpin {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-100% + 100vw)); }
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% + 100vw));
+          }
         }
 
         .dots-container::-webkit-scrollbar {
@@ -105,7 +123,7 @@ const SampleSwitcher = memo(function SampleSwitcher() {
         {/* Sample index display */}
         <div className="NAME py-6">
           <p className="sample-index w-20 h-15">
-            {String(currentSampleIndex + 1).padStart(2, '0')}
+            {String(currentSampleIndex + 1).padStart(2, "0")}
           </p>
         </div>
 
@@ -114,14 +132,15 @@ const SampleSwitcher = memo(function SampleSwitcher() {
           ref={dotsContainerRef}
           className="dots-container flex gap-2 overflow-x-auto overflow-y-hidden max-w-[50%] md:max-w-[60%]"
           style={{
-            maskImage: isOverflowing ? 'linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)' : 'none',
-            WebkitMaskImage: isOverflowing ? 'linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)' : 'none'
+            maskImage: isOverflowing
+              ? "linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)"
+              : "none",
+            WebkitMaskImage: isOverflowing
+              ? "linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%)"
+              : "none",
           }}
         >
-          <div
-            ref={dotsScrollerRef}
-            className="flex gap-2 py-1 min-w-max"
-          >
+          <div ref={dotsScrollerRef} className="flex gap-2 py-1 min-w-max">
             {Array.from({ length: totalSamples }).map((_, idx) => (
               <span
                 key={idx}
@@ -144,23 +163,29 @@ const SampleSwitcher = memo(function SampleSwitcher() {
           </div>
         </div>
 
-        {/* Navigation buttons */}
+        {/* Navigation buttons — direction-aware */}
         <div className="flex gap-2">
           <button
             onClick={goToPrevSample}
             className={buttonClasses}
             aria-label="Previous sample"
           >
-            <KeyboardArrowRightIcon sx={{ fontSize: 20, color: "white" }} />
+            {dir === "rtl" ? (
+              <KeyboardArrowRightIcon sx={{ fontSize: 20, color: "white" }} />
+            ) : (
+              <KeyboardArrowLeftIcon sx={{ fontSize: 20, color: "white" }} />
+            )}
           </button>
           <button
             onClick={goToNextSample}
             className={buttonClasses}
             aria-label="Next sample"
           >
-            <KeyboardArrowRightIcon
-              sx={{ transform: "rotate(180deg)", fontSize: 20, color: "white" }}
-          />
+            {dir === "rtl" ? (
+              <KeyboardArrowLeftIcon sx={{ fontSize: 20, color: "white" }} />
+            ) : (
+              <KeyboardArrowRightIcon sx={{ fontSize: 20, color: "white" }} />
+            )}
           </button>
         </div>
       </div>

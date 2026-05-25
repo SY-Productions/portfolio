@@ -3,22 +3,41 @@
 import React, { useEffect, useState, memo } from "react";
 import { Work } from "./Work";
 import Image from "next/image";
-import { Calendar } from "iconsax-react";
 import Skill from "../Skills/HardSkill";
 import Link from "next/link";
+import { useLang } from "@/app/context/LanguageContext";
 
 interface WorkCardProps {
   work: Work;
+  lang?: string;
 }
 
-const WorkCard = ({ work }: WorkCardProps) => {
+const WorkCard = ({ work, lang }: WorkCardProps) => {
   const [mounted, setMounted] = useState(false);
+  const { t } = useLang();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) return null;
+
+  const displayName =
+    lang === "en" && work.nameEn
+      ? work.nameEn
+      : lang === "ar" && work.nameAr
+      ? work.nameAr
+      : work.name;
+
+  const displayDesc =
+    lang === "en" && work.descriptionEn
+      ? work.descriptionEn
+      : lang === "ar" && work.descriptionAr
+      ? work.descriptionAr
+      : work.description;
+
+  const presentLabel = t("work.present");
+  const toLabel = t("work.to");
 
   return (
     <Link
@@ -42,40 +61,37 @@ const WorkCard = ({ work }: WorkCardProps) => {
                   after:border-t after:border-r after:border-[#3B070A]/50 after:transition-delay-300"
       >
         <div className="PIC&CAlENDAR flex items-start w-full m-4 relative">
-          {/* Company logo with modern styling */}
           <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
             <Image
               className="aspect-square transition-all duration-300"
               width={60}
               height={60}
               src={work.picture}
-              alt={work.name}
+              alt={displayName}
             />
           </div>
 
-          {/* Date range with gradient styling - adjusted position */}
           <div
-            className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20
+            className="absolute end-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20
                         rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80
                         border border-white/10 backdrop-blur-md"
           >
-            {`${work.fromYear} تا ${work.toYear ? work.toYear : "حالا"}`}
+            {`${work.fromYear} ${toLabel} ${
+              work.toYear ? work.toYear : presentLabel
+            }`}
           </div>
         </div>
 
         <div className="NAME&DESC flex flex-col px-4">
-          {/* Title with subtle line accent */}
           <div className="relative text-lg py-2 text-white font-bold">
-            {work.name}
+            {displayName}
           </div>
 
-          {/* Description with enhanced styling */}
           <div className="text-sm pb-4 text-white/60 leading-6">
-            {work.description}
+            {displayDesc}
           </div>
         </div>
 
-        {/* Technologies section with improved spacing */}
         <div className="px-4 pb-4 flex flex-row-reverse gap-2 mt-auto">
           {work.technos.map((tech, index) => (
             <Skill key={index} name={tech} />

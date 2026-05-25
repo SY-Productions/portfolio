@@ -32,10 +32,14 @@ export async function POST(request: NextRequest) {
     const event = await prisma.event.create({
       data: {
         name: body.name,
+        nameEn: body.nameEn ?? "",
+        nameAr: body.nameAr ?? "",
         date: body.date,
         picture: body.picture,
         attachment: body.attachment,
         description: body.description,
+        descriptionEn: body.descriptionEn ?? "",
+        descriptionAr: body.descriptionAr ?? "",
         order: nextOrder,
       },
     });

@@ -12,6 +12,7 @@ import {
   LogOut,
   Shield,
   Settings,
+  BarChart2,
 } from "lucide-react";
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/admin/education", label: "Education", icon: GraduationCap },
   { href: "/admin/works", label: "Works", icon: Briefcase },
   { href: "/admin/events", label: "Events", icon: Trophy },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart2 },
   { href: "/admin/settings", label: "Site Settings", icon: Settings },
   { href: "/admin/setup-2fa", label: "Two-Factor Auth", icon: Shield },
 ];

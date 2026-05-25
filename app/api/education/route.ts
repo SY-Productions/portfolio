@@ -35,10 +35,14 @@ export async function POST(request: NextRequest) {
     const education = await prisma.education.create({
       data: {
         name: body.name,
+        nameEn: body.nameEn ?? "",
+        nameAr: body.nameAr ?? "",
         fromYear: body.fromYear,
         toYear: body.toYear ?? null,
         picture: body.picture,
         description: body.description,
+        descriptionEn: body.descriptionEn ?? "",
+        descriptionAr: body.descriptionAr ?? "",
         order: nextOrder,
       },
     });

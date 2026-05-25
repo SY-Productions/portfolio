@@ -7,27 +7,38 @@ import SampleSwitcher from "./SampleSwitcher";
 import { WorkSampleProvider } from "./WorkSampleContext";
 import { API_BASE_URL } from "@/app/config";
 import WorkSampleSkeleton from "./WorkSampleSkeleton";
+import { useTheme } from "@/app/context/ThemeContext";
 
 export type WorkSample = {
   id: number;
   isWeb: string;
   faTitle: string;
   enTitle: string;
+  arTitle?: string;
   faDescription: string;
   enDescription: string;
+  arDescription?: string;
   pictures: string;
   link: string;
   technologys: string;
   faStartDate: string;
   enStartDate: string;
+  arStartDate?: string;
   faEndDate: string;
   enEndDate: string;
+  arEndDate?: string;
   customLinks: string;
 };
 
 export default function WorkSamples() {
   const [data, setData] = useState<WorkSample[]>([]);
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
+
+  const bgSvg =
+    theme === "light"
+      ? "bg-[url('/vectors/sec1-bglight.svg')]"
+      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +72,7 @@ export default function WorkSamples() {
     <WorkSampleProvider data={processedData}>
       <section
         id="portfolio"
-        className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full lg:h-screen h-auto min-h-[90vh] gap-x-[5vw] pb-8 lg:pb-0"
+        className={`flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 ${bgSvg} bg-no-repeat bg-cover w-full lg:h-screen h-auto min-h-[90vh] gap-x-[5vw] pb-8 lg:pb-0`}
       >
         <Preview />
         <div className="INFO&SWITCH">
@@ -72,4 +83,3 @@ export default function WorkSamples() {
     </WorkSampleProvider>
   );
 }
-//

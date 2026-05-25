@@ -38,12 +38,16 @@ export async function POST(request: NextRequest) {
     const work = await prisma.work.create({
       data: {
         name: body.name,
+        nameEn: body.nameEn ?? "",
+        nameAr: body.nameAr ?? "",
         technos: JSON.stringify(body.technos),
         fromYear: body.fromYear,
         toYear: body.toYear,
         picture: body.picture,
         url: body.url,
         description: body.description,
+        descriptionEn: body.descriptionEn ?? "",
+        descriptionAr: body.descriptionAr ?? "",
         order: nextOrder,
       },
     });

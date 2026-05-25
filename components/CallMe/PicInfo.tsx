@@ -3,10 +3,12 @@
 import Image from "next/image";
 import React, { memo, useState } from "react";
 import pic from "@/public/me.jpg";
+import { useLang } from "@/app/context/LanguageContext";
 
 // Memoized for better performance
 const PicInfo = memo(function PicInfo() {
   const [copied, setCopied] = useState(false);
+  const { t } = useLang();
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText("98135655644");
@@ -37,7 +39,7 @@ const PicInfo = memo(function PicInfo() {
                      sm:[&>*]:py-0 [&>*]:text-white border-t border-white/10 z-20"
       >
         <span className="font-[ybb] relative">
-          ایران، اصفهان
+          {t("contact.location")}
           <span className="absolute -bottom-1 right-0 w-12 h-[1px] bg-gradient-to-r from-[#3A0D12] to-[#3B070A]"></span>
         </span>
 
@@ -59,7 +61,7 @@ const PicInfo = memo(function PicInfo() {
                             copied ? "opacity-100" : "opacity-0"
                           }`}
           >
-            کپی شد!
+            {t("contact.copied")}
           </span>
         </button>
 

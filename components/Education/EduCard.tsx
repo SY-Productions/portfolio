@@ -1,9 +1,35 @@
+"use client";
 import React, { memo } from "react";
 import { Education } from "./Education";
 import Image from "next/image";
-import { Calendar } from "iconsax-react";
-const EduCard = memo(function EduCard({ data }: { data: Education }) {
-  console.log(data);
+import { useLang } from "@/app/context/LanguageContext";
+
+const EduCard = memo(function EduCard({
+  data,
+  lang,
+}: {
+  data: Education;
+  lang?: string;
+}) {
+  const { t } = useLang();
+
+  const displayName =
+    lang === "en" && data.nameEn
+      ? data.nameEn
+      : lang === "ar" && data.nameAr
+      ? data.nameAr
+      : data.name;
+
+  const displayDesc =
+    lang === "en" && data.descriptionEn
+      ? data.descriptionEn
+      : lang === "ar" && data.descriptionAr
+      ? data.descriptionAr
+      : data.description;
+
+  const presentLabel = t("education.present");
+  const toLabel = t("education.to");
+
   return (
     <div className="group w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] bg-black/20 border border-white/10 hover:border-white/20 backdrop-blur-2xl rounded-none mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 cursor-pointer ease-in-out relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0 hover:before:w-full hover:before:h-full before:transition-all before:duration-500 before:border-l before:border-b before:border-[#3A0D12]/50 hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0 after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500 after:border-t after:border-r after:border-[#3B070A]/50 after:transition-delay-300">
       <div className="PIC&CAlENDAR flex items-start w-full m-4 relative">
@@ -13,22 +39,24 @@ const EduCard = memo(function EduCard({ data }: { data: Education }) {
             width={60}
             height={60}
             src={data.picture}
-            alt={data.name}
+            alt={displayName}
           />
         </div>
 
-        <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
-          {`${data.fromYear} تا ${data.toYear ? data.toYear : "اکنون"}`}
+        <div className="absolute end-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
+          {`${data.fromYear} ${toLabel} ${
+            data.toYear ? data.toYear : presentLabel
+          }`}
         </div>
       </div>
 
       <div className="NAME&DESC flex flex-col px-4">
         <div className="relative text-lg py-2 text-white font-bold">
-          {data.name}
+          {displayName}
         </div>
 
         <div className="text-sm pb-6 text-white/60 leading-6">
-          {data.description}
+          {displayDesc}
         </div>
       </div>
     </div>

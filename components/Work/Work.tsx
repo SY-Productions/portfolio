@@ -4,21 +4,27 @@ import React, { memo, useEffect, useState } from "react";
 import WorkCard from "./WorkCard";
 import { API_BASE_URL } from "@/app/config";
 import WorkCardSkeleton from "./WorkSkeletonCard";
+import { useLang } from "@/app/context/LanguageContext";
 
 export type Work = {
   id: number;
   name: string;
+  nameEn?: string;
+  nameAr?: string;
   fromYear: number;
   technos: string[];
   toYear?: number;
   picture: string;
   url: string;
   description?: string;
+  descriptionEn?: string;
+  descriptionAr?: string;
 };
 
 const Work = () => {
   const [works, setWorks] = useState<Work[]>([]);
   const [loading, setLoading] = useState(true);
+  const { t, lang } = useLang();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,18 +49,15 @@ const Work = () => {
       <div className="absolute top-20 left-10 w-32 h-32 bg-[#3A0D12]/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#3B070A]/10 rounded-full blur-3xl"></div>
 
-      <div className="ALL lg:w-[70vw] lg:mr-[22vw] pb-12 relative z-10">
-        <div className="H3&P pt-[5vh] w-[80%] pr-[10vw] lg:pr-0">
+      <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
+        <div className="H3&P pt-[5vh] w-[80%] ps-[10vw] lg:ps-0">
           <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap relative inline-block">
-            سوابق کاری
+            {t("work.title")}
             <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
           </h3>
 
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
-            در طول سال‌ها، تجربیات شغلی متفاوتی رو کسب کرده‌م که هر کدوم به شکل
-            خاصی به رشد و پیشرفت من کمک کردند. از ابتدای کارم، به دنبال فرصت‌های
-            چالش‌برانگیز بودم که توانایی‌هام رو تقویت کنن و در پروژه‌های مختلف
-            شرکت کرده‌ام. سوابق کاری من (این بخش به مرور زمان کامل‌تر می‌شود):
+            {t("work.description")}
           </p>
         </div>
 
@@ -65,10 +68,10 @@ const Work = () => {
             ))}
           </div>
         )}
-        {!loading && works.length && (
+        {!loading && works.length > 0 && (
           <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
             {works.map((data) => (
-              <WorkCard key={data.url} work={data} />
+              <WorkCard key={data.url} work={data} lang={lang} />
             ))}
           </div>
         )}

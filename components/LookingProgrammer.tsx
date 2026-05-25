@@ -1,7 +1,11 @@
+"use client";
 import React, { memo } from "react";
+import { useLang } from "@/app/context/LanguageContext";
 
 // Memoized for better performance
 const LookingProgrammer = memo(function LookingProgrammer() {
+  const { t } = useLang();
+
   return (
     <div className="relative font-[ybb] w-full text-white h-auto min-h-[15vh] flex flex-col md:flex-row items-center justify-between py-[6vh] gap-8 overflow-hidden">
       {/* Improved gradient background with sharper look */}
@@ -23,15 +27,15 @@ const LookingProgrammer = memo(function LookingProgrammer() {
       ></div>
 
       {/* Content with higher contrast and modern styling */}
-      <div className="font-[ybn] text-2xl 2xl:text-3xl md:mr-[5rem] lg:mr-[22vw] relative z-10 flex items-center">
+      <div className="font-[ybn] text-2xl 2xl:text-3xl md:ms-[5rem] lg:ms-[22vw] relative z-10 flex items-center">
         <span className="relative text-white drop-shadow-md">
-          دنبال برنامه نویس میگردی؟
+          {t("looking.title")}
         </span>
       </div>
 
       <a
         href="#call-me"
-        className="font-[ybb] w-[60vw] md:w-auto md:min-w-[180px] lg:min-w-0 lg:w-[15vw] h-[6vh] md:ml-[10vw]
+        className="font-[ybb] w-[60vw] md:w-auto md:min-w-[180px] lg:min-w-0 lg:w-[15vw] h-[6vh] md:me-[10vw]
                   flex items-center justify-center
                   bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20
                   hover:from-[#3B070A]/30 hover:to-[#3A0D12]/30
@@ -48,7 +52,7 @@ const LookingProgrammer = memo(function LookingProgrammer() {
                   after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500
                   after:border-t after:border-r after:border-[#3B070A]/50"
       >
-        باهام تماس بگیر
+        {t("looking.cta")}
       </a>
     </div>
   );

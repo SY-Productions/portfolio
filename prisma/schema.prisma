@@ -26,47 +26,70 @@ model WorkSample {
   isWeb          String
   faTitle        String
   enTitle        String
+  arTitle        String  @default("")
   faDescription  String
   enDescription  String
+  arDescription  String  @default("")
   pictures       String
   link           String
   technologys    String
   faStartDate    String
   enStartDate    String
+  arStartDate    String  @default("")
   faEndDate      String
   enEndDate      String
+  arEndDate      String  @default("")
   customLinks    String?
   order          Int     @default(0)
 }
 
 model Education {
-  id          Int     @id @default(autoincrement())
-  name        String
-  fromYear    Int
-  toYear      Int?
-  picture     String
-  description String
-  order       Int     @default(0)
+  id            Int     @id @default(autoincrement())
+  name          String
+  nameEn        String  @default("")
+  nameAr        String  @default("")
+  fromYear      Int
+  toYear        Int?
+  picture       String
+  description   String
+  descriptionEn String  @default("")
+  descriptionAr String  @default("")
+  order         Int     @default(0)
 }
 
 model Work {
-  id          Int     @id @default(autoincrement())
-  name        String
-  technos     String // Will store as JSON string
-  fromYear    Int
-  toYear      Int?
-  picture     String
-  url         String
-  description String
-  order       Int     @default(0)
+  id            Int     @id @default(autoincrement())
+  name          String
+  nameEn        String  @default("")
+  nameAr        String  @default("")
+  technos       String // Will store as JSON string
+  fromYear      Int
+  toYear        Int?
+  picture       String
+  url           String
+  description   String
+  descriptionEn String  @default("")
+  descriptionAr String  @default("")
+  order         Int     @default(0)
 }
 
 model Event {
-  id          Int     @id @default(autoincrement())
-  name        String
-  date        String
-  picture     String
-  attachment  String
-  description String
-  order       Int     @default(0)
+  id            Int     @id @default(autoincrement())
+  name          String
+  nameEn        String  @default("")
+  nameAr        String  @default("")
+  date          String
+  picture       String
+  attachment    String
+  description   String
+  descriptionEn String  @default("")
+  descriptionAr String  @default("")
+  order         Int     @default(0)
+}
+
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String
+  lang      String   @default("fa")
+  createdAt DateTime @default(now())
 }

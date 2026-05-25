@@ -76,20 +76,23 @@ const SideBar = memo(function SideBar() {
   } = useZState();
 
   const { theme, toggleTheme } = useTheme();
-  const { lang, setLang, t } = useLang();
+  const { lang, setLang, t, dir } = useLang();
 
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  // Classes for sidebar container
-  const sideBarFullClasses =
-    "z-50 w-[100vw] lg:w-[20vw] flex flex-row h-screen fixed transition-all duration-300 ";
+  // Direction-aware hide translation
+  const hideTranslation =
+    dir === "rtl" ? "translate-x-[100vw]" : "-translate-x-[100vw]";
 
-  // Classes for navigation items
-  const navItemBaseClasses =
-    "flex flex-row justify-start items-center gap-3 py-2 my-[1.5vh] rounded-none cursor-pointer hover:bg-white/5 transition-all duration-200 border-r-2 border-transparent";
+  // Classes for sidebar container — use CSS logical positioning (start-0 = right in RTL, left in LTR)
+  const sideBarFullClasses =
+    "z-50 w-[100vw] lg:w-[20vw] flex h-screen fixed top-0 start-0 transition-all duration-300 ";
+
+  // Classes for navigation items — direction-aware active border
+  const navItemBaseClasses = `flex flex-row justify-start items-center gap-3 py-2 my-[1.5vh] rounded-none cursor-pointer hover:bg-white/5 transition-all duration-200 border-e-2 border-transparent`;
 
   const navItemActiveClasses =
-    "border-white/10 border border-l-0 border-r-2 border-r-[#3B070A] bg-black/40 shadow-sm py-[5%]";
+    "border-white/10 border border-s-0 border-e-2 border-e-[#3B070A] bg-black/40 shadow-sm py-[5%]";
 
   useEffect(() => {
     const handleSideBar = () => {
@@ -143,15 +146,15 @@ const SideBar = memo(function SideBar() {
         isOnMobile
           ? isOpen
             ? sideBarFullClasses
-            : sideBarFullClasses + "translate-x-[100vw]"
+            : sideBarFullClasses + hideTranslation
           : sideBarFullClasses
       }
     >
-      <aside className="font-[ybn] border-l border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl">
+      <aside className="font-[ybn] border-e border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl order-first">
         {/* Mobile spacing for navbar - only visible on mobile */}
         <div className="lg:hidden h-[60px]"></div>
 
-        <div className="LOGO&OPTIONS text-base text-white/50 mr-8 overflow-y-auto flex-grow">
+        <div className="LOGO&OPTIONS text-base text-white/50 ms-8 overflow-y-auto flex-grow">
           {/* Logo container with subtle glow */}
           <div className="relative hidden lg:flex items-center justify-start w-full my-[3vh]">
             <Image
@@ -183,8 +186,8 @@ const SideBar = memo(function SideBar() {
                 <span
                   className={
                     item.to === sideBarScroll
-                      ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none mr-2 shadow-lg"
-                      : "bg-white/5 p-2 rounded-none mr-2 transition-all duration-300"
+                      ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none ms-2 shadow-lg"
+                      : "bg-white/5 p-2 rounded-none ms-2 transition-all duration-300"
                   }
                 >
                   {item.to === sideBarScroll ? item.logo1 : item.logo2}
@@ -213,11 +216,18 @@ const SideBar = memo(function SideBar() {
               <button
                 key={l}
                 onClick={() => setLang(l)}
-                className={`flex-1 py-1.5 text-xs font-bold transition-all border ${
+                className={`flex-1 py-1.5 font-bold transition-all border leading-none ${
                   lang === l
                     ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
                     : "bg-white/5 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/8"
                 }`}
+                style={{
+                  fontSize: l === "en" ? "0.7rem" : "0.75rem",
+                  fontFamily:
+                    l === "en" ? "'Inter', 'Segoe UI', sans-serif" : "inherit",
+                  letterSpacing: l === "en" ? "0.05em" : "normal",
+                  fontWeight: 700,
+                }}
               >
                 {LANG_LABEL[l]}
               </button>

@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useState } from "react";
+import { useLang } from "@/app/context/LanguageContext";
+import { useTheme } from "@/app/context/ThemeContext";
 
 // Optimized imports
 import prof from "@/public/pic.png";
@@ -42,6 +44,13 @@ const socialLinks = [
 
 const AboutMe = memo(function AboutMe() {
   const [isVisible, setIsVisible] = useState(false);
+  const { t, dir } = useLang();
+  const { theme } = useTheme();
+
+  const bgSvg =
+    theme === "light"
+      ? "bg-[url('/vectors/sec1-bglight.svg')]"
+      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     setIsVisible(true);
@@ -50,7 +59,7 @@ const AboutMe = memo(function AboutMe() {
   return (
     <div
       id="about-me"
-      className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden pt-[64px] lg:pt-0"
+      className={`${bgSvg} bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden pt-[64px] lg:pt-0`}
     >
       {/* Enhanced animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/0 backdrop-blur-sm animate-gradient-shift"></div>
@@ -62,7 +71,7 @@ const AboutMe = memo(function AboutMe() {
         <div className="particle particle-3"></div>
       </div>
 
-      <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:mr-[22vw] lg:ml-[3vw] lg:h-screen relative z-10">
+      <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:ms-[22vw] lg:me-[3vw] lg:h-screen relative z-10">
         {/* Enhanced profile picture card with advanced glassmorphism */}
         <div
           className={`PROF group p-5 mx-[5vw] lg:mx-0 mt-[5vh] lg:mt-[0rem]
@@ -122,10 +131,7 @@ const AboutMe = memo(function AboutMe() {
                 : "opacity-0 translate-y-4"
             }`}
           >
-            با ترکیبِ علاقه به کامپیوتر و چیز ساختن وارد این حوزه شدم و بعد از
-            بسیاری تلاشهای ناکام در زمینه های مختلف، بخشِ مورد علاقه خودم رو
-            پیدا کردم و شدم یه جوجه برنامه نویسِ فول استک اپلیکیشن های موبایل و
-            وب اپلیکیشن ها:)
+            {t("aboutMe.description")}
           </p>
 
           {/* Buttons with staggered hover effects */}
@@ -141,7 +147,7 @@ const AboutMe = memo(function AboutMe() {
               href="#call-me"
               className="flex items-center text-white justify-center h-[6vh] lg:h-[8vh] px-[1.5vw] min-w-[22vw] sm:min-w-0 bg-gradient-to-r from-[#3B070A]/20 to-[#5A0E12]/20 hover:from-[#3B070A]/30 hover:to-[#5A0E12]/30 rounded-none font-[ybn] text-nowrap text-sm 2xl:text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_5px_15px_rgba(140,158,255,0.2)] border border-white/10 hover:border-white/20 backdrop-blur-md"
             >
-              تماس با من
+              {t("aboutMe.contactBtn")}
             </a>
 
             {/* Enhanced social media buttons */}

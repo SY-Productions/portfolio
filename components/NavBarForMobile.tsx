@@ -30,11 +30,18 @@ const NavBarForMobile = memo(function NavBarForMobile() {
             <button
               key={l}
               onClick={() => setLang(l)}
-              className={`px-2 py-1.5 text-xs font-bold transition-all border ${
+              className={`px-2 py-1.5 font-bold transition-all border leading-none ${
                 lang === l
                   ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
                   : "bg-white/5 border-white/10 text-white/40 hover:text-white/70"
               }`}
+              style={{
+                fontSize: l === "en" ? "0.65rem" : "0.7rem",
+                fontFamily:
+                  l === "en" ? "'Inter', 'Segoe UI', sans-serif" : "inherit",
+                letterSpacing: l === "en" ? "0.05em" : "normal",
+                fontWeight: 700,
+              }}
             >
               {LANG_LABEL[l]}
             </button>

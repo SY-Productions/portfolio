@@ -3,8 +3,10 @@
 import React from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useWorkSample } from "./WorkSampleContext";
 import Drawer from "./Drawer/Drawer";
+import { useLang } from "@/app/context/LanguageContext";
 
 export default function Information() {
   const {
@@ -17,6 +19,7 @@ export default function Information() {
   } = useWorkSample();
 
   const currentSample = getCurrentSample();
+  const { t, lang, dir } = useLang();
 
   // Common CSS classes
   const tabClasses =
@@ -24,17 +27,32 @@ export default function Information() {
   const tabContentClasses =
     "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
 
-  // Handle drawer opening
   const handleOpeningDrawer = () => {
     setCurrentPicIndex(0);
     setIsDrawerOpen(true);
   };
 
-  // Process description to handle special formatting
   const getDescription = (description: string) => {
     return description.includes("%g%")
       ? description.split("%g%")[0]
       : description;
+  };
+
+  const getTitle = () => {
+    if (!currentSample) return "";
+    if (lang === "en" && currentSample.enTitle) return currentSample.enTitle;
+    if (lang === "ar" && (currentSample as any).arTitle)
+      return (currentSample as any).arTitle;
+    return currentSample.faTitle ?? "";
+  };
+
+  const getDesc = () => {
+    if (!currentSample) return "";
+    if (lang === "en" && currentSample.enDescription)
+      return getDescription(currentSample.enDescription);
+    if (lang === "ar" && (currentSample as any).arDescription)
+      return getDescription((currentSample as any).arDescription);
+    return getDescription(currentSample.faDescription);
   };
 
   if (!currentSample) return null;
@@ -42,7 +60,7 @@ export default function Information() {
   return (
     <div className="INFORMATION flex items-center justify-center lg:justify-normal">
       <Tabs
-        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:mr-[22vw] border border-[#222] backdrop-blur-3xl relative"
+        className="ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:ms-[22vw] border border-[#222] backdrop-blur-3xl relative"
         variant="unstyled"
         index={isWebFrame ? 1 : 0}
         onChange={(index) => setIsWebFrame(index === 1)}
@@ -56,7 +74,7 @@ export default function Information() {
               color: "rgb(255 255 255 / 0.8)",
             }}
           >
-            اپلیکیشن های موبایل
+            {t("portfolio.mobileApps")}
           </Tab>
           <Tab
             className={tabClasses}
@@ -66,27 +84,27 @@ export default function Information() {
               color: "rgb(255 255 255 / 0.8)",
             }}
           >
-            اپلیکیشن های وب
+            {t("portfolio.webApps")}
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel padding={0}>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {currentSample?.faTitle ?? ""}
+                {getTitle()}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {getDescription(currentSample.faDescription)}
+                {getDesc()}
               </div>
             </div>
           </TabPanel>
           <TabPanel padding={0}>
             <div className={tabContentClasses}>
               <div className="text-lg 2xl:text-2xl py-[2.5vh] text-white/80">
-                {currentSample?.faTitle ?? ""}
+                {getTitle()}
               </div>
               <div className="font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]">
-                {getDescription(currentSample.faDescription)}
+                {getDesc()}
               </div>
             </div>
           </TabPanel>
@@ -95,7 +113,12 @@ export default function Information() {
           onClick={handleOpeningDrawer}
           className="absolute bottom-0 flex items-center justify-between px-4 hover:bg-[#1A1A1A] bg-[#151515] text-white w-full h-[5vh] min-h-12 border-t border-[#222]"
         >
-          اطلاعات بیشتر <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />
+          {t("portfolio.moreInfo")}{" "}
+          {dir === "rtl" ? (
+            <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />
+          ) : (
+            <ArrowForwardIosIcon sx={{ fontSize: 12 }} />
+          )}
         </button>
       </Tabs>
 

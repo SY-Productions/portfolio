@@ -1,22 +1,38 @@
 import React, { memo, useState } from "react";
 import { Event } from "./Events";
 import Image from "next/image";
-import { Calendar, DocumentText } from "iconsax-react";
+import { DocumentText } from "iconsax-react";
 import CertificateDialog from "./CertificateDialog";
+import { useLang } from "@/app/context/LanguageContext";
 
 interface EventCardProps {
   event: Event;
+  lang?: string;
 }
 
-const EventCard = ({ event }: EventCardProps) => {
+const EventCard = ({ event, lang }: EventCardProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { t } = useLang();
 
   const handleOpenDialog = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Opening dialog with attachment:", event.attachment);
     setIsDialogOpen(true);
   };
+
+  const displayName =
+    lang === "en" && event.nameEn
+      ? event.nameEn
+      : lang === "ar" && event.nameAr
+      ? event.nameAr
+      : event.name;
+
+  const displayDesc =
+    lang === "en" && event.descriptionEn
+      ? event.descriptionEn
+      : lang === "ar" && event.descriptionAr
+      ? event.descriptionAr
+      : event.description;
 
   return (
     <>
@@ -28,23 +44,23 @@ const EventCard = ({ event }: EventCardProps) => {
               width={60}
               height={60}
               src={event.picture}
-              alt={event.name}
+              alt={displayName}
             />
           </div>
 
-          <div className="absolute left-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
+          <div className="absolute end-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
             {event.date}
           </div>
         </div>
 
         <div className="NAME&DESC flex flex-col px-4">
           <div className="relative text-lg py-2 text-white font-bold">
-            {event.name}
+            {displayName}
           </div>
 
-          {event.description && (
+          {displayDesc && (
             <div className="text-sm pb-3 text-white/60 leading-6">
-              {event.description}
+              {displayDesc}
             </div>
           )}
 
@@ -56,7 +72,7 @@ const EventCard = ({ event }: EventCardProps) => {
                 className="flex items-center gap-2 text-[#3A0D12] hover:text-[#3B070A] transition-colors duration-300 text-sm font-[ybn] relative z-20"
               >
                 <DocumentText size={16} />
-                مشاهده مدرک
+                {t("events.viewCertificate")}
               </button>
             </div>
           )}
@@ -68,7 +84,7 @@ const EventCard = ({ event }: EventCardProps) => {
           isOpen={isDialogOpen}
           onClose={() => setIsDialogOpen(false)}
           imageUrl={event.attachment}
-          title={event.name}
+          title={displayName}
         />
       )}
     </>
