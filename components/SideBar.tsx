@@ -11,7 +11,7 @@ import {
   Cup,
   Headphone,
 } from "iconsax-react";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, X, Menu } from "lucide-react";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useLang, LANG_LABEL, Lang } from "@/app/context/LanguageContext";
 
@@ -141,13 +141,12 @@ const SideBar = memo(function SideBar() {
   }, [setSideBarScroll]);
 
   return (
+    <>
     <div
       className={
-        isOnMobile
-          ? isOpen
-            ? sideBarFullClasses
-            : sideBarFullClasses + hideTranslation
-          : sideBarFullClasses
+        isOpen
+          ? sideBarFullClasses
+          : sideBarFullClasses + hideTranslation
       }
     >
       <aside className="font-[ybn] border-e border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl order-first">
@@ -156,7 +155,7 @@ const SideBar = memo(function SideBar() {
 
         <div className="LOGO&OPTIONS text-base text-white/50 ms-8 overflow-y-auto flex-grow">
           {/* Logo container with subtle glow */}
-          <div className="relative hidden lg:flex items-center justify-start w-full my-[3vh]">
+          <div className="relative hidden lg:flex items-center justify-between w-full my-[3vh]">
             <Image
               className="w-[30%] h-auto transition-all duration-300 hover:opacity-100 opacity-90"
               src={logo}
@@ -164,6 +163,14 @@ const SideBar = memo(function SideBar() {
             />
             {/* Subtle glow behind logo */}
             <div className="absolute -z-10 w-[30%] h-full bg-[#3B070A]/5 filter blur-xl"></div>
+            {/* Desktop close button */}
+            <button
+              onClick={() => setOpen()}
+              title="Close sidebar"
+              className="me-2 flex items-center justify-center w-8 h-8 text-white/40 hover:text-white/80 hover:bg-white/10 transition-all duration-200"
+            >
+              <X size={16} />
+            </button>
           </div>
 
           {/* Navigation items */}
@@ -269,6 +276,20 @@ const SideBar = memo(function SideBar() {
         className="just-for-clicking-outside-to-close-sidebar w-[30vw] sm:w-[50vw] md:w-[70vw] lg:hidden"
       />
     </div>
+
+    {/* Desktop floating reopen button — visible only when sidebar is closed on desktop */}
+    {!isOnMobile && !isOpen && (
+      <button
+        onClick={() => setOpen()}
+        title="Open sidebar"
+        className={`fixed top-4 z-50 flex items-center justify-center w-9 h-9 bg-black/30 hover:bg-black/50 border border-white/10 hover:border-white/20 text-white/60 hover:text-white backdrop-blur-md transition-all duration-200 ${
+          dir === "rtl" ? "end-0" : "start-0"
+        }`}
+      >
+        <Menu size={16} />
+      </button>
+    )}
+    </>
   );
 });
 

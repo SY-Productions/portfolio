@@ -123,7 +123,7 @@ export default function AnalyticsPage() {
   });
   const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
   const [typeData, setTypeData] = useState<{ name: string; value: number }[]>(
-    []
+    [],
   );
   const [loadingStats, setLoadingStats] = useState(true);
   const [loadingAnalytics, setLoadingAnalytics] = useState(true);
@@ -193,7 +193,7 @@ export default function AnalyticsPage() {
   const trend =
     analytics && analytics.yesterday > 0
       ? Math.round(
-          ((analytics.today - analytics.yesterday) / analytics.yesterday) * 100
+          ((analytics.today - analytics.yesterday) / analytics.yesterday) * 100,
         )
       : null;
 
@@ -357,7 +357,7 @@ export default function AnalyticsPage() {
                 <Pie
                   data={
                     (analytics?.langDistribution ?? []).every(
-                      (d) => d.value === 0
+                      (d) => d.value === 0,
                     )
                       ? [{ name: "No data yet", value: 1 }]
                       : analytics?.langDistribution
@@ -366,9 +366,15 @@ export default function AnalyticsPage() {
                   cy="50%"
                   outerRadius={85}
                   dataKey="value"
-                  label={({ name, percent }) =>
-                    percent > 0.05
-                      ? `${name} (${(percent * 100).toFixed(0)}%)`
+                  label={({
+                    name,
+                    percent,
+                  }: {
+                    name?: string;
+                    percent?: number;
+                  }) =>
+                    (percent ?? 0) > 0.05
+                      ? `${name ?? ""} (${((percent ?? 0) * 100).toFixed(0)}%)`
                       : ""
                   }
                   labelLine={false}
@@ -446,9 +452,13 @@ export default function AnalyticsPage() {
                   outerRadius={85}
                   paddingAngle={4}
                   dataKey="value"
-                  label={({ name, percent }) =>
-                    `${name} (${(percent * 100).toFixed(0)}%)`
-                  }
+                  label={({
+                    name,
+                    percent,
+                  }: {
+                    name?: string;
+                    percent?: number;
+                  }) => `${name ?? ""} (${((percent ?? 0) * 100).toFixed(0)}%)`}
                   labelLine={false}
                 >
                   {(typeData.every((d) => d.value === 0)
@@ -471,11 +481,10 @@ export default function AnalyticsPage() {
       {/* Firebase Console link */}
       <div className="bg-[#0D0D0D] border border-white/10 p-5 flex items-center justify-between">
         <div>
-          <h3 className="text-white text-sm font-medium">
-            Firebase Console
-          </h3>
+          <h3 className="text-white text-sm font-medium">Firebase Console</h3>
           <p className="text-white/40 text-xs mt-0.5">
-            Access crash reports, performance monitoring, and advanced Firebase Analytics.
+            Access crash reports, performance monitoring, and advanced Firebase
+            Analytics.
           </p>
         </div>
         <a

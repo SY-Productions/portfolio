@@ -171,7 +171,11 @@ export default function WorksAdminPage() {
     }
   }
 
-  function handleChange() {
+  function handleChange(
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 

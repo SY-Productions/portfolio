@@ -1,9 +1,19 @@
 @echo off
+setlocal
 openfiles >nul 2>nul
 if not %errorlevel%==0 (
-    echo This script must be run as Administrator.
-    echo Please right-click on this script and select 'Run as Administrator'.
-    pause
+    rem Not elevated: try to relaunch as Administrator via UAC
+    if "%*"=="" (
+        powershell -NoProfile -Command "Start-Process -FilePath '%~f0' -Verb RunAs"
+    ) else (
+        powershell -NoProfile -Command "Start-Process -FilePath '%~f0' -ArgumentList '%*' -Verb RunAs"
+    )
+    if errorlevel 1 (
+        echo This script must be run as Administrator.
+        echo Please right-click on this script and select 'Run as Administrator'.
+        pause
+        exit /b
+    )
     exit /b
 )
 
@@ -51,10 +61,12 @@ if not %errorlevel%==0 (
     exit /b 1
 )
 
-echo runflare version %version% has been installed at %installPath% and added to the PATH.
-echo You may need to restart your terminal or system for changes to take effect.
-
-echo.
-echo To ensure that the changes take effect, please close this Command Prompt window and open a new one.
-pause >nul
-exit
+if not "%RUNFLARE_UPDATE%"=="1" (
+    echo runflare version %version% has been installed at %installPath% and added to the PATH.
+    echo You may need to restart your terminal or system for changes to take effect.
+    
+    echo.
+    echo To ensure that the changes take effect, please close this Command Prompt window and open a new one.
+    pause >nul
+)
+exit /b 0

@@ -51,8 +51,7 @@ const DrawerBody = memo(function DrawerBody() {
   const getTitle = () => {
     if (!currentSample) return "";
     if (lang === "en" && currentSample.enTitle) return currentSample.enTitle;
-    if (lang === "ar" && (currentSample as any).arTitle)
-      return (currentSample as any).arTitle;
+    if (lang === "ar" && currentSample.arTitle) return currentSample.arTitle;
     return currentSample.faTitle ?? "";
   };
 
@@ -62,8 +61,8 @@ const DrawerBody = memo(function DrawerBody() {
     let desc = "";
     if (lang === "en" && currentSample.enDescription)
       desc = currentSample.enDescription;
-    else if (lang === "ar" && (currentSample as any).arDescription)
-      desc = (currentSample as any).arDescription;
+    else if (lang === "ar" && currentSample.arDescription)
+      desc = currentSample.arDescription;
     else desc = currentSample.faDescription ?? "";
     return desc.replace("%g%", "");
   };
@@ -73,8 +72,8 @@ const DrawerBody = memo(function DrawerBody() {
     if (!currentSample) return "";
     if (lang === "en" && currentSample.enStartDate)
       return currentSample.enStartDate;
-    if (lang === "ar" && (currentSample as any).arStartDate)
-      return (currentSample as any).arStartDate;
+    if (lang === "ar" && currentSample.arStartDate)
+      return currentSample.arStartDate;
     return currentSample.faStartDate ?? "";
   };
 
@@ -82,8 +81,8 @@ const DrawerBody = memo(function DrawerBody() {
     if (!currentSample) return "";
     if (lang === "en" && currentSample.enEndDate)
       return currentSample.enEndDate;
-    if (lang === "ar" && (currentSample as any).arEndDate)
-      return (currentSample as any).arEndDate;
+    if (lang === "ar" && currentSample.arEndDate)
+      return currentSample.arEndDate;
     return currentSample.faEndDate ?? "";
   };
 

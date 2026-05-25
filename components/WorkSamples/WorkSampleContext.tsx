@@ -1,21 +1,34 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useMemo, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useMemo,
+  ReactNode,
+} from "react";
 
 // Define types for better type safety
 export interface WorkSample {
   id: number;
   enTitle: string;
   faTitle: string;
+  arTitle?: string;
   enDescription: string;
   faDescription: string;
+  arDescription?: string;
   pictures: string;
   isWeb: boolean;
   link: string;
-  customLinks:string,
+  customLinks: string;
   technologys: string;
   faStartDate: string;
+  enStartDate: string;
+  arStartDate?: string;
   faEndDate: string;
+  enEndDate: string;
+  arEndDate?: string;
 }
 
 interface WorkSampleContextType {
@@ -37,11 +50,13 @@ interface WorkSampleContextType {
   totalSamples: number;
 }
 
-const WorkSampleContext = createContext<WorkSampleContextType | undefined>(undefined);
+const WorkSampleContext = createContext<WorkSampleContextType | undefined>(
+  undefined,
+);
 
 export function WorkSampleProvider({
   children,
-  data
+  data,
 }: {
   children: ReactNode;
   data: WorkSample[];
@@ -53,20 +68,20 @@ export function WorkSampleProvider({
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Memoized derived data for better performance
-  const mobileData = useMemo(() => data.filter(sample => !sample.isWeb), [data]);
-  const webData = useMemo(() => data.filter(sample => sample.isWeb), [data]);
+  const mobileData = useMemo(
+    () => data.filter((sample) => !sample.isWeb),
+    [data],
+  );
+  const webData = useMemo(() => data.filter((sample) => sample.isWeb), [data]);
 
   // Calculate current data set based on active tab
-  const currentData = useMemo(() =>
-    isWebFrame ? webData : mobileData,
-    [isWebFrame, webData, mobileData]
+  const currentData = useMemo(
+    () => (isWebFrame ? webData : mobileData),
+    [isWebFrame, webData, mobileData],
   );
 
   // Get total samples count
-  const totalSamples = useMemo(() =>
-    currentData.length,
-    [currentData]
-  );
+  const totalSamples = useMemo(() => currentData.length, [currentData]);
 
   // Validate current index doesn't exceed bounds when data changes
   useEffect(() => {
@@ -122,7 +137,7 @@ export function WorkSampleProvider({
     setIsDrawerOpen,
     getCurrentSample,
     getCurrentPictures,
-    totalSamples
+    totalSamples,
   };
 
   return (
@@ -135,7 +150,7 @@ export function WorkSampleProvider({
 export function useWorkSample() {
   const context = useContext(WorkSampleContext);
   if (context === undefined) {
-    throw new Error('useWorkSample must be used within a WorkSampleProvider');
+    throw new Error("useWorkSample must be used within a WorkSampleProvider");
   }
   return context;
 }

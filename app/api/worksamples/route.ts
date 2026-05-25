@@ -35,19 +35,22 @@ export async function POST(request: NextRequest) {
 
     const workSample = await prisma.workSample.create({
       data: {
-        id: body.id,
         isWeb: body.isWeb,
         faTitle: body.faTitle,
         enTitle: body.enTitle,
+        arTitle: body.arTitle ?? "",
         faDescription: body.faDescription,
         enDescription: body.enDescription,
+        arDescription: body.arDescription ?? "",
         pictures: body.pictures,
         link: body.link,
         technologys: body.technologys,
         faStartDate: body.faStartDate,
         enStartDate: body.enStartDate,
+        arStartDate: body.arStartDate ?? "",
         faEndDate: body.faEndDate,
         enEndDate: body.enEndDate,
+        arEndDate: body.arEndDate ?? "",
         customLinks: body.customLinks ?? null,
         order: nextOrder,
       },

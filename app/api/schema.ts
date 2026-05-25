@@ -2,7 +2,7 @@ import { z } from "zod";
 
 // WorkSample schema
 export const workSampleSchema = z.object({
-  id: z.number().int().positive(),
+  id: z.number().int().positive().optional(),
   isWeb: z.union([
     z.boolean(),
     z.string().transform((val) => val === "1" || val === "true"),
