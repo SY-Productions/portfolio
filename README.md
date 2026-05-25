@@ -3,8 +3,8 @@
 ```
 ██╗   ██╗ ██████╗ ██╗   ██╗██████╗ ███████╗██╗  ██╗
 ╚██╗ ██╔╝██╔═══██╗██║   ██║██╔══██╗██╔════╝╚██╗██╔╝
- ╚████╔╝ ██║   ██║██║   ██║██║  ██║█████╗   ╚███╔╝ 
-  ╚██╔╝  ██║   ██║██║   ██║██║  ██║██╔══╝   ██╔██╗ 
+ ╚████╔╝ ██║   ██║██║   ██║██║  ██║█████╗   ╚███╔╝
+  ╚██╔╝  ██║   ██║██║   ██║██║  ██║██╔══╝   ██╔██╗
    ██║   ╚██████╔╝╚██████╔╝██████╔╝███████╗██╔╝ ██╗
    ╚═╝    ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝
 ```
@@ -39,15 +39,15 @@ Personal portfolio for **Yousef Hashemzadeh** — a Flutter / React / Next.js de
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v3 + DaisyUI |
-| Database | SQLite via Prisma ORM |
-| Auth | NextAuth v4 + TOTP (speakeasy) |
-| Analytics | Firebase v12 + custom PageView store |
-| Charts | Recharts |
+| Layer     | Technology                                |
+| --------- | ----------------------------------------- |
+| Framework | Next.js 14 (App Router)                   |
+| Language  | TypeScript                                |
+| Styling   | Tailwind CSS v3 + DaisyUI                 |
+| Database  | SQLite via Prisma ORM                     |
+| Auth      | NextAuth v4 + TOTP (speakeasy)            |
+| Analytics | Firebase v12 + custom PageView store      |
+| Charts    | Recharts                                  |
 | UI extras | Chakra UI, MUI Icons, Framer Motion, GSAP |
 
 ## Getting Started
@@ -66,7 +66,7 @@ npx prisma migrate deploy
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).  
+Open [http://localhost:3000](http://localhost:3000).
 Admin panel: [http://localhost:3000/admin](http://localhost:3000/admin)
 
 ## Environment Variables
