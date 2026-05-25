@@ -6,14 +6,18 @@
       "faTitle": "وبسایت رزومه",
       "enTitle": "Portfolio Website",
       "faDescription": "وبسایت رزومه شخصی م که الان درحال مشاهده ش هستید، پیاده سازی شده با کتابخونه react و کامپوننت های ChakraUI.",
-      "enDescription": "My personal portfolio website that you''re currently browsing.",
+      "enDescription": "The personal portfolio site you're looking at right now — built with React and ChakraUI.",
+      "arTitle": "موقع البورتفوليو",
+      "arDescription": "موقعي الشخصي الذي تتصفحه الآن، مبني بمكتبة React ومكونات ChakraUI.",
       "pictures": "/portfolio/por1.png /portfolio/por2.png",
       "link": "www.youdexsof.ir",
       "technologys": "NextJs ChakraUI",
       "faStartDate": "تیر 1402",
-      "enStartDate": "June 2022",
+      "enStartDate": "July 2023",
+      "arStartDate": "يوليو 2023",
       "faEndDate": "شهریور 1402",
-      "enEndDate": "August 2022"
+      "enEndDate": "September 2023",
+      "arEndDate": "سبتمبر 2023"
     },
     {
       "id": 2,
@@ -21,14 +25,18 @@
       "faTitle": "وبسایت منتخب شاپ",
       "enTitle": "Montakhab Light Website",
       "faDescription": "برند منتخب از سال ۱۳۹۲ شروع به فعالیت کرده و برای لانچ تک تک محصولات ماه ها زمان گذاشته شده و بهترین متریال موجود دربازار با توجه به قیمت مقرون به صرفه در محصولات استفاده شده.",
-      "enDescription": "The selected brand started its activities in 2013 and spent months launching each product. The best materials available in the market have been used in the products, considering their affordable prices.",
+      "enDescription": "Montakhab has been crafting quality lighting products since 2013. Every item goes through months of careful development, pairing the finest materials on the market with genuinely accessible pricing.",
+      "arTitle": "موقع منتخب للإضاءة",
+      "arDescription": "منتخب علامة تجارية للإضاءة تأسست عام 2013، تُطلق كل منتج بعد أشهر من التطوير الدقيق، مع الحرص على أفضل المواد المتاحة في السوق بأسعار في متناول الجميع.",
       "pictures": "/portfolio/mon1.png /portfolio/mon2.png",
       "link": "www.montakhablighte.ir",
       "technologys": "WP",
       "faStartDate": "بهمن 1402",
-      "enStartDate": "June 2022",
+      "enStartDate": "January 2024",
+      "arStartDate": "يناير 2024",
       "faEndDate": "اسفند 1402",
-      "enEndDate": "August 2022"
+      "enEndDate": "March 2024",
+      "arEndDate": "مارس 2024"
     },
     {
       "id": 3,
@@ -36,14 +44,18 @@
       "faTitle": "وبسایت پرنیان",
       "enTitle": "Parnian Website",
       "faDescription": "خدمات حمل هوایی انواع کالا به اقصی نقاط دنیا با وبسایت پرنیان.",
-      "enDescription": "Air transportation services for all kinds of stuff to all parts of the world with Pernian website.",
+      "enDescription": "Global air freight services for all types of cargo — connecting customers to every corner of the world through the Parnian platform.",
+      "arTitle": "موقع برنيان",
+      "arDescription": "خدمات شحن جوي دولية لجميع أنواع البضائع، تربط العملاء بكل أرجاء العالم من خلال منصة برنيان.",
       "pictures": "/portfolio/par1.png /portfolio/par2.png",
       "link": "#",
       "technologys": "WP",
       "faStartDate": "اردیبهشت 1399",
-      "enStartDate": "June 2020",
+      "enStartDate": "May 2020",
+      "arStartDate": "مايو 2020",
       "faEndDate": "اردیبهشت 1399",
-      "enEndDate": "June 2020"
+      "enEndDate": "May 2020",
+      "arEndDate": "مايو 2020"
     },
     {
       "id": 4,
@@ -55,10 +67,14 @@
       "pictures": "/portfolio/sp1.png /portfolio/sp2.png /portfolio/sp3.png /portfolio/sp4.png /portfolio/sp5.png /portfolio/sp6.png",
       "link": "https://peikspeed.ir",
       "technologys": "Python Django WebSocket Dart Flutter Riverpod",
+      "arTitle": "سبيد، خدمة التوصيل بالدراجات النارية",
+      "arDescription": "توصيل سريع وموثوق بلا تعقيدات في راحة يدك. سبيد — الحل الأمثل للتوصيل الفوري. %g% في عالم اليوم المتسارع، لا مجال للانتظار. جاء سبيد ليُحدث ثورة في طريقة إرسال واستقبال الطرود عبر خدمة توصيل دراجات نارية فائقة السرعة. سواء أردت إرسال وثائق مهمة أو طعام أو هدية في اللحظة الأخيرة، يربطك تطبيقنا بأقرب ساعٍ متاح في ثوانٍ معدودة. مبني بـ Flutter وRiverpod من جانب العميل، وDjango وREST Framework من جانب الخادم، مع اتصالات WebSocket لحظية مُحسَّنة بـ Redis. يتكوّن النظام من تطبيقين للعملاء والسائقين، وكل توصيل يُتابَع في الوقت الحقيقي.",
       "faStartDate": "آذر 1403",
       "enStartDate": "December 2024",
+      "arStartDate": "ديسمبر 2024",
       "faEndDate": "اسفند 1403",
-      "enEndDate": "March 2025"
+      "enEndDate": "March 2025",
+      "arEndDate": "مارس 2025"
     },
 
     {
@@ -71,10 +87,14 @@
       "pictures": "/portfolio/zura1.png /portfolio/zura2.png /portfolio/zura3.png /portfolio/zura4.png /portfolio/zura5.png",
       "link": "https://youdexsof.storage.iran.liara.space/zura.apk",
       "technologys": "Dart Flutter Riverpod",
+      "arTitle": "زورا، مدرب اللياقة البدنية الذكي",
+      "arDescription": "زورا — المزيج المثالي من الخبرة الرياضية والتكنولوجيا وتحليل البيانات لتحقيق اللياقة المثالية! مع زورا، طريقك نحو التقدم أوضح من أي وقت مضى. %g% مع زورا لن يكون التمرين مجرد روتين يومي، بل تجربة ذكية وديناميكية ومدعومة علمياً. يستخدم التطبيق Flutter وRiverpod ليوفر أدوات متكاملة لتتبع التمارين والتغذية وتطور الجسم. يبرز زورا بمخططاته التفاعلية ورسومه البيانية المتقدمة ونماذجه ثلاثية الأبعاد للجسم البشري التي تعكس أداءك وتقدمك بدقة. الرسوم المتحركة السلسة والتأثيرات البصرية الجذابة تجعل كل تمرين أكثر متعة وإثارة.",
       "faStartDate": "دی 1403",
       "enStartDate": "December 2024",
+      "arStartDate": "ديسمبر 2024",
       "faEndDate": "بهمن 1403",
-      "enEndDate": "January 2025"
+      "enEndDate": "January 2025",
+      "arEndDate": "يناير 2025"
     },
     {
       "id": 6,
@@ -86,10 +106,14 @@
       "pictures": "/portfolio/mc1.png /portfolio/mc2.png /portfolio/mc3.png /portfolio/mc4.png /portfolio/mc5.png",
       "link": "https://www.rtl-theme.com/modern-commerce-application/",
       "technologys": "Dart Flutter GetX",
+      "arTitle": "قالب تطبيق المتجر المتعدد المنصات",
+      "arDescription": "أول وأحدث قالب تطبيق متعدد المنصات في السوق الإيرانية! %g% ModernCommerce قالب تجارة إلكترونية احترافي مبني بـ Flutter من الصفر — أطلق متجرك بسرعة وركّز على ما يميّزه. متجاوب تماماً ويعمل على Android وiOS وWindows وMac وLinux. يأتي مع لوحة تحكم إدارية متكاملة تمنحك سيطرة كاملة على المنتجات والمخزون والمستخدمين والطلبات. للمزيد من التفاصيل والشراء، تفضل بزيارة رست‌چين!",
       "faStartDate": "آذر 1403",
       "enStartDate": "November 2024",
+      "arStartDate": "نوفمبر 2024",
       "faEndDate": "دی 1403",
-      "enEndDate": "December 2024"
+      "enEndDate": "December 2024",
+      "arEndDate": "ديسمبر 2024"
     },
     {
       "id": 7,
@@ -101,25 +125,33 @@
       "pictures": "/portfolio/ipet1.png /portfolio/ipet2.png /portfolio/ipet3.png /portfolio/ipet4.png",
       "link": "www.ipetplus.ir",
       "technologys": "Dart Flutter Bloc",
+      "arTitle": "آي بت بلاس",
+      "arDescription": "جميع احتياجات حيوانك الأليف في منصة واحدة! %g% iPetPlus منصة شاملة لبيع وشراء منتجات وخدمات الحيوانات الأليفة في جميع أنحاء البلاد. يعرض فيها موردون موثوقون منتجاتهم عبر الإنترنت، مع تشكيلة واسعة من أبرز العلامات التجارية لتلبية كل احتياجات حيوانك بجودة مضمونة. مقارنة المنتجات والدفع الآمن والشحن السريع وتتبع الطلبات — كل ما تحتاجه في مكان واحد.",
       "faStartDate": "تیر 1403",
       "enStartDate": "July 2024",
+      "arStartDate": "يوليو 2024",
       "faEndDate": "شهریور 1403",
-      "enEndDate": "September 2024"
+      "enEndDate": "September 2024",
+      "arEndDate": "سبتمبر 2024"
     },
     {
-      "id":8,
+      "id": 8,
       "isWeb": "0",
       "faTitle": "ترخینه",
       "enTitle": "Tarkhine",
       "faDescription": "ترخینه، تجربه واقعی و ناب غذای ایرانی را در هر لحظه، به راحتی و با یک کلیک داشته باشید! %g% ترخینه یک اپلیکیشن سفارش غذای کاملاً ایرانی است که شما را به دنیای غذاهای سنتی و مدرن ایرانی می‌برد. از کباب‌های خوشمزه تا خورش‌های اصیل، ما هر آنچه که برای رفع گرسنگی نیاز دارید، در اختیارتان قرار می‌دهیم. با فریم‌ورک فلاتر و بلاک، تجربه‌ای بی‌نظیر و سریع از خرید آنلاین غذا در اختیار شماست.",
-      "enDescription": "Tarikhne, your ultimate app for experiencing the best and most authentic Iranian food, no matter where you are, with just a tap! %g% Tarikhne is a fully Iranian food delivery app offering an extensive range of traditional and modern Persian dishes, delivered quickly right to your door. From mouth-watering kebabs to rich stews, we’ve got all your cravings covered. Powered by Flutter and Bloc, the app guarantees a fast, smooth, and hassle-free food ordering experience every time.",
+      "enDescription": "Tarkhine brings you the real taste of Iranian cuisine — anytime, anywhere, with just a tap! %g% Tarkhine is a fully Iranian food delivery app that takes you on a culinary journey through traditional and modern Persian dishes. From sizzling kebabs to rich, slow-cooked stews, every craving is covered. Built with Flutter and Bloc for a fast, smooth, and effortless ordering experience every time.",
+      "arTitle": "ترخينه",
+      "arDescription": "ترخينه يجلب لك الطعم الحقيقي للمطبخ الإيراني — في أي وقت وأي مكان، بنقرة واحدة! %g% ترخينه تطبيق توصيل طعام إيراني بامتياز، يأخذك في رحلة شهية عبر المأكولات الإيرانية التقليدية والعصرية. من الكباب الشهي إلى الطواجن الأصيلة الغنية، كل شهية تجد ما يُرضيها. مدعوم بـ Flutter وBloc لتجربة طلب سريعة وسلسة في كل مرة.",
       "pictures": "/portfolio/tarkhine1.png /portfolio/tarkhine2.png /portfolio/tarkhine3.png /portfolio/tarkhine1.png",
       "link": "www.github.com/YOUSSSOF/Tarkhine",
       "technologys": "Dart Flutter Bloc Python Django",
       "faStartDate": "تیر 1402",
-      "enStartDate": "June 2022",
+      "enStartDate": "July 2023",
+      "arStartDate": "يوليو 2023",
       "faEndDate": "شهریور 1402",
-      "enEndDate": "August 2022"
+      "enEndDate": "September 2023",
+      "arEndDate": "سبتمبر 2023"
     },
     {
       "id": 9,
@@ -131,10 +163,14 @@
       "pictures": "/portfolio/movie1.png /portfolio/movie2.png /portfolio/movie3.png",
       "link": "https://github.com/YOUSSSOF/Movies-App",
       "technologys": "Dart Flutter",
+      "arTitle": "بوكس أوفيس بيت",
+      "arDescription": "بوكس أوفيس بيت رفيقك المثالي في عالم السينما، يقدم معلومات وتقييمات وتوجهات آنية مدعومة بـ TMDB API.%g% سواء كنت مشاهداً عادياً أو مدمن سينما محترفاً، يبقيك بوكس أوفيس بيت على اطلاع دائم بأحدث الأفلام والمقاطع الترويجية والمراجعات — كل ما تحتاجه لجعل ليلة أفلامك استثنائية!",
       "faStartDate": "خرداد 1399",
       "enStartDate": "June 2020",
+      "arStartDate": "يونيو 2020",
       "faEndDate": "تیر 1399",
-      "enEndDate": "July 2020"
+      "enEndDate": "July 2020",
+      "arEndDate": "يوليو 2020"
     },
     {
       "id": 10,
@@ -146,53 +182,77 @@
       "pictures": "/portfolio/gre1.png /portfolio/gre2.png /portfolio/gre3.png",
       "link": "#",
       "technologys": "Dart Flutter GetX",
+      "arTitle": "غرين ثمب",
+      "arDescription": "غرين ثمب — الطريق الذكي لشراء النباتات والعناية بها! وداعاً للأوراق الذابلة ومرحباً بالخضرة المزدهرة. %g% صُمِّم هذا التطبيق ليجعل العناية بالنباتات أمراً سهلاً وممتعاً. بإرشادات متخصصة ومذكرات ري تلقائية ومجموعة واسعة من النباتات بين يديك، يمكن لأي شخص تطوير موهبته الخضراء. مدعوم بـ Flutter ليقدم تجربة سلسة وبديهية تحوّل العناية بالنباتات من مهمة شاقة إلى هواية مريحة ومُجزية.",
       "faStartDate": "اردیبهشت 1402",
       "enStartDate": "May 2023",
+      "arStartDate": "مايو 2023",
       "faEndDate": "مرداد 1402",
-      "enEndDate": "July 2023"
+      "enEndDate": "July 2023",
+      "arEndDate": "يوليو 2023"
     }
   ],
   "Educations": [
     {
       "name": "دبیرستان ماندگار شهدای ادب",
+      "nameEn": "Shohada-e-Adab High School",
+      "nameAr": "مدرسة شهداء الأدب الثانوية",
       "from": 1399,
       "to": 1402,
       "picture": "/educations/adab.png",
-      "description": "تحصیل دوره دبیرستان در دبیرستان ماندگار شهدای ادب در رشته ریاضی فیزیک و اخذ مدرک دیپلم."
+      "description": "تحصیل دوره دبیرستان در دبیرستان ماندگار شهدای ادب در رشته ریاضی فیزیک و اخذ مدرک دیپلم.",
+      "descriptionEn": "Completed high school at Shohada-e-Adab, majoring in Mathematics & Physics, graduating with a diploma.",
+      "descriptionAr": "أتممت دراستي الثانوية في مدرسة شهداء الأدب، قسم الرياضيات والفيزياء، وحصلت على شهادة الثانوية العامة."
     },
     {
       "name": "دانشگاه بین المللی آزاد خوراسگان",
+      "nameEn": "Islamic Azad University, Khorasgan Branch",
+      "nameAr": "جامعة آزاد الإسلامية، فرع خوراسقان",
       "from": 1402,
       "to": null,
       "picture": "/educations/kh.webp",
-      "description": "مشغول تحصیل در رشته کامپیوتر مقطع کارشناسی در این دانشگاه هستم."
+      "description": "مشغول تحصیل در رشته کامپیوتر مقطع کارشناسی در این دانشگاه هستم.",
+      "descriptionEn": "Currently pursuing a Bachelor's degree in Computer Science at this university.",
+      "descriptionAr": "أدرس حالياً درجة البكالوريوس في علوم الحاسوب في هذه الجامعة."
     }
   ],
   "Works": [
     {
       "name": "شرکت نشاط رخ آرا | NeshatRokh",
+      "nameEn": "NeshatRokh Co.",
+      "nameAr": "شركة نشاط روخ آرا",
       "technos": ["Flutter", "Dart"],
       "from": 1403,
       "to": 1403,
       "picture": "/neshatrokh.png",
       "url": "https://neshatrokh.com",
-      "description": "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم."
+      "description": "تجربه کار به مدت 6 ماه و به صورت فریلنسری با شرکت نشاط رخ آرا داشتم.",
+      "descriptionEn": "Worked as a freelancer with NeshatRokh for 6 months, contributing to their Flutter-based mobile projects.",
+      "descriptionAr": "عملت بصفة مستقلة مع شركة نشاط روخ لمدة 6 أشهر، وأسهمت في مشاريع الجوال المبنية بـ Flutter."
     }
   ],
   "Events": [
     {
       "name": "اولین دوره مسابقات بزرگ برنامه نویسی و نرم افزار نرم افزارهای تخصصی داناکاپ",
+      "nameEn": "1st DanaCup Programming & Software Competition",
+      "nameAr": "الدورة الأولى لمسابقات داناكاب للبرمجة والبرمجيات",
       "date": "تیر 1403",
       "picture": "/events/danacup-logo.jpg",
       "attachment": "/events/danacup.jpg",
-      "description": "کسب رتبه برتر در نخستین دوره مسابقات داناکاپ که با همکاری دانشگاه آزاد اسلامی واحد نجف‌آباد برگزار گردید. این مسابقات، با حضور شرکت‌کنندگان برتر از سراسر استان اصفهان، به منظور ارتقاء سطح دانش و مهارت‌های علمی و عملی دانشجویان در زمینه‌های مختلف علمی و فناوری برگزار شد."
+      "description": "کسب رتبه برتر در نخستین دوره مسابقات داناکاپ که با همکاری دانشگاه آزاد اسلامی واحد نجف‌آباد برگزار گردید. این مسابقات، با حضور شرکت‌کنندگان برتر از سراسر استان اصفهان، به منظور ارتقاء سطح دانش و مهارت‌های علمی و عملی دانشجویان در زمینه‌های مختلف علمی و فناوری برگزار شد.",
+      "descriptionEn": "Achieved a top ranking in the inaugural DanaCup competition, held in collaboration with Islamic Azad University, Najafabad Branch. The contest brought together top participants from across Isfahan Province to raise the bar in scientific and practical skills in technology.",
+      "descriptionAr": "حققت مرتبة متقدمة في الدورة الأولى لمسابقات داناكاب، التي أُقيمت بالتعاون مع جامعة آزاد الإسلامية فرع نجف‌آباد. استقطبت المسابقة نخبة المشاركين من جميع أنحاء محافظة أصفهان، بهدف تطوير المهارات العلمية والتقنية لدى الطلاب."
     },
     {
       "name": "نهمین دوره مسابقات برنامه نویسی چالش های فناوری اطلاعات کشور",
+      "nameEn": "9th National ICT Challenge Programming Competition",
+      "nameAr": "الدورة التاسعة لمسابقات تحديات تكنولوجيا المعلومات الوطنية",
       "date": "شهریور 1403",
       "picture": "/events/ict-logo.jpg",
       "attachment": "/events/ict.jpg",
-      "description": "شرکت در نهمین دوره مسابقات ملی ICT Challenge به میزبانی دانشگاه صنعتی شریف، فرصتی ارزشمند برای رقابت با تیم‌های نخبه کشور بود. این رویداد علاوه بر تقویت مهارت‌های فنی من، باعث آشنایی با برنامه‌نویسی بلاکچین شد که توانستم آن را به‌طور عملی پیاده‌سازی کنم."
+      "description": "شرکت در نهمین دوره مسابقات ملی ICT Challenge به میزبانی دانشگاه صنعتی شریف، فرصتی ارزشمند برای رقابت با تیم‌های نخبه کشور بود. این رویداد علاوه بر تقویت مهارت‌های فنی من، باعث آشنایی با برنامه‌نویسی بلاکچین شد که توانستم آن را به‌طور عملی پیاده‌سازی کنم.",
+      "descriptionEn": "Participated in the 9th national ICT Challenge, hosted by Sharif University of Technology — a valuable opportunity to compete against top teams from across the country. Beyond sharpening my technical skills, the event introduced me to blockchain programming, which I was able to implement hands-on.",
+      "descriptionAr": "شاركت في الدورة التاسعة من مسابقة ICT Challenge الوطنية التي استضافتها جامعة شريف للتكنولوجيا، فرصة ثمينة للمنافسة مع أبرز الفرق في البلاد. أسهمت في صقل مهاراتي التقنية وعرّفتني على برمجة البلوك‌تشين التي تمكّنت من تطبيقها عملياً."
     }
   ]
 }

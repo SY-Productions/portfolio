@@ -38,8 +38,12 @@ export default function Information() {
     ? "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-white border border-gray-200 border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]"
     : "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
 
-  const titleTextClass = isLight ? "text-lg 2xl:text-2xl py-[2.5vh] text-gray-800" : "text-lg 2xl:text-2xl py-[2.5vh] text-white/80";
-  const descTextClass = isLight ? "font-[ybn] 2xl:text-lg text-gray-500 pb-[10vh]" : "font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]";
+  const titleTextClass = isLight
+    ? "text-lg 2xl:text-2xl py-[2.5vh] text-gray-800"
+    : "text-lg 2xl:text-2xl py-[2.5vh] text-white/80";
+  const descTextClass = isLight
+    ? "font-[ybn] 2xl:text-lg text-gray-500 pb-[10vh]"
+    : "font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]";
 
   const tabsContainerClass = isLight
     ? "ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:ms-[22vw] border border-gray-200 backdrop-blur-3xl relative bg-gray-50"
@@ -87,45 +91,28 @@ export default function Information() {
         onChange={(index) => setIsWebFrame(index === 1)}
       >
         <TabList className="JUSTTABS">
-          <Tab
-            className={tabClasses}
-            _selected={tabSelectedStyle}
-          >
+          <Tab className={tabClasses} _selected={tabSelectedStyle}>
             {t("portfolio.mobileApps")}
           </Tab>
-          <Tab
-            className={tabClasses}
-            _selected={tabSelectedStyle}
-          >
+          <Tab className={tabClasses} _selected={tabSelectedStyle}>
             {t("portfolio.webApps")}
           </Tab>
         </TabList>
         <TabPanels>
           <TabPanel padding={0}>
             <div className={tabContentClasses}>
-              <div className={titleTextClass}>
-                {getTitle()}
-              </div>
-              <div className={descTextClass}>
-                {getDesc()}
-              </div>
+              <div className={titleTextClass}>{getTitle()}</div>
+              <div className={descTextClass}>{getDesc()}</div>
             </div>
           </TabPanel>
           <TabPanel padding={0}>
             <div className={tabContentClasses}>
-              <div className={titleTextClass}>
-                {getTitle()}
-              </div>
-              <div className={descTextClass}>
-                {getDesc()}
-              </div>
+              <div className={titleTextClass}>{getTitle()}</div>
+              <div className={descTextClass}>{getDesc()}</div>
             </div>
           </TabPanel>
         </TabPanels>
-        <button
-          onClick={handleOpeningDrawer}
-          className={drawerBtnClass}
-        >
+        <button onClick={handleOpeningDrawer} className={drawerBtnClass}>
           {t("portfolio.moreInfo")}{" "}
           {dir === "rtl" ? (
             <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />

@@ -19,8 +19,12 @@ async function main() {
         technologys: workSample.technologys,
         faStartDate: workSample.faStartDate,
         enStartDate: workSample.enStartDate,
+        arStartDate: (workSample as any).arStartDate ?? "",
         faEndDate: workSample.faEndDate,
         enEndDate: workSample.enEndDate,
+        arEndDate: (workSample as any).arEndDate ?? "",
+        arTitle: (workSample as any).arTitle ?? "",
+        arDescription: (workSample as any).arDescription ?? "",
       },
     });
   }
@@ -30,10 +34,14 @@ async function main() {
     await prisma.education.create({
       data: {
         name: education.name,
+        nameEn: (education as any).nameEn ?? "",
+        nameAr: (education as any).nameAr ?? "",
         fromYear: education.from,
         toYear: education.to,
         picture: education.picture,
         description: education.description,
+        descriptionEn: (education as any).descriptionEn ?? "",
+        descriptionAr: (education as any).descriptionAr ?? "",
       },
     });
   }
@@ -43,12 +51,16 @@ async function main() {
     await prisma.work.create({
       data: {
         name: work.name,
+        nameEn: (work as any).nameEn ?? "",
+        nameAr: (work as any).nameAr ?? "",
         technos: JSON.stringify(work.technos),
         fromYear: work.from,
         toYear: work.to,
         picture: work.picture,
         url: work.url,
         description: work.description,
+        descriptionEn: (work as any).descriptionEn ?? "",
+        descriptionAr: (work as any).descriptionAr ?? "",
       },
     });
   }
@@ -58,10 +70,14 @@ async function main() {
     await prisma.event.create({
       data: {
         name: event.name,
+        nameEn: (event as any).nameEn ?? "",
+        nameAr: (event as any).nameAr ?? "",
         date: event.date,
         picture: event.picture,
         attachment: event.attachment,
         description: event.description,
+        descriptionEn: (event as any).descriptionEn ?? "",
+        descriptionAr: (event as any).descriptionAr ?? "",
       },
     });
   }
