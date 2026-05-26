@@ -37,8 +37,9 @@ const Events = () => {
         const response = await fetch(`${API_BASE_URL}/events`, {
           cache: "no-store",
         });
+        if (!response.ok) return;
         const data = await response.json();
-        setEvents(data);
+        if (Array.isArray(data)) setEvents(data);
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {

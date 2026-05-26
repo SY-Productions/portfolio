@@ -37,8 +37,9 @@ const Education = () => {
         const response = await fetch(`${API_BASE_URL}/education`, {
           cache: "no-store",
         });
+        if (!response.ok) return;
         const data = await response.json();
-        setEducations(data);
+        if (Array.isArray(data)) setEducations(data);
       } catch (error) {
         console.error("Error fetching educations:", error);
       } finally {

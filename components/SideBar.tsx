@@ -150,127 +150,125 @@ const SideBar = memo(function SideBar() {
           : sideBarFullClasses
       }
     >
-        <aside className="font-[ybn] border-e border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl order-first">
-          {/* Mobile spacing for navbar - only visible on mobile */}
-          <div className="lg:hidden h-[60px]"></div>
+      <aside className="font-[ybn] border-e border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col justify-between shadow-2xl order-first">
+        {/* Mobile spacing for navbar - only visible on mobile */}
+        <div className="lg:hidden h-[60px]"></div>
 
-          <div className="LOGO&OPTIONS text-base text-white/50 ms-8 overflow-y-auto flex-grow">
-            {/* Logo container with subtle glow */}
-            <div className="relative hidden lg:flex items-center justify-between w-full my-[3vh]">
-              <Image
-                className="w-[30%] h-auto transition-all duration-300 hover:opacity-100 opacity-90"
-                src={logo}
-                alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
-              />
-              {/* Subtle glow behind logo */}
-              <div className="absolute -z-10 w-[30%] h-full bg-[#3B070A]/5 filter blur-xl"></div>
-            </div>
-
-            {/* Navigation items */}
-            <div className="mt-4 space-y-1">
-              {navigationItems.map((item) => (
-                <a
-                  onClick={() => {
-                    setSideBarScroll(item.to);
-                    // Close sidebar on mobile when clicking a navigation item
-                    if (isOnMobile) {
-                      setOpen();
-                    }
-                  }}
-                  href={item.to}
-                  key={item.to}
-                  className={`${navItemBaseClasses} ${
-                    item.to === sideBarScroll ? navItemActiveClasses : ""
-                  }`}
-                >
-                  <span
-                    className={
-                      item.to === sideBarScroll
-                        ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none ms-2 shadow-lg"
-                        : "bg-white/5 p-2 rounded-none ms-2 transition-all duration-300"
-                    }
-                  >
-                    {item.to === sideBarScroll ? item.logo1 : item.logo2}
-                  </span>
-                  <span
-                    className={`transition-all duration-200 ${
-                      item.to === sideBarScroll
-                        ? "text-white font-bold"
-                        : "hover:text-white/80"
-                    }`}
-                  >
-                    {t(item.titleKey)}
-                  </span>
-                </a>
-              ))}
-            </div>
+        <div className="LOGO&OPTIONS text-base text-white/50 ms-8 overflow-y-auto flex-grow">
+          {/* Logo container with subtle glow */}
+          <div className="relative hidden lg:flex items-center justify-between w-full my-[3vh]">
+            <Image
+              className="w-[30%] h-auto transition-all duration-300 hover:opacity-100 opacity-90"
+              src={logo}
+              alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
+            />
+            {/* Subtle glow behind logo */}
+            <div className="absolute -z-10 w-[30%] h-full bg-[#3B070A]/5 filter blur-xl"></div>
           </div>
 
-          <div className="SWITCHES&BUTTON pb-[3vh]">
-            <div className="h-0 border-t border-white/10 mb-4" />
-
-            {/* Language + Theme Row */}
-            <div className="px-8 mb-3 flex items-center gap-2">
-              {/* Language switcher */}
-              {(["fa", "en", "ar"] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => setLang(l)}
-                  className={`flex-1 py-1.5 font-bold transition-all border leading-none ${
-                    lang === l
-                      ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
-                      : "bg-white/5 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/8"
-                  }`}
-                  style={{
-                    fontSize: l === "en" ? "0.7rem" : "0.75rem",
-                    fontFamily:
-                      l === "en"
-                        ? "'Inter', 'Segoe UI', sans-serif"
-                        : "inherit",
-                    letterSpacing: l === "en" ? "0.05em" : "normal",
-                    fontWeight: 700,
-                  }}
-                >
-                  {LANG_LABEL[l]}
-                </button>
-              ))}
-
-              {/* Divider */}
-              <div className="w-px h-5 bg-white/10 mx-1" />
-
-              {/* Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                title={
-                  theme === "dark"
-                    ? "Switch to light theme"
-                    : "Switch to dark theme"
-                }
-                className="flex items-center justify-center w-9 h-7 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
-              >
-                {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
-              </button>
-            </div>
-
-            {/* Download Resume Button */}
-            <div className="px-8">
+          {/* Navigation items */}
+          <div className="mt-4 space-y-1">
+            {navigationItems.map((item) => (
               <a
-                href="/youdexsof-fa-cv.pdf"
-                download="Yousof-Hashemzade-Cv-Fa.pdf"
-                className="DOWNLOADPDF w-full h-12 flex items-center justify-center lg:flex border border-white/10 bg-gradient-to-r from-[#3B070A]/10 to-[#3A0D12]/10 hover:from-[#3B070A]/20 hover:to-[#3A0D12]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                onClick={() => {
+                  setSideBarScroll(item.to);
+                  // Close sidebar on mobile when clicking a navigation item
+                  if (isOnMobile) {
+                    setOpen();
+                  }
+                }}
+                href={item.to}
+                key={item.to}
+                className={`${navItemBaseClasses} ${
+                  item.to === sideBarScroll ? navItemActiveClasses : ""
+                }`}
               >
-                {t("nav.downloadCV")}
+                <span
+                  className={
+                    item.to === sideBarScroll
+                      ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none ms-2 shadow-lg"
+                      : "bg-white/5 p-2 rounded-none ms-2 transition-all duration-300"
+                  }
+                >
+                  {item.to === sideBarScroll ? item.logo1 : item.logo2}
+                </span>
+                <span
+                  className={`transition-all duration-200 ${
+                    item.to === sideBarScroll
+                      ? "text-white font-bold"
+                      : "hover:text-white/80"
+                  }`}
+                >
+                  {t(item.titleKey)}
+                </span>
               </a>
-            </div>
+            ))}
           </div>
-        </aside>
+        </div>
 
-        {/* Overlay for mobile */}
-        <div
-          onClick={() => setOpen()}
-          className="just-for-clicking-outside-to-close-sidebar w-[30vw] sm:w-[50vw] md:w-[70vw] lg:hidden"
-        />
-      </div>
+        <div className="SWITCHES&BUTTON pb-[3vh]">
+          <div className="h-0 border-t border-white/10 mb-4" />
+
+          {/* Language + Theme Row */}
+          <div className="px-8 mb-3 flex items-center gap-2">
+            {/* Language switcher */}
+            {(["fa", "en", "ar"] as Lang[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`flex-1 py-1.5 font-bold transition-all border leading-none ${
+                  lang === l
+                    ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
+                    : "bg-white/5 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/8"
+                }`}
+                style={{
+                  fontSize: l === "en" ? "0.7rem" : "0.75rem",
+                  fontFamily:
+                    l === "en" ? "'Inter', 'Segoe UI', sans-serif" : "inherit",
+                  letterSpacing: l === "en" ? "0.05em" : "normal",
+                  fontWeight: 700,
+                }}
+              >
+                {LANG_LABEL[l]}
+              </button>
+            ))}
+
+            {/* Divider */}
+            <div className="w-px h-5 bg-white/10 mx-1" />
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              title={
+                theme === "dark"
+                  ? "Switch to light theme"
+                  : "Switch to dark theme"
+              }
+              className="flex items-center justify-center w-9 h-7 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+            >
+              {theme === "dark" ? <Sun size={14} /> : <Moon size={14} />}
+            </button>
+          </div>
+
+          {/* Download Resume Button */}
+          <div className="px-8">
+            <a
+              href="/youdexsof-fa-cv.pdf"
+              download="Yousof-Hashemzade-Cv-Fa.pdf"
+              className="DOWNLOADPDF w-full h-12 flex items-center justify-center lg:flex border border-white/10 bg-gradient-to-r from-[#3B070A]/10 to-[#3A0D12]/10 hover:from-[#3B070A]/20 hover:to-[#3A0D12]/20 font-normal text-nowrap text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 rounded-none shadow-md hover:shadow-lg hover:-translate-y-0.5"
+            >
+              {t("nav.downloadCV")}
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      {/* Overlay for mobile */}
+      <div
+        onClick={() => setOpen()}
+        className="just-for-clicking-outside-to-close-sidebar w-[30vw] sm:w-[50vw] md:w-[70vw] lg:hidden"
+      />
+    </div>
   );
 });
 

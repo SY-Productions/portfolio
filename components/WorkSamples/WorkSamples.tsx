@@ -46,8 +46,9 @@ export default function WorkSamples() {
         const response = await fetch(`${API_BASE_URL}/worksamples`, {
           cache: "no-store",
         });
+        if (!response.ok) return;
         const workSamples = await response.json();
-        setData(workSamples);
+        if (Array.isArray(workSamples)) setData(workSamples);
       } catch (error) {
         console.error("Error fetching work samples:", error);
       } finally {

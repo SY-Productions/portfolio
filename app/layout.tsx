@@ -7,6 +7,7 @@ import SiteSettingsLoader from "@/components/SiteSettingsLoader";
 import FirebaseProvider from "@/components/FirebaseProvider";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://youdexsof.ir"),
   title: {
     default: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر | Yousof Hashemzadeh",
     template: "%s | یوسف هاشم زاده - Yousof Hashemzadeh",

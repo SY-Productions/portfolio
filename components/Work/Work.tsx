@@ -32,8 +32,9 @@ const Work = () => {
         const response = await fetch(`${API_BASE_URL}/works`, {
           cache: "no-store",
         });
+        if (!response.ok) return;
         const data = await response.json();
-        setWorks(data);
+        if (Array.isArray(data)) setWorks(data);
       } catch (error) {
         console.error("Error fetching works:", error);
       } finally {
