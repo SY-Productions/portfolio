@@ -1,8 +1,8 @@
 "use client";
 
 import React, { memo, useEffect, useState } from "react";
-import Image from "next/image";
 import { useWorkSample } from "../WorkSampleContext";
+import { PhoneFrame, LaptopFrame } from "../Preview";
 
 const DrawerCarousel = memo(function DrawerCarousel() {
   const {
@@ -12,91 +12,66 @@ const DrawerCarousel = memo(function DrawerCarousel() {
     isWebFrame,
   } = useWorkSample();
 
-  const [isLoading, setIsLoading] = useState(true);
   const [currentImgKey, setCurrentImgKey] = useState(0);
 
   useEffect(() => {
-    setIsLoading(true);
-    setCurrentImgKey((prev: number) => prev + 1);
+    setCurrentImgKey((prev) => prev + 1);
   }, [currentPicIndex]);
 
   const pictures = getCurrentPictures();
 
   const showPrevImage = () => {
-    if (currentPicIndex > 0) {
-      setCurrentPicIndex(currentPicIndex - 1);
-    }
+    if (currentPicIndex > 0) setCurrentPicIndex(currentPicIndex - 1);
   };
 
   const showNextImage = () => {
-    if (currentPicIndex + 1 < pictures.length) {
-      setCurrentPicIndex(currentPicIndex + 1);
-    }
+    if (currentPicIndex + 1 < pictures.length) setCurrentPicIndex(currentPicIndex + 1);
   };
 
-  // Navigation button classes
   const buttonClasses =
-    "btn absolute h-[100%] lg:btn-square lg:h-[7vh] lg:w-[7vh] lg:mx-6 lg:rounded-none bg-[#111] border border-[#222] hover:bg-[#1A1A1A] hover:border-[#333] m-0 w-[7vw] rounded-none lg:text-xl 2xl:text-2xl transition-colors duration-200";
+    "absolute top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 bg-black/60 border border-white/15 text-white hover:bg-black/80 transition-all text-sm";
 
-  // If no pictures, return null
   if (!pictures.length) return null;
 
   return (
-    <div className="relative w-full h-auto flex flex-col items-center bg-[#0F0F0F] rounded-t-[2rem] lg:rounded-t-[5rem]">
-      <div className="relative w-full flex flex-row items-center justify-between">
-        {/* Previous button - only show if not at first image */}
-        {currentPicIndex > 0 && (
-          <button
-            onClick={showPrevImage}
-            className={`${buttonClasses} text-white rounded-tr-[2rem] right-0`}
-            aria-label="Previous image"
-          >
-            ❮
-          </button>
-        )}
-        {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 rounded-full border-t-2 border-l-2 border-[#3A0D12] animate-spin"></div>
-          </div>
-        )}
+    <div className="relative w-full flex flex-col items-center bg-[#0F0F0F] rounded-t-[2rem] lg:rounded-t-[5rem] py-8 overflow-hidden">
+      {/* Ambient glow behind frame */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[40%] bg-[#3B070A]/15 rounded-full blur-3xl" />
+      </div>
 
-        {/* Current image */}
-        <Image
-          width={1000}
-          height={1000}
-          src={pictures[currentPicIndex]}
-          unoptimized
-          className={`${
-            isWebFrame ? "w-[75%] lg:w-[50%]" : "w-[60%] lg:w-auto lg:h-[65vh]"
-          } my-[6vh] h-auto mx-auto object-contain`}
-          alt="Project screenshot"
-          priority
-          onLoad={() => setIsLoading(false)}
-          onLoadStart={() => setIsLoading(true)}
-          onLoadingComplete={() => setIsLoading(false)}
-        />
+      {/* Nav: prev */}
+      {currentPicIndex > 0 && (
+        <button onClick={showPrevImage} className={`${buttonClasses} start-3`} aria-label="Previous image">
+          ❮
+        </button>
+      )}
 
-        {/* Next button - only show if not at last image */}
-        {currentPicIndex < pictures.length - 1 && (
-          <button
-            onClick={showNextImage}
-            className={`${buttonClasses} text-white rounded-tl-[2rem] left-0`}
-            aria-label="Next image"
-          >
-            ❯
-          </button>
+      {/* Frame + image */}
+      <div key={currentImgKey} className="flex items-center justify-center px-12 lg:px-16 w-full animate-scale-in" style={{ animationDuration: "0.35s" }}>
+        {isWebFrame ? (
+          <LaptopFrame src={pictures[currentPicIndex]} />
+        ) : (
+          <PhoneFrame src={pictures[currentPicIndex]} />
         )}
       </div>
 
+      {/* Nav: next */}
+      {currentPicIndex < pictures.length - 1 && (
+        <button onClick={showNextImage} className={`${buttonClasses} end-3`} aria-label="Next image">
+          ❯
+        </button>
+      )}
+
       {/* Pagination dots */}
       {pictures.length > 1 && (
-        <div className="flex gap-2 mb-4 ">
-          {pictures.map((_: any, idx: number) => (
+        <div className="flex gap-2 mt-6">
+          {pictures.map((_: string, idx: number) => (
             <button
               key={idx}
               onClick={() => setCurrentPicIndex(idx)}
-              className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                idx === currentPicIndex ? "bg-white" : "bg-[#333]"
+              className={`h-2.5 w-2.5 rounded-full transition-all duration-300 ${
+                idx === currentPicIndex ? "bg-white scale-110" : "bg-[#333] hover:bg-[#555]"
               }`}
               aria-label={`View image ${idx + 1}`}
             />

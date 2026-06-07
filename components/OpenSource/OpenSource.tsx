@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { API_BASE_URL } from "@/app/config";
 import { SiGithub } from "react-icons/si";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Star, GitFork, Terminal } from "lucide-react";
 
 interface WorkSample {
   id: number;
@@ -41,6 +41,20 @@ function getGitHubUrl(link: string, customLinks: string | null): string {
   }
 }
 
+function getLiveUrl(link: string): string | null {
+  if (link.includes("github.com")) return null;
+  return link || null;
+}
+
+const ACCENT_COLORS = [
+  { dot: "#f7c833", line: "rgba(247,200,51,0.15)" },
+  { dot: "#61dafb", line: "rgba(97,218,251,0.15)" },
+  { dot: "#4db6ac", line: "rgba(77,182,172,0.15)" },
+  { dot: "#ff8c6b", line: "rgba(255,140,107,0.15)" },
+  { dot: "#c792ea", line: "rgba(199,146,234,0.15)" },
+  { dot: "#f4a8ac", line: "rgba(244,168,172,0.15)" },
+];
+
 export default function OpenSource() {
   const { t, lang } = useLang();
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -51,9 +65,8 @@ export default function OpenSource() {
     fetch(`${API_BASE_URL}/worksamples`, { cache: "no-store" })
       .then((r) => r.json())
       .then((data: WorkSample[]) => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data))
           setProjects(data.filter((ws) => isGitHubLink(ws.link, ws.customLinks)));
-        }
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -66,7 +79,7 @@ export default function OpenSource() {
       ([entry]) => {
         if (entry.isIntersecting) {
           el.querySelectorAll(".will-animate").forEach((child, i) => {
-            setTimeout(() => child.classList.add("in-view"), i * 70);
+            setTimeout(() => child.classList.add("in-view"), i * 60);
           });
           el.querySelector(".section-title")?.classList.add("in-view");
           observer.disconnect();
@@ -89,7 +102,7 @@ export default function OpenSource() {
         ? ws.arDescription
         : ws.faDescription;
     const plain = raw.includes("%g%") ? raw.split("%g%")[0] : raw;
-    return plain.length > 160 ? plain.slice(0, 160) + "…" : plain;
+    return plain.length > 140 ? plain.slice(0, 140) + "…" : plain;
   };
 
   const getTechs = (ws: WorkSample) =>
@@ -98,70 +111,123 @@ export default function OpenSource() {
   if (!loading && projects.length === 0) return null;
 
   return (
-    <div id="open-source" ref={sectionRef} className="relative bg-[#0d0000] h-auto">
-      {/* Subtle grid overlay */}
+    <div
+      id="open-source"
+      ref={sectionRef}
+      className="relative overflow-hidden"
+      style={{ background: "#0a0000" }}
+    >
+      {/* Terminal scan-line texture */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
+        className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+          backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.4) 2px, rgba(255,255,255,0.4) 3px)",
         }}
       />
-      <div className="absolute top-0 start-0 end-0 h-px bg-white/5" />
-      <div className="absolute bottom-0 start-0 end-0 h-px bg-white/5" />
 
-      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-0">
+      {/* Side accent bar */}
+      <div
+        className="absolute start-0 top-0 bottom-0 w-[3px]"
+        style={{ background: "linear-gradient(180deg, transparent 0%, #3B070A 30%, #5A0E12 50%, #3B070A 70%, transparent 100%)" }}
+      />
+
+      {/* Floating GitHub watermark */}
+      <div className="absolute end-8 top-8 pointer-events-none select-none opacity-[0.04]">
+        <SiGithub size={160} className="text-white" />
+      </div>
+
+      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-0">
+        {/* Header */}
         <div className="pt-[5vh] mb-10 w-[90%] lg:w-full ps-[5vw] lg:ps-0">
-          <h3 className="section-title mb-6 will-animate">{t("openSource.title")}</h3>
-          <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">
+          <div className="flex items-center gap-3 mb-4 will-animate">
+            <div className="flex items-center gap-1.5 text-[#4db6ac] font-mono text-sm">
+              <Terminal size={14} />
+              <span className="opacity-60">~/projects/open-source</span>
+            </div>
+          </div>
+          <h3 className="section-title mb-5">{t("openSource.title")}</h3>
+          <p className="font-[ybn] text-white/50 text-sm lg:text-base leading-7 will-animate max-w-2xl">
             {t("openSource.description")}
           </p>
         </div>
 
         {loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 lg:px-0">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="h-52 bg-white/[0.03] border border-white/5 animate-pulse" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-0">
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="h-44 animate-pulse" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }} />
             ))}
           </div>
         )}
 
         {!loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 px-4 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-0">
             {projects.map((ws, i) => {
               const githubUrl = getGitHubUrl(ws.link, ws.customLinks);
+              const liveUrl = getLiveUrl(ws.link);
               const techs = getTechs(ws);
+              const accent = ACCENT_COLORS[i % ACCENT_COLORS.length];
+              const repoName = githubUrl.split("github.com/")[1] ?? getTitle(ws);
+
               return (
                 <article
                   key={ws.id}
-                  className="will-animate group flex flex-col border border-white/8 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300 overflow-hidden"
-                  style={{ transitionDelay: `${i * 60}ms` }}
+                  className="will-animate group relative flex flex-col overflow-hidden transition-all duration-300"
+                  style={{
+                    background: "rgba(255,255,255,0.018)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                    transitionDelay: `${i * 55}ms`,
+                  }}
                 >
-                  {/* Top accent bar */}
-                  <div className="h-[3px] w-full bg-gradient-to-r from-[#3B070A] via-[#5A0E12] to-transparent" />
+                  {/* Top accent line */}
+                  <div className="h-[2px] w-full" style={{ background: accent.line, borderBottom: `1px solid ${accent.dot}30` }}>
+                    <div className="h-full w-[30%]" style={{ background: `linear-gradient(90deg, ${accent.dot}80, transparent)` }} />
+                  </div>
 
                   <div className="flex flex-col flex-1 p-5">
-                    {/* Icon + title */}
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="p-2 bg-white/5 border border-white/10 flex-shrink-0">
-                        <SiGithub size={18} className="text-white/60" />
+                    {/* Repo header — GitHub style */}
+                    <div className="flex items-start justify-between gap-2 mb-3">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <SiGithub size={16} className="text-white/40 flex-shrink-0" />
+                        <span className="font-mono text-xs text-white/40 truncate">{repoName}</span>
                       </div>
-                      <h4 className="font-[ybb] text-white/90 text-base leading-snug pt-1">
-                        {getTitle(ws)}
-                      </h4>
+                      {/* Decorative star/fork */}
+                      <div className="flex items-center gap-3 flex-shrink-0">
+                        <span className="flex items-center gap-1 text-[10px] text-white/20">
+                          <Star size={10} />
+                          <span className="font-mono">—</span>
+                        </span>
+                        <span className="flex items-center gap-1 text-[10px] text-white/20">
+                          <GitFork size={10} />
+                          <span className="font-mono">—</span>
+                        </span>
+                      </div>
                     </div>
 
-                    <p className="font-[ybn] text-white/50 text-sm leading-6 flex-1 mb-4">
+                    {/* Title */}
+                    <h4
+                      className="font-[ybb] text-base lg:text-lg leading-snug mb-2 transition-colors group-hover:text-white"
+                      style={{ color: "rgba(255,255,255,0.85)" }}
+                    >
+                      {getTitle(ws)}
+                    </h4>
+
+                    {/* Description */}
+                    <p className="font-[ybn] text-sm leading-6 flex-1 mb-4" style={{ color: "rgba(255,255,255,0.42)" }}>
                       {getDesc(ws)}
                     </p>
 
-                    {/* Tech tags */}
+                    {/* Tech chips */}
                     {techs.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {techs.slice(0, 4).map((tech) => (
                           <span
                             key={tech}
-                            className="text-xs font-[inter] px-2 py-0.5 bg-white/[0.04] border border-white/10 text-white/50"
+                            className="font-mono text-[10px] px-2 py-0.5"
+                            style={{
+                              background: accent.line,
+                              border: `1px solid ${accent.dot}25`,
+                              color: accent.dot,
+                            }}
                           >
                             {tech}
                           </span>
@@ -169,30 +235,59 @@ export default function OpenSource() {
                       </div>
                     )}
 
-                    {/* Links */}
+                    {/* Actions */}
                     <div className="flex gap-2 mt-auto">
                       <a
                         href={githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 border border-white/15 text-white/70 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+                        className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 transition-all"
+                        style={{
+                          background: "rgba(255,255,255,0.04)",
+                          border: "1px solid rgba(255,255,255,0.1)",
+                          color: "rgba(255,255,255,0.65)",
+                        }}
+                        onMouseEnter={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.08)";
+                          (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)";
+                          (e.currentTarget as HTMLElement).style.color = "#fff";
+                        }}
+                        onMouseLeave={(e) => {
+                          (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)";
+                          (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.1)";
+                          (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)";
+                        }}
                       >
-                        <SiGithub size={12} />
+                        <SiGithub size={11} />
                         {t("openSource.viewCode")}
                       </a>
-                      {!ws.link.includes("github.com") && ws.link && (
+                      {liveUrl && (
                         <a
-                          href={ws.link}
+                          href={liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 border border-white/15 text-white/50 hover:text-white/80 hover:border-white/25 hover:bg-white/5 transition-all"
+                          className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 transition-all"
+                          style={{
+                            background: "transparent",
+                            border: `1px solid ${accent.dot}30`,
+                            color: accent.dot,
+                            opacity: 0.8,
+                          }}
                         >
-                          <ExternalLink size={11} />
+                          <ExternalLink size={10} />
                           {t("openSource.liveDemo")}
                         </a>
                       )}
                     </div>
                   </div>
+
+                  {/* Hover corner glow */}
+                  <div
+                    className="absolute bottom-0 end-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background: `radial-gradient(circle at 100% 100%, ${accent.dot}15, transparent 70%)`,
+                    }}
+                  />
                 </article>
               );
             })}

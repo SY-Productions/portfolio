@@ -4,167 +4,271 @@ import React, { memo, useState, useEffect } from "react";
 import { useWorkSample } from "./WorkSampleContext";
 import SkeletonImage from "../SkeletonImage";
 
-const PhoneFrame = memo(function PhoneFrame({ src }: { src: string }) {
-  const frameW = "min(200px, 38vw)";
-
+export const PhoneFrame = memo(function PhoneFrame({ src }: { src: string }) {
   return (
-    <div className="flex items-center justify-center" style={{ filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.5))" }}>
-      <div className="relative flex-shrink-0" style={{ width: frameW }}>
-        {/* Outer shell */}
+    <div
+      className="relative flex-shrink-0 mx-auto"
+      style={{
+        width: "min(200px, 38vw)",
+        filter: "drop-shadow(0 20px 60px rgba(0,0,0,0.6))",
+      }}
+    >
+      {/* Outer titanium shell */}
+      <div
+        className="relative"
+        style={{
+          background: "linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 50%, #2a2a2c 100%)",
+          borderRadius: "2.8rem",
+          padding: "2.5px",
+        }}
+      >
+        {/* Volume down */}
+        <div className="absolute -start-[4.5px] rounded-s-sm" style={{ top: "22%", width: 4, height: "7%", background: "linear-gradient(90deg,#3a3a3c,#2a2a2a)" }} />
+        {/* Volume up */}
+        <div className="absolute -start-[4.5px] rounded-s-sm" style={{ top: "31%", width: 4, height: "7%", background: "linear-gradient(90deg,#3a3a3c,#2a2a2a)" }} />
+        {/* Silent switch */}
+        <div className="absolute -start-[4.5px] rounded-s-sm" style={{ top: "16%", width: 4, height: "4%", background: "linear-gradient(90deg,#3a3a3c,#2a2a2a)" }} />
+        {/* Power / side button */}
+        <div className="absolute -end-[4.5px] rounded-e-sm" style={{ top: "27%", width: 4, height: "10%", background: "linear-gradient(90deg,#2a2a2a,#3a3a3c)" }} />
+
+        {/* Screen bezel */}
         <div
-          className="relative rounded-[2.8rem] overflow-visible"
+          className="relative overflow-hidden"
           style={{
-            background: "linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 40%, #0d0d0d 100%)",
-            padding: "2px",
+            borderRadius: "2.6rem",
+            background: "#000",
+            aspectRatio: "9/19.5",
           }}
         >
-          {/* Side buttons — volume up/down */}
-          <div className="absolute -start-[5px] top-[22%] w-[5px] h-[8%] rounded-s-sm"
-            style={{ background: "linear-gradient(180deg, #333 0%, #222 100%)" }} />
-          <div className="absolute -start-[5px] top-[33%] w-[5px] h-[8%] rounded-s-sm"
-            style={{ background: "linear-gradient(180deg, #333 0%, #222 100%)" }} />
-          {/* Power button */}
-          <div className="absolute -end-[5px] top-[28%] w-[5px] h-[12%] rounded-e-sm"
-            style={{ background: "linear-gradient(180deg, #333 0%, #222 100%)" }} />
-
-          {/* Screen bezel */}
+          {/* Dynamic island */}
           <div
-            className="rounded-[2.6rem] overflow-hidden relative"
+            className="absolute z-20 bg-black"
             style={{
-              background: "#0a0a0a",
-              aspectRatio: "9/19.5",
+              top: 8,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "32%",
+              height: "4%",
+              borderRadius: 999,
             }}
-          >
-            {/* Dynamic island */}
-            <div
-              className="absolute top-[6px] left-1/2 -translate-x-1/2 z-20 rounded-full bg-black"
-              style={{ width: "30%", height: "3.5%" }}
-            />
+          />
 
-            {/* Screen image — fills entire screen */}
-            <div className="absolute inset-0">
-              <SkeletonImage
-                src={src}
-                width={400}
-                height={860}
-                className="w-full h-full object-cover object-top"
-                alt="App screenshot"
-              />
-            </div>
+          {/* Screen content */}
+          <SkeletonImage
+            src={src}
+            width={400}
+            height={860}
+            className="absolute inset-0 w-full h-full object-cover object-top"
+            alt="App screenshot"
+          />
 
-            {/* Home indicator */}
-            <div
-              className="absolute bottom-[6px] left-1/2 -translate-x-1/2 z-20 rounded-full"
-              style={{ width: "28%", height: "4px", background: "rgba(255,255,255,0.3)" }}
-            />
-          </div>
+          {/* Home indicator */}
+          <div
+            className="absolute z-20"
+            style={{
+              bottom: 6,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "28%",
+              height: 4,
+              borderRadius: 999,
+              background: "rgba(255,255,255,0.3)",
+            }}
+          />
+
+          {/* Subtle glass sheen */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 45%)",
+            }}
+          />
         </div>
-
-        {/* Reflection overlay */}
-        <div
-          className="absolute inset-0 rounded-[2.8rem] pointer-events-none"
-          style={{
-            background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%)",
-          }}
-        />
       </div>
     </div>
   );
 });
 
-const LaptopFrame = memo(function LaptopFrame({ src }: { src: string }) {
-  const frameW = "min(460px, 70vw)";
-
+export const LaptopFrame = memo(function LaptopFrame({ src }: { src: string }) {
   return (
-    <div className="flex flex-col items-center" style={{ filter: "drop-shadow(0 24px 48px rgba(0,0,0,0.5))", width: frameW }}>
-      {/* Lid / screen part */}
+    <div
+      className="flex flex-col items-center mx-auto"
+      style={{
+        width: "min(480px, 72vw)",
+        filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.55))",
+      }}
+    >
+      {/* ── LID ── */}
       <div
-        className="w-full relative"
+        className="relative w-full"
         style={{
-          background: "linear-gradient(180deg, #2a2a2a 0%, #1e1e1e 100%)",
-          borderRadius: "10px 10px 0 0",
-          padding: "3px 3px 0 3px",
+          background: "linear-gradient(160deg, #3a3a3c 0%, #2a2a2c 40%, #1c1c1e 100%)",
+          borderRadius: "12px 12px 0 0",
+          padding: "2px 2px 0",
         }}
       >
-        {/* Top bezel with camera */}
-        <div className="flex items-center justify-center py-2">
-          <div className="w-2 h-2 rounded-full bg-[#333] border border-[#444]" />
+        {/* Top bezel: camera + ambient sensor */}
+        <div className="flex items-center justify-center gap-2 py-[6px]">
+          <div
+            className="w-[7px] h-[7px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, #5a5a5c 0%, #3a3a3c 100%)",
+              boxShadow: "inset 0 0 2px rgba(0,0,0,0.5)",
+            }}
+          />
         </div>
 
-        {/* Screen area */}
+        {/* Screen */}
         <div
           className="relative overflow-hidden"
-          style={{ aspectRatio: "16/10", background: "#000", borderRadius: "2px" }}
+          style={{
+            background: "#000",
+            borderRadius: "3px 3px 0 0",
+            aspectRatio: "16/10",
+          }}
         >
-          {/* Browser chrome bar */}
-          <div className="flex items-center gap-1.5 px-3 py-2 bg-[#2a2a2a] border-b border-black/30">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-            <div className="flex-1 mx-2 h-4 rounded bg-[#1a1a1a] flex items-center px-2">
-              <div className="w-3 h-3 rounded-full bg-[#333] me-1.5" />
-              <div className="h-1.5 w-[40%] rounded bg-[#333]" />
+          {/* macOS-style menu bar */}
+          <div
+            className="flex items-center gap-[5px] px-2.5 flex-shrink-0"
+            style={{
+              height: 22,
+              background: "rgba(30,30,32,0.98)",
+              borderBottom: "1px solid rgba(255,255,255,0.06)",
+            }}
+          >
+            <div className="w-[10px] h-[10px] rounded-full bg-[#ff5f57]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
+            <div className="w-[10px] h-[10px] rounded-full bg-[#febc2e]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
+            <div className="w-[10px] h-[10px] rounded-full bg-[#28c840]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
+            {/* URL bar */}
+            <div
+              className="flex-1 mx-2 flex items-center px-2 gap-1.5"
+              style={{
+                height: 14,
+                background: "rgba(255,255,255,0.06)",
+                borderRadius: 3,
+                border: "1px solid rgba(255,255,255,0.06)",
+              }}
+            >
+              <div className="w-[6px] h-[6px] rounded-full bg-[#555] flex-shrink-0" />
+              <div className="flex-1 h-[4px] rounded-full bg-[#444]" />
             </div>
           </div>
 
-          {/* Web screenshot — fills screen fully */}
-          <div className="absolute inset-0 top-[34px]">
-            <SkeletonImage
-              src={src}
-              width={800}
-              height={500}
-              className="w-full h-full object-cover object-top"
-              alt="Web app screenshot"
-            />
-          </div>
+          {/* Page screenshot */}
+          <SkeletonImage
+            src={src}
+            width={800}
+            height={500}
+            className="w-full object-cover object-top"
+            alt="Web app screenshot"
+          />
+
+          {/* Subtle screen sheen */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: "linear-gradient(140deg, rgba(255,255,255,0.04) 0%, transparent 40%)",
+            }}
+          />
         </div>
       </div>
 
-      {/* Hinge / bottom chin */}
+      {/* ── HINGE ── */}
       <div
-        className="w-full h-[5px]"
+        className="w-full"
         style={{
-          background: "linear-gradient(180deg, #1a1a1a 0%, #252525 100%)",
+          height: 6,
+          background: "linear-gradient(180deg, #1c1c1e 0%, #2a2a2c 100%)",
         }}
       />
 
-      {/* Base / keyboard deck */}
+      {/* ── BASE ── */}
       <div
-        className="w-full relative"
+        className="relative w-full"
         style={{
-          background: "linear-gradient(180deg, #252525 0%, #1e1e1e 100%)",
-          borderRadius: "0 0 8px 8px",
-          paddingBottom: "12px",
-          paddingTop: "10px",
+          background: "linear-gradient(180deg, #2e2e30 0%, #1c1c1e 80%, #111 100%)",
+          borderRadius: "0 0 10px 10px",
+          paddingTop: 10,
+          paddingBottom: 14,
+          paddingLeft: 10,
+          paddingRight: 10,
         }}
       >
-        {/* Keyboard rows (decorative) */}
-        <div className="flex justify-center gap-0.5 px-4 mb-1">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={i} className="flex-1 h-[5px] rounded-sm bg-[#333]" />
+        {/* Keyboard area — styled rows */}
+        <div className="space-y-1 mb-3">
+          {[11, 10, 9, 8].map((keys, row) => (
+            <div key={row} className="flex gap-[2px] justify-center">
+              {Array.from({ length: keys }).map((_, i) => (
+                <div
+                  key={i}
+                  className="flex-1 max-w-[4.5%]"
+                  style={{
+                    height: 6,
+                    background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
+                    borderRadius: 2,
+                    boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4), 0 0.5px 0 rgba(255,255,255,0.04)",
+                  }}
+                />
+              ))}
+            </div>
           ))}
-        </div>
-        <div className="flex justify-center gap-0.5 px-5 mb-1">
-          {Array.from({ length: 11 }).map((_, i) => (
-            <div key={i} className="flex-1 h-[5px] rounded-sm bg-[#2e2e2e]" />
-          ))}
-        </div>
-        <div className="flex justify-center gap-0.5 px-6 mb-2">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="flex-1 h-[5px] rounded-sm bg-[#2a2a2a]" />
-          ))}
+          {/* Space bar row */}
+          <div className="flex gap-[2px] justify-center">
+            {[3, 4, 3].map((keys, gi) => (
+              <React.Fragment key={gi}>
+                {gi === 1 ? (
+                  <div
+                    className="flex-1"
+                    style={{
+                      height: 6,
+                      background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
+                      borderRadius: 2,
+                      boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4)",
+                      maxWidth: "40%",
+                    }}
+                  />
+                ) : (
+                  Array.from({ length: keys }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="flex-1 max-w-[4.5%]"
+                      style={{
+                        height: 6,
+                        background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
+                        borderRadius: 2,
+                        boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4)",
+                      }}
+                    />
+                  ))
+                )}
+              </React.Fragment>
+            ))}
+          </div>
         </div>
 
         {/* Trackpad */}
         <div className="flex justify-center">
-          <div className="w-[28%] h-[16px] rounded bg-[#2d2d2d] border border-[#333]" />
+          <div
+            style={{
+              width: "26%",
+              height: 18,
+              background: "linear-gradient(160deg, #2e2e30 0%, #252527 100%)",
+              borderRadius: 4,
+              border: "1px solid rgba(255,255,255,0.06)",
+              boxShadow: "inset 0 1px 2px rgba(0,0,0,0.4)",
+            }}
+          />
         </div>
       </div>
 
-      {/* Foot/table edge shadow */}
+      {/* Ground shadow */}
       <div
-        className="w-[110%] h-[4px] rounded-full mt-px"
-        style={{ background: "radial-gradient(ellipse, rgba(0,0,0,0.5) 0%, transparent 70%)" }}
+        className="w-[80%]"
+        style={{
+          height: 3,
+          background: "radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%)",
+          borderRadius: "50%",
+        }}
       />
     </div>
   );

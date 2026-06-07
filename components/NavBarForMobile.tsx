@@ -42,7 +42,8 @@ const NavBarForMobile = memo(function NavBarForMobile() {
       </div>
 
       <Image
-        className="LOGO h-8 w-auto mr-4"
+        className="LOGO h-8 w-auto"
+        style={{ marginInlineEnd: "1rem", padding: "0.2rem 0" }}
         src={logo}
         alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
         height={32}

@@ -17,6 +17,7 @@ import {
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useLang, LANG_LABEL, Lang } from "@/app/context/LanguageContext";
+import ReactCountryFlag from "react-country-flag";
 
 import logo from "../public/vectors/logo.svg";
 
@@ -137,13 +138,17 @@ const SideBar = memo(function SideBar() {
                 key={l}
                 onClick={() => setLang(l)}
                 title={LANG_LABEL[l]}
-                className={`flex-1 py-1.5 font-bold transition-all border leading-none text-base ${
+                className={`flex-1 py-1 flex items-center justify-center transition-all border ${
                   lang === l
-                    ? "bg-[#3B070A]/60 border-[#5A0E12]/60 text-white"
-                    : "bg-white/5 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/8"
+                    ? "bg-[#3B070A]/60 border-[#5A0E12]/60"
+                    : "bg-white/5 border-white/10 hover:bg-white/10"
                 }`}
               >
-                {l === "fa" ? "🇮🇷" : l === "ar" ? "🇸🇦" : "🇬🇧"}
+                <ReactCountryFlag
+                  countryCode={l === "fa" ? "IR" : l === "ar" ? "SA" : "GB"}
+                  svg
+                  style={{ width: "1.4em", height: "1.4em" }}
+                />
               </button>
             ))}
 
