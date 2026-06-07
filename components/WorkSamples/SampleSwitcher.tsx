@@ -92,9 +92,8 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     };
   }, [isOverflowing]);
 
-  // Button classes for consistent styling
   const buttonClasses =
-    "btn w-[15vw] lg:w-[4vw] h-[7vh] lg:h-[6vh] rounded-none bg-[#111] hover:bg-[#1A1A1A] hover:border-[#333] border border-[#222] active:bg-[#151515] transition-colors duration-200";
+    "btn w-12 h-10 lg:w-[4vw] lg:h-[6vh] rounded-none bg-[#111] hover:bg-[#1A1A1A] hover:border-[#333] border border-[#222] active:bg-[#151515] transition-colors duration-200 min-w-0 min-h-0";
 
   return (
     <>
@@ -119,7 +118,7 @@ const SampleSwitcher = memo(function SampleSwitcher() {
         }
       `}</style>
 
-      <div className="float-end my-6 lg:mb-0 mb-10 flex flex-row items-center justify-between w-[80vw] lg:w-[35vw] gap-3">
+      <div className="my-4 lg:mb-0 flex flex-row items-center justify-between w-[88vw] lg:w-[38vw] lg:ms-[22vw] gap-3">
         {/* Sample index display */}
         <div className="NAME py-6">
           <p className="sample-index w-20 h-15">

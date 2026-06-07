@@ -1,0 +1,173 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { useLang } from "@/app/context/LanguageContext";
+import { useTheme } from "@/app/context/ThemeContext";
+import { API_BASE_URL } from "@/app/config";
+import { ExternalLink, ShoppingCart } from "lucide-react";
+
+interface Product {
+  id: number;
+  title: string;
+  titleEn: string;
+  titleAr: string;
+  description: string;
+  descriptionEn: string;
+  descriptionAr: string;
+  url: string;
+  imageUrl: string;
+  price: string;
+  category: string;
+}
+
+const CATEGORY_BADGE: Record<string, string> = {
+  theme: "Theme",
+  plugin: "Plugin",
+  template: "Template",
+  other: "Product",
+};
+
+export default function Products() {
+  const { t, lang } = useLang();
+  const { theme } = useTheme();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const bgSvg =
+    theme === "light"
+      ? "bg-[url('/vectors/sec1-bglight.svg')]"
+      : "bg-[url('/vectors/sec1-bgdark.svg')]";
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/products`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data: Product[]) => {
+        if (Array.isArray(data)) setProducts(data);
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el || loading) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(".will-animate").forEach((child, i) => {
+            setTimeout(() => child.classList.add("in-view"), i * 80);
+          });
+          el.querySelector(".section-title")?.classList.add("in-view");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [loading]);
+
+  const getTitle = (p: Product) =>
+    lang === "en" && p.titleEn ? p.titleEn : lang === "ar" && p.titleAr ? p.titleAr : p.title;
+
+  const getDesc = (p: Product) =>
+    lang === "en" && p.descriptionEn
+      ? p.descriptionEn
+      : lang === "ar" && p.descriptionAr
+      ? p.descriptionAr
+      : p.description;
+
+  if (!loading && products.length === 0) return null;
+
+  return (
+    <div
+      id="products"
+      ref={sectionRef}
+      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 pointer-events-none" />
+
+      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-0">
+        <div className="pt-[5vh] mb-10 w-[90%] lg:w-full ps-[5vw] lg:ps-0">
+          <h3 className="section-title mb-6 will-animate">{t("products.title")}</h3>
+          <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">
+            {t("products.description")}
+          </p>
+        </div>
+
+        {loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
+            {[0, 1].map((i) => (
+              <div key={i} className="h-64 bg-black/20 border border-white/5 animate-pulse" />
+            ))}
+          </div>
+        )}
+
+        {!loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
+            {products.map((product, i) => (
+              <article
+                key={product.id}
+                className="will-animate group flex flex-col overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm hover:border-white/20 hover:bg-black/30 transition-all duration-300 hover:-translate-y-1"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                {/* Image or gradient cover */}
+                <div className="relative h-44 overflow-hidden flex-shrink-0">
+                  {product.imageUrl ? (
+                    <img
+                      src={product.imageUrl}
+                      alt={getTitle(product)}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#3B070A]/40 via-[#5A0E12]/20 to-[#141010]" />
+                  )}
+                  {/* Category badge */}
+                  <span className="absolute top-3 start-3 text-xs font-[ybn] px-2.5 py-1 bg-black/40 text-white/80 border border-white/15 backdrop-blur-sm">
+                    {CATEGORY_BADGE[product.category] ?? product.category}
+                  </span>
+                  {product.price && (
+                    <span className="absolute top-3 end-3 text-xs font-[inter] font-semibold px-2.5 py-1 bg-[#3B070A]/80 text-white border border-[#5A0E12]/50 backdrop-blur-sm">
+                      {product.price}
+                    </span>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col flex-1 p-5">
+                  <h4 className="font-[ybb] text-white/90 text-base lg:text-lg leading-snug mb-2">
+                    {getTitle(product)}
+                  </h4>
+                  <p className="font-[ybn] text-white/50 text-sm leading-6 flex-1 line-clamp-3">
+                    {getDesc(product)}
+                  </p>
+
+                  <div className="flex gap-2 mt-4">
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-2 bg-gradient-to-r from-[#3B070A]/60 to-[#5A0E12]/60 border border-[#5A0E12]/40 text-white hover:from-[#3B070A]/80 hover:to-[#5A0E12]/80 transition-all"
+                    >
+                      <ShoppingCart size={12} />
+                      {t("products.buyNow")}
+                    </a>
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-2 border border-white/15 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
+                    >
+                      <ExternalLink size={11} />
+                      {t("products.learnMore")}
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

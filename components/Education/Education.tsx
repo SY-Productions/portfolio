@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import EduCard from "./EduCard";
 import { API_BASE_URL } from "@/app/config";
 import EduCardSkeleton from "./EduSkeletonCard";
@@ -25,6 +25,7 @@ const Education = () => {
   const [loading, setLoading] = useState(true);
   const { t, lang } = useLang();
   const { theme } = useTheme();
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const bgSvg =
     theme === "light"
@@ -50,8 +51,28 @@ const Education = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.querySelectorAll(".will-animate").forEach((child, i) => {
+            setTimeout(() => child.classList.add("in-view"), i * 80);
+          });
+          el.querySelector(".section-title")?.classList.add("in-view");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [educations]);
+
   return (
     <div
+      ref={sectionRef}
       id="education"
       className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] overflow-hidden`}
     >
@@ -68,10 +89,7 @@ const Education = () => {
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-[80%] ps-[10vw] lg:ps-0">
-          <h3 className="xl:text-4xl font-[ybb] text-white/90 self-start mb-6 text-nowrap relative inline-block">
-            {t("education.title")}
-            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
-          </h3>
+          <h3 className="section-title mb-6">{t("education.title")}</h3>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("education.description")}
           </p>

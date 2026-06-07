@@ -1,62 +1,41 @@
+"use client";
 import React from "react";
+import { SiDart, SiFlutter, SiPython, SiDjango, SiHtml5, SiCss3, SiFastapi, SiJavascript, SiReact, SiRuby, SiRubyonrails, SiWordpress } from "react-icons/si";
 import { BsLink } from "react-icons/bs";
-import { SiDart } from "react-icons/si";
-import { SiFlutter } from "react-icons/si";
-import { SiPython } from "react-icons/si";
-import { SiDjango } from "react-icons/si";
-import { SiHtml5 } from "react-icons/si";
-import { SiCss3 } from "react-icons/si";
-import { SiFastapi } from "react-icons/si";
-import { SiJavascript } from "react-icons/si";
-import { SiReact } from "react-icons/si";
-import { SiRuby } from "react-icons/si";
-import { SiRubyonrails } from "react-icons/si";
-import { SiWordpress } from "react-icons/si";
 
 interface Skill {
   name: string;
 }
 
-export default function Skill({ name }: Skill) {
-  function getIcon() {
-    switch (name) {
-      case "Flutter":
-        return <SiFlutter size={17} />;
-      case "Django":
-        return <SiDjango size={17} />;
-      case "React":
-        return <SiReact size={17} />;
-      case "Fastapi":
-        return <SiFastapi size={17} />;
-      case "Python":
-        return <SiPython size={17} />;
-      case "WP":
-        return <SiWordpress size={17} />;
-      case "OnRails":
-        return <SiRubyonrails size={17} />;
-      case "Html":
-        return <SiHtml5 size={17} />;
-      case "Css":
-        return <SiCss3 size={17} />;
-      case "Ruby":
-        return <SiRuby size={17} />;
-      case "Dart":
-        return <SiDart size={17} />;
-      case "Js":
-        return <SiJavascript size={17} />;
-      default:
-        return <BsLink size={17} />;
-    }
-  }
+const ICON_MAP: Record<string, React.ReactNode> = {
+  Flutter:  <SiFlutter size={14} />,
+  Django:   <SiDjango size={14} />,
+  React:    <SiReact size={14} />,
+  Fastapi:  <SiFastapi size={14} />,
+  Python:   <SiPython size={14} />,
+  WP:       <SiWordpress size={14} />,
+  OnRails:  <SiRubyonrails size={14} />,
+  Html:     <SiHtml5 size={14} />,
+  Css:      <SiCss3 size={14} />,
+  Ruby:     <SiRuby size={14} />,
+  Dart:     <SiDart size={14} />,
+  Js:       <SiJavascript size={14} />,
+};
 
-  // Modernized styles without being overly green or glassy
+const DISPLAY_NAMES: Record<string, string> = {
+  Html: "HTML", Css: "CSS", Js: "JavaScript", WP: "WordPress", OnRails: "Rails",
+  Dart: "Dart", Flutter: "Flutter", Python: "Python", Django: "Django",
+  Fastapi: "FastAPI", React: "React", Ruby: "Ruby",
+};
+
+export default function HardSkill({ name }: Skill) {
+  const icon = ICON_MAP[name] ?? <BsLink size={14} />;
+  const label = DISPLAY_NAMES[name] ?? name;
+
   return (
-    <div
-      dir="rtl"
-      className="py-1 px-3 font-[inter] font-medium text-nowrap flex justify-between items-center bg-[#111] border border-[#222] text-white/80 w-32 hover:border-[#3B070A]/30 transition-all duration-200"
-    >
-      {name}
-      <span className="text-white/60">{getIcon()}</span>
+    <div className="skill-chip font-[inter] will-animate">
+      <span className="opacity-60">{icon}</span>
+      {label}
     </div>
   );
 }

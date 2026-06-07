@@ -9,6 +9,9 @@ import LookingProgrammer from "@/components/LookingProgrammer";
 import Footer from "@/components/Footer";
 import Work from "@/components/Work/Work";
 import Events from "@/components/Events/Events";
+import Blog from "@/components/Blog/Blog";
+import OpenSource from "@/components/OpenSource/OpenSource";
+import Products from "@/components/Products/Products";
 import AnimatedCursor from "@/components/AnimtedCursor";
 import SideBar from "@/components/SideBar";
 import AdminQuickAccess from "@/components/AdminQuickAccess";
@@ -22,10 +25,13 @@ export default function Page() {
         <AboutMe />
         <Skills />
         <WorkSamples />
+        <OpenSource />
+        <Products />
         <LookingProgrammer />
         <Education />
         <Work />
         <Events />
+        <Blog />
         <CallMe />
       </main>
       <Footer />

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useWorkSample } from "./WorkSampleContext";
@@ -22,46 +21,11 @@ export default function Information() {
   const currentSample = getCurrentSample();
   const { t, lang, dir } = useLang();
   const { theme } = useTheme();
-
   const isLight = theme === "light";
 
-  // Common CSS classes — theme-aware
-  const tabClasses = isLight
-    ? "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-gray-500 border-b-gray-200 bg-gray-50"
-    : "TAB py-[2.5vh] px-1 w-[50%] font-[ybb] 2xl:text-xl border-b text-white/70 border-b-white/10";
-
-  const tabSelectedStyle = isLight
-    ? { bg: "#fff", borderBottomWidth: 0, color: "#1a0505" }
-    : { bg: "#111", borderBottomWidth: 0, color: "rgb(255 255 255 / 0.8)" };
-
-  const tabContentClasses = isLight
-    ? "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-white border border-gray-200 border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]"
-    : "TABCONTENT min-h-[25vh] lg:min-h-[30vh] font-[ybb] text-sm bg-[#111] border border-[#222] border-t-0 flex flex-col justify-start px-[5vw] lg:px-[2vw]";
-
-  const titleTextClass = isLight
-    ? "text-lg 2xl:text-2xl py-[2.5vh] text-gray-800"
-    : "text-lg 2xl:text-2xl py-[2.5vh] text-white/80";
-  const descTextClass = isLight
-    ? "font-[ybn] 2xl:text-lg text-gray-500 pb-[10vh]"
-    : "font-[ybn] 2xl:text-lg text-white/70 pb-[10vh]";
-
-  const tabsContainerClass = isLight
-    ? "ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:ms-[22vw] border border-gray-200 backdrop-blur-3xl relative bg-gray-50"
-    : "ALL font-[ybn] w-[80vw] lg:w-[35vw] lg:ms-[22vw] border border-[#222] backdrop-blur-3xl relative";
-
-  const drawerBtnClass = isLight
-    ? "absolute bottom-0 flex items-center justify-between px-4 hover:bg-gray-100 bg-gray-50 text-gray-700 w-full h-[5vh] min-h-12 border-t border-gray-200"
-    : "absolute bottom-0 flex items-center justify-between px-4 hover:bg-[#1A1A1A] bg-[#151515] text-white w-full h-[5vh] min-h-12 border-t border-[#222]";
-
-  const handleOpeningDrawer = () => {
+  const handleOpenDrawer = () => {
     setCurrentPicIndex(0);
     setIsDrawerOpen(true);
-  };
-
-  const getDescription = (description: string) => {
-    return description.includes("%g%")
-      ? description.split("%g%")[0]
-      : description;
   };
 
   const getTitle = () => {
@@ -73,54 +37,96 @@ export default function Information() {
 
   const getDesc = () => {
     if (!currentSample) return "";
-    if (lang === "en" && currentSample.enDescription)
-      return getDescription(currentSample.enDescription);
-    if (lang === "ar" && currentSample.arDescription)
-      return getDescription(currentSample.arDescription);
-    return getDescription(currentSample.faDescription);
+    const raw =
+      lang === "en" && currentSample.enDescription
+        ? currentSample.enDescription
+        : lang === "ar" && currentSample.arDescription
+        ? currentSample.arDescription
+        : currentSample.faDescription;
+    return raw.includes("%g%") ? raw.split("%g%")[0] : raw;
   };
 
   if (!currentSample) return null;
 
+  const wrapperClass = isLight
+    ? "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[22vw] relative overflow-hidden border border-gray-200/60 bg-white/80 backdrop-blur-xl shadow-lg"
+    : "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[22vw] relative overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-xl";
+
   return (
     <div className="INFORMATION flex items-center justify-center lg:justify-normal">
-      <Tabs
-        className={tabsContainerClass}
-        variant="unstyled"
-        index={isWebFrame ? 1 : 0}
-        onChange={(index) => setIsWebFrame(index === 1)}
-      >
-        <TabList className="JUSTTABS">
-          <Tab className={tabClasses} _selected={tabSelectedStyle}>
-            {t("portfolio.mobileApps")}
-          </Tab>
-          <Tab className={tabClasses} _selected={tabSelectedStyle}>
-            {t("portfolio.webApps")}
-          </Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel padding={0}>
-            <div className={tabContentClasses}>
-              <div className={titleTextClass}>{getTitle()}</div>
-              <div className={descTextClass}>{getDesc()}</div>
-            </div>
-          </TabPanel>
-          <TabPanel padding={0}>
-            <div className={tabContentClasses}>
-              <div className={titleTextClass}>{getTitle()}</div>
-              <div className={descTextClass}>{getDesc()}</div>
-            </div>
-          </TabPanel>
-        </TabPanels>
-        <button onClick={handleOpeningDrawer} className={drawerBtnClass}>
-          {t("portfolio.moreInfo")}{" "}
+      <div className={wrapperClass}>
+        {/* Tab selector — pill segmented control */}
+        <div className={`flex p-1.5 m-4 gap-1 rounded-none ${isLight ? "bg-gray-100 border border-gray-200" : "bg-black/30 border border-white/8"}`}>
+          <button
+            onClick={() => setIsWebFrame(false)}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium transition-all duration-200 ${
+              !isWebFrame
+                ? isLight
+                  ? "bg-white shadow-sm text-gray-800 border border-gray-200"
+                  : "bg-gradient-to-r from-[#3B070A]/80 to-[#5A0E12]/80 text-white shadow-sm border border-[#5A0E12]/40"
+                : isLight
+                  ? "text-gray-400 hover:text-gray-600"
+                  : "text-white/35 hover:text-white/60"
+            }`}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="5" y="2" width="14" height="20" rx="3" ry="3" fillOpacity="0.2" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              <circle cx="12" cy="19" r="1" fill="currentColor"/>
+              <rect x="9" y="1" width="6" height="1.5" rx="0.75" fill="currentColor"/>
+            </svg>
+            <span>{t("portfolio.mobileApps")}</span>
+          </button>
+
+          <button
+            onClick={() => setIsWebFrame(true)}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 text-sm font-medium transition-all duration-200 ${
+              isWebFrame
+                ? isLight
+                  ? "bg-white shadow-sm text-gray-800 border border-gray-200"
+                  : "bg-gradient-to-r from-[#3B070A]/80 to-[#5A0E12]/80 text-white shadow-sm border border-[#5A0E12]/40"
+                : isLight
+                  ? "text-gray-400 hover:text-gray-600"
+                  : "text-white/35 hover:text-white/60"
+            }`}
+          >
+            <svg width="15" height="12" viewBox="0 0 24 19" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <rect x="1" y="1" width="22" height="14" rx="2"/>
+              <path d="M8 18h8M12 15v3"/>
+            </svg>
+            <span>{t("portfolio.webApps")}</span>
+          </button>
+        </div>
+
+        {/* Divider */}
+        <div className={`mx-4 h-px ${isLight ? "bg-gray-100" : "bg-white/5"}`} />
+
+        {/* Content */}
+        <div className="min-h-[20vh] lg:min-h-[24vh] flex flex-col justify-start px-5 lg:px-6 pb-14">
+          <div className={`text-base lg:text-lg 2xl:text-xl py-4 font-[ybb] ${isLight ? "text-gray-800" : "text-white/90"}`}>
+            {getTitle()}
+          </div>
+          <div className={`font-[ybn] text-sm 2xl:text-base leading-7 ${isLight ? "text-gray-500" : "text-white/60"}`}>
+            {getDesc()}
+          </div>
+        </div>
+
+        {/* More details button */}
+        <button
+          onClick={handleOpenDrawer}
+          className={`absolute bottom-0 w-full flex items-center justify-between px-5 py-3 min-h-11 text-sm font-[ybn] transition-colors ${
+            isLight
+              ? "border-t border-gray-200 bg-gray-50/80 text-gray-600 hover:bg-gray-100"
+              : "border-t border-white/10 bg-black/20 text-white/70 hover:bg-white/5"
+          }`}
+        >
+          {t("portfolio.moreInfo")}
           {dir === "rtl" ? (
             <ArrowBackIosNewIcon sx={{ fontSize: 12 }} />
           ) : (
             <ArrowForwardIosIcon sx={{ fontSize: 12 }} />
           )}
         </button>
-      </Tabs>
+      </div>
 
       <Drawer />
     </div>

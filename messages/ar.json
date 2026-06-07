@@ -79,5 +79,49 @@
     "timeSpent": "الجدول الزمني للمشروع",
     "start": "البداية :",
     "end": "النهاية :"
+  },
+  "openSource": {
+    "navTitle": "المصدر المفتوح",
+    "title": "مشاريع المصدر المفتوح",
+    "description": "مشاريع بنيتها وشاركتها على GitHub. لا تتردد في الاستكشاف أو التفرع أو المساهمة.",
+    "viewCode": "عرض الكود",
+    "liveDemo": "عرض حي"
+  },
+  "products": {
+    "navTitle": "المنتجات",
+    "title": "المنتجات والقوالب",
+    "description": "قوالب وإضافات WordPress المميزة التي بنيتها وأبيعها. جاهزة للإنتاج، تدعم RTL، وموثقة بالكامل.",
+    "buyNow": "اشترِ الآن",
+    "learnMore": "اعرف المزيد"
+  },
+  "blog": {
+    "navTitle": "المدونة",
+    "title": "المقالات والمدونة",
+    "description": "أفكاري وتعلماتي ورؤاي من مسيرتي كمطوّر.",
+    "readMore": "اقرأ المزيد",
+    "minRead": "دقيقة قراءة",
+    "posts": [
+      {
+        "title": "البدء مع Flutter: رحلتي",
+        "description": "كيف انتقلت من تطوير الويب إلى Flutter ولماذا وقعت في حبه. نصائح ودروس مستفادة على طول الطريق.",
+        "date": "2025-03-15",
+        "readTime": 5,
+        "tag": "Flutter"
+      },
+      {
+        "title": "بناء APIs RESTful مع FastAPI",
+        "description": "تعمق في بناء APIs REST عالية الأداء باستخدام إطار عمل FastAPI لـ Python مع أمثلة من العالم الحقيقي.",
+        "date": "2025-02-20",
+        "readTime": 8,
+        "tag": "Backend"
+      },
+      {
+        "title": "إدارة الحالة في Flutter: دليل عملي",
+        "description": "مقارنة Riverpod وBloc وProvider — أيها تستخدم ومتى. أمثلة عملية من تطبيقات الإنتاج.",
+        "date": "2025-01-10",
+        "readTime": 10,
+        "tag": "Flutter"
+      }
+    ]
   }
 }

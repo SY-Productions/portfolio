@@ -52,10 +52,7 @@ const Work = () => {
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-[80%] ps-[10vw] lg:ps-0">
-          <h3 className="xl:text-4xl font-[ybb] text-white/80 self-start mb-6 text-nowrap relative inline-block">
-            {t("work.title")}
-            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
-          </h3>
+          <h3 className="section-title mb-6">{t("work.title")}</h3>
 
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("work.description")}

@@ -79,5 +79,49 @@
     "timeSpent": "Project Timeline",
     "start": "Start:",
     "end": "End:"
+  },
+  "openSource": {
+    "navTitle": "Open Source",
+    "title": "Open Source Projects",
+    "description": "Projects I've built and shared openly on GitHub. Feel free to explore, fork, or contribute.",
+    "viewCode": "View Code",
+    "liveDemo": "Live Demo"
+  },
+  "products": {
+    "navTitle": "Products",
+    "title": "Products & Themes",
+    "description": "Premium WordPress themes and plugins I've built and sell. Production-ready, RTL-supported, and fully documented.",
+    "buyNow": "Buy Now",
+    "learnMore": "Learn More"
+  },
+  "blog": {
+    "navTitle": "Blog",
+    "title": "Articles & Blog",
+    "description": "My thoughts, learnings, and insights from my journey as a developer.",
+    "readMore": "Read More",
+    "minRead": "min read",
+    "posts": [
+      {
+        "title": "Getting Started with Flutter: My Journey",
+        "description": "How I transitioned from web development to Flutter and why I fell in love with it. Tips and lessons learned along the way.",
+        "date": "2025-03-15",
+        "readTime": 5,
+        "tag": "Flutter"
+      },
+      {
+        "title": "Building RESTful APIs with FastAPI",
+        "description": "A deep dive into building high-performance REST APIs using Python's FastAPI framework, with real-world examples.",
+        "date": "2025-02-20",
+        "readTime": 8,
+        "tag": "Backend"
+      },
+      {
+        "title": "State Management in Flutter: A Practical Guide",
+        "description": "Comparing Riverpod, Bloc, and Provider — which one should you use and when. Practical examples from production apps.",
+        "date": "2025-01-10",
+        "readTime": 10,
+        "tag": "Flutter"
+      }
+    ]
   }
 }

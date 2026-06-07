@@ -24,10 +24,7 @@ const CallMe = memo(function CallMe() {
 
       <div className="(H3&P)&(FORM) lg:basis-1/2 relative z-10">
         <div className="H3&P w-[80vw] lg:w-full lg:ps-0">
-          <h3 className="xl:text-4xl 2xl:text-5xl font-[ybb] text-white/80 self-start mb-6 2xl:mb-10 text-nowrap relative inline-block">
-            {t("contact.title")}
-            <span className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#3B070A] to-[#3A0D12]"></span>
-          </h3>
+          <h3 className="section-title mb-6 2xl:mb-10">{t("contact.title")}</h3>
           <p className="font-[ybn] text-white/60 self-start mb-8 2xl:text-lg text-wrap leading-7">
             {t("contact.description")}
           </p>

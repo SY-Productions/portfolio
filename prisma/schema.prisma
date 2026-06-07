@@ -87,6 +87,21 @@ model Event {
   order         Int     @default(0)
 }
 
+model Product {
+  id            Int     @id @default(autoincrement())
+  title         String
+  titleEn       String  @default("")
+  titleAr       String  @default("")
+  description   String
+  descriptionEn String  @default("")
+  descriptionAr String  @default("")
+  url           String
+  imageUrl      String  @default("")
+  price         String  @default("")
+  category      String  @default("theme")
+  order         Int     @default(0)
+}
+
 model PageView {
   id        Int      @id @default(autoincrement())
   path      String

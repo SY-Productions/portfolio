@@ -112,7 +112,7 @@ const AboutMe = memo(function AboutMe() {
                 : "opacity-0 -translate-x-8"
             }`}
           >
-            <p className="mobile-developer tracking-tight text-[2.8rem] lg:text-[3rem] font-extrabold">
+            <p className="mobile-developer tracking-tight font-extrabold" style={{ fontSize: "clamp(1.6rem, 4vw, 3rem)" }}>
               MOBILE <br />
               DEVELOPER
             </p>
