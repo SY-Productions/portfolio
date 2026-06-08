@@ -152,12 +152,12 @@ const SideBar = memo(function SideBar() {
               </button>
             ))}
 
-            <div className="w-px h-5 bg-white/10 mx-1 hidden lg:block" />
+            <div className="w-px h-5 bg-white/10 mx-1" />
 
             <button
               onClick={toggleTheme}
               title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-              className="hidden lg:flex items-center justify-center w-9 h-7 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+              className="flex-1 py-1 flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
             >
               {theme === "dark" ? <Sun size={13} /> : <Moon size={13} />}
             </button>
