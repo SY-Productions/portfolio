@@ -102,6 +102,16 @@ model Product {
   order         Int     @default(0)
 }
 
+model AdminSession {
+  id          Int      @id @default(autoincrement())
+  jti         String   @unique
+  userAgent   String   @default("")
+  ip          String   @default("")
+  createdAt   DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  isRevoked   Boolean  @default(false)
+}
+
 model PageView {
   id        Int      @id @default(autoincrement())
   path      String
