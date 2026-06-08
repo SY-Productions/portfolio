@@ -159,7 +159,7 @@ const SideBar = memo(function SideBar() {
               title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
               className="flex-1 py-1 flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
             >
-              {theme === "dark" ? <Sun size={13} /> : <Moon size={13} />}
+              {theme === "dark" ? <Sun size={22} /> : <Moon size={22} />}
             </button>
           </div>
 

@@ -29,7 +29,7 @@ const NavBarForMobile = memo(function NavBarForMobile() {
           onClick={toggleTheme}
           className="flex items-center justify-center p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
         >
-          {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
         </button>
 
         <a
