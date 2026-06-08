@@ -17,6 +17,7 @@ interface WorkSample {
   link: string;
   technologys: string;
   customLinks: string | null;
+  pictures: string;
 }
 
 function isGitHubLink(link: string, customLinks: string | null): boolean {
@@ -167,6 +168,7 @@ export default function OpenSource() {
               const techs = getTechs(ws);
               const accent = ACCENT_COLORS[i % ACCENT_COLORS.length];
               const repoName = githubUrl.split("github.com/")[1] ?? getTitle(ws);
+              const firstPic = ws.pictures?.split(" ").filter(Boolean)[0];
 
               return (
                 <article
@@ -178,6 +180,18 @@ export default function OpenSource() {
                     transitionDelay: `${i * 55}ms`,
                   }}
                 >
+                  {/* Gallery image */}
+                  {firstPic && (
+                    <div className="h-36 overflow-hidden flex-shrink-0 relative">
+                      <img
+                        src={firstPic}
+                        alt={getTitle(ws)}
+                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent 50%, rgba(10,0,0,0.7) 100%)` }} />
+                    </div>
+                  )}
+
                   {/* Top accent line */}
                   <div className="h-[2px] w-full" style={{ background: accent.line, borderBottom: `1px solid ${accent.dot}30` }}>
                     <div className="h-full w-[30%]" style={{ background: `linear-gradient(90deg, ${accent.dot}80, transparent)` }} />

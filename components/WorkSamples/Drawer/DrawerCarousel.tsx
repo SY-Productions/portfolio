@@ -2,7 +2,7 @@
 
 import React, { memo, useEffect, useState } from "react";
 import { useWorkSample } from "../WorkSampleContext";
-import { PhoneFrame, LaptopFrame } from "../Preview";
+import { PhoneFrame, BrowserFrame } from "../Preview";
 
 const DrawerCarousel = memo(function DrawerCarousel() {
   const {
@@ -50,7 +50,7 @@ const DrawerCarousel = memo(function DrawerCarousel() {
       {/* Frame + image */}
       <div key={currentImgKey} className="flex items-center justify-center px-12 lg:px-16 w-full animate-scale-in" style={{ animationDuration: "0.35s" }}>
         {isWebFrame ? (
-          <LaptopFrame src={pictures[currentPicIndex]} />
+          <BrowserFrame src={pictures[currentPicIndex]} />
         ) : (
           <PhoneFrame src={pictures[currentPicIndex]} />
         )}

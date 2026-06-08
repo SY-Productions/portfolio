@@ -89,187 +89,62 @@ export const PhoneFrame = memo(function PhoneFrame({ src }: { src: string }) {
   );
 });
 
-export const LaptopFrame = memo(function LaptopFrame({ src }: { src: string }) {
+export const BrowserFrame = memo(function BrowserFrame({ src }: { src: string }) {
   return (
     <div
-      className="flex flex-col items-center mx-auto"
+      className="mx-auto"
       style={{
         width: "min(480px, 72vw)",
-        filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.55))",
+        borderRadius: 10,
+        overflow: "hidden",
+        border: "1px solid rgba(255,255,255,0.08)",
+        filter: "drop-shadow(0 12px 40px rgba(0,0,0,0.6))",
       }}
     >
-      {/* ── LID ── */}
+      {/* Chrome bar */}
       <div
-        className="relative w-full"
         style={{
-          background: "linear-gradient(160deg, #3a3a3c 0%, #2a2a2c 40%, #1c1c1e 100%)",
-          borderRadius: "12px 12px 0 0",
-          padding: "2px 2px 0",
+          height: 34,
+          background: "rgba(22,22,24,0.98)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          display: "flex",
+          alignItems: "center",
+          padding: "0 12px",
+          gap: 6,
         }}
       >
-        {/* Top bezel: camera + ambient sensor */}
-        <div className="flex items-center justify-center gap-2 py-[6px]">
-          <div
-            className="w-[7px] h-[7px] rounded-full"
-            style={{
-              background: "radial-gradient(circle, #5a5a5c 0%, #3a3a3c 100%)",
-              boxShadow: "inset 0 0 2px rgba(0,0,0,0.5)",
-            }}
-          />
-        </div>
-
-        {/* Screen */}
+        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f57", flexShrink: 0 }} />
+        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#febc2e", flexShrink: 0 }} />
+        <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#28c840", flexShrink: 0 }} />
         <div
-          className="relative overflow-hidden"
           style={{
-            background: "#000",
-            borderRadius: "3px 3px 0 0",
-            aspectRatio: "16/10",
+            flex: 1,
+            marginLeft: 6,
+            height: 20,
+            borderRadius: 5,
+            background: "rgba(255,255,255,0.04)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 8px",
+            gap: 5,
           }}
         >
-          {/* macOS-style menu bar */}
-          <div
-            className="flex items-center gap-[5px] px-2.5 flex-shrink-0"
-            style={{
-              height: 22,
-              background: "rgba(30,30,32,0.98)",
-              borderBottom: "1px solid rgba(255,255,255,0.06)",
-            }}
-          >
-            <div className="w-[10px] h-[10px] rounded-full bg-[#ff5f57]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
-            <div className="w-[10px] h-[10px] rounded-full bg-[#febc2e]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
-            <div className="w-[10px] h-[10px] rounded-full bg-[#28c840]" style={{ boxShadow: "0 0 0 0.5px rgba(0,0,0,0.3)" }} />
-            {/* URL bar */}
-            <div
-              className="flex-1 mx-2 flex items-center px-2 gap-1.5"
-              style={{
-                height: 14,
-                background: "rgba(255,255,255,0.06)",
-                borderRadius: 3,
-                border: "1px solid rgba(255,255,255,0.06)",
-              }}
-            >
-              <div className="w-[6px] h-[6px] rounded-full bg-[#555] flex-shrink-0" />
-              <div className="flex-1 h-[4px] rounded-full bg-[#444]" />
-            </div>
-          </div>
-
-          {/* Page screenshot */}
-          <SkeletonImage
-            src={src}
-            width={800}
-            height={500}
-            className="w-full object-cover object-top"
-            alt="Web app screenshot"
-          />
-
-          {/* Subtle screen sheen */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "linear-gradient(140deg, rgba(255,255,255,0.04) 0%, transparent 40%)",
-            }}
-          />
+          <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#3a3a3c", flexShrink: 0 }} />
+          <div style={{ flex: 1, height: 3, borderRadius: 2, background: "#2a2a2c" }} />
         </div>
       </div>
 
-      {/* ── HINGE ── */}
-      <div
-        className="w-full"
-        style={{
-          height: 6,
-          background: "linear-gradient(180deg, #1c1c1e 0%, #2a2a2c 100%)",
-        }}
-      />
-
-      {/* ── BASE ── */}
-      <div
-        className="relative w-full"
-        style={{
-          background: "linear-gradient(180deg, #2e2e30 0%, #1c1c1e 80%, #111 100%)",
-          borderRadius: "0 0 10px 10px",
-          paddingTop: 10,
-          paddingBottom: 14,
-          paddingLeft: 10,
-          paddingRight: 10,
-        }}
-      >
-        {/* Keyboard area — styled rows */}
-        <div className="space-y-1 mb-3">
-          {[11, 10, 9, 8].map((keys, row) => (
-            <div key={row} className="flex gap-[2px] justify-center">
-              {Array.from({ length: keys }).map((_, i) => (
-                <div
-                  key={i}
-                  className="flex-1 max-w-[4.5%]"
-                  style={{
-                    height: 6,
-                    background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
-                    borderRadius: 2,
-                    boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4), 0 0.5px 0 rgba(255,255,255,0.04)",
-                  }}
-                />
-              ))}
-            </div>
-          ))}
-          {/* Space bar row */}
-          <div className="flex gap-[2px] justify-center">
-            {[3, 4, 3].map((keys, gi) => (
-              <React.Fragment key={gi}>
-                {gi === 1 ? (
-                  <div
-                    className="flex-1"
-                    style={{
-                      height: 6,
-                      background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
-                      borderRadius: 2,
-                      boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4)",
-                      maxWidth: "40%",
-                    }}
-                  />
-                ) : (
-                  Array.from({ length: keys }).map((_, i) => (
-                    <div
-                      key={i}
-                      className="flex-1 max-w-[4.5%]"
-                      style={{
-                        height: 6,
-                        background: "linear-gradient(180deg, #3a3a3c 0%, #2a2a2c 100%)",
-                        borderRadius: 2,
-                        boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.4)",
-                      }}
-                    />
-                  ))
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-
-        {/* Trackpad */}
-        <div className="flex justify-center">
-          <div
-            style={{
-              width: "26%",
-              height: 18,
-              background: "linear-gradient(160deg, #2e2e30 0%, #252527 100%)",
-              borderRadius: 4,
-              border: "1px solid rgba(255,255,255,0.06)",
-              boxShadow: "inset 0 1px 2px rgba(0,0,0,0.4)",
-            }}
-          />
-        </div>
+      {/* Screenshot */}
+      <div style={{ background: "#000", aspectRatio: "16/10", overflow: "hidden" }}>
+        <SkeletonImage
+          src={src}
+          width={800}
+          height={500}
+          className="w-full object-cover object-top"
+          alt="Web app screenshot"
+        />
       </div>
-
-      {/* Ground shadow */}
-      <div
-        className="w-[80%]"
-        style={{
-          height: 3,
-          background: "radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%)",
-          borderRadius: "50%",
-        }}
-      />
     </div>
   );
 });
@@ -292,7 +167,7 @@ const Preview = memo(function Preview() {
       style={{ animationDuration: "0.5s" }}
     >
       {isWebFrame ? (
-        <LaptopFrame src={pictures[0]} />
+        <BrowserFrame src={pictures[0]} />
       ) : (
         <PhoneFrame src={pictures[0]} />
       )}

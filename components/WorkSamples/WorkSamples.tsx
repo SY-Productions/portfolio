@@ -57,7 +57,21 @@ export default function WorkSamples() {
   }, []);
 
   const processedData = useMemo(
-    () => data.map((s) => ({ ...s, isWeb: s.isWeb === "1" })),
+    () => data
+      .filter((s) => {
+        if (s.link.includes("github.com")) return false;
+        if (!s.customLinks) return true;
+        try {
+          const parsed = JSON.parse(s.customLinks);
+          if (Array.isArray(parsed)) {
+            return !parsed.some(
+              (l) => l.url?.includes("github.com") || l.link?.includes("github.com")
+            );
+          }
+        } catch {}
+        return true;
+      })
+      .map((s) => ({ ...s, isWeb: s.isWeb === "1" })),
     [data]
   );
 

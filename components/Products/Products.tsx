@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
 import { API_BASE_URL } from "@/app/config";
-import { ExternalLink, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 
 interface Product {
   id: number;
@@ -111,9 +111,17 @@ export default function Products() {
                 className="will-animate group flex flex-col overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm hover:border-white/20 hover:bg-black/30 transition-all duration-300 hover:-translate-y-1"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                {/* Image or gradient cover */}
+                {/* Image / iframe / gradient cover */}
                 <div className="relative h-44 overflow-hidden flex-shrink-0">
-                  {product.imageUrl ? (
+                  {product.category === "plugin" ? (
+                    <iframe
+                      src={product.url}
+                      className="w-full h-full border-0 pointer-events-none"
+                      title={getTitle(product)}
+                      loading="lazy"
+                      style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "200%" }}
+                    />
+                  ) : product.imageUrl ? (
                     <img
                       src={product.imageUrl}
                       alt={getTitle(product)}
@@ -151,15 +159,6 @@ export default function Products() {
                     >
                       <ShoppingCart size={12} />
                       {t("products.buyNow")}
-                    </a>
-                    <a
-                      href={product.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-2 border border-white/15 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all"
-                    >
-                      <ExternalLink size={11} />
-                      {t("products.learnMore")}
                     </a>
                   </div>
                 </div>
