@@ -111,16 +111,33 @@ export default function Products() {
                 className="will-animate group flex flex-col overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm hover:border-white/20 hover:bg-black/30 transition-all duration-300 hover:-translate-y-1"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
-                {/* Image / iframe / gradient cover */}
+                {/* Image / browser chrome / gradient cover */}
                 <div className="relative h-44 overflow-hidden flex-shrink-0">
-                  {product.category === "plugin" ? (
-                    <iframe
-                      src={product.url}
-                      className="w-full h-full border-0 pointer-events-none"
-                      title={getTitle(product)}
-                      loading="lazy"
-                      style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "200%" }}
-                    />
+                  {product.category === "plugin" && product.url ? (
+                    /* Browser chrome wrapper with live iframe proxy */
+                    <div className="w-full h-full flex flex-col" style={{ background: "#0d0d0d" }}>
+                      {/* Mini chrome bar */}
+                      <div className="flex items-center gap-1.5 px-2.5 flex-shrink-0" style={{ height: 20, background: "rgba(22,22,24,0.98)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#ff5f57" }} />
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#febc2e" }} />
+                        <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#28c840" }} />
+                        <div className="flex-1 mx-1 flex items-center px-1.5 gap-1" style={{ height: 12, borderRadius: 3, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                          <div style={{ width: 5, height: 5, borderRadius: "50%", background: "#3a3a3c", flexShrink: 0 }} />
+                          <div style={{ flex: 1, height: 2, borderRadius: 1, background: "#2a2a2c" }} />
+                        </div>
+                      </div>
+                      {/* Proxied iframe — X-Frame-Options stripped server-side */}
+                      <div className="flex-1 overflow-hidden relative">
+                        <iframe
+                          src={`/api/proxy?url=${encodeURIComponent(product.url)}`}
+                          className="absolute top-0 start-0 border-0 pointer-events-none origin-top-left"
+                          title={getTitle(product)}
+                          loading="lazy"
+                          style={{ width: "200%", height: "200%", transform: "scale(0.5)", transformOrigin: "top left" }}
+                          sandbox="allow-scripts allow-same-origin"
+                        />
+                      </div>
+                    </div>
                   ) : product.imageUrl ? (
                     <img
                       src={product.imageUrl}
