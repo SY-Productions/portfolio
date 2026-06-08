@@ -113,7 +113,7 @@ export default function Products() {
               >
                 {/* Image / browser chrome / gradient cover */}
                 <div className="relative h-44 overflow-hidden flex-shrink-0">
-                  {product.category === "plugin" && product.url ? (
+                  {product.url ? (
                     /* Browser chrome wrapper with live iframe proxy */
                     <div className="w-full h-full flex flex-col" style={{ background: "#0d0d0d" }}>
                       {/* Mini chrome bar */}
