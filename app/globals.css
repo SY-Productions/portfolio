@@ -250,19 +250,16 @@ img {
   white-space: nowrap;
   font-style: normal;
 
-  /* Gradient Animation */
   background: linear-gradient(261.6deg,
-      #3A0D12 -4.54%,
-      #5A0E12 46.04%,
-      #3B070A 81.39%);
+      #ffffff 0%,
+      #f9c8cb 45%,
+      #ffffff 100%);
   background-size: 200% 200%;
-  /* Ensures animation movement */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 
-  /* Animation */
   animation: gradientMove 3s infinite ease-in-out;
 }
 
@@ -772,9 +769,9 @@ html.light-theme .mobile-developer {
 /* developer-name gradient in light mode */
 html.light-theme .developer-name {
   background: linear-gradient(261.6deg,
-      #5A0E12 -4.54%,
-      #8B1E24 46.04%,
-      #3B070A 81.39%);
+      #3B070A 0%,
+      #8B1E24 45%,
+      #3B070A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
