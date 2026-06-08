@@ -32,13 +32,6 @@ const NavBarForMobile = memo(function NavBarForMobile() {
           {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
         </button>
 
-        <a
-          href="/youdexsof-fa-cv.pdf"
-          download="Yousof-Hashemzade-Cv-Fa.pdf"
-          className="DOWNLOADPDF hidden text-white sm:block p-3 bg-white/5 text-nowrap text-sm rounded-none"
-        >
-          {t("nav.downloadCV")}
-        </a>
       </div>
 
       <Image

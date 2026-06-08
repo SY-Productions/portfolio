@@ -40,7 +40,8 @@ const SideBar = memo(function SideBar() {
   const { lang, setLang, t, dir } = useLang();
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const hideTranslation = "-translate-x-[100vw]";
+  const isRtl = lang === "fa" || lang === "ar";
+  const hideTranslation = isRtl ? "translate-x-[100vw]" : "-translate-x-[100vw]";
   const sideBarFullClasses = "z-50 w-[100vw] lg:w-[20vw] flex h-dvh fixed top-0 start-0 transition-all duration-300 ";
 
   const navItemBase = "flex flex-row justify-start items-center gap-3 py-2 my-0 cursor-pointer hover:bg-white/5 transition-all duration-200 border-e-2 border-transparent";
@@ -82,7 +83,7 @@ const SideBar = memo(function SideBar() {
           : sideBarFullClasses
       }
     >
-      <aside className="font-[ybn] border-e border-white/10 h-dvh bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl order-first overflow-hidden">
+      <aside className={`font-[ybn] border-e border-white/10 h-dvh bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl overflow-hidden ${isRtl ? "order-last" : "order-first"}`}>
         {/* Mobile spacer — clears the fixed appbar + adds breathing room */}
         <div className="lg:hidden flex-shrink-0 h-[72px]" />
 
@@ -138,7 +139,7 @@ const SideBar = memo(function SideBar() {
                 key={l}
                 onClick={() => setLang(l)}
                 title={LANG_LABEL[l]}
-                className={`flex-1 py-1 flex items-center justify-center transition-all border ${
+                className={`flex-1 h-9 flex items-center justify-center transition-all border ${
                   lang === l
                     ? "bg-[#3B070A]/60 border-[#5A0E12]/60"
                     : "bg-white/5 border-white/10 hover:bg-white/10"
@@ -153,7 +154,7 @@ const SideBar = memo(function SideBar() {
             <button
               onClick={toggleTheme}
               title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
-              className="flex-1 py-1 flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+              className="flex-1 h-9 flex items-center justify-center bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
             >
               {theme === "dark" ? <Sun size={22} /> : <Moon size={22} />}
             </button>
