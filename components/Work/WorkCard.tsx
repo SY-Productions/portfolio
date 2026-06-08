@@ -50,7 +50,7 @@ const WorkCard = ({ work, lang }: WorkCardProps) => {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        className="group cursor-pointer w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem]
+        className="group cursor-pointer w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem]
                   bg-black/20 border border-white/10 hover:border-white/20 backdrop-blur-2xl rounded-none
                   mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 ease-out
                   relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0

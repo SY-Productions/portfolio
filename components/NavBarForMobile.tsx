@@ -4,19 +4,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Image from "next/image";
 import logo from "@/public/vectors/logo.svg";
 import { memo } from "react";
-import { Sun, Moon } from "lucide-react";
-import { useTheme } from "@/app/context/ThemeContext";
-import { useLang } from "@/app/context/LanguageContext";
-
 // Memoized for better performance
 const NavBarForMobile = memo(function NavBarForMobile() {
   const { setOpen } = useZState();
-  const { theme, toggleTheme } = useTheme();
-  const { t } = useLang();
 
   return (
     <nav className="z-50 bg-black/80 backdrop-blur-3xl w-full text-white border-b-2 border-white/10 fixed font-[ybn] flex items-center justify-between px-4 lg:hidden">
-      <div className="flex items-center py-3 gap-2">
+      <div className="flex items-center py-3">
         <button
           onClick={() => setOpen()}
           aria-label="Open navigation menu"
@@ -25,16 +19,6 @@ const NavBarForMobile = memo(function NavBarForMobile() {
         >
           <MenuIcon sx={{ color: "currentColor", fontSize: 24 }} aria-hidden />
         </button>
-
-        {/* Theme toggle */}
-        <button
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-          className="flex items-center justify-center p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-[color,background-color] text-white/60 hover:text-white"
-        >
-          {theme === "dark" ? <Sun size={24} aria-hidden="true" /> : <Moon size={24} aria-hidden="true" />}
-        </button>
-
       </div>
 
       <Image

@@ -12,6 +12,7 @@ export async function GET() {
       themeC: settings.themeC,
       themeD: settings.themeD,
       profilePic: settings.profilePic,
+      technologies: settings.technologies,
     });
   } catch {
     return NextResponse.json({});

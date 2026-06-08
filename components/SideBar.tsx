@@ -162,8 +162,9 @@ const SideBar = memo(function SideBar() {
 
           <div className="px-8">
             <a
-              href="/youdexsof-fa-cv.pdf"
-              download="Yousof-Hashemzade-Cv-Fa.pdf"
+              href={`/cv?lang=${lang}&theme=${theme}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-full h-10 flex items-center justify-center border border-white/10 bg-gradient-to-r from-[#3B070A]/10 to-[#3A0D12]/10 hover:from-[#3B070A]/20 hover:to-[#3A0D12]/20 font-normal text-sm transition-all duration-300 text-white/90 hover:text-white hover:border-white/20 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               {t("nav.downloadCV")}

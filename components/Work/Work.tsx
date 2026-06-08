@@ -46,9 +46,10 @@ const Work = () => {
   }, []);
 
   return (
-    <div id="work" className="relative h-auto min-h-[60vh] lg:min-h-screen">
-      <div className="absolute top-20 left-10 w-32 h-32 bg-[#3A0D12]/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#3B070A]/10 rounded-full blur-3xl"></div>
+    <div id="work" className="relative section-bg bg-no-repeat bg-cover h-auto overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 backdrop-blur-sm" />
+      <div className="absolute top-20 left-10 w-32 h-32 bg-[#3A0D12]/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#3B070A]/10 rounded-full blur-3xl" />
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
