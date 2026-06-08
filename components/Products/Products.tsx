@@ -87,7 +87,7 @@ export default function Products() {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 pointer-events-none" />
 
-      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-0">
+      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-8">
         <div className="pt-[5vh] mb-10">
           <h3 className="section-title mb-6 will-animate">{t("products.title")}</h3>
           <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">

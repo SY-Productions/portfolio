@@ -63,7 +63,7 @@ export default function Blog() {
       <div className="absolute top-20 end-10 w-56 h-56 bg-[#3A0D12]/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 start-16 w-72 h-72 bg-[#5A8EFF]/5 rounded-full blur-3xl" />
 
-      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-0">
+      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-8">
         {/* Header */}
         <div className="pt-[5vh] mb-8">
           <h3 className="section-title mb-6 will-animate">{t("blog.title")}</h3>

@@ -114,7 +114,7 @@ export default function OpenSource() {
     <div
       id="open-source"
       ref={sectionRef}
-      className="relative overflow-hidden"
+      className="relative overflow-x-hidden"
       style={{ background: "#0a0000" }}
     >
       {/* Terminal scan-line texture */}
@@ -136,7 +136,7 @@ export default function OpenSource() {
         <SiGithub size={160} className="text-white" />
       </div>
 
-      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-0">
+      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-8">
         {/* Header */}
         <div className="pt-[5vh] mb-10">
           <div className="flex items-center gap-3 mb-4 will-animate">
