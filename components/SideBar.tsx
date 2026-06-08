@@ -22,16 +22,16 @@ import ReactCountryFlag from "react-country-flag";
 import logo from "../public/vectors/logo.svg";
 
 const navigationItems = [
-  { titleKey: "nav.aboutMe",   logo1: <Hashtag size={24} color="white" variant="Bold" />, logo2: <Hashtag size={23} />,  to: "#about-me" },
-  { titleKey: "nav.skills",    logo1: <Box     size={24} color="white" variant="Bold" />, logo2: <Box     size={23} />,  to: "#skills" },
-  { titleKey: "nav.portfolio", logo1: <Code    size={24} color="white" variant="Bold" />, logo2: <Code    size={23} />,  to: "#portfolio" },
-  { titleKey: "nav.education", logo1: <Clipboard size={24} color="white" variant="Bold" />, logo2: <Clipboard size={23} />, to: "#education" },
-  { titleKey: "nav.work",      logo1: <Archive size={24} color="white" variant="Bold" />, logo2: <Archive size={23} />,  to: "#work" },
-  { titleKey: "nav.events",    logo1: <Cup     size={24} color="white" variant="Bold" />, logo2: <Cup     size={23} />,  to: "#events" },
-  { titleKey: "openSource.navTitle", logo1: <CodeCircle       size={24} color="white" variant="Bold" />, logo2: <CodeCircle       size={23} />, to: "#open-source" },
-  { titleKey: "products.navTitle",   logo1: <ShoppingBag size={24} color="white" variant="Bold" />, logo2: <ShoppingBag size={23} />, to: "#products" },
-  { titleKey: "blog.navTitle",       logo1: <Book        size={24} color="white" variant="Bold" />, logo2: <Book        size={23} />, to: "#blog" },
-  { titleKey: "nav.contact",         logo1: <Headphone   size={24} color="white" variant="Bold" />, logo2: <Headphone   size={23} />, to: "#call-me" },
+  { titleKey: "nav.aboutMe",   logo1: <Hashtag size={20} color="white" variant="Bold" />, logo2: <Hashtag size={20} />,  to: "#about-me" },
+  { titleKey: "nav.skills",    logo1: <Box     size={20} color="white" variant="Bold" />, logo2: <Box     size={20} />,  to: "#skills" },
+  { titleKey: "nav.portfolio", logo1: <Code    size={20} color="white" variant="Bold" />, logo2: <Code    size={20} />,  to: "#portfolio" },
+  { titleKey: "nav.education", logo1: <Clipboard size={20} color="white" variant="Bold" />, logo2: <Clipboard size={20} />, to: "#education" },
+  { titleKey: "nav.work",      logo1: <Archive size={20} color="white" variant="Bold" />, logo2: <Archive size={20} />,  to: "#work" },
+  { titleKey: "nav.events",    logo1: <Cup     size={20} color="white" variant="Bold" />, logo2: <Cup     size={20} />,  to: "#events" },
+  { titleKey: "openSource.navTitle", logo1: <CodeCircle  size={20} color="white" variant="Bold" />, logo2: <CodeCircle  size={20} />, to: "#open-source" },
+  { titleKey: "products.navTitle",   logo1: <ShoppingBag size={20} color="white" variant="Bold" />, logo2: <ShoppingBag size={20} />, to: "#products" },
+  { titleKey: "blog.navTitle",       logo1: <Book        size={20} color="white" variant="Bold" />, logo2: <Book        size={20} />, to: "#blog" },
+  { titleKey: "nav.contact",         logo1: <Headphone   size={20} color="white" variant="Bold" />, logo2: <Headphone   size={20} />, to: "#call-me" },
 ];
 
 const SideBar = memo(function SideBar() {
@@ -41,10 +41,10 @@ const SideBar = memo(function SideBar() {
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   const hideTranslation = "-translate-x-[100vw]";
-  const sideBarFullClasses = "z-50 w-[100vw] lg:w-[20vw] flex h-screen fixed top-0 start-0 transition-all duration-300 ";
+  const sideBarFullClasses = "z-50 w-[100vw] lg:w-[20vw] flex h-dvh fixed top-0 start-0 transition-all duration-300 ";
 
-  const navItemBase = "flex flex-row justify-start items-center gap-3 py-2 my-[1vh] cursor-pointer hover:bg-white/5 transition-all duration-200 border-e-2 border-transparent";
-  const navItemActive = "border-white/10 border border-s-0 border-e-2 border-e-[#3B070A] bg-black/40 shadow-sm py-[5%]";
+  const navItemBase = "flex flex-row justify-start items-center gap-3 py-2 my-0 cursor-pointer hover:bg-white/5 transition-all duration-200 border-e-2 border-transparent";
+  const navItemActive = "border-white/10 border border-s-0 border-e-2 border-e-[#3B070A] bg-black/40 shadow-sm";
 
   useEffect(() => {
     const handleResize = () => {
@@ -82,9 +82,9 @@ const SideBar = memo(function SideBar() {
           : sideBarFullClasses
       }
     >
-      <aside className="font-[ybn] border-e border-white/10 h-screen bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl order-first overflow-hidden">
-        {/* Mobile spacer */}
-        <div className="lg:hidden flex-shrink-0 h-[60px]" />
+      <aside className="font-[ybn] border-e border-white/10 h-dvh bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl order-first overflow-hidden">
+        {/* Mobile spacer — clears the fixed appbar + adds breathing room */}
+        <div className="lg:hidden flex-shrink-0 h-[72px]" />
 
         {/* Logo */}
         <div className="flex-shrink-0 relative hidden lg:flex items-center justify-between w-full px-8 my-[3vh]">
@@ -111,8 +111,8 @@ const SideBar = memo(function SideBar() {
               <span
                 className={
                   item.to === sideBarScroll
-                    ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-2 rounded-none ms-2 shadow-lg flex-shrink-0"
-                    : "bg-white/5 p-2 rounded-none ms-2 transition-all duration-300 flex-shrink-0"
+                    ? "bg-gradient-to-r from-[#3B070A] to-[#3A0D12] p-1.5 rounded-none ms-2 shadow-lg flex-shrink-0"
+                    : "bg-white/5 p-1.5 rounded-none ms-2 transition-all duration-300 flex-shrink-0"
                 }
               >
                 {item.to === sideBarScroll ? item.logo1 : item.logo2}
@@ -129,7 +129,7 @@ const SideBar = memo(function SideBar() {
         </nav>
 
         {/* Bottom controls — fixed, never shrinks */}
-        <div className="flex-shrink-0 pb-[3vh]">
+        <div className="flex-shrink-0" style={{ paddingBottom: "max(12px, env(safe-area-inset-bottom))" }}>
           <div className="h-px border-t border-white/10 mb-3" />
 
           <div className="px-8 mb-3 flex items-center gap-2">
