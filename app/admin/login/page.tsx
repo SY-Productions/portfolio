@@ -2,11 +2,9 @@
 
 import { signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { Shield, Lock, User, KeyRound } from "lucide-react";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [totpToken, setTotpToken] = useState("");
@@ -51,8 +49,7 @@ export default function AdminLoginPage() {
     });
 
     if (result?.ok) {
-      router.push("/admin");
-      router.refresh();
+      window.location.href = "/admin";
     } else {
       setError(
         step === "totp" ? "Invalid 2FA code." : "Invalid username or password.",

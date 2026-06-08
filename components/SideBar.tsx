@@ -17,21 +17,21 @@ import {
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "@/app/context/ThemeContext";
 import { useLang, LANG_LABEL, Lang } from "@/app/context/LanguageContext";
-import ReactCountryFlag from "react-country-flag";
+import { LangFlag } from "@/components/FlagIcons";
 
 import logo from "../public/vectors/logo.svg";
 
 const navigationItems = [
-  { titleKey: "nav.aboutMe",   logo1: <Hashtag size={20} color="white" variant="Bold" />, logo2: <Hashtag size={20} />,  to: "#about-me" },
-  { titleKey: "nav.skills",    logo1: <Box     size={20} color="white" variant="Bold" />, logo2: <Box     size={20} />,  to: "#skills" },
-  { titleKey: "nav.portfolio", logo1: <Code    size={20} color="white" variant="Bold" />, logo2: <Code    size={20} />,  to: "#portfolio" },
-  { titleKey: "nav.education", logo1: <Clipboard size={20} color="white" variant="Bold" />, logo2: <Clipboard size={20} />, to: "#education" },
-  { titleKey: "nav.work",      logo1: <Archive size={20} color="white" variant="Bold" />, logo2: <Archive size={20} />,  to: "#work" },
-  { titleKey: "nav.events",    logo1: <Cup     size={20} color="white" variant="Bold" />, logo2: <Cup     size={20} />,  to: "#events" },
-  { titleKey: "openSource.navTitle", logo1: <CodeCircle  size={20} color="white" variant="Bold" />, logo2: <CodeCircle  size={20} />, to: "#open-source" },
-  { titleKey: "products.navTitle",   logo1: <ShoppingBag size={20} color="white" variant="Bold" />, logo2: <ShoppingBag size={20} />, to: "#products" },
-  { titleKey: "blog.navTitle",       logo1: <Book        size={20} color="white" variant="Bold" />, logo2: <Book        size={20} />, to: "#blog" },
-  { titleKey: "nav.contact",         logo1: <Headphone   size={20} color="white" variant="Bold" />, logo2: <Headphone   size={20} />, to: "#call-me" },
+  { titleKey: "nav.aboutMe",          logo1: <Hashtag    size={20} color="white" variant="Bold" />, logo2: <Hashtag    size={20} />, to: "#about-me" },
+  { titleKey: "nav.skills",           logo1: <Box        size={20} color="white" variant="Bold" />, logo2: <Box        size={20} />, to: "#skills" },
+  { titleKey: "nav.portfolio",        logo1: <Code       size={20} color="white" variant="Bold" />, logo2: <Code       size={20} />, to: "#portfolio" },
+  { titleKey: "openSource.navTitle",  logo1: <CodeCircle size={20} color="white" variant="Bold" />, logo2: <CodeCircle size={20} />, to: "#open-source" },
+  { titleKey: "products.navTitle",    logo1: <ShoppingBag size={20} color="white" variant="Bold" />, logo2: <ShoppingBag size={20} />, to: "#products" },
+  { titleKey: "nav.education",        logo1: <Clipboard  size={20} color="white" variant="Bold" />, logo2: <Clipboard  size={20} />, to: "#education" },
+  { titleKey: "nav.work",             logo1: <Archive    size={20} color="white" variant="Bold" />, logo2: <Archive    size={20} />, to: "#work" },
+  { titleKey: "nav.events",           logo1: <Cup        size={20} color="white" variant="Bold" />, logo2: <Cup        size={20} />, to: "#events" },
+  { titleKey: "blog.navTitle",        logo1: <Book       size={20} color="white" variant="Bold" />, logo2: <Book       size={20} />, to: "#blog" },
+  { titleKey: "nav.contact",          logo1: <Headphone  size={20} color="white" variant="Bold" />, logo2: <Headphone  size={20} />, to: "#call-me" },
 ];
 
 const SideBar = memo(function SideBar() {
@@ -144,11 +144,7 @@ const SideBar = memo(function SideBar() {
                     : "bg-white/5 border-white/10 hover:bg-white/10"
                 }`}
               >
-                <ReactCountryFlag
-                  countryCode={l === "fa" ? "IR" : l === "ar" ? "SA" : "GB"}
-                  svg
-                  style={{ width: "1.4em", height: "1.4em" }}
-                />
+                <LangFlag lang={l} size="1.4em" />
               </button>
             ))}
 

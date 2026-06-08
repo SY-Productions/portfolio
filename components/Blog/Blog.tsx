@@ -1,35 +1,48 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
 import BlogCard, { BlogPost } from "./BlogCard";
-
-import fa from "@/messages/fa.json";
-import en from "@/messages/en.json";
-import ar from "@/messages/ar.json";
-
-const COVER_COLORS = ["#5A8EFF", "#FF7A5A", "#5AFFA0"];
-
-type MsgShape = typeof fa;
-
-const MSG: Record<string, MsgShape> = { fa, en, ar };
+import Link from "next/link";
 
 export default function Blog() {
   const { t, lang } = useLang();
   const { theme } = useTheme();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const bgSvg =
     theme === "light"
       ? "bg-[url('/vectors/sec1-bglight.svg')]"
       : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
-  const msgs = MSG[lang] ?? MSG.fa;
-  const rawPosts = msgs.blog.posts as Array<{ title: string; description: string; date: string; readTime: number; tag: string }>;
-  const posts: BlogPost[] = rawPosts.map((p, i) => ({
-    ...p,
-    coverColor: COVER_COLORS[i % COVER_COLORS.length],
-  }));
+  useEffect(() => {
+    async function fetchPosts() {
+      try {
+        const res = await fetch(`/api/blog?lang=${lang}&limit=3&sort=newest`);
+        if (res.ok) {
+          const data = await res.json();
+          const mapped: BlogPost[] = data.posts.map((p: Record<string, unknown>) => ({
+            id: p.id as number,
+            slug: p.slug as string,
+            title: lang === "en" ? ((p.titleEn as string) || (p.title as string)) : lang === "ar" ? ((p.titleAr as string) || (p.title as string)) : (p.title as string),
+            description: lang === "en" ? ((p.descriptionEn as string) || (p.description as string)) : lang === "ar" ? ((p.descriptionAr as string) || (p.description as string)) : (p.description as string),
+            date: p.publishedAt ? new Date(p.publishedAt as string).toLocaleDateString(lang === "fa" ? "fa-IR" : lang === "ar" ? "ar-SA" : "en-US") : "",
+            readTime: p.readTime as number,
+            tag: lang === "en" ? (((p.tagsEn as string) || (p.tags as string)) || "").split(",")[0]?.trim() || "" : lang === "ar" ? (((p.tagsAr as string) || (p.tags as string)) || "").split(",")[0]?.trim() || "" : ((p.tags as string) || "").split(",")[0]?.trim() || "",
+            coverColor: (p.category as { color?: string } | null)?.color || "",
+            coverImage: (p.coverImage as string) || "",
+          }));
+          setPosts(mapped);
+        }
+      } catch {
+        // keep empty
+      }
+      setLoading(false);
+    }
+    fetchPosts();
+  }, [lang]);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -48,9 +61,9 @@ export default function Blog() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [posts]);
 
-  if (!posts.length) return null;
+  if (!loading && !posts.length) return null;
 
   return (
     <div
@@ -73,11 +86,37 @@ export default function Blog() {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, i) => (
-            <BlogCard key={i} post={post} index={i} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[0, 1, 2].map((i) => (
+              <div key={i} className="blog-card h-72 animate-pulse">
+                <div className="h-40 bg-white/5" />
+                <div className="p-5 space-y-3">
+                  <div className="h-3 bg-white/5 w-1/3" />
+                  <div className="h-4 bg-white/8 w-3/4" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {posts.map((post, i) => (
+              <BlogCard key={post.slug || i} post={post} index={i} />
+            ))}
+          </div>
+        )}
+
+        {/* View all */}
+        {!loading && posts.length > 0 && (
+          <div className="mt-8 will-animate">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm font-[ybn] px-6 py-2.5 border border-white/15 text-white/60 hover:text-white hover:border-white/30 hover:bg-white/5 transition-all duration-200"
+            >
+              {t("blog.viewAll")} →
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

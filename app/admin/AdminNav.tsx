@@ -14,10 +14,12 @@ import {
   Settings,
   BarChart2,
   ShoppingBag,
+  BookOpen,
 } from "lucide-react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { href: "/admin/blog", label: "Blog Posts", icon: BookOpen },
   { href: "/admin/work-samples", label: "Work Samples", icon: Code2 },
   { href: "/admin/products", label: "Products & Themes", icon: ShoppingBag },
   { href: "/admin/education", label: "Education", icon: GraduationCap },

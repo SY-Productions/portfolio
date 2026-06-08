@@ -108,3 +108,68 @@ model PageView {
   lang      String   @default("fa")
   createdAt DateTime @default(now())
 }
+
+model BlogCategory {
+  id      Int        @id @default(autoincrement())
+  name    String
+  nameEn  String     @default("")
+  nameAr  String     @default("")
+  slug    String     @unique
+  color   String     @default("#5A8EFF")
+  posts   BlogPost[]
+}
+
+model BlogPost {
+  id            Int           @id @default(autoincrement())
+  slug          String        @unique
+
+  title         String
+  description   String
+  content       String        @default("")
+  keywords      String        @default("")
+
+  titleEn       String        @default("")
+  descriptionEn String        @default("")
+  contentEn     String        @default("")
+  keywordsEn    String        @default("")
+
+  titleAr       String        @default("")
+  descriptionAr String        @default("")
+  contentAr     String        @default("")
+  keywordsAr    String        @default("")
+
+  coverImage    String        @default("")
+  tags          String        @default("")
+  tagsEn        String        @default("")
+  tagsAr        String        @default("")
+  authorName    String        @default("Yousof Hashemzade")
+
+  categoryId    Int?
+  category      BlogCategory? @relation(fields: [categoryId], references: [id])
+
+  published     Boolean       @default(false)
+  featured      Boolean       @default(false)
+  readTime      Int           @default(5)
+  views         Int           @default(0)
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  publishedAt   DateTime?
+
+  comments      BlogComment[]
+}
+
+model BlogComment {
+  id        Int      @id @default(autoincrement())
+  postId    Int
+  post      BlogPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  name      String
+  email     String   @default("")
+  content   String
+  lang      String   @default("fa")
+
+  createdAt DateTime @default(now())
+
+  @@index([postId])
+}

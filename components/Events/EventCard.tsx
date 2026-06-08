@@ -69,9 +69,9 @@ const EventCard = ({ event, lang }: EventCardProps) => {
               <button
                 type="button"
                 onClick={handleOpenDialog}
-                className="flex items-center gap-2 text-[#3A0D12] hover:text-[#3B070A] transition-colors duration-300 text-sm font-[ybn] relative z-20"
+                className="flex items-center gap-2 text-xs font-[ybn] px-3 py-2 bg-[#3B070A]/40 hover:bg-[#5A0E12]/60 border border-[#5A0E12]/40 hover:border-[#5A0E12]/70 text-white/70 hover:text-white transition-all duration-300 relative z-20"
               >
-                <DocumentText size={16} />
+                <DocumentText size={14} />
                 {t("events.viewCertificate")}
               </button>
             </div>
