@@ -130,11 +130,18 @@ export default function Products() {
                       <div className="flex-1 overflow-hidden relative">
                         <iframe
                           src={`/api/proxy?url=${encodeURIComponent(product.url)}`}
-                          className="absolute top-0 start-0 border-0 pointer-events-none origin-top-left"
                           title={getTitle(product)}
-                          loading="lazy"
-                          style={{ width: "200%", height: "200%", transform: "scale(0.5)", transformOrigin: "top left" }}
-                          sandbox="allow-scripts allow-same-origin"
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            border: "none",
+                            pointerEvents: "none",
+                            width: "200%",
+                            height: "200%",
+                            transform: "scale(0.5)",
+                            transformOrigin: "top left",
+                          }}
                         />
                       </div>
                     </div>
