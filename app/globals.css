@@ -36,9 +36,14 @@ html.light-theme {
   --card-border: rgba(26, 5, 5, 0.08);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
+  overflow-x: hidden;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;

@@ -40,7 +40,7 @@ const SideBar = memo(function SideBar() {
   const { lang, setLang, t, dir } = useLang();
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const hideTranslation = dir === "rtl" ? "translate-x-[100vw]" : "-translate-x-[100vw]";
+  const hideTranslation = "-translate-x-[100vw]";
   const sideBarFullClasses = "z-50 w-[100vw] lg:w-[20vw] flex h-screen fixed top-0 start-0 transition-all duration-300 ";
 
   const navItemBase = "flex flex-row justify-start items-center gap-3 py-2 my-[1vh] cursor-pointer hover:bg-white/5 transition-all duration-200 border-e-2 border-transparent";

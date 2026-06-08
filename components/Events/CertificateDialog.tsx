@@ -18,8 +18,6 @@ const CertificateDialog: React.FC<CertificateDialogProps> = ({
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log("Dialog state changed:", { isOpen, imageUrl });
-
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -39,7 +37,7 @@ const CertificateDialog: React.FC<CertificateDialogProps> = ({
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     };
   }, [isOpen, onClose, imageUrl]);
 

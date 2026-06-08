@@ -88,7 +88,7 @@ export default function Products() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 pointer-events-none" />
 
       <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-0">
-        <div className="pt-[5vh] mb-10 w-[90%] lg:w-full ps-[5vw] lg:ps-0">
+        <div className="pt-[5vh] mb-10">
           <h3 className="section-title mb-6 will-animate">{t("products.title")}</h3>
           <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">
             {t("products.description")}
@@ -96,7 +96,7 @@ export default function Products() {
         </div>
 
         {loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1].map((i) => (
               <div key={i} className="h-64 bg-black/20 border border-white/5 animate-pulse" />
             ))}
@@ -104,7 +104,7 @@ export default function Products() {
         )}
 
         {!loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 lg:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product, i) => (
               <article
                 key={product.id}

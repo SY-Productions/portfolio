@@ -51,7 +51,7 @@ const Work = () => {
       <div className="absolute bottom-40 right-20 w-40 h-40 bg-[#3B070A]/10 rounded-full blur-3xl"></div>
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
-        <div className="H3&P pt-[5vh] w-[80%] ps-[10vw] lg:ps-0">
+        <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
           <h3 className="section-title mb-6">{t("work.title")}</h3>
 
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">

@@ -15,11 +15,11 @@ const NavBarForMobile = memo(function NavBarForMobile() {
   const { t } = useLang();
 
   return (
-    <nav className="z-50 bg-black/80 backdrop-blur-3xl w-full text-white border-b-2 border-white/10 fixed font-[ybn] flex items-center justify-between lg:hidden">
-      <div className="flex items-center p-[2vh] gap-2">
+    <nav className="z-50 bg-black/80 backdrop-blur-3xl w-full text-white border-b-2 border-white/10 fixed font-[ybn] flex items-center justify-between px-4 lg:hidden">
+      <div className="flex items-center py-3 gap-2">
         <button
           onClick={() => setOpen()}
-          className="HAMBURGER p-2.5 bg-white/5 ml-1 mr-1"
+          className="HAMBURGER p-2.5 bg-white/5"
         >
           <MenuIcon sx={{ color: "white" }} />
         </button>
@@ -43,7 +43,7 @@ const NavBarForMobile = memo(function NavBarForMobile() {
 
       <Image
         className="LOGO h-8 w-auto"
-        style={{ marginInlineEnd: "1rem", padding: "0.2rem 0" }}
+        style={{ padding: "0.2rem 0" }}
         src={logo}
         alt="Logo of Yousof Hashemzade, Flutter Developer | لوگوی یوسف هاشم زاده، توسعه دهنده فلاتر"
         height={32}

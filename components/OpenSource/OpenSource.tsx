@@ -138,7 +138,7 @@ export default function OpenSource() {
 
       <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-0">
         {/* Header */}
-        <div className="pt-[5vh] mb-10 w-[90%] lg:w-full ps-[5vw] lg:ps-0">
+        <div className="pt-[5vh] mb-10">
           <div className="flex items-center gap-3 mb-4 will-animate">
             <div className="flex items-center gap-1.5 text-[#4db6ac] font-mono text-sm">
               <Terminal size={14} />
@@ -152,7 +152,7 @@ export default function OpenSource() {
         </div>
 
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[0, 1, 2, 3].map((i) => (
               <div key={i} className="h-44 animate-pulse" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }} />
             ))}
@@ -160,7 +160,7 @@ export default function OpenSource() {
         )}
 
         {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 lg:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {projects.map((ws, i) => {
               const githubUrl = getGitHubUrl(ws.link, ws.customLinks);
               const liveUrl = getLiveUrl(ws.link);
