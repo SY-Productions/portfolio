@@ -83,7 +83,7 @@ const SideBar = memo(function SideBar() {
           : sideBarFullClasses
       }
     >
-      <aside className={`font-[ybn] border-e border-white/10 h-dvh bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl overflow-hidden ${isRtl ? "order-last" : "order-first"}`}>
+      <aside className="font-[ybn] border-e border-white/10 h-dvh bg-black/20 w-[70vw] sm:w-[50vw] md:w-[30vw] lg:w-[20vw] backdrop-blur-3xl flex flex-col shadow-2xl order-first overflow-hidden">
         {/* Mobile spacer — clears the fixed appbar + adds breathing room */}
         <div className="lg:hidden flex-shrink-0 h-[72px]" />
 
