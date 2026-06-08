@@ -57,6 +57,12 @@
     "zod": "^3.24.2",
     "zustand": "^4.5.4"
   },
+  "browserslist": [
+    "chrome >= 87",
+    "edge >= 88",
+    "firefox >= 78",
+    "safari >= 14"
+  ],
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
     "@svgr/webpack": "^8.1.0",

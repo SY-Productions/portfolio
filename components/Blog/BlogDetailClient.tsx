@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -122,8 +122,6 @@ export default function BlogDetailClient({ post, relatedPosts }: Props) {
     l === "ar" ? (post.contentAr || post.content) :
     post.content;
 
-  const bgSvg = theme === "light" ? "bg-[url('/vectors/sec1-bglight.svg')]" : "bg-[url('/vectors/sec1-bgdark.svg')]";
-
   async function refreshComments() {
     const res = await fetch(`/api/blog/${post.slug}`);
     if (res.ok) {
@@ -135,7 +133,7 @@ export default function BlogDetailClient({ post, relatedPosts }: Props) {
   const BackIcon = isRtl ? ArrowRight : ArrowLeft;
 
   return (
-    <div className={`min-h-screen ${bgSvg} bg-no-repeat bg-cover`} dir={isRtl ? "rtl" : "ltr"}>
+    <div className={`min-h-screen section-bg bg-no-repeat bg-cover`} dir={isRtl ? "rtl" : "ltr"}>
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-12">
 
         {/* Breadcrumb */}

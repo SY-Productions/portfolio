@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { memo } from "react";
 import CallForm from "./CallForm";
 import PicInfo from "./PicInfo";
@@ -24,7 +24,7 @@ const CallMe = memo(function CallMe() {
 
       <div className="(H3&P)&(FORM) lg:basis-1/2 relative z-10">
         <div className="H3&P w-[80vw] lg:w-full lg:ps-0">
-          <h3 className="section-title mb-6 2xl:mb-10">{t("contact.title")}</h3>
+          <h2 className="section-title mb-6 2xl:mb-10">{t("contact.title")}</h2>
           <p className="font-[ybn] text-white/60 self-start mb-8 2xl:text-lg text-wrap leading-7">
             {t("contact.description")}
           </p>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { memo, useEffect, useRef, useState } from "react";
 import EduCard from "./EduCard";
@@ -26,11 +26,6 @@ const Education = () => {
   const { t, lang } = useLang();
   const { theme } = useTheme();
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +69,7 @@ const Education = () => {
     <div
       ref={sectionRef}
       id="education"
-      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] overflow-hidden`}
+      className={`relative section-bg bg-no-repeat bg-cover h-auto lg:h-screen 2xl:h-auto 2xl:min-h-[60vh] overflow-hidden`}
     >
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 backdrop-blur-sm"></div>
 
@@ -89,7 +84,7 @@ const Education = () => {
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
-          <h3 className="section-title mb-6">{t("education.title")}</h3>
+          <h2 className="section-title mb-6">{t("education.title")}</h2>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("education.description")}
           </p>

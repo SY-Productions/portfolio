@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
@@ -11,11 +11,6 @@ export default function Blog() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     async function fetchPosts() {
@@ -69,7 +64,7 @@ export default function Blog() {
     <div
       id="blog"
       ref={sectionRef}
-      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto`}
+      className={`relative section-bg bg-no-repeat bg-cover h-auto`}
     >
       {/* Background accents */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 pointer-events-none" />
@@ -79,7 +74,7 @@ export default function Blog() {
       <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-8">
         {/* Header */}
         <div className="pt-[5vh] mb-8">
-          <h3 className="section-title mb-6 will-animate">{t("blog.title")}</h3>
+          <h2 className="section-title mb-6 will-animate">{t("blog.title")}</h2>
           <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">
             {t("blog.description")}
           </p>

@@ -23,7 +23,7 @@ export default function BlogLayout({ children }: { children: React.ReactNode }) 
   return (
     <>
       <BlogAppBar />
-      <div className="pt-12">{children}</div>
+      <main className="pt-12">{children}</main>
       <BlogToaster />
     </>
   );

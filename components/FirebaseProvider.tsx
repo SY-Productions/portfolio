@@ -20,14 +20,16 @@ export default function FirebaseProvider() {
   const pathname = usePathname();
   const { lang } = useLang();
 
-  // Initialise on first mount
+  // Initialise on first mount — skip in development to avoid CORS errors from Firebase remote config
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") return;
     getFirebaseAnalytics().catch(() => null);
     getFirebasePerformance().catch(() => null);
   }, []);
 
   // Track page views on route changes
   useEffect(() => {
+    if (process.env.NODE_ENV !== "production") return;
     // Firebase Analytics
     getFirebaseAnalytics().then((ga) => {
       if (!ga) return;

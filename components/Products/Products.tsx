@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
@@ -32,11 +32,6 @@ export default function Products() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/products`, { cache: "no-store" })
@@ -83,13 +78,13 @@ export default function Products() {
     <div
       id="products"
       ref={sectionRef}
-      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto`}
+      className={`relative section-bg bg-no-repeat bg-cover h-auto`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-black/0 pointer-events-none" />
 
       <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-14 px-4 lg:px-8">
         <div className="pt-[5vh] mb-10">
-          <h3 className="section-title mb-6 will-animate">{t("products.title")}</h3>
+          <h2 className="section-title mb-6 will-animate">{t("products.title")}</h2>
           <p className="font-[ybn] text-white/60 text-sm lg:text-base 2xl:text-lg leading-7 will-animate">
             {t("products.description")}
           </p>

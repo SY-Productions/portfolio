@@ -23,14 +23,15 @@ export default function BlogAppBar() {
       {/* Back to home */}
       <Link
         href="/"
+        aria-label="Back to Portfolio"
         className="flex items-center gap-1.5 text-white/40 hover:text-white/80 transition-colors text-xs font-[ybn] me-auto"
       >
-        <ArrowLeft size={13} className={isRtl ? "rotate-180" : ""} />
+        <ArrowLeft size={13} className={isRtl ? "rotate-180" : ""} aria-hidden="true" />
         <span className="hidden sm:inline">Portfolio</span>
       </Link>
 
       {/* Center: Blog label */}
-      <span className="absolute left-1/2 -translate-x-1/2 text-white/30 text-xs font-[ybn] tracking-widest uppercase pointer-events-none">
+      <span className="absolute left-1/2 -translate-x-1/2 text-white/50 text-xs font-[ybn] tracking-widest uppercase pointer-events-none" aria-hidden="true">
         Blog
       </span>
 
@@ -40,10 +41,12 @@ export default function BlogAppBar() {
           <button
             key={l}
             onClick={() => setLang(l)}
-            className={`w-8 h-7 flex items-center justify-center border transition-all ${
+            aria-label={`Switch to ${l === "fa" ? "Persian" : l === "en" ? "English" : "Arabic"}`}
+            aria-pressed={lang === l}
+            className={`w-8 h-7 flex items-center justify-center border transition-[opacity,background-color] ${
               lang === l
                 ? "bg-[#3B070A]/60 border-[#5A0E12]/50"
-                : "bg-transparent border-white/10 hover:border-white/20"
+                : "bg-transparent border-white/10 hover:bg-white/5"
             }`}
             style={{ opacity: lang === l ? 1 : 0.45 }}
           >
@@ -53,10 +56,10 @@ export default function BlogAppBar() {
 
         <button
           onClick={toggleTheme}
-          className="w-8 h-7 ms-1 flex items-center justify-center border border-white/10 text-white/40 hover:text-white/80 hover:border-white/25 transition-all"
-          aria-label="Toggle theme"
+          className="w-8 h-7 ms-1 flex items-center justify-center border border-white/10 text-white/40 hover:text-white/80 hover:bg-white/5 transition-[color,background-color]"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
         >
-          {theme === "dark" ? <Sun size={13} /> : <Moon size={13} />}
+          {theme === "dark" ? <Sun size={13} aria-hidden="true" /> : <Moon size={13} aria-hidden="true" />}
         </button>
       </div>
     </header>

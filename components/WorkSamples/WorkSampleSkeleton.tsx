@@ -6,7 +6,7 @@ const WorkSampleSkeleton = () => {
   return (
     <section
       id="portfolio"
-      className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full lg:h-screen h-[90vh] gap-x-[5vw]"
+      className="flex flex-col lg:flex-row-reverse items-center justify-center mt-12 lg:mt-0 section-bg w-full lg:h-screen h-[90vh] gap-x-[5vw]"
     >
       {/* Preview Skeleton */}
       <div className="h-auto lg:h-[60vh] h-[30vh] mt-[10vh] lg:-mt-5 mb-10 flex justify-center lg:ml-[7rem] relative">

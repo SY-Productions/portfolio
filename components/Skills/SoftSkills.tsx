@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useRef } from "react";
 import Skill from "./SoftSkill";
 import { useLang } from "@/app/context/LanguageContext";
@@ -37,7 +37,7 @@ export default function SoftSkills() {
 
   return (
     <div ref={sectionRef} className="w-[85%]">
-      <h3 className="section-title mb-3">{t("skills.softTitle")}</h3>
+      <h2 className="section-title mb-3">{t("skills.softTitle")}</h2>
       <p className="font-[ybn] text-white/40 mb-6 text-wrap text-sm lg:text-base 2xl:text-lg leading-6 will-animate">
         {t("skills.softDesc")}
       </p>

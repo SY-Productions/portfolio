@@ -19,17 +19,20 @@ const NavBarForMobile = memo(function NavBarForMobile() {
       <div className="flex items-center py-3 gap-2">
         <button
           onClick={() => setOpen()}
-          className="HAMBURGER p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+          aria-label="Open navigation menu"
+          aria-expanded={false}
+          className="HAMBURGER p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-[color,background-color] text-white/60 hover:text-white"
         >
-          <MenuIcon sx={{ color: "currentColor", fontSize: 24 }} />
+          <MenuIcon sx={{ color: "currentColor", fontSize: 24 }} aria-hidden />
         </button>
 
         {/* Theme toggle */}
         <button
           onClick={toggleTheme}
-          className="flex items-center justify-center p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          className="flex items-center justify-center p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-[color,background-color] text-white/60 hover:text-white"
         >
-          {theme === "dark" ? <Sun size={24} /> : <Moon size={24} />}
+          {theme === "dark" ? <Sun size={24} aria-hidden="true" /> : <Moon size={24} aria-hidden="true" />}
         </button>
 
       </div>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { memo, useEffect, useState } from "react";
 import EventCard from "./EventCard";
@@ -26,11 +26,6 @@ const Events = () => {
   const { t, lang } = useLang();
   const { theme } = useTheme();
 
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,7 +48,7 @@ const Events = () => {
   return (
     <div
       id="events"
-      className={`relative ${bgSvg} bg-no-repeat bg-cover h-auto`}
+      className={`relative section-bg bg-no-repeat bg-cover h-auto`}
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/0 backdrop-blur-sm"></div>
 
@@ -68,7 +63,7 @@ const Events = () => {
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
-          <h3 className="section-title mb-6">{t("events.title")}</h3>
+          <h2 className="section-title mb-6">{t("events.title")}</h2>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("events.description")}
           </p>

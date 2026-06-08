@@ -186,6 +186,8 @@ export default function RootLayout({
   return (
     <html lang="fa" dir="rtl" className="scroll-smooth">
       <head>
+        {/* Preload hero background — prevents LCP delay from late CSS discovery */}
+        <link rel="preload" as="image" href="/vectors/sec1-bgdark.svg" fetchPriority="high" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

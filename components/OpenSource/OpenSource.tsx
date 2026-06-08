@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
 import { API_BASE_URL } from "@/app/config";
@@ -134,7 +134,7 @@ export default function OpenSource() {
 
       {/* Floating GitHub watermark */}
       <div className="absolute end-8 top-8 pointer-events-none select-none opacity-[0.04]">
-        <SiGithub size={160} className="text-white" />
+        <SiGithub size={160} className="text-white" aria-hidden="true" />
       </div>
 
       <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-8">
@@ -146,7 +146,7 @@ export default function OpenSource() {
               <span className="opacity-60">~/projects/open-source</span>
             </div>
           </div>
-          <h3 className="section-title mb-5">{t("openSource.title")}</h3>
+          <h2 className="section-title mb-5">{t("openSource.title")}</h2>
           <p className="font-[ybn] text-white/50 text-sm lg:text-base leading-7 will-animate max-w-2xl">
             {t("openSource.description")}
           </p>
@@ -201,7 +201,7 @@ export default function OpenSource() {
                     {/* Repo header — GitHub style */}
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2 min-w-0">
-                        <SiGithub size={16} className="text-white/40 flex-shrink-0" />
+                        <SiGithub size={16} className="text-white/40 flex-shrink-0" aria-hidden="true" />
                         <span className="font-mono text-xs text-white/40 truncate">{repoName}</span>
                       </div>
                       {/* Decorative star/fork */}
@@ -272,7 +272,7 @@ export default function OpenSource() {
                           (e.currentTarget as HTMLElement).style.color = "rgba(255,255,255,0.65)";
                         }}
                       >
-                        <SiGithub size={11} />
+                        <SiGithub size={11} aria-hidden="true" />
                         {t("openSource.viewCode")}
                       </a>
                       {liveUrl && (

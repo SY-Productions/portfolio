@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useLang } from "@/app/context/LanguageContext";
@@ -127,7 +127,7 @@ function PostCard({ post, index }: { post: BlogPostSummary; index: number }) {
 
         <div className="flex items-center justify-between mt-4">
           <span className="text-xs font-[ybn] text-white/30">{post.authorName}</span>
-          <span className="text-xs font-[ybn] font-medium px-4 py-2 border border-white/15 text-white/70 group-hover:text-white group-hover:border-white/30 group-hover:bg-white/5 transition-all duration-200">
+          <span className="text-xs font-[ybn] font-medium px-4 py-2 border border-white/15 text-white/70 group-hover:text-white group-hover:bg-white/5 transition-[color,background-color] duration-200">
             {t("blog.readMore")} →
           </span>
         </div>
@@ -139,7 +139,6 @@ function PostCard({ post, index }: { post: BlogPostSummary; index: number }) {
 export default function BlogListingClient({ categories, pinnedPosts }: Props) {
   const { t, lang } = useLang();
   const { theme } = useTheme();
-  const bgSvg = theme === "light" ? "bg-[url('/vectors/sec1-bglight.svg')]" : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [posts, setPosts] = useState<BlogPostSummary[]>([]);
@@ -205,7 +204,7 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
   const isRtl = lang === "fa" || lang === "ar";
 
   return (
-    <div ref={containerRef} className={`min-h-screen ${bgSvg} bg-no-repeat bg-cover`} dir={isRtl ? "rtl" : "ltr"}>
+    <div ref={containerRef} className={`min-h-screen section-bg bg-no-repeat bg-cover`} dir={isRtl ? "rtl" : "ltr"}>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
         {/* Header */}
@@ -235,20 +234,24 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
         {/* Search + Sort row */}
         <div className="flex gap-3 mb-4">
           <div className="relative flex-1">
-            <Search size={14} className="absolute start-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" />
+            <Search size={14} className="absolute start-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" aria-hidden="true" />
+            <label htmlFor="blog-search" className="sr-only">{t("blog.searchPlaceholder")}</label>
             <input
+              id="blog-search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("blog.searchPlaceholder")}
               className="w-full bg-black/20 border border-white/10 ps-9 pe-9 py-2.5 text-white text-sm font-[ybn] placeholder:text-white/20 outline-none focus:border-white/30 transition-colors"
             />
             {search && (
-              <button onClick={() => setSearch("")} className="absolute end-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60">
-                <X size={12} />
+              <button onClick={() => setSearch("")} aria-label="Clear search" className="absolute end-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors">
+                <X size={12} aria-hidden="true" />
               </button>
             )}
           </div>
+          <label htmlFor="blog-sort" className="sr-only">Sort posts</label>
           <select
+            id="blog-sort"
             value={sort}
             onChange={(e) => setSort(e.target.value)}
             className="bg-black/20 border border-white/10 text-white/60 text-xs font-[ybn] px-3 py-2 outline-none focus:border-white/30 transition-colors shrink-0"
@@ -263,13 +266,14 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
 
         {/* Category pills */}
         {categories.length > 0 && (
-          <div className="flex flex-wrap items-center gap-2 mb-8">
+          <div className="flex flex-wrap items-center gap-2 mb-8" role="group" aria-label="Filter by category">
             <button
               onClick={() => setSelectedCategory("")}
-              className={`px-3 py-1.5 text-xs font-[ybn] border transition-all ${
+              aria-pressed={!selectedCategory}
+              className={`px-3 py-1.5 text-xs font-[ybn] border transition-[color,background-color,opacity] ${
                 !selectedCategory
                   ? "bg-[#3B070A]/60 border-[#5A0E12]/50 text-white"
-                  : "bg-black/20 border-white/10 text-white/40 hover:text-white/70 hover:border-white/20"
+                  : "bg-black/20 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/5"
               }`}
             >
               All <span className="opacity-50 ms-1">({total})</span>
@@ -282,10 +286,11 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
                 <button
                   key={cat.id}
                   onClick={() => setSelectedCategory(active ? "" : cat.slug)}
-                  className={`px-3 py-1.5 text-xs font-[ybn] border transition-all ${
+                  aria-pressed={active}
+                  className={`px-3 py-1.5 text-xs font-[ybn] border transition-[color,background-color,opacity] ${
                     active
                       ? "text-white"
-                      : "bg-black/20 border-white/10 text-white/40 hover:text-white/70 hover:border-white/20"
+                      : "bg-black/20 border-white/10 text-white/40 hover:text-white/70 hover:bg-white/5"
                   }`}
                   style={active ? { background: `${cat.color}25`, borderColor: `${cat.color}50` } : {}}
                 >
@@ -324,23 +329,26 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-3 mt-12">
+          <nav aria-label="Blog pagination" className="flex items-center justify-center gap-3 mt-12">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="p-2 border border-white/10 text-white/50 hover:text-white hover:border-white/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Previous page"
+              className="p-2 border border-white/10 text-white/50 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-[color,background-color,opacity]"
             >
-              {isRtl ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+              {isRtl ? <ChevronRight size={16} aria-hidden="true" /> : <ChevronLeft size={16} aria-hidden="true" />}
             </button>
 
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
               <button
                 key={p}
                 onClick={() => setPage(p)}
-                className={`w-9 h-9 text-sm font-[ybn] border transition-all ${
+                aria-label={`Page ${p}`}
+                aria-current={p === page ? "page" : undefined}
+                className={`w-9 h-9 text-sm font-[ybn] border transition-[color,background-color,opacity] ${
                   p === page
                     ? "bg-[#3B070A]/60 border-[#5A0E12]/50 text-white"
-                    : "border-white/10 text-white/40 hover:text-white hover:border-white/30"
+                    : "border-white/10 text-white/40 hover:text-white hover:bg-white/5"
                 }`}
               >
                 {p}
@@ -350,11 +358,12 @@ export default function BlogListingClient({ categories, pinnedPosts }: Props) {
             <button
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="p-2 border border-white/10 text-white/50 hover:text-white hover:border-white/30 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+              aria-label="Next page"
+              className="p-2 border border-white/10 text-white/50 hover:text-white hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed transition-[color,background-color,opacity]"
             >
-              {isRtl ? <ChevronLeft size={16} /> : <ChevronRight size={16} />}
+              {isRtl ? <ChevronLeft size={16} aria-hidden="true" /> : <ChevronRight size={16} aria-hidden="true" />}
             </button>
-          </div>
+          </nav>
         )}
       </div>
     </div>

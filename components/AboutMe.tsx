@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useState } from "react";
 import { useLang } from "@/app/context/LanguageContext";
-import { useTheme } from "@/app/context/ThemeContext";
 
 // Optimized imports
 import prof from "@/public/pic.png";
@@ -45,12 +44,6 @@ const socialLinks = [
 const AboutMe = memo(function AboutMe() {
   const [isVisible, setIsVisible] = useState(false);
   const { t, dir } = useLang();
-  const { theme } = useTheme();
-
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     setIsVisible(true);
@@ -59,7 +52,7 @@ const AboutMe = memo(function AboutMe() {
   return (
     <div
       id="about-me"
-      className={`${bgSvg} bg-no-repeat bg-cover w-full h-auto lg:h-screen relative overflow-hidden pt-[64px] lg:pt-0`}
+      className="w-full h-auto lg:h-screen relative overflow-hidden pt-[64px] lg:pt-0"
     >
       {/* Enhanced animated gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/0 backdrop-blur-sm animate-gradient-shift"></div>

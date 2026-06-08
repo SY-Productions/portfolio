@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { memo, useEffect, useState } from "react";
 import WorkCard from "./WorkCard";
@@ -52,7 +52,7 @@ const Work = () => {
 
       <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
         <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
-          <h3 className="section-title mb-6">{t("work.title")}</h3>
+          <h2 className="section-title mb-6">{t("work.title")}</h2>
 
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("work.description")}

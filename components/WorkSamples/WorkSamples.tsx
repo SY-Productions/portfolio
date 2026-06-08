@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useMemo, useEffect, useState } from "react";
 import Preview from "./Preview";
@@ -34,11 +34,6 @@ export default function WorkSamples() {
   const [data, setData] = useState<WorkSample[]>([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
-
-  const bgSvg =
-    theme === "light"
-      ? "bg-[url('/vectors/sec1-bglight.svg')]"
-      : "bg-[url('/vectors/sec1-bgdark.svg')]";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,7 +78,7 @@ export default function WorkSamples() {
       <section
         id="portfolio"
         className={`flex flex-col lg:flex-row items-center justify-center mt-8 lg:mt-0
-          ${bgSvg} bg-no-repeat bg-cover w-full
+          section-bg bg-no-repeat bg-cover w-full
           min-h-[90vh] lg:h-screen
           gap-x-[4vw] gap-y-4 pb-10 lg:pb-0`}
       >

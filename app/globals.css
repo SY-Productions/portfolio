@@ -50,6 +50,18 @@ body {
   -ms-user-select: none;
 }
 
+/* ===== SECTION BACKGROUND — static CSS so browser discovers it before JS hydration (LCP fix) ===== */
+#about-me,
+.section-bg {
+  background-image: url('/vectors/sec1-bgdark.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+html.light-theme #about-me,
+html.light-theme .section-bg {
+  background-image: url('/vectors/sec1-bglight.svg');
+}
+
 /* ===== SIDEBAR LAYOUT ===== */
 
 /* Sections need top offset when using anchor navigation on mobile (fixed navbar) */
@@ -130,6 +142,7 @@ img {
   font-family: "ybn";
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
   src: url("fonts/YekanBakhFaNum-Regular.woff2") format("woff2");
 }
 
@@ -137,6 +150,7 @@ img {
   font-family: "ybb";
   font-style: normal;
   font-weight: bold;
+  font-display: swap;
   src: url("fonts/YekanBakhFaNum-Bold.woff2") format("woff2");
 }
 
@@ -144,11 +158,12 @@ img {
   font-family: "ybeb";
   font-style: normal;
   font-weight: 950;
+  font-display: swap;
   src: url("fonts/YekanBakhFaNum-ExtraBlack.woff2") format("woff2");
 }
 
 @layer base {
-  h3 {
+  h2, h3 {
     @apply text-3xl font-bold;
   }
 }

@@ -8,18 +8,18 @@ interface Skill {
 }
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  Flutter:  <SiFlutter size={14} />,
-  Django:   <SiDjango size={14} />,
-  React:    <SiReact size={14} />,
-  Fastapi:  <SiFastapi size={14} />,
-  Python:   <SiPython size={14} />,
-  WP:       <SiWordpress size={14} />,
-  OnRails:  <SiRubyonrails size={14} />,
-  Html:     <SiHtml5 size={14} />,
-  Css:      <SiCss3 size={14} />,
-  Ruby:     <SiRuby size={14} />,
-  Dart:     <SiDart size={14} />,
-  Js:       <SiJavascript size={14} />,
+  Flutter:  <SiFlutter size={14} aria-hidden="true" />,
+  Django:   <SiDjango size={14} aria-hidden="true" />,
+  React:    <SiReact size={14} aria-hidden="true" />,
+  Fastapi:  <SiFastapi size={14} aria-hidden="true" />,
+  Python:   <SiPython size={14} aria-hidden="true" />,
+  WP:       <SiWordpress size={14} aria-hidden="true" />,
+  OnRails:  <SiRubyonrails size={14} aria-hidden="true" />,
+  Html:     <SiHtml5 size={14} aria-hidden="true" />,
+  Css:      <SiCss3 size={14} aria-hidden="true" />,
+  Ruby:     <SiRuby size={14} aria-hidden="true" />,
+  Dart:     <SiDart size={14} aria-hidden="true" />,
+  Js:       <SiJavascript size={14} aria-hidden="true" />,
 };
 
 const DISPLAY_NAMES: Record<string, string> = {
@@ -29,7 +29,7 @@ const DISPLAY_NAMES: Record<string, string> = {
 };
 
 export default function HardSkill({ name }: Skill) {
-  const icon = ICON_MAP[name] ?? <BsLink size={14} />;
+  const icon = ICON_MAP[name] ?? <BsLink size={14} aria-hidden="true" />;
   const label = DISPLAY_NAMES[name] ?? name;
 
   return (

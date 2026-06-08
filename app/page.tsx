@@ -1,20 +1,25 @@
 import React, { Suspense } from "react";
+import dynamic from "next/dynamic";
+
+// Above-fold — load eagerly
 import AboutMe from "../components/AboutMe";
-import Skills from "../components/Skills/SkillsSection";
-import WorkSamples from "../components/WorkSamples/WorkSamples";
-import Education from "../components/Education/Education";
-import CallMe from "../components/CallMe/CallMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
-import LookingProgrammer from "@/components/LookingProgrammer";
-import Footer from "@/components/Footer";
-import Work from "@/components/Work/Work";
-import Events from "@/components/Events/Events";
-import Blog from "@/components/Blog/Blog";
-import OpenSource from "@/components/OpenSource/OpenSource";
-import Products from "@/components/Products/Products";
-import AnimatedCursor from "@/components/AnimtedCursor";
 import SideBar from "@/components/SideBar";
-import AdminQuickAccess from "@/components/AdminQuickAccess";
+
+// Below-fold — lazy load to reduce initial JS bundle
+const Skills = dynamic(() => import("../components/Skills/SkillsSection"));
+const WorkSamples = dynamic(() => import("../components/WorkSamples/WorkSamples"));
+const OpenSource = dynamic(() => import("../components/OpenSource/OpenSource"));
+const Products = dynamic(() => import("../components/Products/Products"));
+const LookingProgrammer = dynamic(() => import("@/components/LookingProgrammer"));
+const Education = dynamic(() => import("../components/Education/Education"));
+const Work = dynamic(() => import("@/components/Work/Work"));
+const Events = dynamic(() => import("@/components/Events/Events"));
+const Blog = dynamic(() => import("@/components/Blog/Blog"));
+const CallMe = dynamic(() => import("../components/CallMe/CallMe"));
+const Footer = dynamic(() => import("@/components/Footer"));
+const AdminQuickAccess = dynamic(() => import("@/components/AdminQuickAccess"));
+const AnimatedCursor = dynamic(() => import("@/components/AnimtedCursor"), { ssr: false });
 
 export default function Page() {
   return (
@@ -36,9 +41,7 @@ export default function Page() {
       </main>
       <Footer />
       <AdminQuickAccess />
-      {typeof window !== "undefined" && window.innerWidth > 900 && (
-        <AnimatedCursor />
-      )}
+      <AnimatedCursor />
     </Suspense>
   );
 }
