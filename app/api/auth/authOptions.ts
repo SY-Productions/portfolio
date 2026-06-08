@@ -51,7 +51,6 @@ export const authOptions = {
   session: { strategy: "jwt" as const, maxAge: 60 * 60 * 8 },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async jwt({ token, user, trigger }: { token: any; user: any; trigger?: string }) {
       if (trigger === "signIn" && user) {
         const jti = crypto.randomUUID();
@@ -82,7 +81,6 @@ export const authOptions = {
       }
       return token;
     },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     async session({ session, token }: { session: any; token: any }) {
       session.jti = token.jti;
       if (token.error) session.error = token.error;

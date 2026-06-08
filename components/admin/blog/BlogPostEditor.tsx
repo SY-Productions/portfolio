@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import NextImage from "next/image";
 import { Save, Eye, EyeOff, Star, RefreshCw, Globe, Image as ImageIcon } from "lucide-react";
 import BlogRichEditor from "./BlogRichEditor";
 import { generateSlug, estimateReadTime } from "@/components/Blog/blogTypes";
@@ -388,7 +389,15 @@ export default function BlogPostEditor({ initialData }: { initialData?: Partial<
           <div className="border border-white/10 bg-black/20 p-4 space-y-3">
             <h3 className="text-white/60 text-xs font-semibold uppercase tracking-wider">Cover Image</h3>
             {form.coverImage && (
-              <img src={form.coverImage} alt="Cover" className="w-full h-32 object-cover border border-white/10" />
+              <NextImage
+                src={form.coverImage}
+                alt="Cover"
+                width={0}
+                height={0}
+                sizes="100vw"
+                unoptimized
+                className="w-full h-32 object-cover border border-white/10"
+              />
             )}
             <input
               value={form.coverImage}

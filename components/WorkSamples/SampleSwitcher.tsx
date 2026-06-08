@@ -79,16 +79,11 @@ const SampleSwitcher = memo(function SampleSwitcher() {
     dotsContainerRef.current?.addEventListener("touchstart", stopAnimation);
 
     // Clean up
+    const container = dotsContainerRef.current;
     return () => {
       clearTimeout(timer);
-      dotsContainerRef.current?.removeEventListener(
-        "mouseenter",
-        stopAnimation,
-      );
-      dotsContainerRef.current?.removeEventListener(
-        "touchstart",
-        stopAnimation,
-      );
+      container?.removeEventListener("mouseenter", stopAnimation);
+      container?.removeEventListener("touchstart", stopAnimation);
     };
   }, [isOverflowing]);
 

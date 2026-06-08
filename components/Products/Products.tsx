@@ -1,5 +1,6 @@
 ﻿"use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
 import { API_BASE_URL } from "@/app/config";
@@ -141,10 +142,12 @@ export default function Products() {
                       </div>
                     </div>
                   ) : product.imageUrl ? (
-                    <img
+                    <Image
                       src={product.imageUrl}
                       alt={getTitle(product)}
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      unoptimized
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-[#3B070A]/40 via-[#5A0E12]/20 to-[#141010]" />

@@ -1,5 +1,6 @@
 ﻿"use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useLang } from "@/app/context/LanguageContext";
 import { API_BASE_URL } from "@/app/config";
 import { SiGithub } from "react-icons/si";
@@ -183,10 +184,12 @@ export default function OpenSource() {
                   {/* Gallery image */}
                   {firstPic && (
                     <div className="h-36 overflow-hidden flex-shrink-0 relative">
-                      <img
+                      <Image
                         src={firstPic}
                         alt={getTitle(ws)}
-                        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        fill
+                        unoptimized
+                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent 50%, rgba(10,0,0,0.7) 100%)` }} />
                     </div>

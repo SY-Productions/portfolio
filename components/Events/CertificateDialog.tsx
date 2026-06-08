@@ -58,12 +58,12 @@ const CertificateDialog: React.FC<CertificateDialogProps> = ({
           </button>
         </div>
         <div className="relative w-full h-auto overflow-hidden border border-white/10 rounded-lg">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imageUrl}
             alt={title}
             className="w-full h-auto object-contain max-h-[70vh]"
             onError={(e) => {
-              console.error("Image failed to load:", imageUrl);
               e.currentTarget.src = "/placeholder-certificate.jpg";
             }}
           />

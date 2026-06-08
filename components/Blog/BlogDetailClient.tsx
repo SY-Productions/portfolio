@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/app/context/LanguageContext";
 import { useTheme } from "@/app/context/ThemeContext";
 import {
@@ -207,11 +208,14 @@ export default function BlogDetailClient({ post, relatedPosts }: Props) {
         {/* Cover image */}
         {post.coverImage && (
           <div className="mb-8 overflow-hidden border border-white/10">
-            <img
+            <Image
               src={post.coverImage}
               alt={title}
+              width={0}
+              height={0}
+              sizes="100vw"
+              unoptimized
               className="w-full object-cover max-h-[480px]"
-              loading="eager"
             />
           </div>
         )}
@@ -257,8 +261,8 @@ export default function BlogDetailClient({ post, relatedPosts }: Props) {
                     className="blog-card p-4 hover:border-white/20 transition-all group"
                   >
                     {rp.coverImage && (
-                      <div className="h-28 mb-3 overflow-hidden">
-                        <img src={rp.coverImage} alt={rpTitle} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      <div className="relative h-28 mb-3 overflow-hidden">
+                        <Image src={rp.coverImage} alt={rpTitle} fill unoptimized className="object-cover group-hover:scale-105 transition-transform duration-300" />
                       </div>
                     )}
                     <p className="text-xs text-white/30 font-[ybn] mb-1">{rpDate}</p>

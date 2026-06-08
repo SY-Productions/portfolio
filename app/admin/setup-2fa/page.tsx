@@ -65,6 +65,7 @@ export default function Setup2FAPage() {
   const [loadingDevices, setLoadingDevices] = useState(true);
   const [revokingId, setRevokingId] = useState<number | null>(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { checkStatus(); fetchDevices(); }, []);
 
   async function checkStatus() {
