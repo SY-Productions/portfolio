@@ -19,9 +19,9 @@ const NavBarForMobile = memo(function NavBarForMobile() {
       <div className="flex items-center py-3 gap-2">
         <button
           onClick={() => setOpen()}
-          className="HAMBURGER p-2.5 bg-white/5"
+          className="HAMBURGER p-2.5 bg-white/5 border border-white/10 hover:bg-white/10 transition-all text-white/60 hover:text-white"
         >
-          <MenuIcon sx={{ color: "white" }} />
+          <MenuIcon sx={{ color: "currentColor", fontSize: 24 }} />
         </button>
 
         {/* Theme toggle */}
