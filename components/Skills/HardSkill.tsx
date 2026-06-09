@@ -4,7 +4,8 @@ import {
   SiDart, SiFlutter, SiPython, SiDjango, SiHtml5, SiCss3, SiFastapi,
   SiJavascript, SiReact, SiRuby, SiRubyonrails, SiWordpress,
   SiNextdotjs, SiTypescript, SiTailwindcss, SiPrisma, SiFramer,
-  SiGreensock, SiThreedotjs, SiFirebase, SiMdx, SiSqlite, SiFigma, SiGit,
+  SiGreensock, SiThreedotjs, SiFirebase, SiMdx, SiSqlite, SiGit,
+  SiAnthropic, SiGithubcopilot,
 } from "react-icons/si";
 import { TbAtom2, TbWebhook, TbStack2, TbBox, TbNetwork, TbBrandFlutter } from "react-icons/tb";
 import { BsLink } from "react-icons/bs";
@@ -43,8 +44,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Firebase:     <SiFirebase    size={14} aria-hidden="true" />,
   MDX:          <SiMdx         size={14} aria-hidden="true" />,
   SQLite:       <SiSqlite      size={14} aria-hidden="true" />,
-  Figma:        <SiFigma       size={14} aria-hidden="true" />,
   Git:          <SiGit         size={14} aria-hidden="true" />,
+  ClaudeCode:   <SiAnthropic   size={14} aria-hidden="true" />,
+  CopilotCLI:   <SiGithubcopilot size={14} aria-hidden="true" />,
   // Flutter ecosystem — no official icons
   Riverpod:     <TbAtom2       size={14} aria-hidden="true" />,
   Bloc:         <TbStack2      size={14} aria-hidden="true" />,
@@ -63,8 +65,9 @@ const DISPLAY_NAMES: Record<string, string> = {
   React: "React", Ruby: "Ruby", NextJs: "Next.js", "Next.js": "Next.js",
   TypeScript: "TypeScript", TailwindCSS: "Tailwind", Prisma: "Prisma",
   FramerMotion: "Framer", GSAP: "GSAP", ThreeJs: "Three.js",
-  Firebase: "Firebase", MDX: "MDX", SQLite: "SQLite", Figma: "Figma",
-  Git: "Git", Riverpod: "Riverpod", Bloc: "BLoC", BLoC: "BLoC",
+  Firebase: "Firebase", MDX: "MDX", SQLite: "SQLite",
+  Git: "Git", ClaudeCode: "Claude Code", CopilotCLI: "Copilot CLI",
+  Riverpod: "Riverpod", Bloc: "BLoC", BLoC: "BLoC",
   GetX: "GetX", WebSocket: "WebSocket", Zustand: "Zustand",
   Retrofit: "Retrofit", WordPress: "WordPress",
 };
