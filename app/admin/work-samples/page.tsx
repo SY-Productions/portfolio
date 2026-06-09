@@ -28,6 +28,7 @@ interface WorkSample {
   enEndDate: string;
   arEndDate: string;
   customLinks: string | null;
+  client: string;
   order: number;
 }
 
@@ -65,6 +66,7 @@ const emptyForm = {
   link: "",
   technologys: "",
   customLinks: "",
+  client: "",
   startDate: emptyDV as DateVal,
   endDate: emptyDV as DateVal,
   arStartDate: "",
@@ -153,6 +155,7 @@ export default function WorkSamplesAdminPage() {
       link: item.link,
       technologys: item.technologys,
       customLinks: item.customLinks ?? "",
+      client: item.client ?? "",
       startDate: {
         faYear: item.faStartDate,
         faMonth: "",
@@ -202,6 +205,7 @@ export default function WorkSamplesAdminPage() {
         customLinks: parsed.customLinks
           ? JSON.stringify(parsed.customLinks)
           : "",
+        client: parsed.client ?? "",
         arStartDate: parsed.arStartDate ?? "",
         arEndDate: parsed.arEndDate ?? "",
         startDate: {
@@ -242,6 +246,7 @@ export default function WorkSamplesAdminPage() {
       link: form.link,
       technologys: form.technologys,
       customLinks: form.customLinks || null,
+      client: form.client,
       faStartDate: dvToFa(form.startDate),
       enStartDate: dvToEn(form.startDate),
       arStartDate: form.arStartDate,
@@ -588,6 +593,17 @@ export default function WorkSamplesAdminPage() {
                   onChange={handleChange}
                   className={inputClass}
                   placeholder="https://..."
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>Client</label>
+                <input
+                  name="client"
+                  value={form.client}
+                  onChange={handleChange}
+                  className={inputClass}
+                  placeholder="Company or individual name"
                 />
               </div>
 

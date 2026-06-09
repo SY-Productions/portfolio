@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import prisma from "@/prisma/client";
 import { authOptions, requireAdmin } from "../authOptions";
 
-export async function GET() {
-  const unauth = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const unauth = await requireAdmin(req);
   if (unauth) return unauth;
 
   const session = await getServerSession(authOptions) as { jti?: string } | null;

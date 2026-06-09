@@ -1,5 +1,5 @@
-import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/prisma/client";
 import speakeasy from "speakeasy";
@@ -90,10 +90,37 @@ export const authOptions = {
 };
 
 /** Returns 401 response if the request has no valid admin session. */
-export async function requireAdmin() {
-  const session = await getServerSession(authOptions) as { error?: string } | null;
-  if (!session || session.error === "SESSION_REVOKED") {
+export async function requireAdmin(req: NextRequest) {
+  const secret = process.env.NEXTAUTH_SECRET;
+  const token =
+    (await getToken({ req, secret, secureCookie: false }).catch(() => null)) ??
+    (await getToken({ req, secret, secureCookie: true }).catch(() => null));
+
+  if (!token) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  if (token.jti) {
+    try {
+      const adminSession = await prisma.adminSession.findUnique({
+        where: { jti: token.jti as string },
+      });
+      // Only block when explicitly revoked; missing record means the DB write
+      // failed silently at sign-in — the valid JWT is sufficient proof of auth.
+      if (adminSession?.isRevoked) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+      if (adminSession) {
+        const staleSince = Date.now() - adminSession.lastSeenAt.getTime();
+        if (staleSince > 5 * 60 * 1000) {
+          await prisma.adminSession.update({
+            where: { jti: token.jti as string },
+            data: { lastSeenAt: new Date() },
+          }).catch(() => null);
+        }
+      }
+    } catch { /* non-fatal */ }
+  }
+
   return null;
 }

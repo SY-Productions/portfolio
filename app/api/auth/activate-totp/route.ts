@@ -4,7 +4,7 @@ import prisma from "@/prisma/client";
 import speakeasy from "speakeasy";
 
 export async function POST(req: NextRequest) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const { secret, token } = await req.json();

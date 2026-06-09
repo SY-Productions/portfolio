@@ -89,12 +89,12 @@ export const PhoneFrame = memo(function PhoneFrame({ src }: { src: string }) {
   );
 });
 
-export const BrowserFrame = memo(function BrowserFrame({ src }: { src: string }) {
+export const BrowserFrame = memo(function BrowserFrame({ src }: { src?: string }) {
   return (
     <div
       className="mx-auto"
       style={{
-        width: "min(480px, 72vw)",
+        width: "min(420px, 48vw)",
         borderRadius: 10,
         overflow: "hidden",
         border: "1px solid rgba(255,255,255,0.08)",
@@ -135,15 +135,19 @@ export const BrowserFrame = memo(function BrowserFrame({ src }: { src: string })
         </div>
       </div>
 
-      {/* Screenshot */}
-      <div style={{ background: "#000", aspectRatio: "16/10", overflow: "hidden" }}>
-        <SkeletonImage
-          src={src}
-          width={800}
-          height={500}
-          className="w-full object-cover object-top"
-          alt="Web app screenshot"
-        />
+      {/* Content */}
+      <div style={{ background: "#000", aspectRatio: "16/9", overflow: "hidden", position: "relative" }}>
+        {src ? (
+          <SkeletonImage
+            src={src}
+            width={1920}
+            height={1080}
+            className="w-full h-full object-contain"
+            alt="Web app screenshot"
+          />
+        ) : (
+          <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a0508 0%, #0d0d0d 100%)" }} />
+        )}
       </div>
     </div>
   );
@@ -158,7 +162,7 @@ const Preview = memo(function Preview() {
     setImgKey((k) => k + 1);
   }, [currentSampleIndex, isWebFrame]);
 
-  if (!pictures.length) return null;
+  if (!isWebFrame && !pictures.length) return null;
 
   return (
     <div

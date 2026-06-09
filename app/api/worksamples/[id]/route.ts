@@ -27,7 +27,7 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);
@@ -42,7 +42,7 @@ export async function PUT(
   const { id: _id, isWeb, ...rest } = validation.data;
   const data = {
     ...rest,
-    ...(isWeb !== undefined ? { isWeb: String(isWeb) } : {}),
+    ...(isWeb !== undefined ? { isWeb: isWeb ? "1" : "0" } : {}),
   };
 
   const updated = await prisma.workSample.update({ where: { id }, data });
@@ -50,10 +50,10 @@ export async function PUT(
 }
 
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);

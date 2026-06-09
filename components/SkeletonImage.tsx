@@ -12,6 +12,7 @@ interface Image {
   width?: number;
   height?: number;
   draggable?: boolean;
+  priority?: boolean;
 }
 
 export default function SkeletonImage({
@@ -22,6 +23,7 @@ export default function SkeletonImage({
   height,
   title,
   draggable,
+  priority,
 }: Image) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -57,16 +59,13 @@ export default function SkeletonImage({
           width={width || undefined}
           height={height || undefined}
           className={imageClasses}
+          priority={priority}
           onLoad={() => {
             setIsLoading(false);
             setHasError(false);
           }}
           onLoadStart={() => {
             setIsLoading(true);
-            setHasError(false);
-          }}
-          onLoadingComplete={() => {
-            setIsLoading(false);
             setHasError(false);
           }}
           onError={() => {

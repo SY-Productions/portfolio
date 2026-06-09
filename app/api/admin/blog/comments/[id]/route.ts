@@ -6,7 +6,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   await prisma.blogComment.delete({ where: { id: parseInt(params.id) } });

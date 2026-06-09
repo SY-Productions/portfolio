@@ -2,6 +2,7 @@ import { requireAdmin } from "@/app/api/auth/authOptions";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 
+
 const DEFAULT_SETTINGS = {
   themeA: "#5A0E12",
   themeB: "#3B070A",
@@ -13,8 +14,8 @@ const DEFAULT_SETTINGS = {
   totpSecret: null,
 };
 
-export async function GET() {
-  const authError = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
@@ -22,7 +23,7 @@ export async function GET() {
 }
 
 export async function PUT(req: NextRequest) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const body = await req.json();

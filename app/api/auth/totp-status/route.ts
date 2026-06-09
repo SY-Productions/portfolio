@@ -1,10 +1,11 @@
 import { requireAdmin } from "@/app/api/auth/authOptions";
 import { NextRequest, NextResponse } from "next/server";
+
 import prisma from "@/prisma/client";
 
 /** Disable 2FA by clearing the TOTP secret */
-export async function DELETE() {
-  const authError = await requireAdmin();
+export async function DELETE(req: NextRequest) {
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   await prisma.siteSettings.upsert({
@@ -17,8 +18,8 @@ export async function DELETE() {
 }
 
 /** Check if 2FA is enabled */
-export async function GET() {
-  const authError = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });

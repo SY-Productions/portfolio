@@ -1,11 +1,11 @@
 import { requireAdmin } from "@/app/api/auth/authOptions";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 import speakeasy from "speakeasy";
 import QRCode from "qrcode";
 
-export async function GET() {
-  const authError = await requireAdmin();
+export async function GET(req: NextRequest) {
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   // Generate a new TOTP secret

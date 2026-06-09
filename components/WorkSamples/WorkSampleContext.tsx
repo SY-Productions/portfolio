@@ -22,6 +22,7 @@ export interface WorkSample {
   isWeb: boolean;
   link: string;
   customLinks: string;
+  client?: string;
   technologys: string;
   faStartDate: string;
   enStartDate: string;
@@ -101,7 +102,8 @@ export function WorkSampleProvider({
   // Get pictures array for current sample
   const getCurrentPictures = () => {
     const sample = getCurrentSample();
-    return sample ? sample.pictures.split(" ") : [];
+    if (!sample) return [];
+    return sample.pictures.split(" ").filter((p) => p.trim() !== "");
   };
 
   // Navigation functions

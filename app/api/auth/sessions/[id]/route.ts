@@ -1,13 +1,13 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import prisma from "@/prisma/client";
 import { authOptions, requireAdmin } from "../../authOptions";
 
 export async function DELETE(
-  _req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const unauth = await requireAdmin();
+  const unauth = await requireAdmin(req);
   if (unauth) return unauth;
 
   const session = await getServerSession(authOptions) as { jti?: string } | null;

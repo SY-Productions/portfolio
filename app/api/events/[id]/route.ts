@@ -21,7 +21,7 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);
@@ -39,10 +39,10 @@ export async function PUT(
 }
 
 export async function DELETE(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: { id: string } },
 ) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);

@@ -14,7 +14,7 @@ export const workSampleSchema = z.object({
   enDescription: z.string(),
   arDescription: z.string().optional().default(""),
   pictures: z.string(),
-  link: z.string().url().optional().or(z.literal("")),
+  link: z.string().optional().default(""),
   technologys: z.string(),
   faStartDate: z.string(),
   enStartDate: z.string(),
@@ -22,6 +22,7 @@ export const workSampleSchema = z.object({
   faEndDate: z.string(),
   enEndDate: z.string(),
   arEndDate: z.string().optional().default(""),
+  client: z.string().optional().default(""),
 });
 
 // Education schema

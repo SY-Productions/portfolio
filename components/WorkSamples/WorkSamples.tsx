@@ -8,6 +8,7 @@ import { WorkSampleProvider } from "./WorkSampleContext";
 import { API_BASE_URL } from "@/app/config";
 import WorkSampleSkeleton from "./WorkSampleSkeleton";
 import { useTheme } from "@/app/context/ThemeContext";
+import DeepLinkHandler from "./DeepLinkHandler";
 
 export type WorkSample = {
   id: number;
@@ -28,6 +29,7 @@ export type WorkSample = {
   enEndDate: string;
   arEndDate?: string;
   customLinks: string;
+  client?: string;
 };
 
 export default function WorkSamples() {
@@ -66,7 +68,7 @@ export default function WorkSamples() {
         } catch {}
         return true;
       })
-      .map((s) => ({ ...s, isWeb: s.isWeb === "1" })),
+      .map((s) => ({ ...s, isWeb: s.isWeb === "1" || s.isWeb === "true" })),
     [data]
   );
 
@@ -75,6 +77,7 @@ export default function WorkSamples() {
 
   return (
     <WorkSampleProvider data={processedData}>
+      <DeepLinkHandler />
       <section
         id="portfolio"
         className={`flex flex-col lg:flex-row items-center justify-center mt-8 lg:mt-0

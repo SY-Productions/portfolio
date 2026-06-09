@@ -6,6 +6,7 @@ import { Copy, CopySuccess } from "iconsax-react";
 import Skill from "@/components/Skills/HardSkill";
 import { useWorkSample } from "../WorkSampleContext";
 import { useLang } from "@/app/context/LanguageContext";
+import { useTheme } from "@/app/context/ThemeContext";
 
 interface CustomLink {
   label: string;
@@ -15,6 +16,7 @@ interface CustomLink {
 const DrawerBody = memo(function DrawerBody() {
   const { getCurrentSample } = useWorkSample();
   const { lang, t } = useLang();
+  const { theme } = useTheme();
   const [isCopied, setCopied] = useState(false);
 
   const currentSample = getCurrentSample();
@@ -55,16 +57,23 @@ const DrawerBody = memo(function DrawerBody() {
     return currentSample.faTitle ?? "";
   };
 
-  // Language-aware description
-  const getDescription = () => {
+  const getRawDescription = () => {
     if (!currentSample) return "";
-    let desc = "";
-    if (lang === "en" && currentSample.enDescription)
-      desc = currentSample.enDescription;
-    else if (lang === "ar" && currentSample.arDescription)
-      desc = currentSample.arDescription;
-    else desc = currentSample.faDescription ?? "";
-    return desc.replace("%g%", "");
+    if (lang === "en" && currentSample.enDescription) return currentSample.enDescription;
+    if (lang === "ar" && currentSample.arDescription) return currentSample.arDescription;
+    return currentSample.faDescription ?? "";
+  };
+
+  const getShortDescription = () => {
+    const desc = getRawDescription();
+    const idx = desc.indexOf("%g%");
+    return idx !== -1 ? desc.slice(0, idx).trim() : "";
+  };
+
+  const getDetailDescription = () => {
+    const desc = getRawDescription();
+    const idx = desc.indexOf("%g%");
+    return idx !== -1 ? desc.slice(idx + 3).trim() : desc.trim();
   };
 
   // Language-aware dates
@@ -86,15 +95,14 @@ const DrawerBody = memo(function DrawerBody() {
     return currentSample.faEndDate ?? "";
   };
 
-  // Handle copy link functionality
   const handleCopy = useCallback(() => {
-    if (formattedLink) {
-      navigator.clipboard.writeText(formattedLink).then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 3000);
-      });
-    }
-  }, [formattedLink]);
+    if (!currentSample) return;
+    const url = `${window.location.origin}/?ws=${currentSample.id}&lang=${lang}&theme=${theme}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    });
+  }, [currentSample, lang, theme]);
 
   if (!currentSample) return null;
 
@@ -119,15 +127,24 @@ const DrawerBody = memo(function DrawerBody() {
         </h4>
       )}
 
-      {/* Description */}
-      <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
-        {getDescription()}
-      </p>
+      {/* Client */}
+      {currentSample.client && (
+        <p className="text-white/35 text-xs pb-3">
+          {t("workSamples.client")}: {currentSample.client}
+        </p>
+      )}
 
-      {/* Copy link button */}
-      {formattedLink && (
+      {/* Short description */}
+      {getShortDescription() && (
+        <p className="DESC text-white/50 pb-4 text-sm lg:text-base 2xl:text-lg">
+          {getShortDescription()}
+        </p>
+      )}
+
+      {/* Copy link + store links */}
+      <div className="flex flex-wrap gap-2">
         <button
-          className={`py-2 px-4 w-auto lg:text-md inline-flex gap-2 items-center justify-between text-nowrap border border-[#222] transition-colors duration-300 ${
+          className={`py-2 px-4 inline-flex gap-2 items-center text-nowrap border border-[#222] transition-colors duration-300 ${
             isCopied
               ? "bg-[#1A2A1A] text-white/90"
               : "bg-[#111] text-white/80 hover:bg-[#1A1A1A]"
@@ -142,25 +159,20 @@ const DrawerBody = memo(function DrawerBody() {
             <span>{t("workSamples.copyLink")}</span>
           )}
         </button>
-      )}
 
-      {/* Custom links section */}
-      {customLinks.length > 0 && (
-        <div className="flex flex-wrap gap-2 mt-2">
-          {customLinks.map((customLink, index) => (
-            <a
-              key={index}
-              href={customLink.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2 px-4 bg-[#111] text-white/80 hover:bg-[#1A1A1A] border border-[#222] transition-colors duration-300 inline-flex items-center gap-2"
-            >
-              <span>{customLink.label}</span>
-              <LaunchIcon sx={{ fontSize: 16 }} />
-            </a>
-          ))}
-        </div>
-      )}
+        {customLinks.map((customLink, index) => (
+          <a
+            key={index}
+            href={customLink.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="py-2 px-4 bg-[#111] text-white/80 hover:bg-[#1A1A1A] border border-[#222] transition-colors duration-300 inline-flex items-center gap-2 text-nowrap"
+          >
+            <span>{customLink.label}</span>
+            <LaunchIcon sx={{ fontSize: 16 }} />
+          </a>
+        ))}
+      </div>
 
       {/* Divider */}
       <div className="DIVIDER border-t border-[#222] w-full h-0 my-4" />
@@ -208,9 +220,9 @@ const DrawerBody = memo(function DrawerBody() {
         </div>
       </div>
 
-      {/* Full description */}
+      {/* Detail description */}
       <div className="FULLDECS pt-4 text-sm lg:text-base 2xl:text-lg text-white/70">
-        <p>{getDescription()}</p>
+        <p>{getDetailDescription()}</p>
       </div>
     </div>
   );

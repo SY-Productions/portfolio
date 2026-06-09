@@ -93,6 +93,7 @@ const AboutMe = memo(function AboutMe() {
             title="Yousof Hashemzade - Flutter Developer | یوسف هاشم زاده - توسعه دهنده فلاتر"
             className="aspect-square rounded-none relative z-10 transition-all duration-500 ease-out group-hover:scale-[1.02] active:scale-95 hover:cursor-grab active:cursor-grabbing"
             draggable={false}
+            priority
           />
         </div>
 

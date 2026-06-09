@@ -29,7 +29,7 @@ const blogPostSchema = z.object({
 });
 
 export async function GET(req: NextRequest) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const { searchParams } = new URL(req.url);
@@ -65,7 +65,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const body = await req.json();

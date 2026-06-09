@@ -16,6 +16,18 @@ const nextConfig = {
                 { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
             ],
         },
+        {
+            source: "/portfolio/:path*",
+            headers: [
+                { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+            ],
+        },
+        {
+            source: "/uploads/:path*",
+            headers: [
+                { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+            ],
+        },
     ],
 };
 

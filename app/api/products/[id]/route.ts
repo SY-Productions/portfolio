@@ -18,7 +18,7 @@ const updateSchema = z.object({
 });
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(request);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);
@@ -36,8 +36,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function DELETE(_request: NextRequest, { params }: { params: { id: string } }) {
-  const unauthorized = await requireAdmin();
+export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+  const unauthorized = await requireAdmin(request);
   if (unauthorized) return unauthorized;
 
   const id = parseInt(params.id);

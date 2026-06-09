@@ -13,7 +13,7 @@
     "title": "MOBILE",
     "titleLine2": "DEVELOPER",
     "name": "Yousof Hashemzade",
-    "description": "Driven by a passion for computers and building things, I entered this field. After many failed attempts in different areas, I found my niche and became a full-stack mobile and web application developer :)",
+    "description": "I build mobile apps and web products — clean, production-ready code across Flutter, React, and Python. I care about architecture, performance, and shipping things that actually work.",
     "contactBtn": "Contact Me"
   },
   "looking": {
@@ -22,9 +22,9 @@
   },
   "skills": {
     "hardTitle": "Technical Skills",
-    "hardDesc": "My software skills spanning mobile app development, web applications, and server-side programming.",
+    "hardDesc": "Mobile, web, and backend — tools I use daily to ship production software.",
     "softTitle": "Soft Skills",
-    "softDesc": "Personal skills I've cultivated over time and continue to grow.",
+    "softDesc": "Qualities I bring to every team and project.",
     "soft": {
       "english": "English",
       "persian": "Persian",
@@ -41,24 +41,24 @@
   },
   "education": {
     "title": "Education",
-    "description": "I had a strong passion for art, but when it came to choosing a major, I went with mathematics, computer science, and engineering. My academic background (this section will grow over time):",
+    "description": "My background spans mathematics, computer science, and software engineering. Academic credentials:",
     "present": "Present",
     "to": "to"
   },
   "work": {
     "title": "Work Experience",
-    "description": "Over the years I've built diverse professional experience, each role contributing to my growth in a unique way. From early on I sought challenging opportunities to sharpen my skills, participating in a wide range of projects. My work history (this section will grow over time):",
+    "description": "Roles where I've shipped real products — from freelance contracts to active startup builds.",
     "present": "Present",
     "to": "to"
   },
   "events": {
     "title": "Events, Competitions & Awards",
-    "description": "A list of events and competitions I've participated in (this section will grow over time):",
+    "description": "Competitions, hackathons, and industry events I've taken part in.",
     "viewCertificate": "View Certificate"
   },
   "contact": {
     "title": "Get in Touch",
-    "description": "If you have something to discuss, feel free to email me through this form. If email isn't your style, my number is right there — call or text me :)",
+    "description": "Have a project in mind or want to collaborate? Send a message through the form, or reach out by phone directly.",
     "namePlaceholder": "Name",
     "emailPlaceholder": "Email",
     "subjectPlaceholder": "Subject",
@@ -75,6 +75,7 @@
   },
   "workSamples": {
     "copyLink": "Copy Link",
+    "client": "Client",
     "technologies": "Technologies Used",
     "timeSpent": "Project Timeline",
     "start": "Start:",

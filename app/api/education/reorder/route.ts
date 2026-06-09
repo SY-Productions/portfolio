@@ -6,7 +6,7 @@ import { requireAdmin } from "../../auth/authOptions";
  * Body: { ids: number[] }
  */
 export async function PATCH(req: NextRequest) {
-  const unauthorized = await requireAdmin();
+  const unauthorized = await requireAdmin(req);
   if (unauthorized) return unauthorized;
 
   const body = await req.json();

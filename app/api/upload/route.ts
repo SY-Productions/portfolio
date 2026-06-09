@@ -2,9 +2,10 @@ import { requireAdmin } from "@/app/api/auth/authOptions";
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import { compressImage } from "@/lib/imageCompression";
 
 export async function POST(req: NextRequest) {
-  const authError = await requireAdmin();
+  const authError = await requireAdmin(req);
   if (authError) return authError;
 
   const formData = await req.formData();
@@ -36,15 +37,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Sanitize filename
-    const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
+    const bytes = await file.arrayBuffer();
+    const { buffer: compressed, ext } = await compressImage(
+      Buffer.from(bytes),
+      file.type
+    );
+
     const safeName = `${Date.now()}-${Math.random()
       .toString(36)
       .slice(2, 8)}.${ext}`;
     const filePath = path.join(uploadDir, safeName);
 
-    const bytes = await file.arrayBuffer();
-    await writeFile(filePath, new Uint8Array(bytes));
+    await writeFile(filePath, new Uint8Array(compressed));
     uploadedPaths.push(`/${folder}/${safeName}`);
   }
 
