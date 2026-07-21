@@ -31,7 +31,7 @@ const EduCard = memo(function EduCard({
   const toLabel = t("education.to");
 
   return (
-    <div className="glass-card will-animate group w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] mx-auto flex flex-col font-[ybn] cursor-pointer">
+    <div className="glass-card will-animate group w-full h-auto min-h-[12rem] flex flex-col font-[ybn] cursor-pointer">
       <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
         <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
           <Image

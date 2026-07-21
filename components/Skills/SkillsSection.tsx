@@ -19,8 +19,8 @@ export default function Skills() {
         style={{ animationDuration: "12s", animationDelay: "3s" }}
       />
 
-      <div className="lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
-        <div className="flex flex-col lg:flex-row pt-[5vh] lg:gap-[5vw] gap-y-14 px-4 lg:px-0">
+      <div className="section-shell pb-12">
+        <div className="flex flex-col lg:flex-row pt-[5vh] lg:gap-[5vw] gap-y-14">
           <div className="HARD lg:flex-1 flex justify-center">
             <HardSkills />
           </div>

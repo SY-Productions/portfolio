@@ -138,7 +138,7 @@ export default function OpenSource() {
         <SiGithub size={160} className="text-white" aria-hidden="true" />
       </div>
 
-      <div className="relative z-10 lg:w-[78vw] lg:ms-[22vw] pb-16 px-4 lg:px-8">
+      <div className="section-shell pb-16">
         {/* Header */}
         <div className="pt-[5vh] mb-10">
           <div className="flex items-center gap-3 mb-4 will-animate">

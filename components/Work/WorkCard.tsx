@@ -50,8 +50,7 @@ const WorkCard = ({ work, lang }: WorkCardProps) => {
       <a
         target="_blank"
         rel="noopener noreferrer"
-        className="glass-card group cursor-pointer w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px]
-                  h-auto min-h-[12rem] mx-auto flex flex-col font-[ybn]"
+        className="glass-card group cursor-pointer w-full h-auto min-h-[12rem] flex flex-col font-[ybn]"
       >
         <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
           <div className="overflow-hidden border border-white/10 rounded-none aspect-square">

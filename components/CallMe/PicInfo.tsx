@@ -18,9 +18,7 @@ const PicInfo = memo(function PicInfo() {
 
   return (
     <div
-      className="relative lg:basis-1/2 w-[80vw] lg:w-full h-[60vh] overflow-hidden
-                   flex justify-center items-center bg-black/20 border border-white/10
-                   backdrop-blur-2xl rounded-none"
+      className="glass-card w-full h-[60vh] overflow-hidden flex justify-center items-center"
     >
       {/* Subtle overlay for image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-black/0 z-10"></div>
@@ -29,7 +27,7 @@ const PicInfo = memo(function PicInfo() {
         src={pic}
         alt="Yousof Hashemzade, Flutter Developer | یوسف هاشم زاده، توسعه دهنده فلاتر"
         title="Yousof Hashemzade - Flutter Developer | یوسف هاشم زاده - توسعه دهنده فلاتر"
-        className="h-full w-[80vw] object-cover object-center transition-all duration-700 hover:scale-105"
+        className="h-full w-full object-cover object-center transition-all duration-700 hover:scale-105"
       />
 
       <div

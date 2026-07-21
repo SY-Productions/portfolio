@@ -48,8 +48,8 @@ export default function Information() {
   if (!currentSample) return null;
 
   const containerClass = isLight
-    ? "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[22vw] glass-card-enhanced border border-gray-200 relative"
-    : "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[22vw] glass-card-enhanced relative";
+    ? "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[calc(22vw+2rem)] glass-card-enhanced border border-gray-200 relative"
+    : "font-[ybn] w-[88vw] lg:w-[38vw] lg:ms-[calc(22vw+2rem)] glass-card-enhanced relative";
 
   const titleClass = isLight
     ? "text-base lg:text-lg 2xl:text-xl py-4 text-gray-800 font-[ybb]"

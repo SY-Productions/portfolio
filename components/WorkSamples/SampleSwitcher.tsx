@@ -113,7 +113,7 @@ const SampleSwitcher = memo(function SampleSwitcher() {
         }
       `}</style>
 
-      <div className="my-4 lg:mb-0 flex flex-row items-center justify-between w-[88vw] lg:w-[38vw] lg:ms-[22vw] gap-3">
+      <div className="my-4 lg:mb-0 flex flex-row items-center justify-between w-[88vw] lg:w-[38vw] lg:ms-[calc(22vw+2rem)] gap-3">
         {/* Sample index display */}
         <div className="NAME py-6">
           <p className="sample-index w-20 h-15">

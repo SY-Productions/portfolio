@@ -2,7 +2,7 @@ import React from "react";
 
 const WorkCardSkeleton = () => {
   return (
-    <div className="glass-card w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] mx-auto flex flex-col font-[ybn]">
+    <div className="glass-card w-full h-auto min-h-[12rem] flex flex-col font-[ybn]">
       <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
         <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
           <div className="w-[60px] h-[60px] bg-white/10 animate-pulse"></div>

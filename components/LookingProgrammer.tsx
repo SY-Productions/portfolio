@@ -27,7 +27,7 @@ const LookingProgrammer = memo(function LookingProgrammer() {
       ></div>
 
       {/* Content with higher contrast and modern styling */}
-      <div className="font-[ybn] text-2xl 2xl:text-3xl md:ms-[5rem] lg:ms-[22vw] relative z-10 flex items-center">
+      <div className="font-[ybn] text-2xl 2xl:text-3xl md:ms-[5rem] lg:ms-[calc(22vw+2rem)] relative z-10 flex items-center">
         <span className="relative text-white drop-shadow-md">
           {t("looking.title")}
         </span>
@@ -35,7 +35,7 @@ const LookingProgrammer = memo(function LookingProgrammer() {
 
       <a
         href="#call-me"
-        className="font-[ybb] w-[60vw] md:w-auto md:min-w-[180px] lg:min-w-0 lg:w-[15vw] h-[6vh] md:me-[10vw]
+        className="font-[ybb] w-[60vw] md:w-auto md:min-w-[180px] lg:min-w-0 lg:w-[15vw] h-[6vh] md:me-8
                   flex items-center justify-center
                   bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20
                   hover:from-[#3B070A]/30 hover:to-[#3A0D12]/30

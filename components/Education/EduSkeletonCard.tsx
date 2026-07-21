@@ -3,7 +3,7 @@ import React from "react";
 
 const EduCardSkeleton = () => {
   return (
-    <div className="glass-card w-[80vw] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] mx-auto flex flex-col font-[ybn]">
+    <div className="glass-card w-full h-auto min-h-[12rem] flex flex-col font-[ybn]">
       <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
         {/* Image placeholder */}
         <div className="overflow-hidden border border-white/10 rounded-none aspect-square">

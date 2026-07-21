@@ -47,7 +47,7 @@ const CallForm = memo(function CallForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid grid-cols-2 font-[ybn] w-[80vw] lg:w-full mx-auto gap-4 text-white text-sm"
+      className="grid grid-cols-2 font-[ybn] w-full gap-4 text-white text-sm"
     >
       <label
         className={`${labelClasses} ${focused === "name" ? focusClasses : ""}`}

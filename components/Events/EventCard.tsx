@@ -36,7 +36,7 @@ const EventCard = ({ event, lang }: EventCardProps) => {
 
   return (
     <>
-      <div className="glass-card group w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] overflow-hidden mx-auto flex flex-col font-[ybn] cursor-pointer">
+      <div className="glass-card group w-full h-auto min-h-[12rem] overflow-hidden flex flex-col font-[ybn] cursor-pointer">
         <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
           <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
             <Image

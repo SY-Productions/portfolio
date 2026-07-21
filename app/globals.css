@@ -758,6 +758,24 @@ html.light-theme .sample-index {
   }
 }
 
+/* ===== SECTION SHELL =====
+   One gutter definition shared by every content section, so each section's
+   content block starts and ends on the same vertical lines. On desktop it is
+   a 78vw column sitting next to the 22vw sidebar. */
+.section-shell {
+  position: relative;
+  z-index: 10;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    width: 78vw;
+    margin-inline-start: 22vw;
+    padding-inline: 2rem;
+  }
+}
+
 /* LTR overrides for sidebar */
 html[dir="ltr"] .sidebar-inner {
   flex-direction: row-reverse;

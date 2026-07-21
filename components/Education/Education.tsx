@@ -82,22 +82,22 @@ const Education = () => {
         style={{ animationDuration: "12s", animationDelay: "2s" }}
       ></div>
 
-      <div className="ALL lg:w-[70vw] lg:ms-[22vw] pb-12 relative z-10">
-        <div className="H3&P pt-[5vh] w-full px-4 lg:w-[80%] lg:px-0">
+      <div className="ALL section-shell pb-12">
+        <div className="H3&P pt-[5vh] w-full lg:w-[80%]">
           <h2 className="section-title mb-6">{t("education.title")}</h2>
           <p className="font-[ybn] text-white/60 self-start mb-[5vh] text-wrap 2xl:text-lg leading-7">
             {t("education.description")}
           </p>
         </div>
         {loading && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1].map((edu) => (
               <EduCardSkeleton key={edu} />
             ))}
           </div>
         )}
         {!loading && educations.length > 0 && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {educations.map((edu) => (
               <EduCard key={edu.id} data={edu} lang={lang} />
             ))}
