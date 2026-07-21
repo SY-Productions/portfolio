@@ -19,7 +19,6 @@ const Blog = dynamic(() => import("@/components/Blog/Blog"));
 const CallMe = dynamic(() => import("../components/CallMe/CallMe"));
 const Footer = dynamic(() => import("@/components/Footer"));
 const AdminQuickAccess = dynamic(() => import("@/components/AdminQuickAccess"));
-const AnimatedCursor = dynamic(() => import("@/components/AnimtedCursor"), { ssr: false });
 
 export default function Page() {
   return (
@@ -41,7 +40,6 @@ export default function Page() {
       </main>
       <Footer />
       <AdminQuickAccess />
-      <AnimatedCursor />
     </Suspense>
   );
 }

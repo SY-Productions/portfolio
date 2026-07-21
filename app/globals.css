@@ -18,6 +18,17 @@
   --sidebar-bg: #0D0000;
   --card-bg: rgba(255, 255, 255, 0.03);
   --card-border: rgba(255, 255, 255, 0.06);
+
+  /* Unified glass card (source of truth for every section card) */
+  --card-pad: 1.25rem;
+  --card-blur: 40px;
+  --card-surface: rgba(0, 0, 0, 0.20);
+  --card-surface-hover: rgba(0, 0, 0, 0.28);
+  --card-line: rgba(255, 255, 255, 0.10);
+  --card-line-hover: rgba(255, 255, 255, 0.20);
+  --card-sweep-a: rgba(58, 13, 18, 0.5);
+  --card-sweep-b: rgba(59, 7, 10, 0.5);
+  --card-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.30);
 }
 
 html.light-theme {
@@ -34,6 +45,14 @@ html.light-theme {
   --sidebar-bg: #ede6e6;
   --card-bg: rgba(26, 5, 5, 0.03);
   --card-border: rgba(26, 5, 5, 0.08);
+
+  --card-surface: rgba(26, 5, 5, 0.035);
+  --card-surface-hover: rgba(26, 5, 5, 0.06);
+  --card-line: rgba(26, 5, 5, 0.10);
+  --card-line-hover: rgba(26, 5, 5, 0.20);
+  --card-sweep-a: rgba(90, 14, 18, 0.35);
+  --card-sweep-b: rgba(90, 14, 18, 0.35);
+  --card-shadow-hover: 0 12px 40px rgba(26, 5, 5, 0.12);
 }
 
 html {
@@ -168,23 +187,6 @@ img {
   }
 }
 
-.circle {
-  --circle-size: 10px;
-  position: fixed;
-  height: var(--circle-size);
-  width: var(--circle-size);
-  border: 1px solid #5A0E12;
-  border-radius: 50%;
-  color: transparent;
-  background: linear-gradient(261.6deg,
-      #3A0D12 -4.54%,
-      #5A0E12 46.04%,
-      #3B070A 81.39%);
-  top: calc(var(--circle-size) / 2 * -1);
-  left: calc(var(--circle-size) / 2 * -1);
-  pointer-events: none;
-}
-
 @keyframes flashlight {
   0% {
     background-position: 100% 0;
@@ -282,11 +284,13 @@ img {
 
 /* ===== ENHANCED GLASSMORPHISM ===== */
 
+/* Large panel variant of the glass system (hero, work-sample info).
+   Same surface and border tokens as .glass-card, heavier elevation. */
 .glass-card-enhanced {
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: var(--card-surface);
+  border: 1px solid var(--card-line);
+  backdrop-filter: blur(var(--card-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--card-blur)) saturate(180%);
   box-shadow:
     0 8px 32px 0 rgba(0, 0, 0, 0.37),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
@@ -295,7 +299,7 @@ img {
 }
 
 .glass-card-enhanced:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--card-line-hover);
   box-shadow:
     0 12px 40px 0 rgba(0, 0, 0, 0.45),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
@@ -658,8 +662,8 @@ html.light-theme .placeholder\:text-white\/30::placeholder {
 
 /* Glass card light mode */
 html.light-theme .glass-card-enhanced {
-  background: rgba(26, 5, 5, 0.04) !important;
-  border-color: rgba(26, 5, 5, 0.10) !important;
+  background: var(--card-surface) !important;
+  border-color: var(--card-line) !important;
   box-shadow:
     0 8px 32px 0 rgba(26, 5, 5, 0.08),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
@@ -667,7 +671,7 @@ html.light-theme .glass-card-enhanced {
 }
 
 html.light-theme .glass-card-enhanced:hover {
-  border-color: rgba(26, 5, 5, 0.18) !important;
+  border-color: var(--card-line-hover) !important;
   box-shadow:
     0 12px 40px 0 rgba(26, 5, 5, 0.12),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
@@ -1059,43 +1063,100 @@ html.light-theme .laptop-bar {
   background: linear-gradient(to bottom, #d1d1d6, #c7c7cc);
 }
 
-/* ===== BLOG CARD ===== */
+/* ===== UNIFIED GLASS CARD =====
+   Single source of truth for every section card (work, education, events,
+   blog, products, open source). `.blog-card` is kept as an alias so existing
+   blog markup picks up the same treatment. */
+.glass-card,
 .blog-card {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
-  overflow: hidden;
+  background: var(--card-surface);
+  border: 1px solid var(--card-line);
+  border-radius: 0;
+  backdrop-filter: blur(var(--card-blur));
+  -webkit-backdrop-filter: blur(var(--card-blur));
+  transition:
+    transform 0.3s ease-out,
+    border-color 0.3s ease-out,
+    background-color 0.3s ease-out,
+    box-shadow 0.3s ease-out;
 }
 
-.blog-card::before {
+/* Corner sweep: two borders that grow out of opposite corners on hover */
+.glass-card::before,
+.glass-card::after,
+.blog-card::before,
+.blog-card::after {
   content: '';
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(90, 14, 18, 0.06) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
+  width: 0;
+  height: 0;
   pointer-events: none;
+  transition: width 0.5s ease, height 0.5s ease;
 }
 
+.glass-card::before,
+.blog-card::before {
+  bottom: 0;
+  inset-inline-start: 0;
+  border-bottom: 1px solid var(--card-sweep-a);
+  border-inline-start: 1px solid var(--card-sweep-a);
+}
+
+.glass-card::after,
+.blog-card::after {
+  top: 0;
+  inset-inline-end: 0;
+  border-top: 1px solid var(--card-sweep-b);
+  border-inline-end: 1px solid var(--card-sweep-b);
+  transition-delay: 0.15s;
+}
+
+.glass-card:hover,
 .blog-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(90, 14, 18, 0.4);
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(90, 14, 18, 0.15);
+  background: var(--card-surface-hover);
+  border-color: var(--card-line-hover);
+  box-shadow: var(--card-shadow-hover);
 }
 
-.blog-card:hover::before {
-  opacity: 1;
+.glass-card:hover::before,
+.glass-card:hover::after,
+.blog-card:hover::before,
+.blog-card:hover::after {
+  width: 100%;
+  height: 100%;
 }
 
-html.light-theme .blog-card:hover {
-  box-shadow:
-    0 12px 40px rgba(26, 5, 5, 0.12),
-    0 0 0 1px rgba(90, 14, 18, 0.2);
+/* Cards that also carry the scroll-entrance class need opacity in the
+   transition list, and a duration that reads well for both the entrance
+   slide-up and the hover lift. */
+.glass-card.will-animate,
+.blog-card.will-animate {
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease-out,
+    background-color 0.3s ease-out,
+    box-shadow 0.3s ease-out;
+}
+
+/* Uniform inner padding for card content blocks */
+.glass-card-body {
+  padding: var(--card-pad);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .glass-card,
+  .blog-card {
+    transition: border-color 0.3s ease-out, background-color 0.3s ease-out;
+  }
+
+  .glass-card:hover,
+  .blog-card:hover {
+    transform: none;
+  }
 }
 
 /* ===== CUSTOM TABS (WorkSamples) ===== */
@@ -1147,13 +1208,8 @@ html.light-theme .custom-tab.active {
   min-height: 0;
 }
 
-/* ===== LIGHT THEME: blog & device frames ===== */
-html.light-theme .blog-card {
-  background: rgba(26, 5, 5, 0.025);
-  border-color: rgba(26, 5, 5, 0.1);
-}
-
-
+/* ===== LIGHT THEME: device frames =====
+   Card colours come from the --card-* tokens, no per-card override needed. */
 html.light-theme .custom-tab {
   color: rgba(26, 5, 5, 0.55);
 }

@@ -90,14 +90,14 @@ const Education = () => {
           </p>
         </div>
         {loading && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {[0, 1].map((edu) => (
               <EduCardSkeleton key={edu} />
             ))}
           </div>
         )}
         {!loading && educations.length > 0 && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {educations.map((edu) => (
               <EduCard key={edu.id} data={edu} lang={lang} />
             ))}

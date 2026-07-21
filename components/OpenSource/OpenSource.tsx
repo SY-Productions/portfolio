@@ -154,15 +154,15 @@ export default function OpenSource() {
         </div>
 
         {loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[0, 1, 2, 3].map((i) => (
-              <div key={i} className="h-44 animate-pulse" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.04)" }} />
+              <div key={i} className="glass-card h-44 animate-pulse" />
             ))}
           </div>
         )}
 
         {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {projects.map((ws, i) => {
               const githubUrl = getGitHubUrl(ws.link, ws.customLinks);
               const liveUrl = getLiveUrl(ws.link);
@@ -174,16 +174,12 @@ export default function OpenSource() {
               return (
                 <article
                   key={ws.id}
-                  className="will-animate group relative flex flex-col overflow-hidden transition-all duration-300"
-                  style={{
-                    background: "rgba(255,255,255,0.018)",
-                    border: "1px solid rgba(255,255,255,0.06)",
-                    transitionDelay: `${i * 55}ms`,
-                  }}
+                  className="glass-card will-animate group flex flex-col overflow-hidden"
+                  style={{ transitionDelay: `${i * 55}ms` }}
                 >
                   {/* Gallery image */}
                   {firstPic && (
-                    <div className="h-36 overflow-hidden flex-shrink-0 relative">
+                    <div className="h-44 overflow-hidden flex-shrink-0 relative">
                       <Image
                         src={firstPic}
                         alt={getTitle(ws)}

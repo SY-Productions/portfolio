@@ -61,14 +61,14 @@ const Work = () => {
         </div>
 
         {loading && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {[0, 1].map((work) => (
               <WorkCardSkeleton key={work} />
             ))}
           </div>
         )}
         {!loading && works.length > 0 && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {works.map((data) => (
               <WorkCard key={data.url} work={data} lang={lang} />
             ))}

@@ -69,14 +69,14 @@ const Events = () => {
           </p>
         </div>
         {loading && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {[0, 1].map((event) => (
               <EventCardSkeleton key={event} />
             ))}
           </div>
         )}
         {!loading && events.length > 0 && (
-          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 lg:px-0">
+          <div className="grid lg:inline-grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 lg:px-0">
             {events.map((event) => (
               <EventCard key={event.attachment} event={event} lang={lang} />
             ))}

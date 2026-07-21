@@ -94,7 +94,7 @@ export default function Products() {
         {loading && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[0, 1].map((i) => (
-              <div key={i} className="h-64 bg-black/20 border border-white/5 animate-pulse" />
+              <div key={i} className="glass-card h-64 animate-pulse" />
             ))}
           </div>
         )}
@@ -104,7 +104,7 @@ export default function Products() {
             {products.map((product, i) => (
               <article
                 key={product.id}
-                className="will-animate group flex flex-col overflow-hidden border border-white/10 bg-black/20 backdrop-blur-sm hover:border-white/20 hover:bg-black/30 transition-all duration-300 hover:-translate-y-1"
+                className="glass-card will-animate group flex flex-col overflow-hidden"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 {/* Image / browser chrome / gradient cover */}

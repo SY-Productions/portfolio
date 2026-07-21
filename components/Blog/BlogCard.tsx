@@ -33,7 +33,7 @@ export default function BlogCard({ post, index }: Props) {
     >
       {/* Cover stripe */}
       <div
-        className="w-full h-40 lg:h-44 relative overflow-hidden flex-shrink-0"
+        className="w-full h-44 relative overflow-hidden flex-shrink-0"
         style={
           post.coverImage
             ? { backgroundImage: `url(${post.coverImage})`, backgroundSize: "cover", backgroundPosition: "center" }

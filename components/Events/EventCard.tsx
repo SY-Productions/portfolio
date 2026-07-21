@@ -36,8 +36,8 @@ const EventCard = ({ event, lang }: EventCardProps) => {
 
   return (
     <>
-      <div className="group w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] overflow-hidden bg-black/20 border border-white/10 hover:border-white/20 backdrop-blur-2xl rounded-none mx-auto flex flex-col font-[ybn] transition-all duration-300 hover:-translate-y-1 cursor-pointer ease-in-out relative before:absolute before:content-[''] before:bottom-0 before:left-0 before:w-0 before:h-0 hover:before:w-full hover:before:h-full before:transition-all before:duration-500 before:border-l before:border-b before:border-[#3A0D12]/50 hover:after:w-full hover:after:h-full after:absolute after:content-[''] after:top-0 after:right-0 after:w-0 after:h-0 after:transition-all after:duration-500 after:border-t after:border-r after:border-[#3B070A]/50 after:transition-delay-300">
-        <div className="PIC&CAlENDAR flex items-start w-full m-4 relative">
+      <div className="glass-card group w-[80vw] max-w-[500px] lg:w-[30vw] min-w-[150px] h-auto min-h-[12rem] overflow-hidden mx-auto flex flex-col font-[ybn] cursor-pointer">
+        <div className="PIC&CAlENDAR flex items-start w-full p-5 relative">
           <div className="overflow-hidden border border-white/10 rounded-none aspect-square">
             <Image
               className="aspect-square transition-all duration-300"
@@ -48,13 +48,13 @@ const EventCard = ({ event, lang }: EventCardProps) => {
             />
           </div>
 
-          <div className="absolute end-4 top-[0.75rem] z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
+          <div className="absolute end-5 top-5 z-10 bg-gradient-to-r from-[#3B070A]/20 to-[#3A0D12]/20 rounded-none flex items-center justify-center h-8 w-28 text-xs text-white/80 border border-white/10 backdrop-blur-md">
             {event.date}
           </div>
         </div>
 
-        <div className="NAME&DESC flex flex-col px-4">
-          <div className="relative text-lg py-2 text-white font-bold break-words">
+        <div className="NAME&DESC flex flex-col px-5">
+          <div className="relative text-lg pb-2 text-white font-bold break-words">
             {displayName}
           </div>
 
@@ -65,7 +65,7 @@ const EventCard = ({ event, lang }: EventCardProps) => {
           )}
 
           {event.attachment && (
-            <div className="pb-6">
+            <div className="pb-5">
               <button
                 type="button"
                 onClick={handleOpenDialog}
