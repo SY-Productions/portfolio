@@ -172,19 +172,19 @@ export default function OpenSource() {
                         <span className="font-mono text-xs text-white/40 truncate">{repo.nameWithOwner}</span>
                       </div>
                       {/* Live stars / forks */}
-                      <div className="flex items-center gap-3 flex-shrink-0">
+                      <div className="flex items-center gap-3.5 flex-shrink-0">
                         <span
-                          className="flex items-center gap-1 text-[10px] text-white/35"
+                          className="flex items-center gap-1.5 text-sm text-white/55"
                           title={`${repo.stars} stars`}
                         >
-                          <Star size={10} />
+                          <Star size={15} />
                           <span className="font-mono">{formatCount(repo.stars)}</span>
                         </span>
                         <span
-                          className="flex items-center gap-1 text-[10px] text-white/35"
+                          className="flex items-center gap-1.5 text-sm text-white/55"
                           title={`${repo.forks} forks`}
                         >
-                          <GitFork size={10} />
+                          <GitFork size={15} />
                           <span className="font-mono">{formatCount(repo.forks)}</span>
                         </span>
                       </div>
