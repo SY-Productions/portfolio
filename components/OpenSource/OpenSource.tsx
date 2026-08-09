@@ -1,52 +1,10 @@
-﻿"use client";
+"use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useLang } from "@/app/context/LanguageContext";
 import { API_BASE_URL } from "@/app/config";
 import { SiGithub } from "react-icons/si";
 import { ExternalLink, Star, GitFork, Terminal } from "lucide-react";
-
-interface WorkSample {
-  id: number;
-  isWeb: string;
-  faTitle: string;
-  enTitle: string;
-  arTitle: string;
-  faDescription: string;
-  enDescription: string;
-  arDescription: string;
-  link: string;
-  technologys: string;
-  customLinks: string | null;
-  pictures: string;
-}
-
-function isGitHubLink(link: string, customLinks: string | null): boolean {
-  if (link.includes("github.com")) return true;
-  if (!customLinks) return false;
-  try {
-    const parsed = JSON.parse(customLinks) as Array<{ url: string }>;
-    return parsed.some((l) => l.url?.includes("github.com"));
-  } catch {
-    return customLinks.includes("github.com");
-  }
-}
-
-function getGitHubUrl(link: string, customLinks: string | null): string {
-  if (link.includes("github.com")) return link;
-  if (!customLinks) return link;
-  try {
-    const parsed = JSON.parse(customLinks) as Array<{ url: string }>;
-    return parsed.find((l) => l.url?.includes("github.com"))?.url ?? link;
-  } catch {
-    return link;
-  }
-}
-
-function getLiveUrl(link: string): string | null {
-  if (link.includes("github.com")) return null;
-  return link || null;
-}
+import type { PinnedRepo } from "@/lib/github";
 
 const ACCENT_COLORS = [
   { dot: "#f7c833", line: "rgba(247,200,51,0.15)" },
@@ -57,21 +15,66 @@ const ACCENT_COLORS = [
   { dot: "#f4a8ac", line: "rgba(244,168,172,0.15)" },
 ];
 
+const MAX_DESCRIPTION_LENGTH = 140;
+const MAX_TECH_CHIPS = 4;
+
+/** Turns "my-cool-repo" into "My Cool Repo" for the card headline. */
+function humanizeRepoName(name: string): string {
+  return name
+    .replace(/[-_.]+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function truncate(text: string): string {
+  return text.length > MAX_DESCRIPTION_LENGTH
+    ? `${text.slice(0, MAX_DESCRIPTION_LENGTH)}…`
+    : text;
+}
+
+/** Primary language first, then repo topics — deduped, capped for layout. */
+function getTechs(repo: PinnedRepo): string[] {
+  const all = repo.primaryLanguage ? [repo.primaryLanguage, ...repo.topics] : repo.topics;
+  const seen = new Set<string>();
+  return all
+    .filter((tech) => {
+      const key = tech.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, MAX_TECH_CHIPS);
+}
+
+function formatCount(count: number): string {
+  if (count >= 1000) return `${(count / 1000).toFixed(1).replace(/\.0$/, "")}k`;
+  return String(count);
+}
+
 export default function OpenSource() {
-  const { t, lang } = useLang();
+  const { t } = useLang();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [projects, setProjects] = useState<WorkSample[]>([]);
+  const [repos, setRepos] = useState<PinnedRepo[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/worksamples`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((data: WorkSample[]) => {
-        if (Array.isArray(data))
-          setProjects(data.filter((ws) => isGitHubLink(ws.link, ws.customLinks)));
+    const controller = new AbortController();
+
+    fetch(`${API_BASE_URL}/github/pinned`, { signal: controller.signal })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((data: PinnedRepo[]) => {
+        if (Array.isArray(data)) setRepos(data);
       })
-      .catch(() => {})
-      .finally(() => setLoading(false));
+      .catch((error) => {
+        if (error.name !== "AbortError") {
+          console.error("Could not load pinned repositories:", error);
+        }
+      })
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+
+    return () => controller.abort();
   }, []);
 
   useEffect(() => {
@@ -93,24 +96,7 @@ export default function OpenSource() {
     return () => observer.disconnect();
   }, [loading]);
 
-  const getTitle = (ws: WorkSample) =>
-    lang === "en" && ws.enTitle ? ws.enTitle : lang === "ar" && ws.arTitle ? ws.arTitle : ws.faTitle;
-
-  const getDesc = (ws: WorkSample) => {
-    const raw =
-      lang === "en" && ws.enDescription
-        ? ws.enDescription
-        : lang === "ar" && ws.arDescription
-        ? ws.arDescription
-        : ws.faDescription;
-    const plain = raw.includes("%g%") ? raw.split("%g%")[0] : raw;
-    return plain.length > 140 ? plain.slice(0, 140) + "…" : plain;
-  };
-
-  const getTechs = (ws: WorkSample) =>
-    ws.technologys ? ws.technologys.split(",").map((t) => t.trim()).filter(Boolean) : [];
-
-  if (!loading && projects.length === 0) return null;
+  if (!loading && repos.length === 0) return null;
 
   return (
     <div
@@ -163,34 +149,16 @@ export default function OpenSource() {
 
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projects.map((ws, i) => {
-              const githubUrl = getGitHubUrl(ws.link, ws.customLinks);
-              const liveUrl = getLiveUrl(ws.link);
-              const techs = getTechs(ws);
+            {repos.map((repo, i) => {
+              const techs = getTechs(repo);
               const accent = ACCENT_COLORS[i % ACCENT_COLORS.length];
-              const repoName = githubUrl.split("github.com/")[1] ?? getTitle(ws);
-              const firstPic = ws.pictures?.split(" ").filter(Boolean)[0];
 
               return (
                 <article
-                  key={ws.id}
-                  className="glass-card will-animate group flex flex-col overflow-hidden"
+                  key={repo.id}
+                  className="glass-card will-animate group flex flex-col overflow-hidden relative"
                   style={{ transitionDelay: `${i * 55}ms` }}
                 >
-                  {/* Gallery image */}
-                  {firstPic && (
-                    <div className="h-44 overflow-hidden flex-shrink-0 relative">
-                      <Image
-                        src={firstPic}
-                        alt={getTitle(ws)}
-                        fill
-                        unoptimized
-                        className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0" style={{ background: `linear-gradient(to bottom, transparent 50%, rgba(10,0,0,0.7) 100%)` }} />
-                    </div>
-                  )}
-
                   {/* Top accent line */}
                   <div className="h-[2px] w-full" style={{ background: accent.line, borderBottom: `1px solid ${accent.dot}30` }}>
                     <div className="h-full w-[30%]" style={{ background: `linear-gradient(90deg, ${accent.dot}80, transparent)` }} />
@@ -201,17 +169,23 @@ export default function OpenSource() {
                     <div className="flex items-start justify-between gap-2 mb-3">
                       <div className="flex items-center gap-2 min-w-0">
                         <SiGithub size={16} className="text-white/40 flex-shrink-0" aria-hidden="true" />
-                        <span className="font-mono text-xs text-white/40 truncate">{repoName}</span>
+                        <span className="font-mono text-xs text-white/40 truncate">{repo.nameWithOwner}</span>
                       </div>
-                      {/* Decorative star/fork */}
+                      {/* Live stars / forks */}
                       <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className="flex items-center gap-1 text-[10px] text-white/20">
+                        <span
+                          className="flex items-center gap-1 text-[10px] text-white/35"
+                          title={`${repo.stars} stars`}
+                        >
                           <Star size={10} />
-                          <span className="font-mono">—</span>
+                          <span className="font-mono">{formatCount(repo.stars)}</span>
                         </span>
-                        <span className="flex items-center gap-1 text-[10px] text-white/20">
+                        <span
+                          className="flex items-center gap-1 text-[10px] text-white/35"
+                          title={`${repo.forks} forks`}
+                        >
                           <GitFork size={10} />
-                          <span className="font-mono">—</span>
+                          <span className="font-mono">{formatCount(repo.forks)}</span>
                         </span>
                       </div>
                     </div>
@@ -221,18 +195,18 @@ export default function OpenSource() {
                       className="font-[ybb] text-base lg:text-lg leading-snug mb-2 transition-colors group-hover:text-white"
                       style={{ color: "rgba(255,255,255,0.85)" }}
                     >
-                      {getTitle(ws)}
+                      {humanizeRepoName(repo.name)}
                     </h4>
 
                     {/* Description */}
                     <p className="font-[ybn] text-sm leading-6 flex-1 mb-4" style={{ color: "rgba(255,255,255,0.42)" }}>
-                      {getDesc(ws)}
+                      {repo.description ? truncate(repo.description) : ""}
                     </p>
 
-                    {/* Tech chips */}
+                    {/* Tech chips — primary language + topics */}
                     {techs.length > 0 && (
                       <div className="flex flex-wrap gap-1.5 mb-4">
-                        {techs.slice(0, 4).map((tech) => (
+                        {techs.map((tech) => (
                           <span
                             key={tech}
                             className="font-mono text-[10px] px-2 py-0.5"
@@ -251,7 +225,7 @@ export default function OpenSource() {
                     {/* Actions */}
                     <div className="flex gap-2 mt-auto">
                       <a
-                        href={githubUrl}
+                        href={repo.url}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 transition-all"
@@ -274,9 +248,9 @@ export default function OpenSource() {
                         <SiGithub size={11} aria-hidden="true" />
                         {t("openSource.viewCode")}
                       </a>
-                      {liveUrl && (
+                      {repo.homepageUrl && (
                         <a
-                          href={liveUrl}
+                          href={repo.homepageUrl}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-1.5 text-xs font-[ybn] px-3 py-1.5 transition-all"
