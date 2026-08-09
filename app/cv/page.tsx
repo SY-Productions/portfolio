@@ -1,5 +1,11 @@
 import { Metadata } from "next";
 import prisma from "@/prisma/client";
+import {
+  fetchPinnedRepos,
+  getRepoTechs,
+  humanizeRepoName,
+  type PinnedRepo,
+} from "@/lib/github";
 import CVClient from "./CVClient";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +17,8 @@ export const metadata: Metadata = {
 
 type Lang = "fa" | "en" | "ar";
 type Theme = "dark" | "light";
+
+const MAX_CV_REPO_CHIPS = 6;
 
 // ─── Translations ──────────────────────────────────────────────────────────────
 
@@ -37,6 +45,9 @@ const TR: Record<Lang, Record<string, string>> = {
     softUpToDate: "به‌روز",
     softListener: "خوب شنیدن",
     softPatient: "صبور",
+    stars: "ستاره",
+    forks: "فورک",
+    updated: "آخرین بروزرسانی",
   },
   en: {
     name: "Yousof Hashemzade",
@@ -60,6 +71,9 @@ const TR: Record<Lang, Record<string, string>> = {
     softUpToDate: "Up to Date",
     softListener: "Good Listener",
     softPatient: "Patient",
+    stars: "stars",
+    forks: "forks",
+    updated: "Updated",
   },
   ar: {
     name: "يوسف هاشم زاده",
@@ -83,6 +97,9 @@ const TR: Record<Lang, Record<string, string>> = {
     softUpToDate: "محدّث",
     softListener: "مستمع جيد",
     softPatient: "صبور",
+    stars: "نجمة",
+    forks: "تفرّع",
+    updated: "آخر تحديث",
   },
 };
 
@@ -187,6 +204,31 @@ function pickWsDates(
   return `${ws.faStartDate} – ${ws.faEndDate}`;
 }
 
+const GITHUB_LOGIN = process.env.GITHUB_USERNAME || "YOUSSSOF";
+
+/**
+ * The CV mirrors the site's Open Source section, which is driven by the repos
+ * pinned on GitHub. A CV must still render if GitHub is down or the token is
+ * missing, so failures fall back to the GitHub-linked work samples in the DB.
+ */
+async function loadPinnedRepos(): Promise<PinnedRepo[]> {
+  try {
+    return await fetchPinnedRepos(GITHUB_LOGIN);
+  } catch (error) {
+    console.error("CV: could not load pinned repositories —", error);
+    return [];
+  }
+}
+
+function repoMeta(repo: PinnedRepo, tr: Record<string, string>): string {
+  return `★ ${repo.stars} ${tr.stars} · ⑂ ${repo.forks} ${tr.forks}`;
+}
+
+function repoYears(repo: PinnedRepo, tr: Record<string, string>): string {
+  const year = repo.updatedAt ? new Date(repo.updatedAt).getFullYear() : NaN;
+  return Number.isNaN(year) ? "GitHub" : `${tr.updated} ${year}`;
+}
+
 function isGitHub(link: string, customLinks: string | null): boolean {
   if (link.includes("github.com")) return true;
   if (customLinks) {
@@ -280,10 +322,11 @@ function Section({
 }
 
 function EntryCard({
-  name, years, description, chips, link, isRtl, c, boldFont, bodyFont,
+  name, years, description, chips, link, meta, isRtl, c, boldFont, bodyFont,
 }: {
   name: string; years: string; description?: string;
-  chips?: string[]; link?: string; isRtl: boolean; c: ReturnType<typeof palette>;
+  chips?: string[]; link?: string; meta?: string;
+  isRtl: boolean; c: ReturnType<typeof palette>;
   boldFont: string; bodyFont: string;
 }) {
   return (
@@ -302,7 +345,7 @@ function EntryCard({
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          marginBottom: description || (chips && chips.length) ? 8 : 0,
+          marginBottom: description || meta || (chips && chips.length) ? 8 : 0,
           gap: 12,
           flexWrap: "wrap",
         }}
@@ -324,6 +367,18 @@ function EntryCard({
           {years}
         </span>
       </div>
+      {meta && (
+        <div
+          style={{
+            fontSize: 10,
+            color: c.textMuted,
+            fontFamily: bodyFont,
+            marginBottom: 8,
+          }}
+        >
+          {meta}
+        </div>
+      )}
       {description && (
         <p
           style={{
@@ -381,12 +436,13 @@ export default async function CVPage({
   const bodyFont = isRtl ? '"ybn", sans-serif' : '"inter", sans-serif';
   const boldFont = isRtl ? '"ybb", sans-serif' : '"inter", sans-serif';
 
-  const [educations, works, events, settings, workSamples] = await Promise.all([
+  const [educations, works, events, settings, workSamples, pinnedRepos] = await Promise.all([
     prisma.education.findMany({ orderBy: { order: "asc" } }),
     prisma.work.findMany({ orderBy: { order: "asc" } }),
     prisma.event.findMany({ orderBy: { order: "asc" } }),
     prisma.siteSettings.findFirst(),
     prisma.workSample.findMany({ orderBy: { order: "asc" } }),
+    loadPinnedRepos(),
   ]);
 
   const technologies = (settings?.technologies || "")
@@ -655,8 +711,29 @@ export default async function CVPage({
             </Section>
           )}
 
-          {/* ── Open Source ──────────────────────────────────────────── */}
-          {openSourceProjects.length > 0 && (
+          {/* ── Open Source — live from the repos pinned on GitHub ───── */}
+          {pinnedRepos.length > 0 && (
+            <Section title={tr.openSource} isRtl={isRtl} c={c}>
+              {pinnedRepos.map((repo) => (
+                <EntryCard
+                  key={repo.id}
+                  name={humanizeRepoName(repo.name)}
+                  years={repoYears(repo, tr)}
+                  description={repo.description ?? undefined}
+                  meta={repoMeta(repo, tr)}
+                  chips={getRepoTechs(repo, MAX_CV_REPO_CHIPS)}
+                  link={repo.url}
+                  isRtl={isRtl}
+                  c={c}
+                  boldFont={boldFont}
+                  bodyFont={bodyFont}
+                />
+              ))}
+            </Section>
+          )}
+
+          {/* Fallback: GitHub-linked work samples when the API is unavailable */}
+          {pinnedRepos.length === 0 && openSourceProjects.length > 0 && (
             <Section title={tr.openSource} isRtl={isRtl} c={c}>
               {openSourceProjects.map((ws) => {
                 const chips = ws.technologys.split(",").map((s) => s.trim()).filter(Boolean);

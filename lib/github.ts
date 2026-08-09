@@ -9,6 +9,7 @@
 const GITHUB_GRAPHQL_ENDPOINT = "https://api.github.com/graphql";
 const MAX_PINNED_ITEMS = 6;
 const REVALIDATE_SECONDS = 3600;
+const DEFAULT_MAX_TECHS = 4;
 
 export interface PinnedRepo {
   id: string;
@@ -109,6 +110,28 @@ function normalize(node: GraphQlRepoNode): PinnedRepo | null {
     isArchived: node.isArchived ?? false,
     updatedAt: node.updatedAt ?? "",
   };
+}
+
+/** Turns "my-cool-repo" into "My Cool Repo" for a headline. */
+export function humanizeRepoName(name: string): string {
+  return name
+    .replace(/[-_.]+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Primary language first, then repo topics — deduped, capped for layout. */
+export function getRepoTechs(repo: PinnedRepo, max = DEFAULT_MAX_TECHS): string[] {
+  const all = repo.primaryLanguage ? [repo.primaryLanguage, ...repo.topics] : repo.topics;
+  const seen = new Set<string>();
+  return all
+    .filter((tech) => {
+      const key = tech.toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, max);
 }
 
 /**

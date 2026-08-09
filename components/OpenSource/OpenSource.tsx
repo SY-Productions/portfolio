@@ -4,7 +4,7 @@ import { useLang } from "@/app/context/LanguageContext";
 import { API_BASE_URL } from "@/app/config";
 import { SiGithub } from "react-icons/si";
 import { ExternalLink, Star, GitFork, Terminal } from "lucide-react";
-import type { PinnedRepo } from "@/lib/github";
+import { getRepoTechs, humanizeRepoName, type PinnedRepo } from "@/lib/github";
 
 const ACCENT_COLORS = [
   { dot: "#f7c833", line: "rgba(247,200,51,0.15)" },
@@ -18,32 +18,10 @@ const ACCENT_COLORS = [
 const MAX_DESCRIPTION_LENGTH = 140;
 const MAX_TECH_CHIPS = 4;
 
-/** Turns "my-cool-repo" into "My Cool Repo" for the card headline. */
-function humanizeRepoName(name: string): string {
-  return name
-    .replace(/[-_.]+/g, " ")
-    .trim()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 function truncate(text: string): string {
   return text.length > MAX_DESCRIPTION_LENGTH
     ? `${text.slice(0, MAX_DESCRIPTION_LENGTH)}…`
     : text;
-}
-
-/** Primary language first, then repo topics — deduped, capped for layout. */
-function getTechs(repo: PinnedRepo): string[] {
-  const all = repo.primaryLanguage ? [repo.primaryLanguage, ...repo.topics] : repo.topics;
-  const seen = new Set<string>();
-  return all
-    .filter((tech) => {
-      const key = tech.toLowerCase();
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
-    })
-    .slice(0, MAX_TECH_CHIPS);
 }
 
 function formatCount(count: number): string {
@@ -150,7 +128,7 @@ export default function OpenSource() {
         {!loading && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {repos.map((repo, i) => {
-              const techs = getTechs(repo);
+              const techs = getRepoTechs(repo, MAX_TECH_CHIPS);
               const accent = ACCENT_COLORS[i % ACCENT_COLORS.length];
 
               return (
