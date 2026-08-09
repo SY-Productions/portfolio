@@ -27,7 +27,7 @@ const LookingProgrammer = memo(function LookingProgrammer() {
       ></div>
 
       {/* Content with higher contrast and modern styling */}
-      <div className="font-[ybn] text-2xl 2xl:text-3xl md:ms-[5rem] lg:ms-[calc(22vw+2rem)] relative z-10 flex items-center">
+      <div className="font-[ybn] text-2xl 2xl:text-3xl md:ms-[5rem] lg:ms-[calc(var(--sidebar-width)+var(--shell-gutter))] relative z-10 flex items-center">
         <span className="relative text-white drop-shadow-md">
           {t("looking.title")}
         </span>

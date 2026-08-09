@@ -4,6 +4,12 @@
 
 /* ===== THEME VARIABLES ===== */
 :root {
+  /* Layout: desktop sidebar width and the gutter every section leaves on both
+     sides of its content. Content starts at --sidebar-width + --shell-gutter
+     and ends --shell-gutter from the viewport edge, so both margins match. */
+  --sidebar-width: 20vw;
+  --shell-gutter: 2rem;
+
   /* Dark theme (default) */
   --color-a: #5A0E12;
   --color-b: #3B070A;
@@ -761,7 +767,7 @@ html.light-theme .sample-index {
 /* ===== SECTION SHELL =====
    One gutter definition shared by every content section, so each section's
    content block starts and ends on the same vertical lines. On desktop it is
-   a 78vw column sitting next to the 22vw sidebar. */
+   a column butted against the sidebar, with an equal gutter on each side. */
 .section-shell {
   position: relative;
   z-index: 10;
@@ -770,9 +776,9 @@ html.light-theme .sample-index {
 
 @media (min-width: 1024px) {
   .section-shell {
-    width: 78vw;
-    margin-inline-start: 22vw;
-    padding-inline: 2rem;
+    width: calc(100vw - var(--sidebar-width));
+    margin-inline-start: var(--sidebar-width);
+    padding-inline: var(--shell-gutter);
   }
 }
 

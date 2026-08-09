@@ -64,7 +64,7 @@ const AboutMe = memo(function AboutMe() {
         <div className="particle particle-3"></div>
       </div>
 
-      <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:ms-[calc(22vw+2rem)] lg:me-8 lg:h-screen relative z-10">
+      <div className="(PROF)&(NAME&DESC&BUTTONS) flex flex-col lg:flex-row items-center lg:ms-[calc(var(--sidebar-width)+var(--shell-gutter))] lg:me-8 lg:h-screen relative z-10">
         {/* Enhanced profile picture card with advanced glassmorphism */}
         <div
           className={`PROF group p-5 mx-[5vw] lg:mx-0 mt-[5vh] lg:mt-[0rem]
