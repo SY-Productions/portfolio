@@ -1,12 +1,26 @@
 import Link from "next/link";
 import { GiMinotaur } from "react-icons/gi";
+import { notFoundMarkdown } from "@/lib/agent-markdown";
+import { SITE_MAP_LINKS } from "@/lib/site-profile";
+
+/**
+ * 404 page.
+ *
+ * Returns a real HTTP 404 (Next.js does that for `not-found.tsx`) and, next to
+ * the human copy, a visible markdown recovery block: an agent that lands here
+ * with a plain `Accept: text/html` still gets machine-readable directions to
+ * the sitemap and llms.txt instead of a dead end. Agents that negotiate
+ * `Accept: text/markdown` receive the same text as a `text/markdown` body.
+ */
+
+const RECOVERY_MARKDOWN = notFoundMarkdown("(the requested path)");
 
 const Custom404 = () => {
   return (
-    <div className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full h-screen flex flex-col items-center justify-center text-center relative overflow-hidden">
+    <div className="bg-[url('/vectors/sec1-bgdark.svg')] bg-no-repeat bg-cover w-full min-h-screen flex flex-col items-center justify-center text-center relative overflow-hidden py-16">
       <div className="absolute inset-0 bg-gradient-to-r from-black/10 to-black/0 backdrop-blur-sm"></div>
 
-      <div className="relative z-10 flex flex-col items-center gap-8">
+      <div className="relative z-10 flex flex-col items-center gap-8 px-4 w-full max-w-3xl">
         {/* 404 Icon */}
         <span className="text-7xl sm:text-8xl font-extrabold text-white tracking-tight">
           <GiMinotaur />
@@ -33,6 +47,43 @@ const Custom404 = () => {
         >
           بازگشت به صفحه اصلی
         </Link>
+
+        {/* Recovery links — where to look next */}
+        <nav
+          dir="ltr"
+          aria-label="Where to look next"
+          className="w-full text-left border-t border-white/10 pt-8"
+        >
+          <h2 className="font-[ybb] text-white/70 text-base mb-3">
+            Where to look instead
+          </h2>
+          <ul className="font-[ybn] text-sm space-y-2">
+            {SITE_MAP_LINKS.map(({ path, label }) => (
+              <li key={path}>
+                <Link
+                  href={path}
+                  className="text-white/50 hover:text-white/90 transition-colors"
+                >
+                  <code>{path}</code> — {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Same directions in markdown, for agents that landed here as HTML */}
+        <section
+          dir="ltr"
+          aria-label="Recovery directions in markdown"
+          className="w-full text-left"
+        >
+          <h2 className="font-[ybb] text-white/50 text-xs tracking-widest uppercase mb-2">
+            ~/404.md
+          </h2>
+          <pre className="font-[inter] text-white/40 text-[11px] leading-5 whitespace-pre-wrap overflow-x-auto bg-black/30 border border-white/10 p-4">
+            {RECOVERY_MARKDOWN}
+          </pre>
+        </section>
       </div>
     </div>
   );

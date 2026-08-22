@@ -20,9 +20,14 @@ export type Education = {
   descriptionAr?: string;
 };
 
-const Education = () => {
-  const [educations, setEducations] = useState<Education[]>([]);
-  const [loading, setLoading] = useState(true);
+type EducationProps = {
+  /** Server-rendered rows, so the section has real content without JavaScript. */
+  initialEducations?: Education[];
+};
+
+const Education = ({ initialEducations = [] }: EducationProps) => {
+  const [educations, setEducations] = useState<Education[]>(initialEducations);
+  const [loading, setLoading] = useState(initialEducations.length === 0);
   const { t, lang } = useLang();
   const { theme } = useTheme();
   const sectionRef = useRef<HTMLDivElement>(null);

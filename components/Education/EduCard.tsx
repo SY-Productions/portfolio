@@ -51,9 +51,9 @@ const EduCard = memo(function EduCard({
       </div>
 
       <div className="NAME&DESC flex flex-col px-5">
-        <div className="relative text-lg pb-2 text-white font-bold">
+        <h3 className="relative text-lg pb-2 text-white font-bold">
           {displayName}
-        </div>
+        </h3>
 
         <div className="text-sm pb-5 text-white/60 leading-6">
           {displayDesc}

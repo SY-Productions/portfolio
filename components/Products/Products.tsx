@@ -6,7 +6,7 @@ import { useTheme } from "@/app/context/ThemeContext";
 import { API_BASE_URL } from "@/app/config";
 import { ShoppingCart } from "lucide-react";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   titleEn: string;
@@ -27,12 +27,17 @@ const CATEGORY_BADGE: Record<string, string> = {
   other: "Product",
 };
 
-export default function Products() {
+type ProductsProps = {
+  /** Server-rendered rows, so the section has real content without JavaScript. */
+  initialProducts?: Product[];
+};
+
+export default function Products({ initialProducts = [] }: ProductsProps) {
   const { t, lang } = useLang();
   const { theme } = useTheme();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/products`, { cache: "no-store" })
@@ -165,9 +170,9 @@ export default function Products() {
 
                 {/* Content */}
                 <div className="flex flex-col flex-1 p-5">
-                  <h4 className="font-[ybb] text-white/90 text-base lg:text-lg leading-snug mb-2">
+                  <h3 className="font-[ybb] font-normal text-white/90 text-base lg:text-lg leading-snug mb-2">
                     {getTitle(product)}
-                  </h4>
+                  </h3>
                   <p className="font-[ybn] text-white/50 text-sm leading-6 flex-1 line-clamp-3">
                     {getDesc(product)}
                   </p>

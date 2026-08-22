@@ -54,9 +54,9 @@ const EventCard = ({ event, lang }: EventCardProps) => {
         </div>
 
         <div className="NAME&DESC flex flex-col px-5">
-          <div className="relative text-lg pb-2 text-white font-bold break-words">
+          <h3 className="relative text-lg pb-2 text-white font-bold break-words">
             {displayName}
-          </div>
+          </h3>
 
           {displayDesc && (
             <div className="text-sm pb-3 text-white/60 leading-6 break-words">

@@ -71,7 +71,14 @@
   "footer": {
     "copyright": "جميع الحقوق محفوظة لـ",
     "owner": "يوسف هاشم زاده",
-    "suffix": "."
+    "suffix": ".",
+    "links": {
+      "about": "نبذة",
+      "contact": "اتصل",
+      "privacy": "الخصوصية",
+      "developers": "المطورون",
+      "blog": "المدونة"
+    }
   },
   "workSamples": {
     "copyLink": "نسخ الرابط",

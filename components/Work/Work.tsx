@@ -21,9 +21,14 @@ export type Work = {
   descriptionAr?: string;
 };
 
-const Work = () => {
-  const [works, setWorks] = useState<Work[]>([]);
-  const [loading, setLoading] = useState(true);
+type WorkProps = {
+  /** Server-rendered rows, so the section has real content without JavaScript. */
+  initialWorks?: Work[];
+};
+
+const Work = ({ initialWorks = [] }: WorkProps) => {
+  const [works, setWorks] = useState<Work[]>(initialWorks);
+  const [loading, setLoading] = useState(initialWorks.length === 0);
   const { t, lang } = useLang();
 
   useEffect(() => {

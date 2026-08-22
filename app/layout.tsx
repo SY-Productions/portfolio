@@ -5,9 +5,13 @@ import { LanguageProvider } from "./context/LanguageContext";
 import NextAuthProvider from "./context/NextAuthProvider";
 import SiteSettingsLoader from "@/components/SiteSettingsLoader";
 import FirebaseProvider from "@/components/FirebaseProvider";
+import { buildStructuredData } from "@/lib/structured-data";
+import { SITE_URL } from "@/lib/site-profile";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://youdexsof.ir"),
+  // Must match the canonical host below, or relative OG/Twitter image URLs
+  // resolve to a domain that redirects.
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر | Yousof Hashemzadeh",
     template: "%s | یوسف هاشم زاده - Yousof Hashemzadeh",
@@ -68,13 +72,13 @@ export const metadata: Metadata = {
       "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer | مطور تطبيقات الجوال المحترف",
     images: [
       {
-        url: "../public/me.jpg",
+        url: "/me.jpg",
         width: 1920,
         height: 1920,
         alt: "یوسف هاشم زاده - Yousof Hashemzadeh Portfolio",
       },
       {
-        url: "../public/pic.jpg",
+        url: "/pic.png",
         width: 964,
         height: 957,
         alt: "یوسف هاشم زاده - Yousof Hashemzadeh Portfolio",
@@ -87,7 +91,7 @@ export const metadata: Metadata = {
     title: "یوسف هاشم زاده | توسعه دهنده موبایل و فلاتر",
     description:
       "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
-    images: [".../public/me.jpg"],
+    images: ["/me.jpg"],
     creator: "@youdexsof",
   },
 
@@ -191,26 +195,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "یوسف هاشم زاده",
-              alternateName: "Yousof Hashemzadeh",
-              url: "https://www.youdexsof.ir",
-              image: "https://youdexsof.ir/pic.jpg",
-              sameAs: [
-                "https://www.linkedin.com/in/yousof-hashemezade",
-                "https://github.com/YOUSSSOF",
-                "https://www.instagram.com/youdexsof",
-              ],
-              jobTitle: "Flutter Developer | توسعه دهنده فلاتر",
-              worksFor: {
-                "@type": "Organization",
-                name: "Freelance",
-              },
-              description:
-                "توسعه‌دهنده حرفه‌ای اپلیکیشن‌های موبایل با فلاتر و پایتون | Professional Flutter and Python developer",
-            }),
+            __html: JSON.stringify(buildStructuredData()),
           }}
         />
       </head>

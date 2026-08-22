@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, memo } from "react";
+import React, { memo } from "react";
 import { Work } from "./Work";
 import Image from "next/image";
 import Skill from "../Skills/HardSkill";
@@ -13,14 +13,7 @@ interface WorkCardProps {
 }
 
 const WorkCard = ({ work, lang }: WorkCardProps) => {
-  const [mounted, setMounted] = useState(false);
   const { t } = useLang();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
 
   const displayName =
     lang === "en" && work.nameEn
@@ -75,9 +68,9 @@ const WorkCard = ({ work, lang }: WorkCardProps) => {
         </div>
 
         <div className="NAME&DESC flex flex-col px-5">
-          <div className="relative text-lg pb-2 text-white font-bold">
+          <h3 className="relative text-lg pb-2 text-white font-bold">
             {displayName}
-          </div>
+          </h3>
 
           <div className="text-sm pb-4 text-white/60 leading-6">
             {displayDesc}

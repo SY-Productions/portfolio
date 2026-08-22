@@ -20,9 +20,14 @@ export type Event = {
   descriptionAr?: string;
 };
 
-const Events = () => {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+type EventsProps = {
+  /** Server-rendered rows, so the section has real content without JavaScript. */
+  initialEvents?: Event[];
+};
+
+const Events = ({ initialEvents = [] }: EventsProps) => {
+  const [events, setEvents] = useState<Event[]>(initialEvents);
+  const [loading, setLoading] = useState(initialEvents.length === 0);
   const { t, lang } = useLang();
   const { theme } = useTheme();
 

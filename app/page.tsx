@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import AboutMe from "../components/AboutMe";
 import NavBarForMobile from "@/components/NavBarForMobile";
 import SideBar from "@/components/SideBar";
+import { getHomepageData } from "@/lib/homepage-data";
 
 // Below-fold — lazy load to reduce initial JS bundle
 const Skills = dynamic(() => import("../components/Skills/SkillsSection"));
@@ -20,7 +21,16 @@ const CallMe = dynamic(() => import("../components/CallMe/CallMe"));
 const Footer = dynamic(() => import("@/components/Footer"));
 const AdminQuickAccess = dynamic(() => import("@/components/AdminQuickAccess"));
 
-export default function Page() {
+/**
+ * Revalidate hourly: the sections are seeded from the database and the GitHub
+ * API on the server, so the cached HTML has to age out for new rows to appear
+ * in the no-JavaScript view.
+ */
+export const revalidate = 3600;
+
+export default async function Page() {
+  const data = await getHomepageData();
+
   return (
     <Suspense>
       <SideBar />
@@ -28,13 +38,13 @@ export default function Page() {
         <NavBarForMobile />
         <AboutMe />
         <Skills />
-        <WorkSamples />
-        <OpenSource />
-        <Products />
+        <WorkSamples initialSamples={data.workSamples} />
+        <OpenSource initialRepos={data.repositories} />
+        <Products initialProducts={data.products} />
         <LookingProgrammer />
-        <Education />
-        <Work />
-        <Events />
+        <Education initialEducations={data.educations} />
+        <Work initialWorks={data.works} />
+        <Events initialEvents={data.events} />
         <Blog />
         <CallMe />
       </main>

@@ -71,7 +71,14 @@
   "footer": {
     "copyright": "تمامی حقوق مادی و معنوی این سایت متعلق به",
     "owner": "یوسف هاشم زاده",
-    "suffix": " می باشد."
+    "suffix": " می باشد.",
+    "links": {
+      "about": "درباره من",
+      "contact": "تماس",
+      "privacy": "حریم خصوصی",
+      "developers": "توسعه‌دهندگان",
+      "blog": "وبلاگ"
+    }
   },
   "workSamples": {
     "copyLink": "کپی لینک",

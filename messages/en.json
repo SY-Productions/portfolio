@@ -71,7 +71,14 @@
   "footer": {
     "copyright": "All rights reserved by",
     "owner": "Yousof Hashemzade",
-    "suffix": "."
+    "suffix": ".",
+    "links": {
+      "about": "About",
+      "contact": "Contact",
+      "privacy": "Privacy",
+      "developers": "Developers",
+      "blog": "Blog"
+    }
   },
   "workSamples": {
     "copyLink": "Copy Link",

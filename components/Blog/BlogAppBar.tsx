@@ -8,7 +8,12 @@ import { useTheme } from "@/app/context/ThemeContext";
 
 const LANGS: Lang[] = ["fa", "en", "ar"];
 
-export default function BlogAppBar() {
+/**
+ * Slim top bar for standalone pages (blog, about, contact, privacy,
+ * developers). `label` names the current surface; it defaults to "Blog" so the
+ * existing blog usage is unchanged.
+ */
+export default function BlogAppBar({ label = "Blog" }: { label?: string }) {
   const { lang, setLang } = useLang();
   const { theme, toggleTheme } = useTheme();
 
@@ -30,9 +35,9 @@ export default function BlogAppBar() {
         <span className="hidden sm:inline">Portfolio</span>
       </Link>
 
-      {/* Center: Blog label */}
+      {/* Center: current surface label */}
       <span className="absolute left-1/2 -translate-x-1/2 text-white/50 text-xs font-[ybn] tracking-widest uppercase pointer-events-none" aria-hidden="true">
-        Blog
+        {label}
       </span>
 
       {/* Right: lang + theme */}

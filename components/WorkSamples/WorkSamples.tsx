@@ -32,9 +32,14 @@ export type WorkSample = {
   client?: string;
 };
 
-export default function WorkSamples() {
-  const [data, setData] = useState<WorkSample[]>([]);
-  const [loading, setLoading] = useState(true);
+type WorkSamplesProps = {
+  /** Server-rendered rows, so the section has real content without JavaScript. */
+  initialSamples?: WorkSample[];
+};
+
+export default function WorkSamples({ initialSamples = [] }: WorkSamplesProps) {
+  const [data, setData] = useState<WorkSample[]>(initialSamples);
+  const [loading, setLoading] = useState(initialSamples.length === 0);
   const { theme } = useTheme();
 
   useEffect(() => {

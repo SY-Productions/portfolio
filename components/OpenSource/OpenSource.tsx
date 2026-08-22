@@ -29,11 +29,16 @@ function formatCount(count: number): string {
   return String(count);
 }
 
-export default function OpenSource() {
+type OpenSourceProps = {
+  /** Server-fetched pinned repos, so the section has real content without JavaScript. */
+  initialRepos?: PinnedRepo[];
+};
+
+export default function OpenSource({ initialRepos = [] }: OpenSourceProps) {
   const { t } = useLang();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [repos, setRepos] = useState<PinnedRepo[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [repos, setRepos] = useState<PinnedRepo[]>(initialRepos);
+  const [loading, setLoading] = useState(initialRepos.length === 0);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -169,12 +174,12 @@ export default function OpenSource() {
                     </div>
 
                     {/* Title */}
-                    <h4
-                      className="font-[ybb] text-base lg:text-lg leading-snug mb-2 transition-colors group-hover:text-white"
+                    <h3
+                      className="font-[ybb] font-normal text-base lg:text-lg leading-snug mb-2 transition-colors group-hover:text-white"
                       style={{ color: "rgba(255,255,255,0.85)" }}
                     >
                       {humanizeRepoName(repo.name)}
-                    </h4>
+                    </h3>
 
                     {/* Description */}
                     <p className="font-[ybn] text-sm leading-6 flex-1 mb-4" style={{ color: "rgba(255,255,255,0.42)" }}>

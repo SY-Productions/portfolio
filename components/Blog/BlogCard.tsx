@@ -66,9 +66,9 @@ export default function BlogCard({ post, index }: Props) {
           )}
         </div>
 
-        <h4 className="font-[ybb] text-white/90 text-base lg:text-lg leading-snug mb-2 line-clamp-2 group-hover:text-white transition-colors">
+        <h3 className="font-[ybb] font-normal text-white/90 text-base lg:text-lg leading-snug mb-2 line-clamp-2 group-hover:text-white transition-colors">
           {post.title}
-        </h4>
+        </h3>
 
         <p className="font-[ybn] text-white/50 text-sm leading-6 flex-1 line-clamp-3">
           {post.description}
